@@ -1,6 +1,10 @@
-/* purgecss start ignore */
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-/* purgecss end ignore */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@import 'tailwindcss/utilities';
+/* Custom base styles */
+@layer base {
+  body {
+    @apply m-0 text-indigo-900 bg-white;
+  }
+}
