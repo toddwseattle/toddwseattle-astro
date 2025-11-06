@@ -1,7 +1,7 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, z } from "astro:content";
 
 const blog = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     category: z.string(),
     cover: z.string().optional(),
@@ -14,7 +14,7 @@ const blog = defineCollection({
 });
 
 const experiences = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     category: z.string(),
     company: z.string(),
@@ -25,7 +25,7 @@ const experiences = defineCollection({
 });
 
 const projects = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     category: z.string(),
     cover: z.string().optional(),
@@ -34,7 +34,7 @@ const projects = defineCollection({
 });
 
 const skills = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     category: z.string(),
     title: z.string(),
@@ -43,7 +43,7 @@ const skills = defineCollection({
 });
 
 const activities = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     category: z.string(),
     title: z.string().optional(),
@@ -52,7 +52,7 @@ const activities = defineCollection({
 });
 
 const contacts = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     category: z.string(),
     name: z.string().optional(),
@@ -62,7 +62,7 @@ const contacts = defineCollection({
 });
 
 const education = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     category: z.string(),
     degree: z.string().optional(),
@@ -73,7 +73,7 @@ const education = defineCollection({
 });
 
 const services = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     category: z.string(),
     title: z.string().optional(),
@@ -82,7 +82,7 @@ const services = defineCollection({
 });
 
 const testimonials = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     category: z.string(),
     name: z.string().optional(),
@@ -92,7 +92,7 @@ const testimonials = defineCollection({
 });
 
 const nonprofit = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     category: z.string(),
     organization: z.string().optional(),
@@ -103,7 +103,7 @@ const nonprofit = defineCollection({
 });
 
 const investments = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     category: z.string(),
     company: z.string().optional(),
@@ -111,7 +111,7 @@ const investments = defineCollection({
 });
 
 const hero = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     category: z.string(),
     title: z.string(),
@@ -123,7 +123,7 @@ const hero = defineCollection({
 });
 
 const newsletter = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     category: z.string(),
     title: z.string().optional(),
