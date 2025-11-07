@@ -47,6 +47,7 @@ const activities = defineCollection({
   schema: z.object({
     category: z.string(),
     title: z.string().optional(),
+    icon: z.string().optional(),
     description: z.string().optional(),
   }),
 });
@@ -55,9 +56,9 @@ const contacts = defineCollection({
   type: "content",
   schema: z.object({
     category: z.string(),
-    name: z.string().optional(),
-    email: z.string().optional(),
-    phone: z.string().optional(),
+    title: z.string().optional(),
+    icon: z.string().optional(),
+    content: z.string().optional(),
   }),
 });
 
@@ -65,8 +66,8 @@ const education = defineCollection({
   type: "content",
   schema: z.object({
     category: z.string(),
+    university: z.string().optional(),
     degree: z.string().optional(),
-    institution: z.string().optional(),
     startDate: z.string().optional(),
     endDate: z.string().optional(),
   }),
@@ -78,6 +79,7 @@ const services = defineCollection({
     category: z.string(),
     title: z.string().optional(),
     icon: z.string().optional(),
+    description: z.string().optional(),
   }),
 });
 
@@ -85,9 +87,8 @@ const testimonials = defineCollection({
   type: "content",
   schema: z.object({
     category: z.string(),
-    name: z.string().optional(),
-    position: z.string().optional(),
-    avatar: z.string().optional(),
+    title: z.string().optional(),
+    cover: z.string().optional(),
   }),
 });
 
@@ -95,8 +96,8 @@ const nonprofit = defineCollection({
   type: "content",
   schema: z.object({
     category: z.string(),
-    organization: z.string().optional(),
-    role: z.string().optional(),
+    company: z.string().optional(),
+    position: z.string().optional(),
     startDate: z.string().optional(),
     endDate: z.string().optional(),
   }),
