@@ -1,0 +1,34 @@
+---
+import { getCollection } from 'astro:content';
+import Container from './ui/Container';
+import TitleSection from './ui/TitleSection';
+import InfoBlock from './ui/InfoBlock';
+
+const activities = await getCollection('activities');
+// Sort by filename (1-consulting, 2-teaching, etc.)
+const sortedActivities = activities.sort((a, b) => a.id.localeCompare(b.id));
+---
+
+<section class="bg-white py-12 md:py-16">
+  <Container section client:load>
+    <TitleSection 
+      title="What I Do" 
+      subtitle="Current activities and focus areas"
+      center={true}
+      client:load
+    />
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
+      {sortedActivities.map((activity) => (
+        <div key={activity.id}>
+          <InfoBlock
+            icon={activity.data.icon as any}
+            title={activity.data.title || ''}
+            content={activity.data.description || ''}
+            center={true}
+            client:load
+          />
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>
