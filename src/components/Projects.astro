@@ -18,12 +18,14 @@ const projects = await getCollection('projects');
     <div class="grid md:grid-cols-2 gap-8 mt-8">
       {projects.map(async (project) => {
         const { Content } = await project.render();
+        // Convert relative path to absolute path for public directory
+        const imagePath = project.data.cover?.replace('./', '/');
         return (
           <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-            {project.data.cover && (
+            {imagePath && (
               <div class="aspect-video bg-gray-100 flex items-center justify-center p-8">
                 <img 
-                  src={project.data.cover}
+                  src={imagePath}
                   alt={project.data.title}
                   class="max-h-full max-w-full object-contain"
                 />
