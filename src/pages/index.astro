@@ -7,9 +7,19 @@ import Activities from '../components/Activities.astro';
 import Projects from '../components/Projects.astro';
 import Experience from '../components/Experience.astro';
 import NonProfit from '../components/NonProfit.astro';
+import StructuredData from '../components/StructuredData.astro';
 ---
 
-<BaseLayout title="Todd Warren - About Me">
+<BaseLayout 
+  title="Home"
+  description="Todd Warren - Technology leader, educator, and startup advisor specializing in consulting, teaching, and assisting impact-driven organizations"
+>
+  <StructuredData type="Person" data={{
+    name: "Todd Warren",
+    jobTitle: "Technology Leader & Educator",
+    description: "Technology leader, educator, and startup advisor",
+  }} />
+  
   <Header client:load />
   
   <main>

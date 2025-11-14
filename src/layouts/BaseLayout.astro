@@ -1,27 +1,92 @@
 ---
+import { SEO } from 'astro-seo';
+import { siteConfig } from '../config/site';
 import '../assets/styles/global.css';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  article?: boolean;
+  publishedTime?: string;
+  modifiedTime?: string;
+  noindex?: boolean;
+  nofollow?: boolean;
 }
 
 const { 
-  title = 'Todd Warren', 
-  description = "Todd Warren's personal website - Consulting, Teaching, and Assisting Impact"
+  title = siteConfig.title, 
+  description = siteConfig.description,
+  image = siteConfig.defaultImage,
+  article = false,
+  publishedTime,
+  modifiedTime,
+  noindex = false,
+  nofollow = false,
 } = Astro.props;
+
+// Construct full title with site name
+const fullTitle = title === siteConfig.title ? title : `${title} | ${siteConfig.title}`;
+
+// Get canonical URL
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? siteConfig.siteUrl).href;
+
+// Construct full image URL
+const fullImageURL = new URL(image, Astro.site ?? siteConfig.siteUrl).href;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={siteConfig.lang}>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <SEO
+      title={fullTitle}
+      description={description}
+      canonical={canonicalURL}
+      noindex={noindex}
+      nofollow={nofollow}
+      charset="UTF-8"
+      openGraph={{
+        basic: {
+          title: fullTitle,
+          type: article ? "article" : "website",
+          image: fullImageURL,
+          url: canonicalURL,
+        },
+        optional: {
+          description: description,
+          locale: siteConfig.locale,
+          siteName: siteConfig.title,
+        },
+        ...(article && publishedTime && {
+          article: {
+            publishedTime,
+            modifiedTime,
+            authors: [siteConfig.author.name],
+          }
+        })
+      }}
+      twitter={{
+        card: "summary_large_image",
+        site: siteConfig.author.twitter,
+        creator: siteConfig.author.twitter,
+        title: fullTitle,
+        description: description,
+        image: fullImageURL,
+        imageAlt: `${title} cover image`,
+      }}
+      extend={{
+        link: [
+          { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+          { rel: "sitemap", href: "/sitemap-index.xml" },
+        ],
+        meta: [
+          { name: "viewport", content: "width=device-width, initial-scale=1.0" },
+          { name: "generator", content: Astro.generator },
+          { name: "author", content: siteConfig.author.name },
+        ],
+      }}
+    />
   </head>
   <body class="m-0 text-indigo-900 bg-white">
     <div class="flex flex-col min-h-screen">
