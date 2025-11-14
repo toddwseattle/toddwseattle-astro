@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Container from './ui/Container';
 import TitleSection from './ui/TitleSection';
 import InfoBlock from './ui/InfoBlock';
+import { iconMap } from '../lib/fontawesome';
 
 const activities = await getCollection('activities');
 // Sort by filename (1-consulting, 2-teaching, etc.)
@@ -19,9 +20,9 @@ const sortedActivities = activities.sort((a, b) => a.id.localeCompare(b.id));
     />
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
       {sortedActivities.map((activity) => (
-        <div key={activity.id}>
+        <div>
           <InfoBlock
-            icon={activity.data.icon as any}
+            icon={iconMap[activity.data.icon] || iconMap['comment']}
             title={activity.data.title || ''}
             content={activity.data.description || ''}
             center={true}

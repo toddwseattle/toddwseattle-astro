@@ -1,39 +1,7 @@
 import React from "react";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-import {
-  faLaptopCode,
-  faDrawPolygon,
-  faEdit,
-  faBullhorn,
-  faMapMarkerAlt,
-  faPhone,
-  faPaperPlane,
-  faComment,
-  faComments,
-  faChartLine,
-  faChalkboardTeacher,
-  faSchool,
-} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { IconProp } from "@fortawesome/fontawesome-svg-core";
-
-// Add icons to library
-library.add(
-  fab,
-  faLaptopCode,
-  faDrawPolygon,
-  faEdit,
-  faBullhorn,
-  faMapMarkerAlt,
-  faPhone,
-  faPaperPlane,
-  faComment,
-  faComments,
-  faChartLine,
-  faChalkboardTeacher,
-  faSchool
-);
+import "../../lib/fontawesome";
 
 export type IconProps = IconProp;
 

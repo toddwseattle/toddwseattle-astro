@@ -1,5 +1,7 @@
 import React from "react";
-import Icon, { IconProps } from "./Icon";
+import Icon from "./Icon";
+import type { IconProps } from "./Icon";
+import "../../lib/fontawesome";
 
 interface InfoBlockProps {
   icon: IconProps;

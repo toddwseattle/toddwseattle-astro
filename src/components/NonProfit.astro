@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import Container from './ui/Container';
+import TitleSection from './ui/TitleSection';
+import Timeline from './ui/Timeline.astro';
+
+const nonprofits = await getCollection('nonprofit');
+const sortedNonprofits = nonprofits.sort((a, b) => 
+  (a.data.company || '').localeCompare(b.data.company || '')
+);
+---
+
+<section class="bg-gray-50 py-12 md:py-16">
+  <Container section client:load>
+    <TitleSection 
+      title="Non-Profit & Board Service" 
+      subtitle="Community involvement and advisory roles"
+      client:load
+    />
+    <div class="mt-8">
+      {sortedNonprofits.map(async (nonprofit) => {
+        const { Content } = await nonprofit.render();
+        return (
+          <Timeline
+            title={nonprofit.data.company || 'Organization'}
+            subtitle={nonprofit.data.position || 'Board Member'}
+            startDate={nonprofit.data.startDate || ''}
+            endDate={nonprofit.data.endDate || 'Present'}
+          >
+            <Content />
+          </Timeline>
+        );
+      })}
+    </div>
+  </Container>
+</section>

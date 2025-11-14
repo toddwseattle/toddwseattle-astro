@@ -5,6 +5,8 @@ import Footer from '../components/Footer';
 import HeroBanner from '../components/HeroBanner.astro';
 import Activities from '../components/Activities.astro';
 import Projects from '../components/Projects.astro';
+import Experience from '../components/Experience.astro';
+import NonProfit from '../components/NonProfit.astro';
 ---
 
 <BaseLayout title="Todd Warren - About Me">
@@ -15,6 +17,10 @@ import Projects from '../components/Projects.astro';
     <Activities />
     <hr class="border-gray-200" />
     <Projects />
+    <hr class="border-gray-200" />
+    <Experience />
+    <hr class="border-gray-200" />
+    <NonProfit />
   </main>
 
   <Footer client:load />
