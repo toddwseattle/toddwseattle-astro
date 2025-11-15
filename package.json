@@ -40,7 +40,9 @@
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "@types/react-slick": "^0.23.13",
+    "chrome-launcher": "^1.2.1",
     "jsdom": "^27.2.0",
+    "lighthouse": "^13.0.1",
     "prettier": "^3.1.0",
     "prettier-plugin-astro": "^0.12.0",
     "vitest": "^4.0.8"
