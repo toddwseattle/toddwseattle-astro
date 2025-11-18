@@ -10,7 +10,7 @@ Use **astro-seo** package for comprehensive SEO management + Astro native integr
 
 ## Original Gatsby Component
 
-**Location:** `/home/toddwseattle/pw-toddwseattle/src/components/SEO/index.tsx`
+**Location:** `/home/toddwseattle/pw-toddwseattle-gb/src/components/SEO/index.tsx`
 
 Uses React Helmet for head management with:
 

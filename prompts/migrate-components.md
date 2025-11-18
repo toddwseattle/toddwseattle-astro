@@ -34,7 +34,7 @@ This plan outlines the migration of components from the old Gatsby site (`/home/
 **Goal:** Understand what exists in the old Gatsby project and what needs migration
 
 1. **Audit Gatsby Components**
-   - [x] List all components from `/home/toddwseattle/pw-toddwseattle/src/components/`
+   - [x] List all components from `/home/toddwseattle/pw-toddwseattle-gb/src/components/`
    - [x] Identify which are already migrated
    - [x] Identify which are missing
    - [x] Document component dependencies and prop interfaces
@@ -129,7 +129,7 @@ This plan outlines the migration of components from the old Gatsby site (`/home/
 7. **Update Image Handling**
    - [ ] Replace Gatsby Image with Astro Image component
    - [ ] Update image imports and paths
-   - [ ] Migrate images from `/home/toddwseattle/pw-toddwseattle/src/images/` to `src/assets/images/`
+   - [ ] Migrate images from `/home/toddwseattle/pw-toddwseattle-gb/src/images/` to `src/assets/images/`
    - [ ] Ensure alt text and accessibility features are preserved
 
 ### Phase 7: Layout & Page Migration

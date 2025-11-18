@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Container from '../../components/ui/Container';
-import Icon from '../../components/ui/Icon';
+// Removed Icon usage (missing icon mapping); can re-add later
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -27,20 +27,25 @@ const formatDate = (dateString: string) => {
   return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 };
 
+// Extract src from ImageMetadata object or use string directly
+const coverSrc = cover && typeof cover === 'object' && 'src' in cover ? cover.src : cover;
+
 const seo = {
   title: `${title} | Todd Warren Seattle`,
   description: description,
-  image: cover,
+  image: coverSrc,
 };
 ---
 
 <BaseLayout seo={seo}>
   <article class="py-16">
-    {cover && (
-      <div class="w-full h-64 md:h-96 mb-8 overflow-hidden">
+    {coverSrc && (
+      <div class="w-full mb-10 overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800 aspect-video">
         <img
-          src={cover}
+          src={coverSrc}
           alt={title}
+          loading="eager"
+          decoding="async"
           class="w-full h-full object-cover"
         />
       </div>
@@ -48,13 +53,7 @@ const seo = {
     
     <Container>
       <div class="max-w-3xl mx-auto">
-        <a
-          href="/blog"
-          class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-8"
-        >
-          <Icon name="arrow-left" className="w-4 h-4 mr-2" />
-          Back to Blog
-        </a>
+        <a href="/blog" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-8 font-medium">← Back to Blog</a>
         
         <header class="mb-8">
           <time
@@ -64,7 +63,7 @@ const seo = {
             {formatDate(date)}
           </time>
           
-          <h1 class="mt-2 text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+          <h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
             {title}
           </h1>
           
@@ -83,28 +82,12 @@ const seo = {
           )}
         </header>
         
-        <div class="prose prose-lg dark:prose-invert max-w-none
-          prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white
-          prose-p:text-gray-700 dark:prose-p:text-gray-300
-          prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
-          prose-strong:text-gray-900 dark:prose-strong:text-white
-          prose-code:text-gray-900 dark:prose-code:text-white
-          prose-pre:bg-gray-900 dark:prose-pre:bg-gray-950
-          prose-img:rounded-lg prose-img:shadow-lg
-          prose-blockquote:border-l-blue-600 dark:prose-blockquote:border-l-blue-400
-          prose-hr:border-gray-300 dark:prose-hr:border-gray-700"
-        >
+        <div class="prose prose-lg dark:prose-invert max-w-none">
           <Content />
         </div>
         
         <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-          <a
-            href="/blog"
-            class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline font-medium"
-          >
-            <Icon name="arrow-left" className="w-4 h-4 mr-2" />
-            Back to all posts
-          </a>
+          <a href="/blog" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline font-medium">← Back to all posts</a>
         </div>
       </div>
     </Container>

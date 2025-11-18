@@ -8,7 +8,7 @@
 
 ## Original Gatsby Component
 
-**Location:** `/home/toddwseattle/pw-toddwseattle/src/components/Experience/index.tsx`
+**Location:** `/home/toddwseattle/pw-toddwseattle-gb/src/components/Experience/index.tsx`
 
 ### Original Code Pattern
 

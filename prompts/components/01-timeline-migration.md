@@ -8,7 +8,7 @@
 
 ## Original Gatsby Component
 
-**Location:** `/home/toddwseattle/pw-toddwseattle/src/components/ui/Timeline/index.tsx`
+**Location:** `/home/toddwseattle/pw-toddwseattle-gb/src/components/ui/Timeline/index.tsx`
 
 ### Original Code Structure
 

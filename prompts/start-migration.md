@@ -2,8 +2,8 @@ I'm migrating from Gatsby to Astro. Old site: /home/toddwseattle/pw-toddwseattle
 
 IMMEDIATE TASKS:
 
-1. Read /home/toddwseattle/pw-toddwseattle/package.json and create an equivalent package.json for Astro with the right dependencies (replace Gatsby packages with Astro equivalents)
-2. Read /home/toddwseattle/pw-toddwseattle/tailwind.config.js and /home/toddwseattle/pw-toddwseattle/tsconfig.json - copy these over
+1. Read /home/toddwseattle/pw-toddwseattle-gb/package.json and create an equivalent package.json for Astro with the right dependencies (replace Gatsby packages with Astro equivalents)
+2. Read /home/toddwseattle/pw-toddwseattle-gb/tailwind.config.js and /home/toddwseattle/pw-toddwseattle-gb/tsconfig.json - copy these over
 3. Create astro.config.mjs with React and Tailwind integrations
 4. Create src/content/config.ts to define content collections based on the structure in src/data/
 5. Install all dependencies
