@@ -5,6 +5,18 @@
 This document outlines the plan and progress for migrating the personal website from Gatsby to Astro.
 
 ---
+## Checklist
+- [x] Analyze the Gatsby repository (`toddwseattle-gb`) for reusable components, pages, and layouts.
+- [x] Review existing work in `toddwseattle-astro` (e.g., prompts directory, test configurations).
+- [ ] Convert identified components into `.astro` components.
+- [ ] Migrate all pages from Gatsby to Astro.
+- [ ] Transition all GraphQL data queries in Gatsby.
+- [ ] Validate TailwindCSS configuration for styling.
+- [ ] Ensure design consistency with the Gatsby site.
+- [ ] Validate migration outputs with tests.
+- [ ] Update this document and log progress for each section.
+
+---
 ## Phase 1: Review and Analysis
 
 1. Analyze the Gatsby repository (`toddwseattle-gb`):
