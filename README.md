@@ -2,7 +2,19 @@
 
 This is the personal portfolio website for Todd Warren, migrated from Gatsby to [Astro](https://astro.build/) with TypeScript, Tailwind CSS, and Framer Motion. The project showcases professional experience, projects, blog posts, and more, using modern web development best practices.
 
-> **Migration in Progress:** This site is being migrated from Gatsby to Astro. See [`/docs/`](docs/) for strategic goals and [`/prompts/`](prompts/) for implementation details. Original Gatsby site: [toddwseattle/toddwseattle-gb](https://github.com/toddwseattle/toddwseattle-gb).
+**Migration Note:**
+This site is a strategic migration from Gatsby to Astro, recentering around a modern, writing-forward personal site. This is not a 1:1 port but an information architecture refresh focusing on teaching, writing, AutoSoft Today, consulting, and a refreshed bio. The original Gatsby-based portfolio can be found at [toddwseattle/toddwseattle-gb](https://github.com/toddwseattle/toddwseattle-gb).
+
+## 📚 Documentation
+
+Comprehensive project documentation is available in the [`/docs`](./docs) folder:
+
+- **[Epic: Astro Migration – IA Refresh](./docs/01-epic.md)** – Overall migration strategy, objectives, constraints, and success criteria
+- **[User Stories](./docs/02-stories.md)** – Detailed stories for navigation, teaching section, writing consolidation, and more
+- **[Work Items](./docs/03-workitems.md)** – Implementation tasks supporting each user story
+- **[Style Guide](./docs/04-style-guide.md)** – IA guardrails, tone principles, layout/styling notes, and working practices
+
+**For Contributors:** Start with the [Style Guide](./docs/04-style-guide.md) to understand the project's information architecture, content principles, and coding conventions.
 
 ## 🗂️ Project Structure
 
@@ -23,8 +35,8 @@ This is the personal portfolio website for Todd Warren, migrated from Gatsby to 
 │   ├── lib/                   # Utility libraries (e.g., FontAwesome setup)
 │   ├── pages/                 # Astro pages (routes)
 │   └── test/                  # Test setup and utilities
-├── docs/                      # **STRATEGIC DOCUMENTATION** - Project goals, IA, and principles
-└── prompts/                   # **TACTICAL IMPLEMENTATION** - Migration planning and execution
+├── docs/                      # Strategic documentation (Epic, Stories, Work Items, Style Guide)
+└── prompts/                   # Technical migration planning and execution details
 ```
 
 ## 📦 Major Packages & Integrations
@@ -43,11 +55,16 @@ This is the personal portfolio website for Todd Warren, migrated from Gatsby to 
 - **Component-Driven**: UI is built from reusable Astro and React components in `src/components/`
 - **Content Collections**: Content is organized in `src/content/` and `src/data/` using Markdown and TypeScript config
 - **TypeScript**: Type safety throughout the codebase
-- **Tailwind CSS**: For rapid, consistent styling following the design tokens in `docs/04-style-guide.md`
+- **Tailwind CSS**: For rapid, consistent styling with custom design tokens (see [`docs/04-style-guide.md`](docs/04-style-guide.md))
 - **Testing**: All React components are tested with Vitest and Testing Library
 - **Prettier**: Enforced code style via `npm run format`
-- **Strategic Documentation**: Project goals, information architecture, and style guidelines are in `docs/` (see below)
-- **Migration Tracking**: Tactical implementation plans and progress are documented in `prompts/`
+- **Writing-First**: Focus on clean, readable content over visual gimmicks
+- **Migration Documentation**: Strategic planning in [`/docs`](./docs), technical details in [`/prompts`](./prompts)
+
+**Design Tokens:**
+- Typography: Inter for body/headings, JetBrains Mono for code
+- Prose width: ~700px for comfortable reading
+- Colors: Background `#FAFAFA`, Surface `#FFFFFF`, Primary text `#0F172A`, Secondary text `#475569`, Accent `#4F46E5`
 
 ## 🚀 Available Commands
 
@@ -65,48 +82,47 @@ All commands are run from the root of the project:
 | `npm run test:watch` | Run tests in watch mode                                         |
 | `npm run test:run`   | Run tests (non-interactive, CI-friendly)                        |
 
-## 📋 Project Strategy & Documentation
+## 📝 Migration & Planning
 
-### Strategic Documentation (`/docs/`)
+This project follows a structured migration approach documented in two key locations:
 
-The `/docs/` directory is the **primary source of truth** for project goals, architecture, and design principles:
+- **[`/docs`](./docs)** – Strategic documentation including the migration epic, user stories, work items, and style guide (see [Documentation](#-documentation) above)
+- **[`/prompts`](./prompts)** – Technical migration steps, audit summaries, component migration plans, and session notes
 
-- **[`docs/01-epic.md`](docs/01-epic.md)** - Migration objectives, IA refresh goals, constraints, and success criteria
-- **[`docs/02-stories.md`](docs/02-stories.md)** - User stories for navigation, Teaching, Writing, and other sections
-- **[`docs/03-workitems.md`](docs/03-workitems.md)** - Detailed work items supporting each story
-- **[`docs/04-style-guide.md`](docs/04-style-guide.md)** - Information architecture, tone, content principles, layout, and styling guidelines
-
-**Key Principles:**
-- Six-item navigation: Home, Teaching, Writing, AutoSoft Today, Consulting, About
-- Writing-forward, modern, readable aesthetic
-- Calm, advisory tone (not marketing-heavy)
-- Tag-driven content discovery over deep folder nesting
-- Preserve existing routes and slugs (no breaking changes)
-
-### Tactical Implementation (`/prompts/`)
-
-The `/prompts/` directory contains **tactical migration planning and execution details**:
-
-- **[`prompts/migrate-components.md`](prompts/migrate-components.md)** - Comprehensive component migration plan and tracking
-- **[`prompts/start-migration.md`](prompts/start-migration.md)** - Initial migration bootstrap steps (historical reference)
-- **[`prompts/components/`](prompts/components/)** - Individual component migration specifications
+**Key Documents:**
+- [Epic: Astro Migration – IA Refresh](./docs/01-epic.md) – High-level migration strategy
+- [Style Guide](./docs/04-style-guide.md) – IA, tone, layout, and working practices
+- [`prompts/start-migration.md`](./prompts/start-migration.md) – Initial technical migration plan and progress
+- [`prompts/components/`](./prompts/components/) – Component-specific migration documentation
 
 All implementation work in `/prompts/` aligns with and references the strategic goals defined in `/docs/`.
 
-## 📝 Migration Status
+## 🏗️ Information Architecture
 
-This site is an active migration from a Gatsby-based portfolio to Astro. The original Gatsby site can be found at [toddwseattle/toddwseattle-gb](https://github.com/toddwseattle/toddwseattle-gb).
+The site follows a six-item navigation structure (defined in [`docs/01-epic.md`](docs/01-epic.md)):
+- **Home** – Landing page
+- **Teaching** – Corporate Innovation and Software Engineering courses
+- **Writing** – Primary content stream (formerly blog) with tag-driven discovery
+- **AutoSoft Today** – Overview with links to autosofttoday.com
+- **Consulting** – Advisory services overview
+- **About** – Current bio, roles, and location
 
-Current focus areas align with Stories 1-7 in [`docs/02-stories.md`](docs/02-stories.md):
-- Navigation implementation (six-item IA)
-- Teaching section development
-- Blog → Writing consolidation
-- AutoSoft Today, Consulting, About pages
-- Component migration (see [`prompts/migrate-components.md`](prompts/migrate-components.md))
+Content is organized using collections rather than deep folder nesting, with tags for discoverability (innovation & org design, software engineering, teaching reflections, cycling, guitar & music).
 
 ## 📄 Content & Data
 
-Content is managed in Markdown files under `src/content/` and structured by type (blog, activities, experiences, etc.). Data sources are in `src/data/` and referenced in content collections.
+Content is managed in Markdown files under `src/content/` and structured by type. Data sources are in `src/data/` and referenced in content collections.
+
+**Content Organization:**
+- **Writing Collection**: Primary content stream with tag-based discovery (replaces traditional blog categories)
+- **Teaching Content**: Course materials for Corporate Innovation and Software Engineering
+- **Pages**: Static content for AutoSoft Today, Consulting, and About
+- **Tags**: Used for discoverability instead of deep folder nesting
+
+**Constraints (from [`docs/01-epic.md`](docs/01-epic.md)):**
+- Preserve existing slugs and URLs (no route breakage)
+- Avoid year-based routing
+- Keep existing markdown/MDX files intact
 
 ## 🧪 Testing
 
@@ -118,4 +134,19 @@ Code style is enforced with Prettier. Run `npm run format` to auto-format all su
 
 ---
 
-For strategic direction, see `/docs/`. For tactical implementation details, see `/prompts/`. Questions? Contact Todd Warren.
+## 🤝 Contributing
+
+**For New Contributors:**
+1. Read the [Style Guide](./docs/04-style-guide.md) to understand the project's information architecture, tone principles, and layout conventions
+2. Review the [Epic](./docs/01-epic.md) for the overall migration strategy and constraints
+3. Check [User Stories](./docs/02-stories.md) and [Work Items](./docs/03-workitems.md) for current priorities
+4. Follow the established patterns in `src/components/` and maintain consistency with Tailwind design tokens
+5. Test React components with Vitest and format code with Prettier before submitting
+
+**Key Principles (from [`docs/04-style-guide.md`](docs/04-style-guide.md)):**
+- Maintain writing-first, calm aesthetic
+- Preserve existing slugs and routes (no breakage)
+- Use tags over deep folder nesting
+- Keep diffs focused and components composable
+
+For more details, see the migration documentation in [`/docs`](./docs) and [`/prompts`](./prompts) or contact Todd Warren.
