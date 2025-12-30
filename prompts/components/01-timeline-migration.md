@@ -1,6 +1,6 @@
 # Timeline UI Component Migration
 
-> **Note:** This reusable UI component should follow the layout and styling guidelines in `/docs/04-style-guide.md`, maintaining the clean, modern aesthetic with appropriate color tokens and typography.
+> **Strategic Context:** This reusable UI component should follow the layout and styling guidelines in `/docs/04-style-guide.md`, maintaining the clean, modern aesthetic with appropriate color tokens and typography.
 
 ## Component Type: UI Component
 
