@@ -3,7 +3,10 @@
 This is the personal portfolio website for Todd Warren, migrated from Gatsby to [Astro](https://astro.build/) with TypeScript, Tailwind CSS, and Framer Motion. The project showcases professional experience, projects, blog posts, and more, using modern web development best practices.
 
 **Migration Note:**
-This site is a strategic migration from Gatsby to Astro, recentering around a modern, writing-forward personal site. This is not a 1:1 port but an information architecture refresh focusing on teaching, writing, AutoSoft Today, consulting, and a refreshed bio. The original Gatsby-based portfolio can be found at [toddwseattle/toddwseattle-gb](https://github.com/toddwseattle/toddwseattle-gb).
+This site is a strategic migration from Gatsby to Astro, recentering around a modern, writing-forward personal site. Key aspects:
+- Not a 1:1 port, but an information architecture refresh
+- Focuses on: teaching, writing, AutoSoft Today, consulting, and refreshed bio
+- Original Gatsby-based portfolio: [toddwseattle/toddwseattle-gb](https://github.com/toddwseattle/toddwseattle-gb)
 
 ## 📚 Documentation
 
@@ -55,16 +58,13 @@ Comprehensive project documentation is available in the [`/docs`](./docs) folder
 - **Component-Driven**: UI is built from reusable Astro and React components in `src/components/`
 - **Content Collections**: Content is organized in `src/content/` and `src/data/` using Markdown and TypeScript config
 - **TypeScript**: Type safety throughout the codebase
-- **Tailwind CSS**: For rapid, consistent styling with custom design tokens (see [`docs/04-style-guide.md`](docs/04-style-guide.md))
+- **Tailwind CSS**: For rapid, consistent styling with custom design tokens
 - **Testing**: All React components are tested with Vitest and Testing Library
 - **Prettier**: Enforced code style via `npm run format`
 - **Writing-First**: Focus on clean, readable content over visual gimmicks
 - **Migration Documentation**: Strategic planning in [`/docs`](./docs), technical details in [`/prompts`](./prompts)
 
-**Design Tokens:**
-- Typography: Inter for body/headings, JetBrains Mono for code
-- Prose width: ~700px for comfortable reading
-- Colors: Background `#FAFAFA`, Surface `#FFFFFF`, Primary text `#0F172A`, Secondary text `#475569`, Accent `#4F46E5`
+See [`docs/04-style-guide.md`](docs/04-style-guide.md) for complete design tokens (typography, colors, spacing).
 
 ## 🚀 Available Commands
 
