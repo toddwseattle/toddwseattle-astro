@@ -1,5 +1,7 @@
 # ProgressBar UI Component Migration
 
+> **Note:** This UI component should follow the declarative styling approach and color tokens defined in `/docs/04-style-guide.md`, avoiding inline hex values in favor of Tailwind tokens.
+
 ## Component Type: UI Component
 
 ## Priority: Medium (Required by Skills component)

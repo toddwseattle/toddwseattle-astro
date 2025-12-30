@@ -1,8 +1,12 @@
 # Component Migration Plan: Gatsby to Astro
 
+> **Strategic Context:** This tactical migration plan supports the overarching goals defined in `/docs/01-epic.md` (IA Refresh) and follows the principles in `/docs/04-style-guide.md`. See `/docs/02-stories.md` for user stories and `/docs/03-workitems.md` for detailed work items.
+
 ## Overview
 
 This plan outlines the migration of components from the old Gatsby site (`/home/toddwseattle/pw-toddwseattle`) to the new Astro project (`/home/toddwseattle/pw-toddwseattle-astro`).
+
+The migration aligns with the **six-item navigation structure** (Home, Teaching, Writing, AutoSoft Today, Consulting, About) and the **writing-forward, modern posture** described in the strategic documentation.
 
 ## Current State Assessment
 
@@ -61,7 +65,7 @@ This plan outlines the migration of components from the old Gatsby site (`/home/
 
 ### Phase 2: Content Collection Integration
 
-**Goal:** Ensure components properly consume data from Astro content collections
+**Goal:** Ensure components properly consume data from Astro content collections (aligns with Story 3 in `/docs/02-stories.md` for Writing consolidation and content architecture goals in `/docs/01-epic.md`)
 
 3. **Update Components for Content Collections**
    - [ ] Verify content collections are properly defined in `src/content/config.ts`
@@ -182,11 +186,15 @@ This plan outlines the migration of components from the old Gatsby site (`/home/
 
 ### Astro Component Best Practices
 
+**Alignment with Strategic Goals** (see `/docs/04-style-guide.md`):
+
 - Use `.astro` components for static content (no client-side interactivity)
 - Use `.tsx` with client directives only when client-side JavaScript is needed
 - Prefer `client:idle` or `client:visible` over `client:load` for better performance
 - Use content collections instead of GraphQL for data fetching
 - Leverage Astro's built-in Image component for optimization
+- Follow Tailwind CSS patterns and color tokens from style guide
+- Maintain calm, modern, readable aesthetic (writing-forward over visual gimmicks)
 
 ### Key Differences: Gatsby vs Astro
 

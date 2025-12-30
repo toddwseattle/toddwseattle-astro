@@ -1,5 +1,7 @@
 # Experience Component Migration
 
+> **Note:** This component displays work history and aligns with the professional presentation goals in `/docs/04-style-guide.md`. The component should maintain a calm, modern aesthetic with clear chronological organization.
+
 ## Component Type: Content Display Component
 
 ## Priority: High (Core resume content)
