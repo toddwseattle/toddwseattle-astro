@@ -185,7 +185,7 @@ Teaching Section Documentation
 ### Repository Documentation
 - **[README.md](../README.md)** - Project overview and setup
 - **[Content Config](../src/content/config.ts)** - Current content collection schemas
-- **[Legacy Repository](https://github.com/toddwseattle/toddwseattle-gb)** - Original Gatsby site
+- **[Legacy Repository](https://github.com/toddwseattle/gb-toddwseattle)** - Original Gatsby site
 
 ---
 
