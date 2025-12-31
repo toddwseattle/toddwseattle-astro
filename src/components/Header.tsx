@@ -7,20 +7,28 @@ interface MainNavItem {
 
 const mainNavItems: MainNavItem[] = [
   {
-    title: "About Me",
+    title: "Home",
     slug: "/",
   },
   {
-    title: "Resume",
-    slug: "/resume/",
+    title: "Teaching",
+    slug: "/teaching/",
   },
   {
-    title: "Blog",
-    slug: "/blog/",
+    title: "Writing",
+    slug: "/writing/",
   },
   {
-    title: "Contact Me",
-    slug: "/contact/",
+    title: "AutoSoft Today",
+    slug: "/autosoft-today/",
+  },
+  {
+    title: "Consulting",
+    slug: "/consulting/",
+  },
+  {
+    title: "About",
+    slug: "/about/",
   },
 ];
 
