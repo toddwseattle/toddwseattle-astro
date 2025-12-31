@@ -5,7 +5,7 @@
 This document provides a comprehensive design for implementing the Teaching section as defined in Story 2 of the Astro Migration project. This is a planning and design document only—no code implementation should be done at this stage.
 
 **Related Documents:**
-- [Story 2: Create Teaching Section](./02-stories.md#story-2-create-teaching-section)
+- [Story 2: Create Teaching Section](./02-stories.md#story-2-create-teaching-section-enhanced)
 - [Work Items for Story 2](./03-workitems.md#for-story-2-create-teaching-section)
 - [Epic: Astro Migration – IA Refresh](./01-epic.md)
 - [Style Guide](./04-style-guide.md)
