@@ -366,7 +366,7 @@ These questions should be answered before implementation:
 - [README](../README.md)
 
 ### External Resources
-- [Legacy Gatsby Repository](https://github.com/toddwseattle/toddwseattle-gb)
+- [Legacy Gatsby Repository](https://github.com/toddwseattle/gb-toddwseattle)
 - [Astro Content Collections](https://docs.astro.build/en/guides/content-collections/)
 - [Zod Schema Validation](https://zod.dev/)
 
