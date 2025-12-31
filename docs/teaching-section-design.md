@@ -715,7 +715,7 @@ Create a comprehensive Teaching section that showcases Todd's teaching experienc
 
 ### 6.1 Gatsby Repository Context
 
-The legacy Gatsby repository ([gb-toddwseattle](https://github.com/toddwseattle/toddwseattle-gb)) contains the previous version of Todd's portfolio site. While this Astro migration is an IA refresh (not a 1:1 port), the Gatsby repository may contain:
+The legacy Gatsby repository ([gb-toddwseattle](https://github.com/toddwseattle/gb-toddwseattle)) contains the previous version of Todd's portfolio site. While this Astro migration is an IA refresh (not a 1:1 port), the Gatsby repository may contain:
 
 - Existing teaching content and course descriptions
 - Teaching philosophy statements
