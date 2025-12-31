@@ -31,7 +31,7 @@ const teaching = defineCollection({
     courses: z.array(z.enum([
       "software-engineering",
       "corporate-innovation", 
-      "invention"
+      "nuvention"
     ])),
     
     // Content type
@@ -89,7 +89,7 @@ src/content/teaching/
 │   ├── overview.md
 │   ├── module-01-discovery.md
 │   └── project-lean-canvas.md
-├── invention/
+├── nuvention/
 │   ├── overview.md
 │   └── module-01-ideation.md
 └── shared/
@@ -180,7 +180,7 @@ published: true
 category: 'teaching'
 title: 'Project-Based Learning Principles'
 description: 'Core principles and best practices for implementing project-based learning in technical courses.'
-courses: ['software-engineering', 'corporate-innovation', 'invention']
+courses: ['software-engineering', 'corporate-innovation', 'nuvention']
 contentType: 'reflection'
 tags: ['teaching-reflections', 'pedagogy', 'project-based-learning']
 date: '2024-03-15'
@@ -265,7 +265,7 @@ interface ArtifactListProps {
 | Teaching Landing | `/teaching` | `src/pages/teaching/index.astro` |
 | Software Engineering | `/teaching/software-engineering` | `src/pages/teaching/software-engineering.astro` |
 | Corporate Innovation | `/teaching/corporate-innovation` | `src/pages/teaching/corporate-innovation.astro` |
-| Invention | `/teaching/invention` | `src/pages/teaching/invention.astro` |
+| NUvention | `/teaching/nuvention` | `src/pages/teaching/nuvention.astro` |
 | Module (future) | `/teaching/[course]/[slug]` | `src/pages/teaching/[course]/[slug].astro` |
 
 ### URL Patterns to Avoid
@@ -281,7 +281,7 @@ interface ArtifactListProps {
 
 ### ✅ Decisions Made
 
-1. **Three Courses:** Software Engineering, Corporate Innovation, Invention
+1. **Three Courses:** Software Engineering, Corporate Innovation, NUvention
 2. **Multi-Course Posts:** Content can belong to multiple courses via `courses` array
 3. **Content Types:** Differentiate course-overview, module, project, resource, reflection
 4. **Evergreen Content:** Avoid year-based routing; use dates for context only
@@ -290,7 +290,7 @@ interface ArtifactListProps {
 
 ### ❓ Questions for Review
 
-1. Should Invention course be in MVP or deferred?
+1. Should NUvention course be in MVP or deferred?
 2. Are there additional courses to include (e.g., NUvention Web)?
 3. Should individual modules have dedicated pages now or later?
 4. Preference for dynamic routing vs. individual course pages?

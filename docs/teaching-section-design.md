@@ -39,7 +39,7 @@ const teaching = defineCollection({
     courses: z.array(z.enum([
       "software-engineering",
       "corporate-innovation", 
-      "invention"
+      "nuvention"
     ])),
     
     // Content type differentiation
@@ -109,7 +109,7 @@ src/content/teaching/
 │   ├── module-01-discovery.md
 │   ├── module-02-validation.md
 │   └── project-lean-canvas.md
-├── invention/
+├── nuvention/
 │   ├── overview.md
 │   ├── module-01-ideation.md
 │   └── project-patent-analysis.md
@@ -189,10 +189,10 @@ src/content/teaching/
 - Case studies and teaching notes
 - Corporate partnership examples
 
-### 2.3 Invention
+### 2.3 NUvention
 
 **Course Overview:**
-- Focus: The invention process from ideation to commercialization
+- Focus: The innovation and entrepreneurship process from ideation to commercialization
 - Target Audience: Engineering and business students, aspiring entrepreneurs
 - Key Themes: Creativity, prototyping, intellectual property, technology transfer
 
@@ -243,7 +243,7 @@ src/content/teaching/
    - Visual cards for three primary courses:
      - Software Engineering
      - Corporate Innovation
-     - Invention
+     - NUvention
    - Each card includes:
      - Course title
      - Brief description (1-2 sentences)
@@ -286,7 +286,7 @@ src/content/teaching/
 **URLs:** 
 - `/teaching/software-engineering`
 - `/teaching/corporate-innovation`
-- `/teaching/invention`
+- `/teaching/nuvention`
 
 **Purpose:** Detailed overview of each course with navigation to modules, projects, and resources
 
@@ -357,7 +357,7 @@ Create a comprehensive Teaching section that showcases Todd's teaching experienc
 
 #### Scope
 - Design and implement a flexible teaching content collection schema
-- Create a Teaching landing page highlighting three courses: Software Engineering, Corporate Innovation, and Invention
+- Create a Teaching landing page highlighting three courses: Software Engineering, Corporate Innovation, and NUvention
 - Develop dedicated course landing pages with rich metadata and supporting content
 - Enable content discoverability through tags and multi-course associations
 - Maintain evergreen, year-independent content structure
@@ -392,7 +392,7 @@ Create a comprehensive Teaching section that showcases Todd's teaching experienc
 
 **Teaching Landing Page:**
 - [ ] Hero section with teaching philosophy statement
-- [ ] Featured cards for all three courses (Software Engineering, Corporate Innovation, Invention)
+- [ ] Featured cards for all three courses (Software Engineering, Corporate Innovation, NUvention)
 - [ ] Section highlighting teaching achievements and experience
 - [ ] Links to public resources and teaching reflections
 - [ ] Consistent with site navigation and design system
@@ -534,7 +534,7 @@ Create a comprehensive Teaching section that showcases Todd's teaching experienc
 
 **WI-02: Create Content Directory Structure**
 - [ ] Create `src/content/teaching/` directory
-- [ ] Create course subdirectories (software-engineering, corporate-innovation, invention, shared)
+- [ ] Create course subdirectories (software-engineering, corporate-innovation, nuvention, shared)
 - [ ] Add `.gitkeep` or initial README files
 - [ ] Document organizational principles
 
@@ -543,14 +543,14 @@ Create a comprehensive Teaching section that showcases Todd's teaching experienc
 **WI-03: Draft Course Overview Content**
 - [ ] Write overview.md for Software Engineering
 - [ ] Write overview.md for Corporate Innovation
-- [ ] Write overview.md for Invention
+- [ ] Write overview.md for NUvention
 - [ ] Include philosophy, topics, frameworks, projects, and artifacts
 - [ ] Review and refine with Todd
 
 **WI-04: Gather Example Projects**
 - [ ] Collect descriptions and links for Software Engineering projects
 - [ ] Collect descriptions and links for Corporate Innovation projects
-- [ ] Collect descriptions and links for Invention projects
+- [ ] Collect descriptions and links for NUvention projects
 - [ ] Format as frontmatter arrays
 
 **WI-05: Compile Public Artifacts**
@@ -614,8 +614,8 @@ Create a comprehensive Teaching section that showcases Todd's teaching experienc
 - [ ] List public artifacts
 - [ ] Add navigation and breadcrumbs
 
-**WI-13: Create Invention Course Page**
-- [ ] Create `/src/pages/teaching/invention.astro`
+**WI-13: Create NUvention Course Page**
+- [ ] Create `/src/pages/teaching/nuvention.astro`
 - [ ] Fetch and render course overview content
 - [ ] Display philosophy, topics, frameworks
 - [ ] Showcase example projects
@@ -886,7 +886,7 @@ const sharedContent = await getCollection('teaching', (entry) =>
 - `/teaching` - Landing page
 - `/teaching/software-engineering` - Course overview
 - `/teaching/corporate-innovation` - Course overview
-- `/teaching/invention` - Course overview
+- `/teaching/nuvention` - Course overview
 - `/teaching/[course]/[slug]` - Individual posts/modules (future)
 
 **Avoid:**
@@ -1027,7 +1027,7 @@ const sharedContent = await getCollection('teaching', (entry) =>
    - Do you have example projects to showcase?
 
 2. **Course Scope:**
-   - Should Invention course be included in MVP or deferred?
+   - Should NUvention course be included in MVP or deferred?
    - Are there other courses to include (e.g., NUvention Web)?
    - How detailed should module/unit pages be?
 

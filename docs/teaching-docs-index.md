@@ -21,7 +21,7 @@ Create comprehensive documentation for implementing the teaching section with fl
 
 **Contents:**
 - Complete schema design for teaching content collection (Zod/TypeScript)
-- Detailed definitions for three courses: Software Engineering, Corporate Innovation, Invention
+- Detailed definitions for three courses: Software Engineering, Corporate Innovation, NUvention
 - Landing page and course page content requirements
 - 25 detailed work items organized into 7 implementation phases
 - Component patterns and query examples
@@ -112,7 +112,7 @@ Teaching Section Documentation
 │
 ├── 📘 teaching-section-design.md (COMPREHENSIVE)
 │   ├── 1. Schema Design (with code)
-│   ├── 2. Course Definitions (SE, CI, Invention)
+│   ├── 2. Course Definitions (SE, CI, NUvention)
 │   ├── 3. Landing Page Requirements
 │   ├── 4. Enhanced Story Definition
 │   ├── 5. Work Items (25 detailed tasks)
@@ -204,7 +204,7 @@ Teaching Section Documentation
 **Docs:** [Design §2](./teaching-section-design.md#2-course-definitions), [Migration Guide](./teaching-legacy-migration.md)
 
 **Tasks:**
-- Draft course overviews (SE, CI, Invention)
+- Draft course overviews (SE, CI, NUvention)
 - Gather example projects and artifacts
 - Write teaching philosophy
 
@@ -271,7 +271,7 @@ Teaching Section Documentation
 1. **Three Primary Courses:**
    - Software Engineering
    - Corporate Innovation
-   - Invention
+   - NUvention
 
 2. **Flexible Multi-Course Association:**
    - Content can belong to multiple courses via `courses` array
@@ -306,7 +306,7 @@ Teaching Section Documentation
 These questions should be answered before implementation:
 
 1. **Course Prioritization:**
-   - Should Invention be in MVP or Phase 2?
+   - Should NUvention be in MVP or Phase 2?
    - Are there other courses to include (NUvention Web)?
 
 2. **Content Depth:**

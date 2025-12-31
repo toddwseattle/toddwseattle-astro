@@ -17,7 +17,7 @@
    - Document schema and organizational principles
 
 2. **Content Development**
-   - Draft course overview content for Software Engineering, Corporate Innovation, and Invention
+   - Draft course overview content for Software Engineering, Corporate Innovation, and NUvention
    - Gather example projects and descriptions with links
    - Compile public artifacts (syllabi, slides, templates, repositories)
    - Write teaching philosophy statements (overall and course-specific)
@@ -32,7 +32,7 @@
    - Create Teaching landing page (`/src/pages/teaching/index.astro`)
    - Create Software Engineering course page
    - Create Corporate Innovation course page
-   - Create Invention course page
+   - Create NUvention course page
    - Implement responsive design and navigation
 
 5. **Integration & Navigation**

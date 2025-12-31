@@ -9,7 +9,7 @@ Replace the legacy Gatsby navigation with the six-item IA (Home, Teaching, Writi
 - No residual Gatsby-era nav items remain.
 
 ## Story 2: Create Teaching Section (Enhanced)
-Introduce a comprehensive Teaching section with a landing page and course subpages for Software Engineering, Corporate Innovation, and Invention. Implement a flexible content collection schema that supports rich metadata for philosophy, topics, example projects, and public artifacts.
+Introduce a comprehensive Teaching section with a landing page and course subpages for Software Engineering, Corporate Innovation, and NUvention. Implement a flexible content collection schema that supports rich metadata for philosophy, topics, example projects, and public artifacts.
 
 ### Objective
 Create a Teaching section that showcases Todd's teaching experience, philosophy, and course offerings through well-structured content and intuitive navigation. The section should serve prospective students, fellow educators, and potential corporate partners.
@@ -46,7 +46,7 @@ Create a Teaching section that showcases Todd's teaching experience, philosophy,
 - Mobile-responsive design consistent with site aesthetic
 
 **Course Landing Pages:**
-- Dedicated pages for Software Engineering, Corporate Innovation, and Invention
+- Dedicated pages for Software Engineering, Corporate Innovation, and NUvention
 - Each page displays: overview, philosophy, topics & frameworks, example projects, public artifacts
 - Related content from Writing collection (teaching-tagged posts) linked
 - Professional, evergreen tone avoiding year-specific language

@@ -94,7 +94,7 @@ Create a spreadsheet or markdown file with:
 1. Create course overview markdown file:
    - `src/content/teaching/software-engineering/overview.md`
    - `src/content/teaching/corporate-innovation/overview.md`
-   - `src/content/teaching/invention/overview.md`
+   - `src/content/teaching/nuvention/overview.md`
 
 2. Use frontmatter template from [teaching-quick-reference.md](./teaching-quick-reference.md)
 
@@ -417,7 +417,7 @@ tags: ["teaching-reflections", "software-engineering", "pedagogy"]
    - Download or bookmark all artifacts
 
 6. **Organize by course**
-   - Group content by Software Engineering, Corporate Innovation, Invention
+   - Group content by Software Engineering, Corporate Innovation, NUvention
    - Identify multi-course content
    - Flag content that doesn't fit new structure
 
@@ -433,7 +433,7 @@ tags: ["teaching-reflections", "software-engineering", "pedagogy"]
    ```bash
    mkdir -p src/content/teaching/software-engineering
    mkdir -p src/content/teaching/corporate-innovation
-   mkdir -p src/content/teaching/invention
+   mkdir -p src/content/teaching/nuvention
    mkdir -p src/content/teaching/shared
    ```
 
