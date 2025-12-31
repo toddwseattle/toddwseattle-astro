@@ -57,7 +57,7 @@ Create comprehensive documentation for implementing the teaching section with fl
 **File:** [`teaching-legacy-migration.md`](./teaching-legacy-migration.md)
 
 **Contents:**
-- Instructions for auditing Gatsby repository ([gb-toddwseattle](https://github.com/toddwseattle/toddwseattle-gb))
+- Instructions for auditing Gatsby repository ([gb-toddwseattle](https://github.com/toddwseattle/gb-toddwseattle))
 - Content audit checklist and inventory template
 - Migration strategies for different content types
 - URL mapping and redirect guidance
