@@ -1,5 +1,7 @@
 # NonProfit Component Migration
 
+> **Note:** This component showcases board and advisory roles, aligning with the About page refresh goals (Story 6 in `/docs/02-stories.md`) and the professional, advisory tone emphasized in `/docs/04-style-guide.md`.
+
 ## Component Type: Content Display Component
 
 ## Priority: High (Core content section)

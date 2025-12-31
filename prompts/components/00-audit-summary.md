@@ -1,5 +1,7 @@
 # Component Migration Audit Summary
 
+> **Strategic Alignment:** This audit supports the IA Refresh goals in `/docs/01-epic.md`. Components should align with the six-item navigation structure (Home, Teaching, Writing, AutoSoft Today, Consulting, About) and follow the style guidelines in `/docs/04-style-guide.md`.
+
 ## Date: November 13, 2025
 
 ## Gatsby Components Inventory

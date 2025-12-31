@@ -3,7 +3,10 @@
 This is the personal portfolio website for Todd Warren, migrated from Gatsby to [Astro](https://astro.build/) with TypeScript, Tailwind CSS, and Framer Motion. The project showcases professional experience, projects, blog posts, and more, using modern web development best practices.
 
 **Migration Note:**
-This site is a strategic migration from Gatsby to Astro, recentering around a modern, writing-forward personal site. This is not a 1:1 port but an information architecture refresh focusing on teaching, writing, AutoSoft Today, consulting, and a refreshed bio. The original Gatsby-based portfolio can be found at [toddwseattle/toddwseattle-gb](https://github.com/toddwseattle/toddwseattle-gb).
+This site is a strategic migration from Gatsby to Astro, recentering around a modern, writing-forward personal site. Key aspects:
+- Not a 1:1 port, but an information architecture refresh
+- Focuses on: teaching, writing, AutoSoft Today, consulting, and refreshed bio
+- Original Gatsby-based portfolio: [toddwseattle/toddwseattle-gb](https://github.com/toddwseattle/toddwseattle-gb)
 
 ## 📚 Documentation
 
@@ -35,8 +38,8 @@ Comprehensive project documentation is available in the [`/docs`](./docs) folder
 │   ├── lib/                   # Utility libraries (e.g., FontAwesome setup)
 │   ├── pages/                 # Astro pages (routes)
 │   └── test/                  # Test setup and utilities
-├── prompts/                   # Migration documentation and planning
-└── README.md                  # Project documentation (this file)
+├── docs/                      # Strategic documentation (Epic, Stories, Work Items, Style Guide)
+└── prompts/                   # Technical migration planning and execution details
 ```
 
 ## 📦 Major Packages & Integrations
@@ -59,12 +62,9 @@ Comprehensive project documentation is available in the [`/docs`](./docs) folder
 - **Testing**: All React components are tested with Vitest and Testing Library
 - **Prettier**: Enforced code style via `npm run format`
 - **Writing-First**: Focus on clean, readable content over visual gimmicks
-- **Migration Documentation**: Strategic planning in `/docs`, technical details in `/prompts`
+- **Migration Documentation**: Strategic planning in [`/docs`](./docs), technical details in [`/prompts`](./prompts)
 
-**Design Tokens:**
-- Typography: Inter for body/headings, JetBrains Mono for code
-- Prose width: ~700px for comfortable reading
-- Colors: Background `#FAFAFA`, Surface `#FFFFFF`, Primary text `#0F172A`, Secondary text `#475569`, Accent `#4F46E5`
+See [`docs/04-style-guide.md`](docs/04-style-guide.md) for complete design tokens (typography, colors, spacing).
 
 ## 🚀 Available Commands
 
@@ -86,18 +86,20 @@ All commands are run from the root of the project:
 
 This project follows a structured migration approach documented in two key locations:
 
-- **`/docs`** – Strategic documentation including the migration epic, user stories, work items, and style guide (see [Documentation](#-documentation) above)
-- **`/prompts`** – Technical migration steps, audit summaries, component migration plans, and session notes
+- **[`/docs`](./docs)** – Strategic documentation including the migration epic, user stories, work items, and style guide (see [Documentation](#-documentation) above)
+- **[`/prompts`](./prompts)** – Technical migration steps, audit summaries, component migration plans, and session notes
 
 **Key Documents:**
 - [Epic: Astro Migration – IA Refresh](./docs/01-epic.md) – High-level migration strategy
 - [Style Guide](./docs/04-style-guide.md) – IA, tone, layout, and working practices
-- `prompts/start-migration.md` – Initial technical migration plan and progress
-- `prompts/components/` – Component-specific migration documentation
+- [`prompts/start-migration.md`](./prompts/start-migration.md) – Initial technical migration plan and progress
+- [`prompts/components/`](./prompts/components/) – Component-specific migration documentation
+
+All implementation work in `/prompts/` aligns with and references the strategic goals defined in `/docs/`.
 
 ## 🏗️ Information Architecture
 
-The site follows a six-item navigation structure:
+The site follows a six-item navigation structure (defined in [`docs/01-epic.md`](docs/01-epic.md)):
 - **Home** – Landing page
 - **Teaching** – Corporate Innovation and Software Engineering courses
 - **Writing** – Primary content stream (formerly blog) with tag-driven discovery
@@ -117,7 +119,7 @@ Content is managed in Markdown files under `src/content/` and structured by type
 - **Pages**: Static content for AutoSoft Today, Consulting, and About
 - **Tags**: Used for discoverability instead of deep folder nesting
 
-**Constraints:**
+**Constraints (from [`docs/01-epic.md`](docs/01-epic.md)):**
 - Preserve existing slugs and URLs (no route breakage)
 - Avoid year-based routing
 - Keep existing markdown/MDX files intact
@@ -141,10 +143,10 @@ Code style is enforced with Prettier. Run `npm run format` to auto-format all su
 4. Follow the established patterns in `src/components/` and maintain consistency with Tailwind design tokens
 5. Test React components with Vitest and format code with Prettier before submitting
 
-**Key Principles:**
+**Key Principles (from [`docs/04-style-guide.md`](docs/04-style-guide.md)):**
 - Maintain writing-first, calm aesthetic
 - Preserve existing slugs and routes (no breakage)
 - Use tags over deep folder nesting
 - Keep diffs focused and components composable
 
-For more details, see the migration documentation in `/docs` and `/prompts` or contact Todd Warren.
+For more details, see the migration documentation in [`/docs`](./docs) and [`/prompts`](./prompts) or contact Todd Warren.
