@@ -6,7 +6,7 @@ This is the personal [portfolio website for Todd Warren](https://toddwseattle.co
 This site is a strategic migration from Gatsby to Astro, recentering around a modern, writing-forward personal site. Key aspects:
 - Not a 1:1 port, but an information architecture refresh
 - Focuses on: teaching, writing, AutoSoft Today, consulting, and refreshed bio
-- Original Gatsby-based portfolio: [toddwseattle/toddwseattle-gb](https://github.com/toddwseattle/toddwseattle-gb)
+- Original Gatsby-based portfolio: [toddwseattle/toddwseattle-gb](https://github.com/toddwseattle/toddwseattle-gb). the gatsby [toddwseattle site](https://toddwseattle.com) is still current
 
 ## 📚 Documentation
 
