@@ -1,6 +1,6 @@
 # Todd Warren Portfolio Site
 
-This is the personal portfolio website for Todd Warren, migrated from Gatsby to [Astro](https://astro.build/) with TypeScript, Tailwind CSS, and Framer Motion. The project showcases professional experience, projects, blog posts, and more, using modern web development best practices.
+This is the personal [portfolio website for Todd Warren](https://toddwseattle.com), migrated from Gatsby to [Astro](https://astro.build/) with TypeScript, Tailwind CSS, and Framer Motion. The project showcases professional experience, projects, blog posts, and more, using modern web development best practices.
 
 **Migration Note:**
 This site is a strategic migration from Gatsby to Astro, recentering around a modern, writing-forward personal site. Key aspects:
