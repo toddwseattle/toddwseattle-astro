@@ -6,10 +6,64 @@
 3. Update internal links to point to new/realigned pages or collections without changing existing slugs.
 
 ## For Story 2: Create Teaching Section
-1. Draft Teaching landing page structure and content model to highlight Corporate Innovation and Software Engineering.
-2. Define course frontmatter schema (philosophy, topics/frameworks, example projects, public artifacts/links) using content collections.
-3. Create course subpages under the Teaching collection and link them from the Teaching landing page.
-4. Ensure routing avoids year-based paths and remains consistent with locked constraints.
+
+**Note:** For comprehensive implementation guidance, see [Teaching Section - Comprehensive Design Documentation](./teaching-section-design.md), which includes 25 detailed work items organized into 7 phases.
+
+### High-Level Work Items
+
+1. **Schema Design & Setup**
+   - Define teaching collection schema in `src/content/config.ts` with flexible course associations
+   - Create content directory structure (`src/content/teaching/` with course subdirectories)
+   - Document schema and organizational principles
+
+2. **Content Development**
+   - Draft course overview content for Software Engineering, Corporate Innovation, and NUvention
+   - Gather example projects and descriptions with links
+   - Compile public artifacts (syllabi, slides, templates, repositories)
+   - Write teaching philosophy statements (overall and course-specific)
+
+3. **Component Development**
+   - Create CourseCard component for featured course display
+   - Create ProjectShowcase component for example projects
+   - Create ArtifactList component for public resources
+   - Write unit tests for all new components
+
+4. **Page Implementation**
+   - Create Teaching landing page (`/src/pages/teaching/index.astro`)
+   - Create Software Engineering course page
+   - Create Corporate Innovation course page
+   - Create NUvention course page
+   - Implement responsive design and navigation
+
+5. **Integration & Navigation**
+   - Add "Teaching" link to primary site navigation
+   - Tag teaching content for cross-collection discovery
+   - Link teaching content from Consulting and About pages
+   - Implement related content logic (teaching-tagged Writing posts)
+
+6. **Testing & Refinement**
+   - Review and edit all content for tone, clarity, and accuracy
+   - Test responsive design on mobile, tablet, and desktop
+   - Conduct accessibility audit (ARIA labels, keyboard navigation, screen reader)
+   - Run performance testing (Lighthouse, page load times)
+   - Cross-browser testing (Chrome, Firefox, Safari, Edge)
+
+7. **Documentation & Launch**
+   - Update project documentation (README, style guide)
+   - Complete pre-launch checklist (broken links, alt text, etc.)
+   - Deploy to production and monitor for issues
+   - Collect feedback for iteration
+
+### Detailed Work Items
+The [Teaching Section Design Documentation](./teaching-section-design.md) contains 25 detailed work items (WI-01 through WI-25) with specific tasks, acceptance criteria, and dependencies. Key phases include:
+
+- **Phase 1:** Schema Design & Setup (WI-01 to WI-02)
+- **Phase 2:** Content Development (WI-03 to WI-06)
+- **Phase 3:** Component Development (WI-07 to WI-09)
+- **Phase 4:** Page Implementation (WI-10 to WI-13)
+- **Phase 5:** Integration & Navigation (WI-14 to WI-16)
+- **Phase 6:** Testing & Refinement (WI-17 to WI-21)
+- **Phase 7:** Documentation & Launch (WI-22 to WI-25)
 
 ## For Story 3: Consolidate Blog → Writing
 1. Create or update a Writing collection that supersedes the blog while preserving existing post slugs.

@@ -17,6 +17,15 @@ Comprehensive project documentation is available in the [`/docs`](./docs) folder
 - **[Work Items](./docs/03-workitems.md)** – Implementation tasks supporting each user story
 - **[Style Guide](./docs/04-style-guide.md)** – IA guardrails, tone principles, layout/styling notes, and working practices
 
+### Teaching Section Documentation (Story 2)
+
+Comprehensive design documentation for implementing the teaching section:
+
+- **[Teaching Documentation Index](./docs/teaching-docs-index.md)** – Navigation hub for all teaching-related documentation
+- **[Teaching Section Design](./docs/teaching-section-design.md)** – Complete design document with schema, course definitions, and 25 work items
+- **[Teaching Quick Reference](./docs/teaching-quick-reference.md)** – Schema, templates, components, and query examples
+- **[Teaching Legacy Migration](./docs/teaching-legacy-migration.md)** – Guide for migrating content from Gatsby repository
+
 **For Contributors:** Start with the [Style Guide](./docs/04-style-guide.md) to understand the project's information architecture, content principles, and coding conventions.
 
 ## 🗂️ Project Structure
