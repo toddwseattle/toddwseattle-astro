@@ -1,5 +1,7 @@
 # Migration Session Summary - November 13, 2025
 
+> **Note:** This session's work supports the strategic objectives in `/docs/01-epic.md` (IA Refresh) and follows styling/tone guidelines from `/docs/04-style-guide.md`.
+
 ## Components Successfully Migrated ✅
 
 ### 1. Timeline.astro (UI Component)

@@ -1,5 +1,7 @@
 # SEO Component Migration
 
+> **Strategic Context:** SEO implementation should support the content architecture and navigation priorities defined in `/docs/01-epic.md` and align with the writing-forward posture emphasized throughout `/docs/04-style-guide.md`.
+
 ## Component Type: Head/Meta Management
 
 ## Priority: High (Critical for search optimization)
