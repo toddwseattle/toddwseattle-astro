@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TitleSection from '../../components/ui/TitleSection';
+import BlogGrid from '../../components/blog/BlogGrid.astro';
+
+// Fetch and filter blog posts
+const allPosts = await getCollection('blog');
+const publishedPosts = allPosts
+  .filter((post) => post.data.published !== false)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+const seo = {
+  title: 'Blog | Todd Warren Seattle',
+  description: 'All my posts about software engineering, automotive technology, teaching, and entrepreneurship.',
+};
+---
+
+<BaseLayout seo={seo}>
+  <div class="py-16">
+    <TitleSection client:load title="Blog" subtitle="All my posts so far" center />
+    <div class="mt-12">
+      <BlogGrid posts={publishedPosts} />
+    </div>
+  </div>
+</BaseLayout>

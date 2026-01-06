@@ -10,7 +10,7 @@
 
 ## Original Gatsby Component
 
-**Location:** `/home/toddwseattle/pw-toddwseattle/src/components/NonProfit/index.tsx`
+**Location:** `/home/toddwseattle/pw-toddwseattle-gb/src/components/NonProfit/index.tsx`
 
 ### Original Code
 

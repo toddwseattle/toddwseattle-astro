@@ -1,0 +1,38 @@
+---
+interface Props {
+  title: string;
+  percentage: number;
+}
+
+const { title, percentage } = Astro.props;
+---
+
+<div class="progress-bar mb-6">
+  <div class="flex justify-between items-center mb-2">
+    <span class="text-sm font-medium text-gray-700">{title}</span>
+    <span class="text-sm font-semibold text-indigo-600">{percentage}%</span>
+  </div>
+  <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+    <div
+      class="h-full bg-indigo-600 rounded-full transition-all duration-1000 ease-out progress-fill"
+      style={`width: ${percentage}%`}
+      role="progressbar"
+      aria-valuenow={percentage}
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-label={`${title}: ${percentage}%`}
+    ></div>
+  </div>
+</div>
+
+<style>
+  .progress-fill {
+    animation: fillBar 1s ease-out;
+  }
+
+  @keyframes fillBar {
+    from {
+      width: 0%;
+    }
+  }
+</style>

@@ -10,7 +10,7 @@
 
 ## Original Gatsby Component
 
-**Location:** `/home/toddwseattle/pw-toddwseattle/src/components/ui/ProgressBar/index.tsx`
+**Location:** `/home/toddwseattle/pw-toddwseattle-gb/src/components/ui/ProgressBar/index.tsx`
 
 ### Original Code
 
@@ -40,17 +40,7 @@ const ProgressBar: React.FC<Props> = ({ title, percentage }) => (
 
 ## Migration Plan
 
-### Option 1: React Component (.tsx)
-
-**Pros:** Consistent with other UI components, easy to add animations
-**Cons:** Requires client directive for animations
-
 ### Option 2: Astro Component (.astro) - RECOMMENDED
-
-**Pros:** No JavaScript needed, pure CSS animations, better performance
-**Cons:** None significant for this use case
-
-### Recommended: `.astro` Component
 
 ## Implementation
 

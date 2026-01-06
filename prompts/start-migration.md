@@ -2,6 +2,11 @@
 
 > **⚠️ Status:** This document captured the initial migration bootstrap steps. Most tasks are now complete. For current strategic direction, see `/docs/01-epic.md`. For ongoing tactical work, see `migrate-components.md`.
 
+1. Read /home/toddwseattle/pw-toddwseattle-gb/package.json and create an equivalent package.json for Astro with the right dependencies (replace Gatsby packages with Astro equivalents)
+2. Read /home/toddwseattle/pw-toddwseattle-gb/tailwind.config.js and /home/toddwseattle/pw-toddwseattle-gb/tsconfig.json - copy these over
+3. Create astro.config.mjs with React and Tailwind integrations
+4. Create src/content/config.ts to define content collections based on the structure in src/data/
+5. Install all dependencies
 > **Strategic Context:** 
 > - **Epic & Objectives:** `/docs/01-epic.md` - IA Refresh goals and constraints
 > - **User Stories:** `/docs/02-stories.md` - Navigation, Teaching, Writing, etc.

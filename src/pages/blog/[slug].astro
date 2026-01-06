@@ -1,0 +1,95 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/ui/Container';
+// Removed Icon usage (missing icon mapping); can re-add later
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { title, description, date, tags, cover } = post.data;
+const { Content } = await post.render();
+
+// Format date to readable format
+const formatDate = (dateString: string) => {
+  const d = new Date(dateString);
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+};
+
+// Extract src from ImageMetadata object or use string directly
+const coverSrc = cover && typeof cover === 'object' && 'src' in cover ? cover.src : cover;
+
+const seo = {
+  title: `${title} | Todd Warren Seattle`,
+  description: description,
+  image: coverSrc,
+};
+---
+
+<BaseLayout seo={seo}>
+  <article class="py-16">
+    {coverSrc && (
+      <div class="w-full mb-10 overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800 aspect-video">
+        <img
+          src={coverSrc}
+          alt={title}
+          loading="eager"
+          decoding="async"
+          class="w-full h-full object-cover"
+        />
+      </div>
+    )}
+    
+    <Container>
+      <div class="max-w-3xl mx-auto">
+        <a href="/blog" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-8 font-medium">← Back to Blog</a>
+        
+        <header class="mb-8">
+          <time
+            datetime={date}
+            class="text-sm text-gray-500 dark:text-gray-400 font-medium"
+          >
+            {formatDate(date)}
+          </time>
+          
+          <h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+            {title}
+          </h1>
+          
+          <p class="mt-4 text-xl text-gray-600 dark:text-gray-300">
+            {description}
+          </p>
+          
+          {tags && tags.length > 0 && (
+            <div class="mt-6 flex flex-wrap gap-2">
+              {tags.map((tag) => (
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </header>
+        
+        <div class="prose prose-lg dark:prose-invert max-w-none">
+          <Content />
+        </div>
+        
+        <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+          <a href="/blog" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline font-medium">← Back to all posts</a>
+        </div>
+      </div>
+    </Container>
+  </article>
+</BaseLayout>
