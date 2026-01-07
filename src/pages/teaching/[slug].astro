@@ -1,0 +1,114 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import Container from '../../components/ui/Container';
+import TitleSection from '../../components/ui/TitleSection';
+
+export async function getStaticPaths() {
+  const courses = await getCollection('teaching');
+  return courses.map((course) => ({
+    params: { slug: course.slug },
+    props: { course },
+  }));
+}
+
+interface Props {
+  course: CollectionEntry<'teaching'>;
+}
+
+const { course } = Astro.props;
+const { title, description, philosophy, topics, exampleProjects, publicArtifacts, cover } = course.data;
+const { Content } = await course.render();
+
+// Extract src from ImageMetadata object or use string directly
+const coverSrc = cover && typeof cover === 'object' && 'src' in cover ? (cover as any).src : cover;
+
+---
+
+<BaseLayout 
+  title={title}
+  description={description}
+  image={coverSrc}
+>
+  <Header client:load />
+  
+  <TitleSection title={title} subtitle={description} client:load />
+
+  <Container>
+    <div class="max-w-3xl mx-auto py-12">
+      <a href="/teaching" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-8 font-medium">← Back to Teaching</a>
+      
+      {/* Philosophy Section */}
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Course Philosophy</h2>
+        <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+          {philosophy}
+        </p>
+      </section>
+
+      {/* Topics Section */}
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Topics Covered</h2>
+        <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+          {topics.map((topic) => (
+            <li class="flex items-start">
+              <span class="text-blue-600 dark:text-blue-400 mr-3 font-bold">•</span>
+              <span>{topic}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* Example Projects Section */}
+      {exampleProjects && exampleProjects.length > 0 && (
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Example Projects</h2>
+          <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+            {exampleProjects.map((project) => (
+              <li class="flex items-start">
+                <span class="text-blue-600 dark:text-blue-400 mr-3 font-bold">→</span>
+                <span>{project}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {/* Public Artifacts Section */}
+      {publicArtifacts && publicArtifacts.length > 0 && (
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Public Artifacts & Links</h2>
+          <ul class="space-y-3">
+            {publicArtifacts.map((artifact) => (
+              <li>
+                <a
+                  href={artifact.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                >
+                  {artifact.title} →
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {/* Course Content Section */}
+      <section class="mb-12 prose prose-lg dark:prose-invert max-w-none">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">About This Course</h2>
+        <Content />
+      </section>
+
+      <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+        <a href="/teaching" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline font-medium">← Back to all courses</a>
+      </div>
+    </div>
+  </Container>
+
+  <Footer client:load />
+</BaseLayout>

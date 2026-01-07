@@ -132,6 +132,47 @@ const newsletter = defineCollection({
   }),
 });
 
+const teaching = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    philosophy: z.string(),
+    topics: z.array(z.string()),
+    exampleProjects: z.array(z.string()).optional(),
+    publicArtifacts: z
+      .array(
+        z.object({
+          title: z.string(),
+          url: z.string(),
+        })
+      )
+      .optional(),
+    date: z.string(),
+    cover: z.string().optional(),
+  }),
+});
+
+const courseMaterials = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    courses: z.array(z.string()),
+    type: z.enum([
+      "exercise",
+      "resource",
+      "post",
+      "tutorial",
+      "examples",
+      "student work",
+    ]),
+    difficulty: z.enum(["beginner", "intermediate", "advanced"]).optional(),
+    date: z.string(),
+    cover: z.string().optional(),
+  }),
+});
+
 export const collections = {
   blog,
   experiences,
@@ -146,4 +187,6 @@ export const collections = {
   investments,
   hero,
   newsletter,
+  teaching,
+  courseMaterials,
 };
