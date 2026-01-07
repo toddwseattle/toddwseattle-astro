@@ -2,6 +2,8 @@
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 import Container from '../../components/ui/Container';
 // Removed Icon usage (missing icon mapping); can re-add later
 
@@ -28,16 +30,18 @@ const formatDate = (dateString: string) => {
 };
 
 // Extract src from ImageMetadata object or use string directly
-const coverSrc = cover && typeof cover === 'object' && 'src' in cover ? cover.src : cover;
+const coverSrc = cover && typeof cover === 'object' && 'src' in cover ? (cover as any).src : cover;
 
-const seo = {
-  title: `${title} | Todd Warren Seattle`,
-  description: description,
-  image: coverSrc,
-};
 ---
 
-<BaseLayout seo={seo}>
+<BaseLayout 
+  title={title} 
+  description={description} 
+  image={coverSrc}
+  article={true}
+  publishedTime={date}
+>
+  <Header client:load />
   <article class="py-16">
     {coverSrc && (
       <div class="w-full mb-10 overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800 aspect-video">
@@ -53,7 +57,7 @@ const seo = {
     
     <Container>
       <div class="max-w-3xl mx-auto">
-        <a href="/blog" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-8 font-medium">← Back to Blog</a>
+        <a href="/writing" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-8 font-medium">← Back to Writing</a>
         
         <header class="mb-8">
           <time
@@ -87,9 +91,10 @@ const seo = {
         </div>
         
         <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-          <a href="/blog" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline font-medium">← Back to all posts</a>
+          <a href="/writing" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline font-medium">← Back to all posts</a>
         </div>
       </div>
     </Container>
   </article>
+  <Footer client:load />
 </BaseLayout>

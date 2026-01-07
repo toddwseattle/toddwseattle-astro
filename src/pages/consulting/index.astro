@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import Container from '../../components/ui/Container';
+import TitleSection from '../../components/ui/TitleSection';
+
+const title = 'Consulting';
+const description = 'Advisory services for innovation and software engineering';
+---
+
+<BaseLayout title={title} description={description}>
+  <Header client:load />
+  <main class="py-16">
+    <Container>
+      <TitleSection 
+        client:load 
+        title="Consulting" 
+        subtitle="Advisory services for innovation and software engineering"
+        center 
+      />
+      <div class="mt-12 prose prose-lg max-w-prose mx-auto">
+        <p>Content will be added here as part of Story 5.</p>
+      </div>
+    </Container>
+  </main>
+  <Footer client:load />
+</BaseLayout>

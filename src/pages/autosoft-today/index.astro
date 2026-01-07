@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import Container from '../../components/ui/Container';
+import TitleSection from '../../components/ui/TitleSection';
+
+const title = 'AutoSoft Today';
+const description = 'Exploring the intersection of automotive technology and software';
+---
+
+<BaseLayout title={title} description={description}>
+  <Header client:load />
+  <main class="py-16">
+    <Container>
+      <TitleSection 
+        client:load 
+        title="AutoSoft Today" 
+        subtitle="Exploring the intersection of automotive technology and software"
+        center 
+      />
+      <div class="mt-12 prose prose-lg max-w-prose mx-auto">
+        <p>Content will be added here as part of Story 4.</p>
+        <p>
+          <a 
+            href="https://autosofttoday.com" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="text-indigo-600 hover:text-indigo-800 font-medium"
+          >
+            Visit AutoSoft Today →
+          </a>
+        </p>
+      </div>
+    </Container>
+  </main>
+  <Footer client:load />
+</BaseLayout>

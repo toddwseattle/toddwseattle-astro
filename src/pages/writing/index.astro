@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import TitleSection from '../../components/ui/TitleSection';
+import BlogGrid from '../../components/blog/BlogGrid.astro';
+
+// Fetch and filter blog posts
+const allPosts = await getCollection('blog');
+const publishedPosts = allPosts
+  .filter((post) => post.data.published !== false)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+const title = 'Writing';
+const description = 'Thoughts on innovation, software, teaching, cycling, and music';
+---
+
+<BaseLayout title={title} description={description}>
+  <Header client:load />
+  <main class="py-16">
+    <TitleSection 
+      client:load 
+      title="Writing" 
+      subtitle="Thoughts on innovation, software, teaching, cycling, and music" 
+      center 
+    />
+    <div class="mt-12">
+      <BlogGrid posts={publishedPosts} />
+    </div>
+  </main>
+  <Footer client:load />
+</BaseLayout>

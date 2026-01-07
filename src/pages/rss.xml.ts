@@ -8,7 +8,7 @@ export const GET: APIRoute = async (context) => {
   const publishedPosts = blog.filter((post) => post.data.published !== false);
 
   return rss({
-    title: `${siteConfig.title} Blog`,
+    title: `${siteConfig.title} Writing`,
     description: siteConfig.description,
     site: context.site ?? siteConfig.siteUrl,
     items: publishedPosts.map((post) => ({
