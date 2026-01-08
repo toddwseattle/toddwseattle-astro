@@ -1,0 +1,43 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Container from '../components/ui/Container';
+import TutorialProgress from '../components/TutorialProgress';
+
+interface Props {
+  entry: CollectionEntry<'course-materials'>;
+  rendered: Awaited<ReturnType<CollectionEntry<'course-materials'>['render']>>;
+}
+
+const { entry, rendered } = Astro.props as Props;
+const steps = (rendered.headings || [])
+  .filter((h) => h.depth === 2)
+  .map((h) => ({ id: h.slug, label: h.text }));
+---
+
+{steps.length >= 2 ? (
+  <article class="py-16">
+    <Container>
+      <div class="grid grid-cols-12 gap-8">
+        <aside class="hidden lg:block col-span-3">
+          <div class="sticky top-16 max-w-[240px]">
+            <div class="mb-4 text-sm text-slate-600">Step {steps.findIndex(s => s.id === steps[0]?.id) + 1} of {steps.length}</div>
+            <TutorialProgress client:load steps={steps} />
+          </div>
+        </aside>
+        <main class="col-span-12 lg:col-span-9">
+          <div class="prose prose-lg dark:prose-invert max-w-none">
+            <rendered.Content />
+          </div>
+        </main>
+      </div>
+    </Container>
+  </article>
+) : (
+  <article class="py-16">
+    <Container>
+      <div class="prose prose-lg dark:prose-invert max-w-none">
+        <rendered.Content />
+      </div>
+    </Container>
+  </article>
+)}

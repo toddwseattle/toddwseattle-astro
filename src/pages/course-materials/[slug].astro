@@ -1,0 +1,76 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import Container from '../../components/ui/Container';
+import TutorialLayout from '../../layouts/TutorialLayout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('course-materials');
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'course-materials'>;
+}
+
+const { entry } = Astro.props;
+const { title, description, cover, type } = entry.data as any;
+const rendered = await entry.render();
+
+// Extract src from ImageMetadata object or use string directly
+const coverSrc = cover && typeof cover === 'object' && 'src' in cover ? (cover as any).src : cover;
+---
+
+<BaseLayout 
+  title={title} 
+  description={description} 
+  image={coverSrc}
+  article={true}
+>
+  <Header client:load />
+  {type === 'tutorial' ? (
+    <TutorialLayout entry={entry} rendered={rendered} />
+  ) : (
+    <article class="py-16">
+      {coverSrc && (
+        <div class="w-full mb-10 overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800 aspect-video">
+          <img
+            src={coverSrc}
+            alt={title}
+            loading="eager"
+            decoding="async"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      )}
+      <Container>
+        <div class="max-w-3xl mx-auto">
+          <a href="/teaching" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-8 font-medium">← Back to Teaching</a>
+          <header class="mb-8">
+            <h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+              {title}
+            </h1>
+            {description && (
+              <p class="mt-4 text-xl text-gray-600 dark:text-gray-300">
+                {description}
+              </p>
+            )}
+          </header>
+          <div class="prose prose-lg dark:prose-invert max-w-none">
+            <rendered.Content />
+          </div>
+          <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+            <a href="/teaching" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline font-medium">← Back to Teaching</a>
+          </div>
+        </div>
+      </Container>
+    </article>
+  )}
+  <Footer client:load />
+</BaseLayout>
