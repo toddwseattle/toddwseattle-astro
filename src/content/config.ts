@@ -153,7 +153,7 @@ const teaching = defineCollection({
   }),
 });
 
-const courseMaterials = defineCollection({
+const courseMaterialsCollection = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
@@ -188,5 +188,5 @@ export const collections = {
   hero,
   newsletter,
   teaching,
-  courseMaterials,
+  "course-materials": courseMaterialsCollection,
 };

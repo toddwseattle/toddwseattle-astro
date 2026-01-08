@@ -17,18 +17,21 @@ Speed matters when validating ideas. This guide covers practical prototyping tec
 ## Prototyping Spectrum
 
 ### Low-Fidelity Prototypes
+
 - **Paper sketches** - Fastest feedback on layout and flow
 - **Wireframes** - Digital mockups using Figma, Balsamiq
 - **Clickable prototypes** - InVision, Marvel for user testing
 - **Use case**: Early concept validation, user flow testing
 
 ### Medium-Fidelity Prototypes
+
 - **Interactive mockups** - Higher fidelity designs with interactions
 - **Wizard of Oz** - Manual backend simulation
 - **Concierge MVP** - Human-powered service mimicking product
 - **Use case**: Testing user experience and value proposition
 
 ### High-Fidelity Prototypes
+
 - **Functional MVP** - Core features with real backend
 - **Single-feature release** - One capability fully built
 - **Technical spike** - Proving feasibility of key tech
@@ -36,7 +39,8 @@ Speed matters when validating ideas. This guide covers practical prototyping tec
 
 ## Prototyping Examples
 
-*Placeholder: Detailed examples will be added covering:*
+_Placeholder: Detailed examples will be added covering:_
+
 - Landing page MVP (static site)
 - Mobile app prototype (React Native, Flutter)
 - Web app MVP (Next.js, Rails)
@@ -46,15 +50,18 @@ Speed matters when validating ideas. This guide covers practical prototyping tec
 ## Tools and Platforms
 
 ### Design Tools
+
 - Figma, Sketch, Adobe XD
 - Framer, ProtoPie for advanced interactions
 
 ### No-Code/Low-Code
+
 - Webflow, Bubble for web apps
 - Airtable, Zapier for automation
 - Glide, Adalo for mobile apps
 
 ### Development Frameworks
+
 - React, Vue, Svelte for frontend
 - Next.js, Astro for full-stack
 - Firebase, Supabase for backend
@@ -67,4 +74,4 @@ Speed matters when validating ideas. This guide covers practical prototyping tec
 - Set clear success criteria before building
 - Be ready to throw away and start over
 
-*Placeholder: Step-by-step tutorials and code examples will be added*
+_Placeholder: Step-by-step tutorials and code examples will be added_

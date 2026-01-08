@@ -9,7 +9,7 @@ Replace the legacy Gatsby navigation with the six-item IA (Home, Teaching, Writi
 - No residual Gatsby-era nav items remain.
 
 ## Story 2: Create Teaching Section
-Introduce a Teaching landing page plus course subpages for Corporate Innovation and Software Engineering with clear frontmatter for philosophy, topics, example projects, and public artifacts.
+Introduce a Teaching landing page plus course subpages for Corporate Innovation, NUvention Web, and Software Engineering with clear frontmatter for philosophy, topics, example projects, and public artifacts.  For the landing pages create place holders for each class.  that can be filled in later.  
 
 ### Acceptance Criteria
 - Teaching landing page highlights both courses and links to subpages.

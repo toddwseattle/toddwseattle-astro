@@ -15,18 +15,21 @@ Building APIs that scale requires understanding performance, caching, versioning
 ## Key Concepts
 
 ### API Design Principles
+
 - RESTful conventions and best practices
 - GraphQL schema design and query optimization
 - Versioning strategies (URI vs header-based)
 - Documentation and OpenAPI/Swagger
 
 ### Performance and Scalability
+
 - Caching strategies (CDN, Redis, in-memory)
 - Rate limiting and throttling
 - Database query optimization
 - Connection pooling
 
 ### Security
+
 - Authentication (JWT, OAuth, API keys)
 - Authorization and role-based access
 - Input validation and sanitization
@@ -34,7 +37,8 @@ Building APIs that scale requires understanding performance, caching, versioning
 
 ## Hands-On Exercises
 
-*Placeholder: Step-by-step exercises will be added here covering:*
+_Placeholder: Step-by-step exercises will be added here covering:_
+
 - Building a REST API with Express/FastAPI
 - Implementing GraphQL with Apollo Server
 - Adding authentication and authorization
@@ -43,4 +47,4 @@ Building APIs that scale requires understanding performance, caching, versioning
 
 ## Additional Resources
 
-*Placeholder: Links to documentation, example repositories, and further reading*
+_Placeholder: Links to documentation, example repositories, and further reading_

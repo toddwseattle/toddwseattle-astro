@@ -546,6 +546,7 @@ From `docs/04-style-guide.md`:
 **Status: ✅ COMPLETE** (January 6, 2026)
 
 All acceptance criteria met:
+
 1. ✅ Navigation renders the exact six links in all layouts (desktop and mobile)
 2. ✅ Existing routes remain functional; new navigation points to intended pages/collections
 3. ✅ No residual Gatsby-era nav items remain

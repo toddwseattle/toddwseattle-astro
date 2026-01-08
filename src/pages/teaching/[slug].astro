@@ -6,6 +6,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Container from '../../components/ui/Container';
 import TitleSection from '../../components/ui/TitleSection';
+import CourseMaterialsList from '../../components/teaching/CourseMaterialsList.astro';
 
 export async function getStaticPaths() {
   const courses = await getCollection('teaching');
@@ -102,6 +103,12 @@ const coverSrc = cover && typeof cover === 'object' && 'src' in cover ? (cover a
       <section class="mb-12 prose prose-lg dark:prose-invert max-w-none">
         <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">About This Course</h2>
         <Content />
+      </section>
+
+      {/* Course Materials Section */}
+      <section class="mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Course Materials & Resources</h2>
+        <CourseMaterialsList courseSlug={course.slug} />
       </section>
 
       <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">

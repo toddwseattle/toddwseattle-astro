@@ -62,6 +62,7 @@ Create a Teaching section with landing page and course subpages for Corporate In
 ### Architecture Decisions
 
 **Hybrid Collection Approach (Option C):**
+
 - `teaching` collection holds course overview pages only
 - `course-materials` collection holds reusable resources, exercises, tutorials
 - Materials reference multiple courses via `courses: ["software-engineering", "nuvention-web"]`
@@ -69,6 +70,7 @@ Create a Teaching section with landing page and course subpages for Corporate In
 - Clean separation of concerns
 
 **Schema Design:**
+
 - Teaching courses have dedicated fields for philosophy, topics, projects, artifacts
 - Course materials support type categorization and difficulty levels
 - Both collections support optional cover images for visual appeal
