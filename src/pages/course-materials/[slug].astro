@@ -6,6 +6,10 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Container from '../../components/ui/Container';
 import TutorialLayout from '../../layouts/TutorialLayout.astro';
+import ResourceLayout from '../../layouts/materials/ResourceLayout.astro';
+import ExampleLayout from '../../layouts/materials/ExampleLayout.astro';
+import ExerciseLayout from '../../layouts/materials/ExerciseLayout.astro';
+import PostLayout from '../../layouts/materials/PostLayout.astro';
 
 export async function getStaticPaths() {
   const entries = await getCollection('course-materials');
@@ -36,6 +40,14 @@ const coverSrc = cover && typeof cover === 'object' && 'src' in cover ? (cover a
   <Header client:load />
   {type === 'tutorial' ? (
     <TutorialLayout entry={entry} rendered={rendered} />
+  ) : type === 'resource' ? (
+    <ResourceLayout entry={entry} rendered={rendered} />
+  ) : type === 'examples' ? (
+    <ExampleLayout entry={entry} rendered={rendered} />
+  ) : type === 'exercise' ? (
+    <ExerciseLayout entry={entry} rendered={rendered} />
+  ) : type === 'post' ? (
+    <PostLayout entry={entry} rendered={rendered} />
   ) : (
     <article class="py-16">
       {coverSrc && (

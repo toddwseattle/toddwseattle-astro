@@ -145,7 +145,7 @@ const teaching = defineCollection({
         z.object({
           title: z.string(),
           url: z.string(),
-        })
+        }),
       )
       .optional(),
     date: z.string(),
@@ -170,6 +170,15 @@ const courseMaterialsCollection = defineCollection({
     difficulty: z.enum(["beginner", "intermediate", "advanced"]).optional(),
     date: z.string(),
     cover: z.string().optional(),
+    resources: z
+      .array(
+        z.object({
+          title: z.string(),
+          url: z.string().url(),
+          description: z.string().optional(),
+        }),
+      )
+      .optional(),
   }),
 });
 

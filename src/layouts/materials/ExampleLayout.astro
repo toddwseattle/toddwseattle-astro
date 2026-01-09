@@ -1,0 +1,19 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Container from '../../components/ui/Container';
+
+interface Props {
+  entry: CollectionEntry<'course-materials'>;
+  rendered: Awaited<ReturnType<CollectionEntry<'course-materials'>['render']>>;
+}
+
+const { entry, rendered } = Astro.props as Props;
+---
+
+<article class="py-16">
+  <Container>
+    <div class="prose prose-lg dark:prose-invert max-w-none">
+      <rendered.Content />
+    </div>
+  </Container>
+</article>

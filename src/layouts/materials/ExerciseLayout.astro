@@ -1,0 +1,27 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Container from '../../components/ui/Container';
+
+interface Props {
+  entry: CollectionEntry<'course-materials'>;
+  rendered: Awaited<ReturnType<CollectionEntry<'course-materials'>['render']>>;
+}
+
+const { entry, rendered } = Astro.props as Props;
+const difficulty = (entry.data as any).difficulty as string | undefined;
+---
+
+<article class="py-16">
+  <Container>
+    <div class="max-w-4xl mx-auto">
+      {difficulty && (
+        <div class="mb-6 inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200">
+          {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
+        </div>
+      )}
+      <div class="prose prose-lg dark:prose-invert max-w-none">
+        <rendered.Content />
+      </div>
+    </div>
+  </Container>
+</article>
