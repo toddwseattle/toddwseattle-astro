@@ -8,13 +8,78 @@ Replace the legacy Gatsby navigation with the six-item IA (Home, Teaching, Writi
 - Existing routes remain functional; new navigation points to the intended pages/collections.
 - No residual Gatsby-era nav items remain.
 
-## Story 2: Create Teaching Section
-Introduce a Teaching landing page plus course subpages for Corporate Innovation and Software Engineering with clear frontmatter for philosophy, topics, example projects, and public artifacts.
+## Story 2: Create Teaching Section (Enhanced)
+Introduce a comprehensive Teaching section with a landing page and course subpages for Software Engineering, Corporate Innovation, and NUvention. Implement a flexible content collection schema that supports rich metadata for philosophy, topics, example projects, and public artifacts.
+
+### Objective
+Create a Teaching section that showcases Todd's teaching experience, philosophy, and course offerings through well-structured content and intuitive navigation. The section should serve prospective students, fellow educators, and potential corporate partners.
+
+### User Stories
+**As a prospective student, I want to:**
+- Understand Todd's teaching philosophy and approach
+- Explore available courses with clear descriptions and learning objectives
+- Access public course materials and example projects
+
+**As a fellow educator, I want to:**
+- Learn about innovative teaching methodologies and frameworks
+- Access publicly shared course materials and templates
+- Read teaching reflections and insights
+
+**As a corporate partner, I want to:**
+- Understand how Todd's teaching applies to organizational challenges
+- Review case studies and example projects
+- Assess fit for corporate training or advisory work
 
 ### Acceptance Criteria
-- Teaching landing page highlights both courses and links to subpages.
-- Each course page supports defined frontmatter fields and renders them cleanly.
-- Content fits the evergreen tone and avoids year-based URLs.
+
+**Schema & Content Model:**
+- Teaching collection schema supports flexible course associations via frontmatter array
+- Posts can belong to multiple courses (e.g., a module relevant to both Software Engineering and Corporate Innovation)
+- Schema includes philosophy, topics, frameworks, example projects, and public artifacts
+- Content types differentiated: course-overview, module, project, resource, reflection
+
+**Teaching Landing Page (`/teaching`):**
+- Hero section with teaching philosophy statement and years of experience
+- Featured cards for all three courses with descriptions and key topics
+- Section highlighting teaching achievements (e.g., "Co-created award-winning NUvention Web")
+- Links to public resources and teaching reflections from Writing collection
+- Mobile-responsive design consistent with site aesthetic
+
+**Course Landing Pages:**
+- Dedicated pages for Software Engineering, Corporate Innovation, and NUvention
+- Each page displays: overview, philosophy, topics & frameworks, example projects, public artifacts
+- Related content from Writing collection (teaching-tagged posts) linked
+- Professional, evergreen tone avoiding year-specific language
+- Clear navigation between courses with breadcrumbs
+
+**Integration & Navigation:**
+- "Teaching" link in primary site navigation
+- Tags connect teaching content to Writing collection
+- Consulting page references teaching credibility
+- About page mentions teaching experience
+
+**Technical Requirements:**
+- Routes follow `/teaching/*` pattern (no year-based URLs)
+- Content collection builds without errors
+- All images have alt text for accessibility
+- Page load performance <3s on 3G
+- Cross-browser compatibility verified
+
+### Detailed Design Documentation
+See [Teaching Section - Comprehensive Design Documentation](./teaching-section-design.md) for:
+- Complete schema design with Zod examples
+- Detailed course definitions (philosophy, topics, frameworks, projects)
+- Landing page and course page content requirements
+- Work items breakdown (25 detailed work items)
+- Component patterns and query examples
+- Legacy Gatsby repository migration guidance
+- Success criteria and validation checklist
+
+### Out of Scope
+- Interactive course enrollment or registration systems
+- Video hosting (link externally if needed)
+- Student portal or grade management
+- Real-time collaboration features
 
 ## Story 3: Consolidate Blog → Writing
 Migrate the blog feed into a Writing collection with tag-driven discovery instead of category pages; ensure hobbies (cycling, guitar/music) live naturally under Writing.
