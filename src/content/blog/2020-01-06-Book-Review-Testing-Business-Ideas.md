@@ -1,5 +1,5 @@
 ---
-category: "blog"
+category: "innovation"
 cover: "./2020-01-06-Book-Review-Testing-Business-Ideas-Bland-Osterwalder-Testing-Business-Ideas.png"
 title: "Book Review: Testing Business Ideas"
 date: "2020-01-06"

@@ -1,5 +1,5 @@
 ---
-category: "blog"
+category: "software-engineering"
 cover: "./2025-02-05-CS394-2025-Spring-Software-Engineering-Course-394-2025-Logo.webp"
 title: "Northwestern CS394 Spring Software Engineering Course for 2025"
 date: "2025-02-05"

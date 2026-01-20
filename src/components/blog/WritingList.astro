@@ -1,0 +1,79 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BlogCard from './BlogCard.astro';
+import Container from '../ui/Container';
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+}
+
+const { posts } = Astro.props;
+
+// Extract unique categories from posts (only those with categories)
+const categories = [...new Set(posts.map((p) => p.data.category).filter(Boolean))].sort();
+
+// Category display labels
+const categoryLabels: Record<string, string> = {
+  'innovation': 'Innovation & Org Design',
+  'software-engineering': 'Software Engineering',
+  'teaching': 'Teaching Reflections',
+  'automotive-software': 'Automotive Software',
+  'cycling': 'Cycling',
+  'music': 'Guitar & Music',
+};
+
+// Get display label for category
+const getCategoryLabel = (category: string) => {
+  return categoryLabels[category] || category.charAt(0).toUpperCase() + category.slice(1);
+};
+---
+
+<Container>
+  {/* Filter Controls */}
+  {categories.length > 1 && (
+    <div class="mb-8 flex items-center gap-3">
+      <label for="category-filter" class="sr-only">Filter posts by category</label>
+      <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Filter by topic:</span>
+      <select
+        id="category-filter"
+        class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white transition-colors"
+        aria-label="Filter posts by category"
+      >
+        <option value="all">All Posts</option>
+        {categories.map((category) => (
+          <option value={category}>{getCategoryLabel(category as string)}</option>
+        ))}
+      </select>
+    </div>
+  )}
+
+  {/* Posts Grid */}
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {posts.map((post) => (
+      <div class="post-card" data-category={post.data.category || 'uncategorized'}>
+        <BlogCard post={post} />
+      </div>
+    ))}
+  </div>
+</Container>
+
+<script>
+  const filterSelect = document.getElementById('category-filter') as HTMLSelectElement;
+  const postCards = document.querySelectorAll('.post-card');
+
+  if (filterSelect && postCards.length > 0) {
+    filterSelect.addEventListener('change', (e) => {
+      const selectedCategory = (e.target as HTMLSelectElement).value;
+
+      postCards.forEach((card) => {
+        const cardCategory = card.getAttribute('data-category');
+
+        if (selectedCategory === 'all' || cardCategory === selectedCategory) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  }
+</script>

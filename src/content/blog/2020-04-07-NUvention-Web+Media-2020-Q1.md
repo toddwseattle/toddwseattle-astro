@@ -1,5 +1,5 @@
 ---
-category: "blog"
+category: "innovation"
 cover: "./2020-04-07-NUvention-Web+Media-2020-Q1-NUvention-2020-winter-sprints.png"
 title: "NUvention Web+Media 2020"
 date: "2020-04-06"

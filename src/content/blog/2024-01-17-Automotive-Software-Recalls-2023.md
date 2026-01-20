@@ -1,5 +1,5 @@
 ---
-category: "blog"
+category: "automotive-software"
 cover: "./2024-01-17-Automotive-Software-Recalls-2023-Vehicles-Affected-By-Software-Recalls-2023.png"
 title: "The Year in Automotive Software Related Recalls 2023"
 date: "2023-01-17"

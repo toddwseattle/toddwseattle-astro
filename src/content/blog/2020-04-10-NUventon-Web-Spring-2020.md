@@ -1,5 +1,5 @@
 ---
-category: "blog"
+category: "innovation"
 cover: "./2020-04-10-NUventon-Web-Spring-2020-NUvention-2020-spring-sprints.png"
 title: "NUvention Web+Media 2020 Q2: Entrepreneurship Ed in the time of COVID-19"
 date: "2020-04-10"

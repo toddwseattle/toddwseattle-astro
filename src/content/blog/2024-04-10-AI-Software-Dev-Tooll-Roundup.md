@@ -1,6 +1,5 @@
 ---
-category: "blog"
-cover: ""
+category: "software-engineering"
 title: "Roundup of current AI Software Assistance tools for VS Code"
 date: "2024-04-11"
 tags: ["CS394", "teaching", "software development", "React", "firebase", "AI"]

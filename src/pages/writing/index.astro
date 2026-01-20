@@ -4,7 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import TitleSection from '../../components/ui/TitleSection';
-import BlogGrid from '../../components/blog/BlogGrid.astro';
+import WritingList from '../../components/blog/WritingList.astro';
 
 // Fetch and filter blog posts
 const allPosts = await getCollection('blog');
@@ -19,14 +19,14 @@ const description = 'Thoughts on innovation, software, teaching, cycling, and mu
 <BaseLayout title={title} description={description}>
   <Header client:load />
   <main class="py-16">
-    <TitleSection 
-      client:load 
-      title="Writing" 
-      subtitle="Thoughts on innovation, software, teaching, cycling, and music" 
-      center 
+    <TitleSection
+      client:load
+      title="Writing"
+      subtitle="Thoughts on innovation, software, teaching, cycling, and music"
+      center
     />
     <div class="mt-12">
-      <BlogGrid posts={publishedPosts} />
+      <WritingList posts={publishedPosts} />
     </div>
   </main>
   <Footer client:load />

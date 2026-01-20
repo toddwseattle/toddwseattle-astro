@@ -1,5 +1,5 @@
 ---
-category: "blog"
+category: "innovation"
 cover: "./2019-02-05-Coding-Bootcamp-React-Github-Firebase-small.png"
 title: "The Coding Bootcamp in NUvention Web"
 date: "2019-02-05"

@@ -2,15 +2,25 @@ import { defineCollection, z } from "astro:content";
 
 const blog = defineCollection({
   type: "content",
-  schema: z.object({
-    category: z.string(),
-    cover: z.string().optional(),
-    title: z.string(),
-    description: z.string(),
-    date: z.string(),
-    tags: z.array(z.string()).optional(),
-    published: z.boolean().default(true),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      category: z
+        .enum([
+          "innovation",
+          "software-engineering",
+          "teaching",
+          "automotive-software",
+          "cycling",
+          "music",
+        ])
+        .optional(),
+      cover: image().optional(),
+      title: z.string(),
+      description: z.string(),
+      date: z.string(),
+      tags: z.array(z.string()).optional(),
+      published: z.boolean().default(true),
+    }),
 });
 
 const experiences = defineCollection({

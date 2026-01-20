@@ -1,5 +1,5 @@
 ---
-category: "blog"
+category: "software-engineering"
 cover: "./2025-03-15-VSCode-Setup-Recomendations-vscode-cat.jpeg"
 title: "VSCode Setup Recommendations for CS394 Spring 2025"
 date: "2025-03-24"

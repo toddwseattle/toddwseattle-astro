@@ -1,5 +1,5 @@
 ---
-category: "blog"
+category: "innovation"
 cover: "./2019-01-15-Your-Idea-Is-Terrible-tran-web-day-1-2019-small.jpg"
 title: "Your Idea is Terrible: Ideation in NUvention Web"
 date: "2019-01-15"

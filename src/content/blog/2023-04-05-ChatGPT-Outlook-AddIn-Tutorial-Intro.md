@@ -1,5 +1,5 @@
 ---
-category: "blog"
+category: "software-engineering"
 cover: "./2023-04-05-ChatGPT-Outlook-AddIn-Tutorial-Intro-ReplyRight-800px-Logo-2.png"
 title: "ChatGPT / Open AI Outlook AddIn Tutorial Intro Part 1"
 date: "2023-05-30"

@@ -1,0 +1,98 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header';
+import Footer from '../../../components/Footer';
+import TitleSection from '../../../components/ui/TitleSection';
+import BlogGrid from '../../../components/blog/BlogGrid.astro';
+
+// Define the valid categories
+const validCategories = [
+  'innovation',
+  'software-engineering',
+  'teaching',
+  'automotive-software',
+  'cycling',
+  'music',
+] as const;
+
+type Category = (typeof validCategories)[number];
+
+// Category display labels
+const categoryLabels: Record<Category, string> = {
+  'innovation': 'Innovation & Org Design',
+  'software-engineering': 'Software Engineering',
+  'teaching': 'Teaching Reflections',
+  'automotive-software': 'Automotive Software',
+  'cycling': 'Cycling',
+  'music': 'Guitar & Music',
+};
+
+// Category descriptions for SEO
+const categoryDescriptions: Record<Category, string> = {
+  'innovation': 'Posts about entrepreneurship, innovation, and organizational design',
+  'software-engineering': 'Posts about software engineering, development practices, and tools',
+  'teaching': 'Reflections on teaching and education',
+  'automotive-software': 'Analysis of automotive industry software and recalls',
+  'cycling': 'Thoughts on cycling',
+  'music': 'Posts about guitar and music',
+};
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+
+  // Get all unique categories that have published posts
+  const categoriesWithPosts = [...new Set(
+    allPosts
+      .filter((post) => post.data.published !== false && post.data.category)
+      .map((post) => post.data.category)
+  )];
+
+  return categoriesWithPosts.map((category) => ({
+    params: { tag: category },
+  }));
+}
+
+const { tag } = Astro.params;
+
+// Type guard to check if tag is valid category
+const isValidCategory = (t: string | undefined): t is Category => {
+  return validCategories.includes(t as Category);
+};
+
+// Fetch posts for this category
+const allPosts = await getCollection('blog');
+const filteredPosts = allPosts
+  .filter((post) => post.data.published !== false && post.data.category === tag)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+const categoryLabel = isValidCategory(tag) ? categoryLabels[tag] : tag || 'Posts';
+const categoryDescription = isValidCategory(tag) ? categoryDescriptions[tag] : `Posts tagged with ${tag}`;
+---
+
+<BaseLayout title={`${categoryLabel} | Writing`} description={categoryDescription}>
+  <Header client:load />
+  <main class="py-16">
+    <TitleSection
+      client:load
+      title={categoryLabel}
+      subtitle={categoryDescription}
+      center
+    />
+    <div class="mt-4 mb-8 text-center">
+      <a
+        href="/writing/"
+        class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline"
+      >
+        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        View all posts
+      </a>
+    </div>
+    <div class="mt-8">
+      <BlogGrid posts={filteredPosts} />
+    </div>
+  </main>
+  <Footer client:load />
+</BaseLayout>

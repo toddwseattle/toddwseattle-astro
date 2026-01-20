@@ -1,5 +1,5 @@
 ---
-category: "blog"
+category: "software-engineering"
 cover: "./2025-27-05-Vitetest-with-CoPilot-react-vite-copilot-image-cover.jpeg"
 title: "Using Vitest with GitHub Copilot for React Components 2025"
 date: "2025-05-27"

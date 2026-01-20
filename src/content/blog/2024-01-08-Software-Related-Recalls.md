@@ -1,5 +1,5 @@
 ---
-category: "blog"
+category: "automotive-software"
 cover: "./2024-01-08-Software-Related-Recalls-NHTSASoftwareRelatedRecallsByYear1994-2023.png"
 title: "Software-Related Vehicle Recalls: A Reflection on the Evolution in Automotive Industry to Becoming Software Powered"
 date: "2023-01-08"

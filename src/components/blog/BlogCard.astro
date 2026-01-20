@@ -1,12 +1,13 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
 
 interface Props {
   post: CollectionEntry<'blog'>;
 }
 
 const { post } = Astro.props;
-const { title, description, date, tags, cover } = post.data;
+const { title, description, date, tags, cover, category } = post.data;
 const slug = post.slug;
 
 // Format date to readable format
@@ -15,17 +16,31 @@ const formatDate = (dateString: string) => {
   return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 };
 
-// Extract src from ImageMetadata object or use string directly
-const coverSrc = cover && typeof cover === 'object' && 'src' in cover ? cover.src : cover;
+// Category display labels
+const categoryLabels: Record<string, string> = {
+  'innovation': 'Innovation',
+  'software-engineering': 'Software Engineering',
+  'teaching': 'Teaching',
+  'automotive-software': 'Automotive Software',
+  'cycling': 'Cycling',
+  'music': 'Music',
+};
+
+// Get display label for category
+const getCategoryLabel = (cat: string) => {
+  return categoryLabels[cat] || cat.charAt(0).toUpperCase() + cat.slice(1);
+};
 ---
 
 <article class="group relative bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden focus-within:ring-2 ring-blue-400">
   <a href={`/blog/${slug}/`} class="block">
-    {coverSrc && (
+    {cover && (
       <div class="relative aspect-video w-full overflow-hidden bg-gray-100 dark:bg-gray-700">
-        <img
-          src={coverSrc}
+        <Image
+          src={cover}
           alt={title}
+          width={600}
+          height={338}
           loading="lazy"
           decoding="async"
           class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
@@ -48,9 +63,18 @@ const coverSrc = cover && typeof cover === 'object' && 'src' in cover ? cover.sr
         {description}
       </p>
       
-      {tags && tags.length > 0 && (
+      {(category || (tags && tags.length > 0)) && (
         <div class="mt-4 flex flex-wrap gap-2">
-          {tags.map((tag) => (
+          {category && (
+            <a
+              href={`/writing/tag/${category}/`}
+              class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors"
+              onclick="event.stopPropagation();"
+            >
+              {getCategoryLabel(category)}
+            </a>
+          )}
+          {tags && tags.map((tag) => (
             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 dark:bg-slate-700 dark:text-slate-200">
               {tag}
             </span>

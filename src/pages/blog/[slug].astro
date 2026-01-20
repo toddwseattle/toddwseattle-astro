@@ -1,11 +1,11 @@
 ---
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Container from '../../components/ui/Container';
-// Removed Icon usage (missing icon mapping); can re-add later
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -29,8 +29,8 @@ const formatDate = (dateString: string) => {
   return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 };
 
-// Extract src from ImageMetadata object or use string directly
-const coverSrc = cover && typeof cover === 'object' && 'src' in cover ? (cover as any).src : cover;
+// Extract src for OG image metadata (needs string URL)
+const coverSrc = cover?.src;
 
 ---
 
@@ -43,11 +43,13 @@ const coverSrc = cover && typeof cover === 'object' && 'src' in cover ? (cover a
 >
   <Header client:load />
   <article class="py-16">
-    {coverSrc && (
+    {cover && (
       <div class="w-full mb-10 overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800 aspect-video">
-        <img
-          src={coverSrc}
+        <Image
+          src={cover}
           alt={title}
+          width={1200}
+          height={675}
           loading="eager"
           decoding="async"
           class="w-full h-full object-cover"

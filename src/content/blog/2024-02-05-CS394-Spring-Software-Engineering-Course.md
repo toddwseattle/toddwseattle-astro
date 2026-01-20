@@ -1,5 +1,5 @@
 ---
-category: "blog"
+category: "software-engineering"
 cover: "./2024-02-05-CS394-Spring-Software-Engineering-Course-DallE-SoftwareEngineering-Class.jpg"
 title: "Northwestern CS394 Spring Software Engineering Course"
 date: "2024-02-05"
