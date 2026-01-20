@@ -51,6 +51,7 @@ Comprehensive project documentation is available in the [`/docs`](./docs) folder
 - **FontAwesome**: Icon library
 - **Vitest**: Unit testing framework
 - **Testing Library**: For React component testing
+- **Playwright**: End-to-end testing and screenshot capture
 - **Prettier**: Code formatting
 
 ## 🛠️ Development Practices & Patterns
@@ -81,6 +82,8 @@ All commands are run from the root of the project:
 | `npm run test`       | Run all unit tests with Vitest                                  |
 | `npm run test:watch` | Run tests in watch mode                                         |
 | `npm run test:run`   | Run tests (non-interactive, CI-friendly)                        |
+| `npm run test:e2e`   | Run Playwright end-to-end tests                                 |
+| `npm run test:e2e:ui`| Run Playwright tests with the UI runner                         |
 
 ## 📝 Migration & Planning
 
@@ -127,6 +130,20 @@ Content is managed in Markdown files under `src/content/` and structured by type
 ## 🧪 Testing
 
 React components are tested using Vitest and Testing Library. Test files are colocated with components and use the `.test.tsx` extension.
+
+End-to-end tests live in `test/e2e` and use Playwright. Install browser binaries once before running the suite:
+
+```bash
+npx playwright install --with-deps
+```
+
+Run the E2E suite and collect screenshots:
+
+```bash
+npm run test:e2e
+```
+
+Screenshots are saved to `test-results/`, including `test-results/homepage.png`.
 
 ## 🖌️ Formatting
 
