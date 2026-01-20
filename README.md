@@ -81,6 +81,8 @@ All commands are run from the root of the project:
 | `npm run test`       | Run all unit tests with Vitest                                  |
 | `npm run test:watch` | Run tests in watch mode                                         |
 | `npm run test:run`   | Run tests (non-interactive, CI-friendly)                        |
+| `npm run test:e2e`   | Run end-to-end tests with Playwright                            |
+| `npm run test:e2e:ui`| Run e2e tests with Playwright UI for debugging                  |
 
 ## 📝 Migration & Planning
 
@@ -126,7 +128,23 @@ Content is managed in Markdown files under `src/content/` and structured by type
 
 ## 🧪 Testing
 
+### Unit Tests (Vitest)
 React components are tested using Vitest and Testing Library. Test files are colocated with components and use the `.test.tsx` extension.
+
+```bash
+npm run test          # Run unit tests
+npm run test:watch    # Run in watch mode
+```
+
+### End-to-End Tests (Playwright)
+E2E tests verify full page functionality including images, navigation, and user interactions. Tests are located in the `e2e/` directory.
+
+```bash
+npm run test:e2e      # Run e2e tests (starts dev server automatically)
+npm run test:e2e:ui   # Run with Playwright UI for debugging
+```
+
+**Note:** First-time setup requires installing Playwright browsers: `npx playwright install chromium`
 
 ## 🖌️ Formatting
 

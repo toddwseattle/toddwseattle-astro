@@ -306,9 +306,88 @@ describe(‘ColorBlocks’, () => {
 - `screen.queryBy*()` - returns null if not found
 - `screen.findBy*()` - async, waits for element
 
-——
+---
+
+## E2E Testing with Playwright
+
+### When to Use E2E vs Unit Tests
+
+**Use Unit Tests (Vitest) for:**
+
+- Individual React component behavior
+- Component props and state changes
+- User interactions within a single component
+- Mocking dependencies and child components
+- Fast feedback during development
+- Testing edge cases and error states
+
+**Use E2E Tests (Playwright) for:**
+
+- Full page rendering and navigation
+- Image loading verification (Astro's optimized images)
+- Multi-component interactions
+- Real browser behavior (cookies, localStorage)
+- Critical user journeys (e.g., filtering posts, clicking links)
+- Verifying build output works correctly
+- Accessibility checks across pages
+
+### E2E Test Structure
+
+```typescript
+// e2e/feature-name.spec.ts
+import { test, expect } from '@playwright/test';
+
+test.describe('Feature Name', () => {
+  test('should do something', async ({ page }) => {
+    await page.goto('/page-url/');
+    await page.waitForLoadState('networkidle');
+
+    // Verify elements exist
+    const element = page.locator('.selector');
+    await expect(element).toBeVisible();
+
+    // Verify content
+    await expect(element).toHaveText('Expected text');
+
+    // Verify images load
+    const img = page.locator('img');
+    const naturalWidth = await img.evaluate(
+      (el: HTMLImageElement) => el.naturalWidth
+    );
+    expect(naturalWidth).toBeGreaterThan(0);
+  });
+});
+```
+
+### Running E2E Tests
+
+```bash
+npm run test:e2e      # Run all e2e tests
+npm run test:e2e:ui   # Run with Playwright UI for debugging
+```
+
+### E2E Test Best Practices
+
+1. **Wait for network idle** - Ensures Astro's lazy-loaded content is ready
+2. **Test real URLs** - Use actual routes (`/writing/`, `/blog/post-slug/`)
+3. **Verify images load** - Check `naturalWidth > 0` for image elements
+4. **Test user journeys** - Filter, click, navigate, verify results
+5. **Keep tests independent** - Each test should work in isolation
+6. **Use page.locator()** - Prefer over page.$() for better assertions
+
+### Coverage Strategy
+
+| Test Type | Coverage Goal | What to Test |
+|-----------|---------------|--------------|
+| Unit (Vitest) | Component logic | Props, state, events, conditional rendering |
+| E2E (Playwright) | Critical paths | Navigation, images, filters, forms |
+
+**Don't duplicate:** If unit tests cover component behavior, e2e tests should focus on integration and real browser behavior.
+
+---
 
 **For more context, see:**
 
 - Project-wide testing guidelines: `/AGENTS.md`
 - Blog post: https://toddwseattle.com/blog/2025-27-05-Vitetest-with-CoPilot/
+- Playwright documentation: https://playwright.dev/docs/intro
