@@ -10,6 +10,13 @@ const { post } = Astro.props;
 const { title, description, date, tags, cover, category } = post.data;
 const slug = post.slug;
 
+const slugify = (value: string) =>
+  value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+
 // Format date to readable format
 const formatDate = (dateString: string) => {
   const d = new Date(dateString);
@@ -33,7 +40,7 @@ const getCategoryLabel = (cat: string) => {
 ---
 
 <article class="group relative bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden focus-within:ring-2 ring-blue-400">
-  <a href={`/blog/${slug}/`} class="block">
+  <a href={`/writing/${slug}/`} class="block">
     {cover && (
       <div class="relative aspect-video w-full overflow-hidden bg-gray-100 dark:bg-gray-700">
         <Image
@@ -67,7 +74,7 @@ const getCategoryLabel = (cat: string) => {
         <div class="mt-4 flex flex-wrap gap-2">
           {category && (
             <a
-              href={`/writing/tag/${category}/`}
+              href={`/writing/tag/${slugify(category)}/`}
               class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors"
               onclick="event.stopPropagation();"
             >
@@ -75,9 +82,13 @@ const getCategoryLabel = (cat: string) => {
             </a>
           )}
           {tags && tags.map((tag) => (
-            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 dark:bg-slate-700 dark:text-slate-200">
+            <a
+              href={`/writing/tag/${slugify(tag)}/`}
+              class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 dark:bg-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
+              onclick="event.stopPropagation();"
+            >
               {tag}
-            </span>
+            </a>
           ))}
         </div>
       )}

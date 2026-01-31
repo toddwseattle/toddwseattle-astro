@@ -6,20 +6,22 @@ import Footer from '../../../components/Footer';
 import TitleSection from '../../../components/ui/TitleSection';
 import BlogGrid from '../../../components/blog/BlogGrid.astro';
 
-// Define the valid categories
-const validCategories = [
-  'innovation',
-  'software-engineering',
-  'teaching',
-  'automotive-software',
-  'cycling',
-  'music',
-] as const;
+const slugify = (value: string) =>
+  value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
 
-type Category = (typeof validCategories)[number];
+const formatLabel = (value: string) =>
+  value
+    .replace(/[-_]+/g, ' ')
+    .split(' ')
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
 
-// Category display labels
-const categoryLabels: Record<Category, string> = {
+const categoryLabels: Record<string, string> = {
   'innovation': 'Innovation & Org Design',
   'software-engineering': 'Software Engineering',
   'teaching': 'Teaching Reflections',
@@ -28,55 +30,60 @@ const categoryLabels: Record<Category, string> = {
   'music': 'Guitar & Music',
 };
 
-// Category descriptions for SEO
-const categoryDescriptions: Record<Category, string> = {
-  'innovation': 'Posts about entrepreneurship, innovation, and organizational design',
-  'software-engineering': 'Posts about software engineering, development practices, and tools',
-  'teaching': 'Reflections on teaching and education',
-  'automotive-software': 'Analysis of automotive industry software and recalls',
-  'cycling': 'Thoughts on cycling',
-  'music': 'Posts about guitar and music',
-};
-
 export async function getStaticPaths() {
   const allPosts = await getCollection('blog');
+  const publishedPosts = allPosts.filter((post) => post.data.published !== false);
+  const tagMap = new Map<string, string>();
 
-  // Get all unique categories that have published posts
-  const categoriesWithPosts = [...new Set(
-    allPosts
-      .filter((post) => post.data.published !== false && post.data.category)
-      .map((post) => post.data.category)
-  )];
+  publishedPosts.forEach((post) => {
+    if (post.data.category) {
+      const categorySlug = slugify(post.data.category);
+      if (!tagMap.has(categorySlug)) {
+        tagMap.set(categorySlug, categoryLabels[categorySlug] ?? formatLabel(post.data.category));
+      }
+    }
 
-  return categoriesWithPosts.map((category) => ({
-    params: { tag: category },
+    (post.data.tags ?? []).forEach((tag) => {
+      const tagSlug = slugify(tag);
+      if (!tagMap.has(tagSlug)) {
+        tagMap.set(tagSlug, formatLabel(tag));
+      }
+    });
+  });
+
+  return [...tagMap.keys()].map((tag) => ({
+    params: { tag },
   }));
 }
 
 const { tag } = Astro.params;
 
-// Type guard to check if tag is valid category
-const isValidCategory = (t: string | undefined): t is Category => {
-  return validCategories.includes(t as Category);
-};
-
-// Fetch posts for this category
 const allPosts = await getCollection('blog');
-const filteredPosts = allPosts
-  .filter((post) => post.data.published !== false && post.data.category === tag)
+const publishedPosts = allPosts.filter((post) => post.data.published !== false);
+
+const filteredPosts = publishedPosts
+  .filter((post) => {
+    const categoryMatch = post.data.category
+      ? slugify(post.data.category) === tag
+      : false;
+    const tagMatch = (post.data.tags ?? []).some((item) => slugify(item) === tag);
+    return categoryMatch || tagMatch;
+  })
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 
-const categoryLabel = isValidCategory(tag) ? categoryLabels[tag] : tag || 'Posts';
-const categoryDescription = isValidCategory(tag) ? categoryDescriptions[tag] : `Posts tagged with ${tag}`;
+const tagLabel = tag ? (categoryLabels[tag] ?? formatLabel(tag)) : 'Posts';
+const tagDescription = tag
+  ? `Posts tagged with ${tagLabel}`
+  : 'Posts tagged in Writing';
 ---
 
-<BaseLayout title={`${categoryLabel} | Writing`} description={categoryDescription}>
+<BaseLayout title={`${tagLabel} | Writing`} description={tagDescription}>
   <Header client:load />
   <main class="py-16">
     <TitleSection
       client:load
-      title={categoryLabel}
-      subtitle={categoryDescription}
+      title={tagLabel}
+      subtitle={tagDescription}
       center
     />
     <div class="mt-4 mb-8 text-center">
