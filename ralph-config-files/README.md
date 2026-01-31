@@ -1,4 +1,5 @@
 # Ralph Wiggum Configuration Files
+
 ## for toddwseattle-astro
 
 This directory contains all the configuration files needed to set up Ralph Wiggum autonomous coding for your Astro blog.
@@ -6,36 +7,40 @@ This directory contains all the configuration files needed to set up Ralph Wiggu
 ## Quick Start
 
 1. **Copy these files to your repo:**
+
    ```bash
    cd ~/path/to/toddwseattle-astro
-   
+
    # Create .ralph directory
    mkdir -p .ralph/specs/{blog-enhancements,seo-improvements,accessibility}
-   
+
    # Copy config files
    cp PROMPT.md .ralph/
    cp AGENT.md .ralph/
    cp IMPLEMENTATION_PLAN.md .ralph/
    cp AGENTS.md .ralph/
-   
+
    # Copy specs
    cp specs/blog-enhancements/reading-time.md .ralph/specs/blog-enhancements/
    cp specs/seo-improvements/meta-tags.md .ralph/specs/seo-improvements/
    ```
 
 2. **Or run the setup script:**
+
    ```bash
    chmod +x setup.sh
    ./setup.sh
    ```
 
 3. **Install Ralph:**
+
    ```bash
    npm install -g @anthropic-ai/claude-code
    npm install -g ralph-claude-code
    ```
 
 4. **Initialize:**
+
    ```bash
    ralph init --backend claude
    ```
@@ -48,22 +53,27 @@ This directory contains all the configuration files needed to set up Ralph Wiggu
 ## Files Included
 
 ### Core Configuration
+
 - **PROMPT.md** - Main instructions for Ralph (operating manual)
 - **AGENT.md** - Build and test commands (backpressure enforcement)
 - **IMPLEMENTATION_PLAN.md** - Task tracking and progress
 - **AGENTS.md** - Learnings and patterns (updated during runs)
 
 ### Example Specs
+
 - **specs/blog-enhancements/reading-time.md** - Add reading time to blog posts
 - **specs/seo-improvements/meta-tags.md** - Comprehensive SEO meta tags
 
 ### Helper Scripts
+
 - **setup.sh** - Automated setup script
 
 ## What Each File Does
 
 ### PROMPT.md
+
 The "brain" of Ralph. Contains:
+
 - Project overview and principles
 - Task selection strategy
 - Implementation guidelines
@@ -71,41 +81,51 @@ The "brain" of Ralph. Contains:
 - Reference documentation
 
 **Edit this when:**
+
 - Ralph makes consistent mistakes (add "signs")
 - You want to change coding style
 - You want to emphasize specific patterns
 
 ### AGENT.md
+
 The "test suite" instructions. Contains:
+
 - All commands Ralph must run before committing
 - Expected outputs
 - Debugging steps
 
 **Edit this when:**
+
 - You add new testing tools
 - Build process changes
 - New validation steps needed
 
 ### IMPLEMENTATION_PLAN.md
+
 The "task board". Contains:
+
 - List of all tasks (TODO, IN_PROGRESS, DONE)
 - Acceptance criteria per task
 - Attempt counters
 - Completion notes
 
 **Edit this when:**
+
 - Adding new features to build
 - Prioritizing work
 - Marking tasks as blocked
 
 ### AGENTS.md
+
 The "institutional knowledge". Contains:
+
 - Patterns that work
 - Common gotchas
 - Project-specific conventions
 - Debugging strategies
 
 **Edit this when:**
+
 - Ralph discovers new patterns
 - You learn from failures
 - Project conventions change
@@ -166,6 +186,7 @@ cat .ralph/IMPLEMENTATION_PLAN.md
 ### For Your Astro Site
 
 The included configs are tailored to your Astro blog with:
+
 - TypeScript strict mode
 - Vitest testing
 - Tailwind design system
@@ -173,6 +194,7 @@ The included configs are tailored to your Astro blog with:
 - Writing-first aesthetic
 
 If your project differs, update:
+
 1. `PROMPT.md` - Build commands and principles
 2. `AGENT.md` - Test and build scripts
 3. Specs - Match your actual features
@@ -182,25 +204,31 @@ If your project differs, update:
 To add a new category of work:
 
 1. **Create spec directory:**
+
    ```bash
    mkdir .ralph/specs/new-feature-type
    ```
 
 2. **Create spec template:**
+
    ```markdown
    # Spec: Feature Name
-   
+
    ## Job to Be Done
+
    [User need]
-   
+
    ## Success Criteria
+
    - [ ] Criteria 1
    - [ ] Criteria 2
-   
+
    ## Implementation Notes
+
    [Details]
-   
+
    ## Acceptance Criteria
+
    - [ ] Tests pass
    - [ ] Build succeeds
    ```
@@ -208,6 +236,7 @@ To add a new category of work:
 3. **Add to IMPLEMENTATION_PLAN.md:**
    ```markdown
    ### TODO: New Feature
+
    - **Priority:** High/Medium/Low
    - **Spec:** `specs/new-feature-type/feature.md`
    - **Acceptance Criteria:** [from spec]
@@ -217,22 +246,26 @@ To add a new category of work:
 ## Monitoring & Debugging
 
 ### Watch Logs
+
 ```bash
 tail -f .ralph/logs/$(ls -t .ralph/logs/ | head -1)
 ```
 
 ### Check Stuck Tasks
+
 ```bash
 grep "Attempts: [5-9]" .ralph/IMPLEMENTATION_PLAN.md
 ```
 
 ### View Recent Work
+
 ```bash
 git log --oneline -10
 git diff HEAD~5
 ```
 
 ### Monitor Dashboard
+
 ```bash
 ralph web  # Opens at localhost:3000
 ```
@@ -240,6 +273,7 @@ ralph web  # Opens at localhost:3000
 ## Troubleshooting
 
 ### Ralph Won't Start
+
 ```bash
 # Check installation
 ralph --version
@@ -253,6 +287,7 @@ ralph init --backend claude
 ```
 
 ### Tasks Keep Failing
+
 1. Read the logs in `.ralph/logs/`
 2. Check if spec is clear enough
 3. Verify backpressure is working (tests running?)
@@ -260,6 +295,7 @@ ralph init --backend claude
 5. Add learnings to `AGENTS.md`
 
 ### Build Errors
+
 ```bash
 # Clear caches
 rm -rf dist .astro node_modules/.cache
@@ -274,16 +310,19 @@ npm run build
 ## Safety Notes
 
 1. **Always use a branch:**
+
    ```bash
    git checkout -b feature/ralph-work
    ```
 
 2. **Set iteration limits:**
+
    ```bash
    ralph run --max-iterations 10  # Don't run unlimited initially
    ```
 
 3. **Review before merging:**
+
    ```bash
    git log --oneline
    git diff main
@@ -316,6 +355,7 @@ npm run build
 ## Support
 
 For issues specific to:
+
 - **Ralph setup:** Check setup.sh output
 - **Your Astro site:** Reference docs/
 - **Ralph technique:** See ghuntley.com/ralph

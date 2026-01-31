@@ -1,5 +1,5 @@
 ---
-category: 'skills'
-title: 'Firebase'
+category: "skills"
+title: "Firebase"
 percentage: 80
 ---

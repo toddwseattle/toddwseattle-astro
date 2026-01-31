@@ -6,7 +6,7 @@ describe("TitleSection", () => {
   it("renders title", () => {
     render(<TitleSection title="Test Title" />);
     expect(
-      screen.getByRole("heading", { name: "Test Title" })
+      screen.getByRole("heading", { name: "Test Title" }),
     ).toBeInTheDocument();
   });
 
@@ -35,7 +35,7 @@ describe("TitleSection", () => {
 
   it("applies custom className", () => {
     const { container } = render(
-      <TitleSection title="Title" className="custom-title-class" />
+      <TitleSection title="Title" className="custom-title-class" />,
     );
     const wrapper = container.firstElementChild as HTMLElement;
     expect(wrapper).toHaveClass("custom-title-class");

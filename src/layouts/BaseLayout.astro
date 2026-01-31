@@ -11,17 +11,19 @@ interface Props {
   article?: boolean;
   publishedTime?: string;
   modifiedTime?: string;
+  tags?: string[];
   noindex?: boolean;
   nofollow?: boolean;
 }
 
-const { 
-  title = siteConfig.title, 
+const {
+  title = siteConfig.title,
   description = siteConfig.description,
   image = siteConfig.defaultImage,
   article = false,
   publishedTime,
   modifiedTime,
+  tags = [],
   noindex = false,
   nofollow = false,
 } = Astro.props;
@@ -63,6 +65,7 @@ const fullImageURL = new URL(image, Astro.site ?? siteConfig.siteUrl).href;
             publishedTime,
             modifiedTime,
             authors: [siteConfig.author.name],
+            tags: tags.length > 0 ? tags : undefined,
           }
         })
       }}

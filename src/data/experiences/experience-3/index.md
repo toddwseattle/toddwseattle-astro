@@ -1,9 +1,9 @@
 ---
-category: 'experiences'
-company: 'Microsoft'
-position: 'Corporate Vice President Mobile and Embedded Devices'
-startDate: 'Nov 2001'
-endDate: 'Dec 2008'
+category: "experiences"
+company: "Microsoft"
+position: "Corporate Vice President Mobile and Embedded Devices"
+startDate: "Nov 2001"
+endDate: "Dec 2008"
 ---
 
 I started as General Manager of the Windows Embedded group in 2001 which managed a seperate business p and l building [Windows CE](https://en.wikipedia.org/wiki/Windows_Embedded_Compact), specialized devices like the [Portable Media Center](https://en.wikipedia.org/wiki/Portable_Media_Center), ultimately becoming the Corporate Vice President Reponsible for Development of [Windows Mobile](https://en.wikipedia.org/wiki/Windows_Mobile), Windows CE, and Windows Automotive. During this period, We released Windows Mobile 6 and Windows Mobile 6.1 which powered millions of phones built by HTC, Samsung, and Motorola. We started several initiatives focused on device management and device update; and began to lay the foundation for what became Windows Phone.

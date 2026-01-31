@@ -16,7 +16,7 @@ describe("InfoBlock", () => {
 
   it("renders title and content", () => {
     const { container } = render(
-      <InfoBlock icon={{} as any} title={title} content={content} />
+      <InfoBlock icon={{} as any} title={title} content={content} />,
     );
 
     expect(screen.getByRole("heading", { name: title })).toBeInTheDocument();
@@ -30,7 +30,7 @@ describe("InfoBlock", () => {
 
   it("applies centered layout when center=true", () => {
     const { container } = render(
-      <InfoBlock icon={{} as any} title={title} content={content} center />
+      <InfoBlock icon={{} as any} title={title} content={content} center />,
     );
 
     const root = container.firstElementChild as HTMLElement;

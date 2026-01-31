@@ -1,5 +1,5 @@
 ---
-category: 'skills section'
-title: 'Skills'
-subtitle: 'Technologies, Tools, Business Processes'
+category: "skills section"
+title: "Skills"
+subtitle: "Technologies, Tools, Business Processes"
 ---

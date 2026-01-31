@@ -221,14 +221,12 @@ The following VS Code extensions will significantly improve your development exp
 ### Recommended Extensions for CS394
 
 1. **ESLint** - For code linting
-
    - Search: "ESLint"
    - Publisher: Microsoft
    - This helps catch errors and enforce coding standards
    - why: ESLint will help catch errors earlier in development
 
 2. **Prettier - Code formatter** - For consistent code formatting (essential)
-
    - Search: "Prettier"
    - Publisher: Prettier
    - Ensures your code is consistently formatted
@@ -236,7 +234,6 @@ The following VS Code extensions will significantly improve your development exp
    - **Note**: to prevent frustrations with prettier, I recommend enabling on save. This will fix many issues with formatting. You can do this by going to settings (Ctrl + ,) and searching for "format on save". Make sure the box is checked. see [VSCode settings below](#vscode-sesttings)
 
 3. **CSpell** - For spell checking in code
-
    - Search: "Code Spell Checker"
    - Publisher: Street Side Software
    - Catches spelling errors in code, strings, and comments
@@ -244,21 +241,18 @@ The following VS Code extensions will significantly improve your development exp
    - **Note** for unknown words in your code; recommend adding to your workspace. if you check the .vscode settings file in with your project these will be shared with others.
 
 4. **Vitest** - For Vitest test integration
-
    - Search: "Vitest"
    - Publisher: ZixuanChen
    - Provides UI integration for our testing framework
    - why: provides convenience features for working with projects with vitest
 
 5. **Vitest Runner for VSCode that Actually works**
-
    - Search: "Vitest Runner"
    - Publisher: Raz Luvaton
    - Provides a UI for running tests in vscode
    - why: provides buttons to easily run and debug vitest's within the editor
 
 6. **Jest** - For additional test support
-
    - Search: "Jest"
    - Publisher: Orta
    - Works alongside Vitest for improved testing experience
@@ -276,7 +270,6 @@ To ensure a smooth development experience, you can customize your VS Code settin
 
 1. **Open Settings**: Press `Ctrl + ,` (Windows) or `Cmd + ,` (Mac)
 2. **Search for the following settings** and adjust them as needed:
-
    - **Editor: Format On Save**: Enable this to automatically format your code when you save it.
    - **Editor: Code Actions On Save**: Add `source.fixAll.eslint` to automatically fix ESLint issues on save.
    - **Prettier: Formatter**: Set this to `Prettier - Formatter esbenp.prettier-vscode` to ensure Prettier is used for formatting; and that it's consistent with eslint
@@ -340,7 +333,6 @@ If you don't see the "Install 'code' command in PATH" option, you can manually a
 ##### Manual Setup
 
 1. **Find the VS Code Installation Path:**
-
    - Open File Explorer and navigate to the folder where VS Code is installed.
    - Typically, this is:
      ```
@@ -349,19 +341,16 @@ If you don't see the "Install 'code' command in PATH" option, you can manually a
    - Look for the `Code.exe` file in this directory.
 
 2. **Copy the Installation Path:**
-
    - Copy the folder path where the `Code.exe` file is located (e.g., `C:\Users\<YourUsername>\AppData\Local\Programs\Microsoft VS Code`).
    - Note "AppData" is a hidden folder, so you may need to enable viewing hidden items in File Explorer.
 
 3. **Add the Path to Environment Variables:**
-
    - Open the Start menu, search for **"Environment Variables"**, and select **"Edit the system environment variables"**.
    - In the System Properties window, click **"Environment Variables"**.
    - In the **User variables** section, find the variable named `Path` and click **Edit**.
    - Add the path you copied earlier as a new entry.
 
 4. **Save and Restart:**
-
    - Save your changes and restart any open command-line terminal (e.g., `cmd.exe` or PowerShell).
 
 5. **Test It:**

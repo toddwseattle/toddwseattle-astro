@@ -44,7 +44,6 @@ For a ready-made setup, use my [CS394 starter project](https://github.com/toddws
 ##### Configuring VSCode for GitHub Copilot and Vitest
 
 1. **Install GitHub Copilot**
-
    - Students: Get it free via the [GitHub Student Developer Pack](https://education.github.com/pack)
    - Others: Subscribe at [GitHub Copilot Plans](https://github.com/features/copilot/plans)
    - Install the [VSCode extension](https://github.com/github/copilot-docs/blob/main/docs/getting-started.md#install-github-copilot-in-visual-studio-code)
@@ -94,7 +93,6 @@ Configure VSCode to use these instructions in `.vscode/settings.json`:
 While using `/tests` generates tests automatically, an incremental approach works better:
 
 1. Common issues with bulk generation:
-
    - Mixed Jest/Chai matchers
    - Testing non-existent functionality
    - Cascade of errors that are harder to fix
@@ -195,9 +193,9 @@ In `ColorBlocks.test.tsx`, use this prompt in Copilot:
 Import the necessary libraries:
 
 ```typescript
-import "@testing-library/jest-dom"
-import { render } from "@testing-library/react"
-import { describe, expect, test, vi } from "vitest"
+import "@testing-library/jest-dom";
+import { render } from "@testing-library/react";
+import { describe, expect, test, vi } from "vitest";
 ```
 
 Your first test might look like:

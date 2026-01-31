@@ -129,7 +129,7 @@ const allMaterials = await getCollection("courseMaterials");
 const materials = allMaterials
   .filter((material) => material.data.courses.includes(courseSlug))
   .sort(
-    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
   );
 
 const materialTypes = [...new Set(materials.map((m) => m.data.type))];

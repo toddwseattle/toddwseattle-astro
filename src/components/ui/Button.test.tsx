@@ -7,7 +7,7 @@ describe("Button", () => {
   it("renders children content", () => {
     render(<Button>Click me</Button>);
     expect(
-      screen.getByRole("button", { name: "Click me" })
+      screen.getByRole("button", { name: "Click me" }),
     ).toBeInTheDocument();
   });
 

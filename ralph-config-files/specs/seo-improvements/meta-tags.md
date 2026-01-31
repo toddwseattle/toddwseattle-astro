@@ -26,36 +26,42 @@ When my content is shared on social media or indexed by search engines, it shoul
 ### Required Meta Tags
 
 #### Basic SEO (Every Page)
+
 ```html
-<meta name="description" content="Page-specific description">
-<link rel="canonical" href="https://toddwseattle.com/exact-path">
+<meta name="description" content="Page-specific description" />
+<link rel="canonical" href="https://toddwseattle.com/exact-path" />
 ```
 
 #### OpenGraph (Every Page)
+
 ```html
-<meta property="og:title" content="Page Title">
-<meta property="og:description" content="Page description">
-<meta property="og:url" content="https://toddwseattle.com/exact-path">
-<meta property="og:type" content="website"> <!-- or "article" for blog posts -->
-<meta property="og:image" content="https://toddwseattle.com/og-image.jpg">
-<meta property="og:site_name" content="Todd Warren">
+<meta property="og:title" content="Page Title" />
+<meta property="og:description" content="Page description" />
+<meta property="og:url" content="https://toddwseattle.com/exact-path" />
+<meta property="og:type" content="website" />
+<!-- or "article" for blog posts -->
+<meta property="og:image" content="https://toddwseattle.com/og-image.jpg" />
+<meta property="og:site_name" content="Todd Warren" />
 ```
 
 #### Twitter Cards (Every Page)
+
 ```html
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@toddwseattle"> <!-- if Twitter handle exists -->
-<meta name="twitter:title" content="Page Title">
-<meta name="twitter:description" content="Page description">
-<meta name="twitter:image" content="https://toddwseattle.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@toddwseattle" />
+<!-- if Twitter handle exists -->
+<meta name="twitter:title" content="Page Title" />
+<meta name="twitter:description" content="Page description" />
+<meta name="twitter:image" content="https://toddwseattle.com/og-image.jpg" />
 ```
 
 #### Blog Post Specific (Articles Only)
+
 ```html
-<meta property="article:published_time" content="2026-01-30T00:00:00Z">
-<meta property="article:author" content="Todd Warren">
-<meta property="article:tag" content="tag1">
-<meta property="article:tag" content="tag2">
+<meta property="article:published_time" content="2026-01-30T00:00:00Z" />
+<meta property="article:author" content="Todd Warren" />
+<meta property="article:tag" content="tag1" />
+<meta property="article:tag" content="tag2" />
 ```
 
 ### Component Architecture
@@ -68,7 +74,7 @@ interface Props {
   title: string;
   description: string;
   image?: string;
-  type?: 'website' | 'article';
+  type?: "website" | "article";
   publishedTime?: string;
   tags?: string[];
   canonicalUrl?: string;
@@ -76,6 +82,7 @@ interface Props {
 ```
 
 **Features:**
+
 - Accept props for all meta tag values
 - Use site config for defaults (from astro.config.mjs)
 - Generate all required meta tags
@@ -108,17 +115,19 @@ interface Props {
 ### Default Values Strategy
 
 **Site Config** (reference astro.config.mjs):
+
 ```typescript
 const siteConfig = {
   title: "Todd Warren - Tech Consultant & Educator",
   description: "Technology consultant, software developer, and educator...",
   url: "https://toddwseattle.com",
   defaultImage: "/og-image.jpg",
-  twitter: "@toddwseattle" // if exists
-}
+  twitter: "@toddwseattle", // if exists
+};
 ```
 
 **Fallback Logic:**
+
 - Title: Use page title, fallback to site title
 - Description: Use page description, fallback to site description
 - Image: Use page image, fallback to default OG image
@@ -127,23 +136,25 @@ const siteConfig = {
 
 ### Content Type Matrix
 
-| Page Type | og:type | Extra Tags |
-|-----------|---------|------------|
-| Home | website | - |
-| About | website | - |
-| Blog List | website | - |
-| Blog Post | article | published_time, tags |
-| Teaching | website | - |
-| AutoSoft Today | website | - |
+| Page Type      | og:type | Extra Tags           |
+| -------------- | ------- | -------------------- |
+| Home           | website | -                    |
+| About          | website | -                    |
+| Blog List      | website | -                    |
+| Blog Post      | article | published_time, tags |
+| Teaching       | website | -                    |
+| AutoSoft Today | website | -                    |
 
 ### Testing Strategy
 
 #### Automated
+
 - TypeScript must compile
 - Build must succeed
 - Verify HTML output includes meta tags
 
 #### Manual Verification
+
 1. **Build the site:** `npm run build`
 2. **Check HTML output:** Inspect `dist/` files
 3. **Social Media Debuggers:**
@@ -153,6 +164,7 @@ const siteConfig = {
 4. **Browser DevTools:** View page source, check `<head>`
 
 #### Test Pages
+
 - Home page: `/`
 - Blog post: `/blog/[any-post]`
 - About page: `/about`
@@ -161,15 +173,18 @@ const siteConfig = {
 ### Files to Create/Modify
 
 **Create:**
+
 1. `src/components/SEO.astro` - Main SEO component
 2. `public/og-image.jpg` - Default social sharing image (or identify existing)
 
 **Modify:**
+
 1. `src/layouts/BaseLayout.astro` - Add SEO component
 2. Blog post layout - Pass article props
 3. Other page layouts as needed
 
 **Optional:**
+
 - Update `astro.config.mjs` if site config needs tweaking
 
 ## Acceptance Criteria
@@ -193,11 +208,13 @@ const siteConfig = {
 ## Reference Resources
 
 ### External Documentation
+
 - [OpenGraph Protocol](https://ogp.me/)
 - [Twitter Cards](https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/abouts-cards)
 - [Astro SEO Guide](https://docs.astro.build/en/guides/integrations-guide/sitemap/)
 
 ### Project Files
+
 - `docs/04-style-guide.md` - Site information
 - `astro.config.mjs` - Site configuration
 - `src/layouts/BaseLayout.astro` - Main layout
@@ -211,28 +228,34 @@ After implementation, viewing page source should show:
 <head>
   <!-- Basic SEO -->
   <title>Building with Astro | Todd Warren</title>
-  <meta name="description" content="A deep dive into migrating...">
-  <link rel="canonical" href="https://toddwseattle.com/blog/building-with-astro">
-  
+  <meta name="description" content="A deep dive into migrating..." />
+  <link
+    rel="canonical"
+    href="https://toddwseattle.com/blog/building-with-astro"
+  />
+
   <!-- OpenGraph -->
-  <meta property="og:title" content="Building with Astro">
-  <meta property="og:description" content="A deep dive into migrating...">
-  <meta property="og:url" content="https://toddwseattle.com/blog/building-with-astro">
-  <meta property="og:type" content="article">
-  <meta property="og:image" content="https://toddwseattle.com/og-image.jpg">
-  <meta property="og:site_name" content="Todd Warren">
-  
+  <meta property="og:title" content="Building with Astro" />
+  <meta property="og:description" content="A deep dive into migrating..." />
+  <meta
+    property="og:url"
+    content="https://toddwseattle.com/blog/building-with-astro"
+  />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://toddwseattle.com/og-image.jpg" />
+  <meta property="og:site_name" content="Todd Warren" />
+
   <!-- Twitter Cards -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Building with Astro">
-  <meta name="twitter:description" content="A deep dive into migrating...">
-  <meta name="twitter:image" content="https://toddwseattle.com/og-image.jpg">
-  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Building with Astro" />
+  <meta name="twitter:description" content="A deep dive into migrating..." />
+  <meta name="twitter:image" content="https://toddwseattle.com/og-image.jpg" />
+
   <!-- Article Specific -->
-  <meta property="article:published_time" content="2026-01-30T00:00:00Z">
-  <meta property="article:author" content="Todd Warren">
-  <meta property="article:tag" content="software engineering">
-  <meta property="article:tag" content="web development">
+  <meta property="article:published_time" content="2026-01-30T00:00:00Z" />
+  <meta property="article:author" content="Todd Warren" />
+  <meta property="article:tag" content="software engineering" />
+  <meta property="article:tag" content="web development" />
 </head>
 ```
 

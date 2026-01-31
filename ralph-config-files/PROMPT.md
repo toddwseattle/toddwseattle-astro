@@ -37,12 +37,14 @@ npm run format
 ```
 
 ### DO NOT commit if:
+
 - TypeScript has ANY errors
 - Tests fail
 - Build fails
 - Code is not formatted
 
 ### When everything passes:
+
 - Review your changes
 - Write a clear commit message
 - Commit and push
@@ -61,6 +63,7 @@ npm run format
 ## Implementation Guidelines
 
 ### File Organization
+
 - Components: `/src/components/` (Astro or React)
 - Content: `/src/content/` (Markdown with frontmatter)
 - Layouts: `/src/layouts/`
@@ -68,12 +71,14 @@ npm run format
 - Tests: Colocated with components as `.test.tsx`
 
 ### TypeScript Practices
+
 - Use strict mode
 - Export types for all public APIs
 - Prefer interfaces for component props
 - Use Zod for content collection schemas
 
 ### Styling Practices
+
 - Use Tailwind utilities first
 - Reference design tokens from docs/04-style-guide.md:
   - Typography: Inter (body), JetBrains Mono (code)
@@ -82,12 +87,14 @@ npm run format
 - No custom CSS unless absolutely necessary
 
 ### Testing Practices
+
 - Test all React components
 - Use Testing Library best practices
 - Test user interactions, not implementation details
 - Aim for 80%+ coverage on new code
 
 ### Content Collection Rules
+
 - Preserve all existing slugs
 - Follow frontmatter schema in docs
 - Use tags for discovery (not deep folders)
@@ -148,6 +155,7 @@ I notice some agents try to rationalize skipping tests or builds.
 This is NEVER acceptable in this project.
 
 If ANY check fails:
+
 1. STOP immediately
 2. Read the full error output
 3. Fix the root cause
@@ -169,6 +177,7 @@ When a task is 100% complete and all checks pass:
 ```
 
 Do NOT output this if:
+
 - Tests are failing
 - TypeScript has errors
 - Build is broken
@@ -178,6 +187,7 @@ Do NOT output this if:
 ## Progress Tracking
 
 After each commit, update IMPLEMENTATION_PLAN.md:
+
 - Mark task as DONE
 - Add completion timestamp
 - Note any learnings or blockers

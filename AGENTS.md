@@ -238,25 +238,27 @@ All React components must be tested using Vitest and Testing Library. Follow the
 ### Test File Locations
 
 **Unit Tests (Vitest):**
+
 - Colocate with components: `ComponentName.test.tsx`
 - Run: `npm run test` or `npm run test:watch`
 - Check coverage with Vitest extension in VSCode
 
 **E2E Tests (Playwright):**
+
 - Located in `e2e/` directory: `feature-name.spec.ts`
 - Run: `npm run test:e2e` or `npm run test:e2e:ui`
 - Auto-starts dev server for testing
 
 ### When to Use Unit vs E2E Tests
 
-| Scenario | Test Type | Why |
-|----------|-----------|-----|
-| Component props/state | Unit | Fast, isolated |
-| User interactions in component | Unit | Mockable |
-| Image loading on pages | E2E | Real browser behavior |
-| Navigation between pages | E2E | Full routing |
-| Page filtering/search | E2E | Multi-component |
-| Build output verification | E2E | Production-like |
+| Scenario                       | Test Type | Why                   |
+| ------------------------------ | --------- | --------------------- |
+| Component props/state          | Unit      | Fast, isolated        |
+| User interactions in component | Unit      | Mockable              |
+| Image loading on pages         | E2E       | Real browser behavior |
+| Navigation between pages       | E2E       | Full routing          |
+| Page filtering/search          | E2E       | Multi-component       |
+| Build output verification      | E2E       | Production-like       |
 
 ### Incremental Testing Strategy
 

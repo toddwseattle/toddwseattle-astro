@@ -82,16 +82,19 @@ npx astro --help
 ## Debugging
 
 ### TypeScript Errors
+
 ```bash
 npx tsc --noEmit --watch
 ```
 
 ### Test Failures
+
 ```bash
 npm run test:watch -- --reporter=verbose
 ```
 
 ### Build Issues
+
 ```bash
 npm run build -- --verbose
 ```
@@ -105,16 +108,19 @@ See `src/content/config.ts` for schemas.
 ## Common Build Errors
 
 ### "Cannot find module"
+
 - Check import paths use `@/` for src/
 - Verify file exists at specified path
 - Check TypeScript path aliases in tsconfig.json
 
 ### "Type errors" during build
+
 - Run `npx tsc --noEmit` to see full list
 - Fix from bottom up (most specific first)
 - Restart dev server after fixing
 
 ### "Content collection validation failed"
+
 - Check frontmatter in content files
 - Verify schema in `src/content/config.ts`
 - Ensure required fields are present

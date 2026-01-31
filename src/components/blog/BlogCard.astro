@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { Image } from 'astro:assets';
+import { calculateReadingTime, formatReadingTime } from '../../lib/readingTime';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -9,6 +10,9 @@ interface Props {
 const { post } = Astro.props;
 const { title, description, date, tags, cover, category } = post.data;
 const slug = post.slug;
+
+// Calculate reading time from post body
+const readingTime = formatReadingTime(calculateReadingTime(post.body ?? ''));
 
 const slugify = (value: string) =>
   value
@@ -55,12 +59,13 @@ const getCategoryLabel = (cat: string) => {
       </div>)}
     
     <div class="p-6">
-      <time
-        datetime={date}
-        class="text-sm text-gray-500 dark:text-gray-400 font-medium"
-      >
-        {formatDate(date)}
-      </time>
+      <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 font-medium">
+        <time datetime={date}>
+          {formatDate(date)}
+        </time>
+        <span aria-hidden="true">·</span>
+        <span>{readingTime}</span>
+      </div>
       
       <h3 class="mt-2 text-xl font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
         {title}

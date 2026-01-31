@@ -1,4 +1,5 @@
 # Agent Learnings
+
 ## Patterns and Gotchas for toddwseattle-astro
 
 > This file is updated by Ralph and humans as patterns emerge.
@@ -14,11 +15,13 @@
 Astro components (`.astro` files) cannot be unit tested directly with Vitest.
 
 **Solution:**
+
 - Extract logic to TypeScript utilities (test these)
 - Extract interactive parts to React components (test these)
 - Use Playwright for integration tests if needed
 
 **Example:**
+
 ```typescript
 // ✅ Good: Testable
 // src/utils/readingTime.ts
@@ -28,7 +31,7 @@ export function calculateReadingTime(content: string): number {
 
 // ✅ Good: Can test
 // src/components/BlogCard.test.tsx
-import { render } from '@testing-library/react';
+import { render } from "@testing-library/react";
 
 // ❌ Bad: Cannot easily test
 // BlogCard.astro with complex logic inline
@@ -40,6 +43,7 @@ import { render } from '@testing-library/react';
 When changing content collection schemas, multiple steps are required.
 
 **Procedure:**
+
 1. Update schema in `src/content/config.ts`
 2. Restart development server (`npm run dev`)
 3. Run build to validate: `npm run build`
@@ -55,6 +59,7 @@ Old dev server won't pick up schema changes. Always restart.
 We avoid custom CSS classes. Use Tailwind utilities.
 
 **When spacing doesn't exist in Tailwind:**
+
 ```tsx
 // ✅ Use arbitrary values
 <div className="p-[17px]">
@@ -82,13 +87,14 @@ module.exports = {
 Always use the `@/` alias for imports from `src/`.
 
 **Examples:**
+
 ```typescript
 // ✅ Good
-import Layout from '@/layouts/BaseLayout.astro';
-import { calculateReadingTime } from '@/utils/readingTime';
+import Layout from "@/layouts/BaseLayout.astro";
+import { calculateReadingTime } from "@/utils/readingTime";
 
 // ❌ Bad - relative paths
-import Layout from '../../layouts/BaseLayout.astro';
+import Layout from "../../layouts/BaseLayout.astro";
 ```
 
 ---
@@ -101,6 +107,7 @@ import Layout from '../../layouts/BaseLayout.astro';
 React components in Astro need client directives.
 
 **Solution:**
+
 ```astro
 ---
 import InteractiveComponent from '@/components/Interactive.tsx';
@@ -114,6 +121,7 @@ import InteractiveComponent from '@/components/Interactive.tsx';
 ```
 
 **Directive Options:**
+
 - `client:load` - Load immediately
 - `client:idle` - Load when page idle
 - `client:visible` - Load when visible
@@ -130,6 +138,7 @@ Some issues only appear in production build, not dev server.
 Always test with `npm run build` before marking task complete.
 
 **Examples of build-only issues:**
+
 - Content collection schema validation
 - Image optimization errors
 - Missing dependencies
@@ -152,6 +161,7 @@ npx tsc --noEmit --watch
 ```
 
 **Common fixes:**
+
 - Add explicit return types to functions
 - Handle `null` and `undefined` cases
 - Don't use `any` - use `unknown` if type truly unknown
@@ -191,11 +201,13 @@ test('onClick calls setState', () => {
 Aim for 80%+ coverage on new code.
 
 **Focus on:**
+
 - Happy path (main use case)
 - Error cases
 - Edge cases (empty input, very large input, etc.)
 
 **Don't obsess over:**
+
 - 100% coverage on trivial code
 - Unreachable error handlers
 - Third-party library code
@@ -210,6 +222,7 @@ Aim for 80%+ coverage on new code.
 All long-form content should have max-width ~700px.
 
 **Implementation:**
+
 ```tsx
 // ✅ Good
 <article className="prose prose-lg max-w-[700px] mx-auto">
@@ -248,6 +261,7 @@ content-width: 'max-w-[700px]'
 Favor readability over visual complexity.
 
 **Examples:**
+
 - Clean typography over decorative fonts
 - Whitespace over density
 - Subtle animations over flashy effects
@@ -304,6 +318,7 @@ import myImage from '@/assets/image.jpg';
 ```
 
 **Benefits:**
+
 - Automatic format conversion (WebP, AVIF)
 - Responsive srcset generation
 - Lazy loading by default
@@ -314,6 +329,7 @@ import myImage from '@/assets/image.jpg';
 Build time should be under 30 seconds for current site size.
 
 **If build is slow:**
+
 - Check for large unoptimized images
 - Look for expensive computations during build
 - Consider caching strategies
@@ -325,6 +341,7 @@ Build time should be under 30 seconds for current site size.
 ### Commit Messages
 
 **Format:**
+
 ```
 type(scope): message
 
@@ -346,12 +363,14 @@ test(utils): add edge case tests for readingTime
 ### Documentation
 
 **When to update /docs:**
+
 - New features that affect IA
 - Changes to design system
 - New content collections
 - Major refactors
 
 **Don't document:**
+
 - Minor bug fixes
 - Internal implementation details
 - Temporary workarounds

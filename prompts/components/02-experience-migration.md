@@ -102,7 +102,7 @@ const { allMarkdownRemark } = useStaticQuery(graphql`...`);
 const experiences = await getCollection("experiences");
 const sortedExperiences = experiences.sort(
   (a, b) =>
-    new Date(b.data.startDate).getTime() - new Date(a.data.startDate).getTime()
+    new Date(b.data.startDate).getTime() - new Date(a.data.startDate).getTime(),
 );
 ```
 

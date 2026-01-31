@@ -3,7 +3,7 @@ category: "software-engineering"
 cover: "./2023-04-05-ChatGPT-Outlook-AddIn-Tutorial-Intro-ReplyRight-800px-Logo-2.png"
 title: "ChatGPT / Open AI Outlook AddIn Tutorial Intro Part 1"
 date: "2023-05-30"
-tags: ["software development","ai","microsoft office","tutorial"]
+tags: ["software development", "ai", "microsoft office", "tutorial"]
 description: "This post is a tutorial based on some messing around with the OpenAI completion API, azure functions, and the office addIn model"
 published: false
 excerpt_separator: <!--more-->
@@ -15,7 +15,7 @@ excerpt_separator: <!--more-->
 
 In this tutorial, we will be building an Outlook Add-in that uses the OpenAI completion API to generate email replies. The add-in will call an Azure Function to generate the email replies and will be built using TypeScript and React. This tutorial is intended for developers who have experience with JavaScript and TypeScript and are interested in building add-ins for Office applications.
 
-Note, this is more an exploration.  Microsoft is adding these capabilities and more to office; and other have also developed commercial add-ins to office to use OpenAI.
+Note, this is more an exploration. Microsoft is adding these capabilities and more to office; and other have also developed commercial add-ins to office to use OpenAI.
 
 ## Solution
 
@@ -30,6 +30,7 @@ The technology architecture for this solution involves several components. The f
 ## Tools and Developer Requirements
 
 To follow along with this tutorial, you will need to have the following tools installed on your machine:
+
 - [Visual Studio Code](https://code.visualstudio.com/docs/setup/setup-overview)
 - [NodeJS](https://nodejs.org/en/download/)
 - [Azure functions for Visual Studio Code](https://learn.microsoft.com/en-us/azure/azure-functions/functions-develop-vs-code)

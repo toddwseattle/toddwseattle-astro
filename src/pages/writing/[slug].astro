@@ -6,6 +6,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Container from '../../components/ui/Container';
+import { calculateReadingTime, formatReadingTime } from '../../lib/readingTime';
 
 const slugify = (value: string) =>
   value
@@ -41,6 +42,9 @@ const { post } = Astro.props;
 const { title, description, date, tags, cover, category } = post.data;
 const { Content } = await post.render();
 
+// Calculate reading time from post body
+const readingTime = formatReadingTime(calculateReadingTime(post.body ?? ''));
+
 // Format date to readable format
 const formatDate = (dateString: string) => {
   const d = new Date(dateString);
@@ -61,6 +65,7 @@ const tagLinks = Array.from(
   image={coverSrc}
   article={true}
   publishedTime={date}
+  tags={tagLinks}
 >
   <Header client:load />
   <article class="py-16">
@@ -83,12 +88,13 @@ const tagLinks = Array.from(
         <a href="/writing" class="inline-flex items-center text-blue-600 hover:underline mb-8 font-medium"><- Back to Writing</a>
 
         <header class="mb-8">
-          <time
-            datetime={date}
-            class="text-sm text-gray-500 font-medium"
-          >
-            {formatDate(date)}
-          </time>
+          <div class="flex items-center gap-2 text-sm text-gray-500 font-medium">
+            <time datetime={date}>
+              {formatDate(date)}
+            </time>
+            <span aria-hidden="true">·</span>
+            <span>{readingTime}</span>
+          </div>
 
           <h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-gray-900">
             {title}

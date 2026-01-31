@@ -1,4 +1,5 @@
 # Implementation Plan
+
 ## toddwseattle-astro
 
 Last Updated: 2026-01-30
@@ -6,6 +7,7 @@ Last Updated: 2026-01-30
 ## Active Tasks
 
 ### TODO: Add Reading Time to Blog Posts
+
 - **Priority:** High
 - **Spec:** `specs/blog-enhancements/reading-time.md`
 - **Acceptance Criteria:**
@@ -20,6 +22,7 @@ Last Updated: 2026-01-30
 - **Attempts:** 0
 
 ### TODO: Improve SEO Metadata
+
 - **Priority:** High
 - **Spec:** `specs/seo-improvements/meta-tags.md`
 - **Acceptance Criteria:**
@@ -33,6 +36,7 @@ Last Updated: 2026-01-30
 - **Attempts:** 0
 
 ### TODO: Add Related Posts Component
+
 - **Priority:** Medium
 - **Spec:** `specs/blog-enhancements/related-posts.md`
 - **Acceptance Criteria:**
@@ -46,6 +50,7 @@ Last Updated: 2026-01-30
 - **Attempts:** 0
 
 ### TODO: Accessibility Audit & Improvements
+
 - **Priority:** Medium
 - **Spec:** `specs/accessibility/audit.md`
 - **Acceptance Criteria:**
@@ -59,6 +64,7 @@ Last Updated: 2026-01-30
 - **Attempts:** 0
 
 ### TODO: Add Tag Cloud / Tag Navigation
+
 - **Priority:** Low
 - **Spec:** `specs/blog-enhancements/tag-cloud.md`
 - **Acceptance Criteria:**
@@ -81,23 +87,27 @@ _None currently_
 ## Notes
 
 ### Project Constraints (from docs/01-epic.md)
+
 - Preserve all existing URLs (no route breakage)
 - No year-based routing
 - Keep existing markdown/MDX files intact
 - Maintain writing-first aesthetic
 
 ### Design Tokens (from docs/04-style-guide.md)
+
 - Typography: Inter (body), JetBrains Mono (code)
 - Prose width: ~700px
 - Colors: bg-gray-50, bg-white, text-gray-900, text-indigo-600
 
 ### Current Status
+
 - TypeScript: ✅ Configured
 - Testing: ✅ Vitest setup
 - Build: ✅ Working
 - Content Collections: ✅ Configured
 
 ### Next Session Planning
+
 1. Start with reading time (straightforward calculation)
 2. Move to SEO improvements (site-wide benefit)
 3. Then related posts (more complex logic)
@@ -112,6 +122,7 @@ When marking a task complete, use this format:
 
 ```markdown
 ### ✅ DONE: [Task Name]
+
 - **Completed:** 2026-01-30 14:23
 - **Commits:** abc1234, def5678
 - **Tests Added:** 5 new tests in BlogCard.test.tsx

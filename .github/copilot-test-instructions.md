@@ -57,10 +57,10 @@ describe(‘ComponentName’, () => {
     it(‘calls the callback’, () => {
       const mockCallback = vi.fn()
       render(<ComponentName onAction={mockCallback} />)
-      
+
       const button = screen.getByRole(‘button’)
       fireEvent.click(button)
-      
+
       expect(mockCallback).toHaveBeenCalledTimes(1)
     })
   })
@@ -124,11 +124,11 @@ vi.mock(‘../ChildComponent/ChildComponent’, () => ({
 ### Mock Functions
 
 ```typescript
-const mockCallback = vi.fn()
+const mockCallback = vi.fn();
 
 // After action
-expect(mockCallback).toHaveBeenCalledTimes(1)
-expect(mockCallback).toHaveBeenCalledWith(expectedArgs)
+expect(mockCallback).toHaveBeenCalledTimes(1);
+expect(mockCallback).toHaveBeenCalledWith(expectedArgs);
 ```
 
 ## Incremental Testing Example
@@ -174,9 +174,9 @@ describe(‘when user clicks button’, () => {
   it(‘calls the callback with correct arguments’, () => {
     const mockCallback = vi.fn()
     render(<ComponentName onAction={mockCallback} />)
-    
+
     fireEvent.click(screen.getByRole(‘button’))
-    
+
     expect(mockCallback).toHaveBeenCalledWith(expectedData)
   })
 })
@@ -189,6 +189,7 @@ describe(‘when user clicks button’, () => {
 1. **Arrange-Act-Assert** pattern
 1. **Test user behavior**, not implementation
 1. **Use Testing Library queries** in order of preference:
+
 - getByRole (most accessible)
 - getByLabelText
 - getByPlaceholderText
@@ -240,7 +241,7 @@ describe(‘ColorBlocks’, () => {
         blocks: [],
         updateColorBlocks: vi.fn()
       }
-      
+
       render(<ColorBlocks {...props} />)
       expect(screen.getByText(/no blocks/i)).toBeInTheDocument()
     })
@@ -252,7 +253,7 @@ describe(‘ColorBlocks’, () => {
         blocks: [{ color: ‘red’, content: [‘Item 1’] }],
         updateColorBlocks: vi.fn()
       }
-      
+
       render(<ColorBlocks {...props} />)
       const block = screen.getByTestId(‘color-block’)
       expect(block).toHaveStyle({ backgroundColor: ‘red’ })
@@ -266,10 +267,10 @@ describe(‘ColorBlocks’, () => {
         blocks: [{ color: ‘blue’, content: [‘Old’] }],
         updateColorBlocks: mockUpdate
       }
-      
+
       render(<ColorBlocks {...props} />)
       fireEvent.click(screen.getByText(‘Save’))
-      
+
       expect(mockUpdate).toHaveBeenCalledWith([
         { color: ‘blue’, content: [‘new’] }
       ])
@@ -335,24 +336,24 @@ describe(‘ColorBlocks’, () => {
 
 ```typescript
 // e2e/feature-name.spec.ts
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
-test.describe('Feature Name', () => {
-  test('should do something', async ({ page }) => {
-    await page.goto('/page-url/');
-    await page.waitForLoadState('networkidle');
+test.describe("Feature Name", () => {
+  test("should do something", async ({ page }) => {
+    await page.goto("/page-url/");
+    await page.waitForLoadState("networkidle");
 
     // Verify elements exist
-    const element = page.locator('.selector');
+    const element = page.locator(".selector");
     await expect(element).toBeVisible();
 
     // Verify content
-    await expect(element).toHaveText('Expected text');
+    await expect(element).toHaveText("Expected text");
 
     // Verify images load
-    const img = page.locator('img');
+    const img = page.locator("img");
     const naturalWidth = await img.evaluate(
-      (el: HTMLImageElement) => el.naturalWidth
+      (el: HTMLImageElement) => el.naturalWidth,
     );
     expect(naturalWidth).toBeGreaterThan(0);
   });
@@ -377,10 +378,10 @@ npm run test:e2e:ui   # Run with Playwright UI for debugging
 
 ### Coverage Strategy
 
-| Test Type | Coverage Goal | What to Test |
-|-----------|---------------|--------------|
-| Unit (Vitest) | Component logic | Props, state, events, conditional rendering |
-| E2E (Playwright) | Critical paths | Navigation, images, filters, forms |
+| Test Type        | Coverage Goal   | What to Test                                |
+| ---------------- | --------------- | ------------------------------------------- |
+| Unit (Vitest)    | Component logic | Props, state, events, conditional rendering |
+| E2E (Playwright) | Critical paths  | Navigation, images, filters, forms          |
 
 **Don't duplicate:** If unit tests cover component behavior, e2e tests should focus on integration and real browser behavior.
 

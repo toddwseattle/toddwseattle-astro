@@ -34,6 +34,7 @@ function calculateReadingTime(content: string): number {
 ```
 
 **Details:**
+
 - Average reading speed: 200 words per minute
 - Count words in post content only (exclude frontmatter)
 - Round UP to nearest minute (ceiling)
@@ -53,11 +54,13 @@ function calculateReadingTime(content: string): number {
 ### Styling Guidelines
 
 From docs/04-style-guide.md:
+
 - Text color: `text-gray-500` (secondary text)
 - Font size: `text-sm`
 - Icon (optional): Clock icon from FontAwesome library
 
 **Example layout:**
+
 ```
 Published Jan 30, 2026 · 5 min read
 ```
@@ -84,6 +87,7 @@ Published Jan 30, 2026 · 5 min read
 ### Testing Requirements
 
 Unit tests must cover:
+
 - Empty string returns 1 minute
 - 200 words returns 1 minute
 - 201 words returns 2 minutes
@@ -92,6 +96,7 @@ Unit tests must cover:
 - Newlines and tabs counted as word separators
 
 Integration verification:
+
 - Check at least 3 existing blog posts manually
 - Verify reading time appears on list page
 - Verify reading time appears on detail page
