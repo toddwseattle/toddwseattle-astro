@@ -1,0 +1,26 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "anthropic/claude-3-5-sonnet",
+  "agent": {
+    "architect": {
+      "model": "anthropic/claude-3-5-sonnet",
+      "provider": "anthropic",
+      "prompt": "You are the Architect. Analyze the Astro project structure and types. Create high-level plans. Focus on Astro-specific patterns like Content Collections and Frontmatter safety."
+    },
+    "worker": {
+      "model": "github/gpt-5-codex",
+      "provider": "github-copilot",
+      "prompt": "You are the mechanical Worker. Execute code changes exactly as requested. Use TypeScript best practices. Output minimal code diffs."
+    },
+    "fixer": {
+      "model": "opencode/qwen3-coder",
+      "provider": "opencode",
+      "prompt": "You are the Debugger. Your only goal is to fix errors from 'npx astro check'. You are precise and concise. Do not refactor unrelated code."
+    }
+  },
+  "permission": {
+    "bash": "allow",
+    "edit": "allow",
+    "read": "allow"
+  }
+}
