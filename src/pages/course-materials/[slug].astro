@@ -51,7 +51,7 @@ const coverSrc = cover && typeof cover === 'object' && 'src' in cover ? (cover a
   ) : (
     <article class="py-16">
       {coverSrc && (
-        <div class="w-full mb-10 overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800 aspect-video">
+        <div class="w-full mb-10 overflow-hidden rounded-xl bg-paper-200 dark:bg-graphite-700 aspect-video">
           <img
             src={coverSrc}
             alt={title}
@@ -63,13 +63,13 @@ const coverSrc = cover && typeof cover === 'object' && 'src' in cover ? (cover a
       )}
       <Container>
         <div class="max-w-3xl mx-auto">
-          <a href="/teaching" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-8 font-medium">← Back to Teaching</a>
+          <a href="/teaching" class="inline-flex items-center text-ink-800 underline decoration-graphite-400 hover:decoration-ink-800 dark:text-paper-100 dark:hover:decoration-paper-100 mb-8 font-medium">← Back to Teaching</a>
           <header class="mb-8">
-            <h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-ink-800 dark:text-paper-100">
               {title}
             </h1>
             {description && (
-              <p class="mt-4 text-xl text-gray-600 dark:text-gray-300">
+              <p class="mt-4 text-xl text-ink-600 dark:text-paper-200">
                 {description}
               </p>
             )}
@@ -77,8 +77,8 @@ const coverSrc = cover && typeof cover === 'object' && 'src' in cover ? (cover a
           <div class="prose prose-lg dark:prose-invert max-w-none">
             <rendered.Content />
           </div>
-          <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-            <a href="/teaching" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline font-medium">← Back to Teaching</a>
+          <div class="mt-12 pt-8 border-t border-graphite-600/20 dark:border-graphite-600">
+            <a href="/teaching" class="inline-flex items-center text-ink-800 underline decoration-graphite-400 hover:decoration-ink-800 dark:text-paper-100 dark:hover:decoration-paper-100 font-medium">← Back to Teaching</a>
           </div>
         </div>
       </Container>

@@ -15,10 +15,14 @@ const TitleSection: React.FC<TitleSectionProps> = ({
 }) => {
   return (
     <div className={`mb-8 ${center ? "text-center" : ""} ${className}`.trim()}>
-      <h2 className="text-3xl md:text-4xl font-bold text-indigo-900 mb-3">
+      <h2 className="text-3xl md:text-4xl font-bold text-ink-800 dark:text-paper-100 mb-3">
         {title}
       </h2>
-      {subtitle && <p className="text-lg text-gray-600">{subtitle}</p>}
+      {subtitle && (
+        <p className="text-lg text-graphite-400 dark:text-graphite-400">
+          {subtitle}
+        </p>
+      )}
     </div>
   );
 };

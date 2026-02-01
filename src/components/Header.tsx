@@ -36,15 +36,15 @@ const Header: React.FC = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="bg-white border-b border-gray-200">
+    <header className="bg-paper-50 dark:bg-graphite-700 border-b border-graphite-600/20 dark:border-graphite-600">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
           <a href="/" className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold">
+            <div className="w-12 h-12 rounded-full bg-ink-800 dark:bg-paper-100 flex items-center justify-center text-paper-50 dark:text-ink-800 font-bold">
               TW
             </div>
-            <span className="text-xl font-bold text-indigo-900">
+            <span className="text-xl font-bold text-ink-800 dark:text-paper-100">
               Todd Warren
             </span>
           </a>
@@ -55,7 +55,7 @@ const Header: React.FC = () => {
               <a
                 key={`nav-item-${index}`}
                 href={item.slug}
-                className="text-indigo-900 hover:text-indigo-600 font-medium transition-colors"
+                className="text-ink-800 dark:text-paper-100 font-medium hover:underline decoration-graphite-400 hover:decoration-ink-800 dark:hover:decoration-paper-100 transition-colors"
               >
                 {item.title}
               </a>
@@ -69,13 +69,13 @@ const Header: React.FC = () => {
             aria-label="Toggle menu"
           >
             <span
-              className={`block h-0.5 bg-indigo-900 transition-all ${open ? "rotate-45 translate-y-2" : ""}`}
+              className={`block h-0.5 bg-ink-800 dark:bg-paper-100 transition-all ${open ? "rotate-45 translate-y-2" : ""}`}
             />
             <span
-              className={`block h-0.5 bg-indigo-900 transition-all ${open ? "opacity-0" : ""}`}
+              className={`block h-0.5 bg-ink-800 dark:bg-paper-100 transition-all ${open ? "opacity-0" : ""}`}
             />
             <span
-              className={`block h-0.5 bg-indigo-900 transition-all ${open ? "-rotate-45 -translate-y-2" : ""}`}
+              className={`block h-0.5 bg-ink-800 dark:bg-paper-100 transition-all ${open ? "-rotate-45 -translate-y-2" : ""}`}
             />
           </button>
         </div>
@@ -87,7 +87,7 @@ const Header: React.FC = () => {
               <a
                 key={`mobile-nav-item-${index}`}
                 href={item.slug}
-                className="text-indigo-900 hover:text-indigo-600 font-medium py-2"
+                className="text-ink-800 dark:text-paper-100 font-medium py-2 hover:underline"
               >
                 {item.title}
               </a>

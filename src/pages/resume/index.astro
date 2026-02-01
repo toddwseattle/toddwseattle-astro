@@ -43,7 +43,7 @@ const sortedNonprofits = nonprofits.sort((a, b) =>
       />
 
       <section class="mt-12">
-        <h2 class="text-2xl md:text-3xl font-bold text-indigo-900 mb-6">Experience</h2>
+        <h2 class="text-2xl md:text-3xl font-bold text-ink-800 dark:text-paper-100 mb-6">Experience</h2>
         <div class="space-y-6">
           {sortedExperiences.map(async (experience) => {
             const { Content } = await experience.render();
@@ -62,7 +62,7 @@ const sortedNonprofits = nonprofits.sort((a, b) =>
       </section>
 
       <section class="mt-12">
-        <h2 class="text-2xl md:text-3xl font-bold text-indigo-900 mb-6">Education</h2>
+        <h2 class="text-2xl md:text-3xl font-bold text-ink-800 dark:text-paper-100 mb-6">Education</h2>
         <div class="space-y-6">
           {sortedEducation.map(async (entry) => {
             const { Content } = await entry.render();
@@ -71,16 +71,16 @@ const sortedNonprofits = nonprofits.sort((a, b) =>
             const dateRange =
               startDate && endDate ? `${startDate} - ${endDate}` : startDate || endDate;
             return (
-              <div class="rounded-lg border border-gray-200 bg-white p-6">
+              <div class="rounded-lg border border-graphite-600/20 dark:border-graphite-600 bg-paper-50 dark:bg-surface-dark p-6">
                 <div class="flex flex-wrap items-center justify-between gap-2">
                   <div>
-                    <h3 class="text-xl font-semibold text-indigo-900">
+                    <h3 class="text-xl font-semibold text-ink-800 dark:text-paper-100">
                       {entry.data.university || 'Institution'}
                     </h3>
-                    <p class="text-gray-600">{entry.data.degree}</p>
+                    <p class="text-ink-600 dark:text-graphite-400">{entry.data.degree}</p>
                   </div>
                   {dateRange && (
-                    <span class="text-sm text-gray-500">
+                    <span class="text-sm text-graphite-400">
                       {dateRange}
                     </span>
                   )}
@@ -95,7 +95,7 @@ const sortedNonprofits = nonprofits.sort((a, b) =>
       </section>
 
       <section class="mt-12">
-        <h2 class="text-2xl md:text-3xl font-bold text-indigo-900 mb-6">Nonprofit & Board Work</h2>
+        <h2 class="text-2xl md:text-3xl font-bold text-ink-800 dark:text-paper-100 mb-6">Nonprofit & Board Work</h2>
         <div class="space-y-6">
           {sortedNonprofits.map(async (nonprofit) => {
             const { Content } = await nonprofit.render();

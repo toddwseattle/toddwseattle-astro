@@ -20,12 +20,16 @@ const InfoBlock: React.FC<InfoBlockProps> = ({
     <div
       className={`flex ${center ? "flex-col items-center text-center" : "gap-4"}`}
     >
-      <div className={`${center ? "mb-4" : ""} text-indigo-600 text-3xl`}>
+      <div
+        className={`${center ? "mb-4" : ""} text-ink-600 dark:text-graphite-400 text-3xl`}
+      >
         <Icon icon={icon} />
       </div>
       <div className={center ? "" : "flex-1"}>
-        <h3 className="text-xl font-bold text-indigo-900 mb-2">{title}</h3>
-        <p className="text-gray-700">{content}</p>
+        <h3 className="text-xl font-bold text-ink-800 dark:text-paper-100 mb-2">
+          {title}
+        </h3>
+        <p className="text-ink-600 dark:text-paper-200">{content}</p>
       </div>
     </div>
   );

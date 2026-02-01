@@ -40,6 +40,6 @@ describe("InfoBlock", () => {
     // icon wrapper gets margin-bottom when centered
     const iconEl = screen.getByTestId("icon");
     const iconWrapper = iconEl.parentElement as HTMLElement;
-    expect(iconWrapper).toHaveClass("text-indigo-600", "text-3xl", "mb-4");
+    expect(iconWrapper).toHaveClass("text-ink-600", "text-3xl", "mb-4");
   });
 });

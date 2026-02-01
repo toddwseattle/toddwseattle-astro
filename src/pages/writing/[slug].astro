@@ -70,7 +70,7 @@ const tagLinks = Array.from(
   <Header client:load />
   <article class="py-16">
     {cover && (
-      <div class="w-full mb-10 overflow-hidden rounded-xl bg-gray-100 aspect-video">
+      <div class="w-full mb-10 overflow-hidden rounded-xl bg-paper-200 dark:bg-graphite-700 aspect-video">
         <Image
           src={cover}
           alt={title}
@@ -85,10 +85,10 @@ const tagLinks = Array.from(
 
     <Container>
       <div class="max-w-3xl mx-auto">
-        <a href="/writing" class="inline-flex items-center text-blue-600 hover:underline mb-8 font-medium"><- Back to Writing</a>
+        <a href="/writing" class="inline-flex items-center text-ink-800 dark:text-paper-100 underline decoration-graphite-400 hover:decoration-ink-800 dark:hover:decoration-paper-100 mb-8 font-medium">&larr; Back to Writing</a>
 
         <header class="mb-8">
-          <div class="flex items-center gap-2 text-sm text-gray-500 font-medium">
+          <div class="flex items-center gap-2 text-sm text-graphite-400 font-medium">
             <time datetime={date}>
               {formatDate(date)}
             </time>
@@ -96,11 +96,11 @@ const tagLinks = Array.from(
             <span>{readingTime}</span>
           </div>
 
-          <h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-gray-900">
+          <h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-ink-800 dark:text-paper-100">
             {title}
           </h1>
 
-          <p class="mt-4 text-xl text-gray-600">
+          <p class="mt-4 text-xl text-ink-600 dark:text-paper-200">
             {description}
           </p>
 
@@ -109,7 +109,7 @@ const tagLinks = Array.from(
               {tagLinks.map((tag) => (
                 <a
                   href={`/writing/tag/${slugify(tag)}/`}
-                  class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 hover:bg-blue-200 transition-colors"
+                  class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-paper-200 text-ink-800 dark:bg-graphite-600 dark:text-paper-100 hover:bg-graphite-400/20 dark:hover:bg-ink-600 transition-colors"
                 >
                   {displayLabel(tag)}
                 </a>
@@ -122,8 +122,8 @@ const tagLinks = Array.from(
           <Content />
         </div>
 
-        <div class="mt-12 pt-8 border-t border-gray-200">
-          <a href="/writing" class="inline-flex items-center text-blue-600 hover:underline font-medium"><- Back to all posts</a>
+        <div class="mt-12 pt-8 border-t border-graphite-600/20 dark:border-graphite-600">
+          <a href="/writing" class="inline-flex items-center text-ink-800 dark:text-paper-100 underline decoration-graphite-400 hover:decoration-ink-800 dark:hover:decoration-paper-100 font-medium">&larr; Back to all posts</a>
         </div>
       </div>
     </Container>

@@ -29,33 +29,33 @@ const recentPosts = (featuredPosts.length > 0 ? featuredPosts : publishedPosts).
   
   <main>
     <HeroBanner />
-    <section class="py-12 md:py-16 bg-white">
+    <section class="py-12 md:py-16 bg-white dark:bg-surface-dark">
       <div class="container mx-auto px-4 max-w-4xl">
-        <h2 class="text-3xl md:text-4xl font-bold text-indigo-900 mb-4">Now</h2>
-        <p class="text-lg text-gray-600 mb-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-ink-800 dark:text-paper-100 mb-4">Now</h2>
+        <p class="text-lg text-ink-600 dark:text-graphite-400 mb-6">
           Current focus across teaching, writing, consulting, and AutoSoft Today.
         </p>
-        <ul class="space-y-3 text-gray-700">
+        <ul class="space-y-3 text-ink-600 dark:text-paper-200">
           <li>
-            <a class="font-medium text-indigo-700 hover:text-indigo-900" href="/teaching/">
+            <a class="font-medium text-ink-800 dark:text-paper-100 underline decoration-graphite-400 hover:decoration-ink-800 dark:hover:decoration-paper-100" href="/teaching/">
               Teaching
             </a>
             : designing courses on software engineering and corporate innovation.
           </li>
           <li>
-            <a class="font-medium text-indigo-700 hover:text-indigo-900" href="/writing/">
+            <a class="font-medium text-ink-800 dark:text-paper-100 underline decoration-graphite-400 hover:decoration-ink-800 dark:hover:decoration-paper-100" href="/writing/">
               Writing
             </a>
             : essays on innovation, software, teaching practice, and the craft of building.
           </li>
           <li>
-            <a class="font-medium text-indigo-700 hover:text-indigo-900" href="/consulting/">
+            <a class="font-medium text-ink-800 dark:text-paper-100 underline decoration-graphite-400 hover:decoration-ink-800 dark:hover:decoration-paper-100" href="/consulting/">
               Consulting
             </a>
             : advising teams on product strategy, org design, and delivery.
           </li>
           <li>
-            <a class="font-medium text-indigo-700 hover:text-indigo-900" href="/autosoft-today/">
+            <a class="font-medium text-ink-800 dark:text-paper-100 underline decoration-graphite-400 hover:decoration-ink-800 dark:hover:decoration-paper-100" href="/autosoft-today/">
               AutoSoft Today
             </a>
             : analysis and commentary on automotive software and safety.
@@ -64,62 +64,62 @@ const recentPosts = (featuredPosts.length > 0 ? featuredPosts : publishedPosts).
       </div>
     </section>
 
-    <section class="py-12 md:py-16 bg-gray-50 border-y border-gray-100">
+    <section class="py-12 md:py-16 bg-paper-200 dark:bg-graphite-700 border-y border-graphite-600/20 dark:border-graphite-600">
       <div class="container mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-bold text-indigo-900 mb-8">Pillars</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-ink-800 dark:text-paper-100 mb-8">Pillars</h2>
         <div class="grid gap-6 md:grid-cols-2">
-          <a href="/teaching/" class="block rounded-xl border border-gray-200 bg-white p-6 hover:shadow-md transition-shadow">
-            <h3 class="text-xl font-semibold text-indigo-900 mb-2">Teaching</h3>
-            <p class="text-gray-600">Courses and public materials on software engineering and corporate innovation.</p>
+          <a href="/teaching/" class="block rounded-xl border border-graphite-600/20 dark:border-graphite-600 bg-paper-50 dark:bg-surface-dark p-6 hover:border-graphite-400 dark:hover:border-ink-600 transition-colors">
+            <h3 class="text-xl font-semibold text-ink-800 dark:text-paper-100 mb-2 group-hover:underline">Teaching</h3>
+            <p class="text-ink-600 dark:text-graphite-400">Courses and public materials on software engineering and corporate innovation.</p>
           </a>
-          <a href="/writing/" class="block rounded-xl border border-gray-200 bg-white p-6 hover:shadow-md transition-shadow">
-            <h3 class="text-xl font-semibold text-indigo-900 mb-2">Writing</h3>
-            <p class="text-gray-600">Long-form essays and notes focused on building, leadership, and systems.</p>
+          <a href="/writing/" class="block rounded-xl border border-graphite-600/20 dark:border-graphite-600 bg-paper-50 dark:bg-surface-dark p-6 hover:border-graphite-400 dark:hover:border-ink-600 transition-colors">
+            <h3 class="text-xl font-semibold text-ink-800 dark:text-paper-100 mb-2">Writing</h3>
+            <p class="text-ink-600 dark:text-graphite-400">Long-form essays and notes focused on building, leadership, and systems.</p>
           </a>
-          <a href="/autosoft-today/" class="block rounded-xl border border-gray-200 bg-white p-6 hover:shadow-md transition-shadow">
-            <h3 class="text-xl font-semibold text-indigo-900 mb-2">AutoSoft Today</h3>
-            <p class="text-gray-600">A landing page for the external publication and research links.</p>
+          <a href="/autosoft-today/" class="block rounded-xl border border-graphite-600/20 dark:border-graphite-600 bg-paper-50 dark:bg-surface-dark p-6 hover:border-graphite-400 dark:hover:border-ink-600 transition-colors">
+            <h3 class="text-xl font-semibold text-ink-800 dark:text-paper-100 mb-2">AutoSoft Today</h3>
+            <p class="text-ink-600 dark:text-graphite-400">A landing page for the external publication and research links.</p>
           </a>
-          <a href="/consulting/" class="block rounded-xl border border-gray-200 bg-white p-6 hover:shadow-md transition-shadow">
-            <h3 class="text-xl font-semibold text-indigo-900 mb-2">Consulting</h3>
-            <p class="text-gray-600">Advisory services for product strategy, org design, and delivery systems.</p>
+          <a href="/consulting/" class="block rounded-xl border border-graphite-600/20 dark:border-graphite-600 bg-paper-50 dark:bg-surface-dark p-6 hover:border-graphite-400 dark:hover:border-ink-600 transition-colors">
+            <h3 class="text-xl font-semibold text-ink-800 dark:text-paper-100 mb-2">Consulting</h3>
+            <p class="text-ink-600 dark:text-graphite-400">Advisory services for product strategy, org design, and delivery systems.</p>
           </a>
         </div>
       </div>
     </section>
 
-    <section class="py-12 md:py-16 bg-white">
+    <section class="py-12 md:py-16 bg-paper-50 dark:bg-surface-dark">
       <div class="container mx-auto px-4">
         <div class="flex items-center justify-between flex-wrap gap-4 mb-8">
-          <h2 class="text-3xl md:text-4xl font-bold text-indigo-900">Recent writing</h2>
-          <a href="/writing/" class="text-indigo-700 font-medium hover:text-indigo-900">
-            View all writing ->
+          <h2 class="text-3xl md:text-4xl font-bold text-ink-800 dark:text-paper-100">Recent writing</h2>
+          <a href="/writing/" class="text-ink-800 dark:text-paper-100 font-medium underline decoration-graphite-400 hover:decoration-ink-800 dark:hover:decoration-paper-100">
+            View all writing &rarr;
           </a>
         </div>
       </div>
       <BlogGrid posts={recentPosts} />
     </section>
 
-    <section class="py-12 md:py-16 bg-gray-50 border-t border-gray-100">
+    <section class="py-12 md:py-16 bg-paper-200 dark:bg-graphite-700 border-t border-graphite-600/20 dark:border-graphite-600">
       <div class="container mx-auto px-4 max-w-4xl">
-        <h2 class="text-3xl md:text-4xl font-bold text-indigo-900 mb-4">Mini bio</h2>
-        <p class="text-lg text-gray-700">
+        <h2 class="text-3xl md:text-4xl font-bold text-ink-800 dark:text-paper-100 mb-4">Mini bio</h2>
+        <p class="text-lg text-ink-600 dark:text-paper-200">
           I am a technology leader, educator, and advisor based between Seattle and Park City,
           focused on writing, teaching, and helping teams ship meaningful software.
         </p>
       </div>
     </section>
 
-    <section class="py-12 md:py-16 bg-white">
+    <section class="py-12 md:py-16 bg-paper-50 dark:bg-surface-dark">
       <div class="container mx-auto px-4 max-w-4xl">
-        <div class="rounded-2xl border border-indigo-100 bg-indigo-50 p-8">
-          <h2 class="text-3xl md:text-4xl font-bold text-indigo-900 mb-3">Let's work together</h2>
-          <p class="text-lg text-gray-700 mb-6">
+        <div class="rounded-2xl border border-graphite-600/20 dark:border-graphite-600 bg-paper-200 dark:bg-graphite-700 p-8">
+          <h2 class="text-3xl md:text-4xl font-bold text-ink-800 dark:text-paper-100 mb-3">Let's work together</h2>
+          <p class="text-lg text-ink-600 dark:text-paper-200 mb-6">
             If you are exploring consulting, speaking, or a collaborative project, I would love to hear from you.
           </p>
           <a
             href="/consulting/"
-            class="inline-flex items-center rounded-lg bg-indigo-600 px-5 py-3 font-medium text-white hover:bg-indigo-700 transition-colors"
+            class="inline-flex items-center rounded-lg bg-ink-800 dark:bg-paper-100 px-5 py-3 font-medium text-paper-50 dark:text-ink-800 hover:bg-ink-950 dark:hover:bg-paper-200 transition-colors"
           >
             Start a conversation
           </a>

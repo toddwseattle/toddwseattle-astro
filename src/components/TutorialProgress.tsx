@@ -61,10 +61,10 @@ export default function TutorialProgress({ steps }: Props) {
           const base = "flex items-start gap-2";
           const stateCls =
             state === "active"
-              ? "font-semibold text-indigo-600"
+              ? "font-semibold text-ink-800 dark:text-paper-100"
               : state === "completed"
-                ? "text-slate-500"
-                : "text-slate-700";
+                ? "text-graphite-400"
+                : "text-ink-600 dark:text-paper-200";
 
           return (
             <li key={step.id} data-testid={`tutorial-step-${step.id}`}>
@@ -76,10 +76,10 @@ export default function TutorialProgress({ steps }: Props) {
                 <span
                   className={`mt-1 inline-block w-2 h-2 rounded-full ${
                     state === "active"
-                      ? "bg-indigo-600"
+                      ? "bg-ink-800 dark:bg-paper-100"
                       : state === "completed"
-                        ? "bg-slate-400"
-                        : "bg-slate-300"
+                        ? "bg-graphite-400"
+                        : "bg-paper-200 dark:bg-graphite-600"
                   }`}
                 ></span>
                 <span className="truncate" title={step.label}>
