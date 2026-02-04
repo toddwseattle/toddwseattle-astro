@@ -1,5 +1,4 @@
 #!/bin/bash
-ß
 # Configuration
 TASK=$1
 MAX_ITERATIONS=15
@@ -23,7 +22,6 @@ while [ $ITERATION -le $MAX_ITERATIONS ]; do
 
     # Step A: Mechanical Work (GitHub Copilot)
     echo "📝 [Worker: Copilot] Implementing next step..."
-    -
 
     # Step B: The Governor Check (Local Compiler)
     echo "⚖️ [Governor] Running Astro Check..."
@@ -32,8 +30,25 @@ while [ $ITERATION -le $MAX_ITERATIONS ]; do
 
     if [ $CHECK_EXIT -eq 0 ]; then
         echo "✅ Astro Check passed!"
-        git add . && git commit -m "Ralph iteration $ITERATION: Success\n on Task $TASK"
-        
+        npm run test:run > .ralph_errors.log 2>&1
+        TEST_EXIT=$?
+        if [ $TEST_EXIT -ne 0 ]; then
+            echo "❌ Tests failed. Calling Qwen to fix..."
+            opencode run "Fix the failing tests reported by 'npm run test:run': $(cat .ralph_errors.log)" \
+                --agent fixer 
+            opencode run "Ensure all tests pass after fixes." \
+                --agent tester
+            opencode run "prepare a commit message" \
+                --agent committer
+            git add . && git commit -F .ralph/docs/generated/commit-message.txt
+            ((ITERATION++))
+            rm .ralph/docs/generated/commit-message.txt
+            continue
+        fi
+        opencode run "prepare a commit message" \
+                --agent committer
+        git add . && git commit -F .ralph/docs/generated/commit-message.txt
+        rm .ralph/docs/generated/commit-message.txt
         # Check if model actually finished
         if grep -q "<promise>COMPLETE</promise>" .ralph_errors.log; then
             echo "🎊 Task fully completed by Ralph."
