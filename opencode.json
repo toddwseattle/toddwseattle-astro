@@ -3,12 +3,12 @@
   "model": "anthropic/claude-3-5-sonnet",
   "agent": {
     "architect": {
-      "model": "anthropic/claude-3-5-sonnet",
+      "model": "anthropic/claude-sonnet-4-5-20250929",
       "provider": "anthropic",
       "prompt": "You are the Architect. Analyze the Astro project structure and types. Create high-level plans. Focus on Astro-specific patterns like Content Collections and Frontmatter safety."
     },
     "worker": {
-      "model": "github/gpt-5-codex",
+      "model": "github-copilot/gpt-5.2-codex",
       "provider": "github-copilot",
       "prompt": "You are the mechanical Worker. Execute code changes exactly as requested. Use TypeScript best practices. Output minimal code diffs."
     },
