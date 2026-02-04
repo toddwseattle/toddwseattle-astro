@@ -1,8 +1,8 @@
 [baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
-18:04:59 [content] Syncing content
-18:04:59 [content] Synced content
-18:04:59 [types] Generated 120ms
-18:04:59 [check] Getting diagnostics for Astro files in /Users/toddwseattle/dev/toddwseattle-astro...
+18:05:05 [content] Syncing content
+18:05:05 [content] Synced content
+18:05:05 [types] Generated 180ms
+18:05:05 [check] Getting diagnostics for Astro files in /Users/toddwseattle/dev/toddwseattle-astro...
 [96mtailwind.config.js[0m:[93m2[0m:[93m1[0m - [93mwarning[0m[90m ts(80001): [0mFile is a CommonJS module; it may be converted to an ES module.
 
 [7m2[0m module.exports = {
