@@ -3,9 +3,11 @@
 Date: 2026-02-04
 
 ## Goal
+
 Resolve `npx astro check` errors while keeping runtime behavior unchanged.
 
 ## Changes
+
 - Converted Tailwind config to ESM for a `type: module` project (fixed `module.exports` error).
 - Removed `environmentMatchGlobs` after type errors; rely on `@vitest-environment` in the ProgressBar test file.
 - Removed unused legacy style files that referenced missing dependencies:
@@ -16,6 +18,7 @@ Resolve `npx astro check` errors while keeping runtime behavior unchanged.
 - Removed nested anchor click handlers in BlogCard to avoid deprecated global `event` usage.
 
 ## Files Updated
+
 - `tailwind.config.js`
 - `vitest.config.ts`
 - `src/components/Activities.astro`
@@ -35,8 +38,10 @@ Resolve `npx astro check` errors while keeping runtime behavior unchanged.
 - `src/pages/teaching/[slug].astro`
 
 ## Files Removed
+
 - `src/assets/styles/globalStyles.ts`
 - `src/assets/styles/variables.ts`
 
 ## Follow-up
+
 Run `npx astro check` to confirm the error count is zero.

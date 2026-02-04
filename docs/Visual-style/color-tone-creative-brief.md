@@ -189,4 +189,3 @@ When making a decision, ask:
 If the answer is no, simplify.
 
 ---
-

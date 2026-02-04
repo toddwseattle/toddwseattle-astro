@@ -7,6 +7,7 @@ Last Updated: 2026-01-30
 ## Active Tasks
 
 ### TODO: Google Analytics 4 Integration
+
 - **Priority:** High
 - **Spec:** `specs/seo-improvements/google-analytics-spec.md`
 - **Acceptance Criteria:**
@@ -21,6 +22,7 @@ Last Updated: 2026-01-30
 - **Attempts:** 0
 
 ### TODO: Blog Monochrome Redesign Pilot
+
 - **Priority:** High
 - **Spec:** `specs/color-scheme/plan-blogMonochromeRedesignPilot.md`
 - **Acceptance Criteria:**
@@ -31,7 +33,7 @@ Last Updated: 2026-01-30
   - [ ] Ensure readability and accessibility
   - [ ] Build passes without errors
 - **Status:** TODO
-- **Attempts:** 0 
+- **Attempts:** 0
 
 ### TODO: Add Related Posts Component
 
