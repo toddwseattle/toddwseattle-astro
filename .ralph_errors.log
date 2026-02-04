@@ -5,18 +5,18 @@
 
 [1m[46m RUN [49m[22m [36mv4.0.8 [39m[90m/Users/toddwseattle/dev/toddwseattle-astro[39m
 
- [32m✓[39m src/components/ui/ProgressBar.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 23[2mms[22m[39m
- [32m✓[39m src/lib/readingTime.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 2[2mms[22m[39m
- [32m✓[39m src/components/ui/Container.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 20[2mms[22m[39m
- [32m✓[39m src/components/ui/Icon.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 47[2mms[22m[39m
- [32m✓[39m src/components/ui/TitleSection.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[32m 98[2mms[22m[39m
- [32m✓[39m src/components/TutorialProgress.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 126[2mms[22m[39m
- [32m✓[39m src/components/ui/InfoBlock.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 97[2mms[22m[39m
- [32m✓[39m src/components/ui/Button.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 151[2mms[22m[39m
- [32m✓[39m src/components/Header.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[32m 198[2mms[22m[39m
+ [32m✓[39m src/components/ui/ProgressBar.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+ [32m✓[39m src/lib/readingTime.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/components/ui/Container.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+ [32m✓[39m src/components/ui/TitleSection.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[32m 95[2mms[22m[39m
+ [32m✓[39m src/components/ui/Icon.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 54[2mms[22m[39m
+ [32m✓[39m src/components/ui/InfoBlock.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 79[2mms[22m[39m
+ [32m✓[39m src/components/TutorialProgress.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 113[2mms[22m[39m
+ [32m✓[39m src/components/ui/Button.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 144[2mms[22m[39m
+ [32m✓[39m src/components/Header.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[32m 175[2mms[22m[39m
 
 [2m Test Files [22m [1m[32m9 passed[39m[22m[90m (9)[39m
 [2m      Tests [22m [1m[32m46 passed[39m[22m[90m (46)[39m
-[2m   Start at [22m 16:37:16
-[2m   Duration [22m 1.09s[2m (transform 175ms, setup 593ms, collect 1.51s, tests 762ms, environment 4.76s, prepare 65ms)[22m
+[2m   Start at [22m 16:37:38
+[2m   Duration [22m 1.07s[2m (transform 266ms, setup 579ms, collect 1.59s, tests 709ms, environment 4.18s, prepare 69ms)[22m
 
