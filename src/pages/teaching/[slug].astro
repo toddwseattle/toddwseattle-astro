@@ -20,7 +20,7 @@ interface Props {
   course: CollectionEntry<'teaching'>;
 }
 
-const { course } = Astro.props;
+const { course } = Astro.props as Props;
 const { title, description, philosophy, topics, exampleProjects, publicArtifacts, cover } = course.data;
 const { Content } = await course.render();
 

@@ -7,7 +7,7 @@ interface Props {
   rendered: Awaited<ReturnType<CollectionEntry<'course-materials'>['render']>>;
 }
 
-const { entry, rendered } = Astro.props as Props;
+const { rendered } = Astro.props as Props;
 ---
 
 <article class="py-16">

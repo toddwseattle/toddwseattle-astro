@@ -8,7 +8,7 @@ interface Props {
   rendered: Awaited<ReturnType<CollectionEntry<'course-materials'>['render']>>;
 }
 
-const { entry, rendered } = Astro.props as Props;
+const { rendered } = Astro.props as Props;
 const steps = (rendered.headings || [])
   .filter((h) => h.depth === 2)
   .map((h) => ({ id: h.slug, label: h.text }));

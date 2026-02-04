@@ -8,6 +8,8 @@ import { iconMap } from '../lib/fontawesome';
 const activities = await getCollection('activities');
 // Sort by filename (1-consulting, 2-teaching, etc.)
 const sortedActivities = activities.sort((a, b) => a.id.localeCompare(b.id));
+
+const getIcon = (icon?: string) => iconMap[icon ?? 'comment'] ?? iconMap.comment;
 ---
 
 <section class="bg-white py-12 md:py-16">
@@ -22,7 +24,7 @@ const sortedActivities = activities.sort((a, b) => a.id.localeCompare(b.id));
       {sortedActivities.map((activity) => (
         <div>
           <InfoBlock
-            icon={iconMap[activity.data.icon] || iconMap['comment']}
+            icon={getIcon(activity.data.icon)}
             title={activity.data.title || ''}
             content={activity.data.description || ''}
             center={true}

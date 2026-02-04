@@ -1,11 +1,13 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import HeroBanner from '../components/HeroBanner.astro';
 import BlogGrid from '../components/blog/BlogGrid.astro';
 import StructuredData from '../components/StructuredData.astro';
+import profileImage from '../assets/images/profile.jpg';
 
 const allPosts = await getCollection('blog');
 const publishedPosts = allPosts
@@ -103,10 +105,19 @@ const recentPosts = (featuredPosts.length > 0 ? featuredPosts : publishedPosts).
     <section class="py-12 md:py-16 bg-paper-200 dark:bg-graphite-700 border-t border-graphite-600/20 dark:border-graphite-600">
       <div class="container mx-auto px-4 max-w-4xl">
         <h2 class="text-3xl md:text-4xl font-bold text-ink-800 dark:text-paper-100 mb-4">Mini bio</h2>
-        <p class="text-lg text-ink-600 dark:text-paper-200">
-          I am a technology leader, educator, and advisor based between Seattle and Park City,
-          focused on writing, teaching, and helping teams ship meaningful software.
-        </p>
+        <div class="flex flex-col md:flex-row gap-6 items-start">
+          <Image
+            src={profileImage}
+            alt="Todd Warren profile photo"
+            width={128}
+            height={128}
+            class="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover flex-shrink-0"
+          />
+          <p class="text-lg text-ink-600 dark:text-paper-200">
+            I am a technology leader, educator, and advisor based between Seattle and Park City,
+            focused on writing, teaching, and helping teams ship meaningful software.
+          </p>
+        </div>
       </div>
     </section>
 

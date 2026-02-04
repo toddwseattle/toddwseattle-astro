@@ -19,9 +19,10 @@ const shouldRender = GA_ID && isProd;
   <>
     <script
       async
+      is:inline
       src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
     />
-    <script define:vars={{ GA_ID }}>
+    <script define:vars={{ GA_ID }} is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);

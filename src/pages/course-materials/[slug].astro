@@ -23,7 +23,7 @@ interface Props {
   entry: CollectionEntry<'course-materials'>;
 }
 
-const { entry } = Astro.props;
+const { entry } = Astro.props as Props;
 const { title, description, cover, type } = entry.data as any;
 const rendered = await entry.render();
 

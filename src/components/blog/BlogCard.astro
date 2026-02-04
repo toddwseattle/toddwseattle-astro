@@ -74,29 +74,27 @@ const getCategoryLabel = (cat: string) => {
       <p class="mt-3 text-ink-600 dark:text-paper-200 line-clamp-3">
         {description}
       </p>
-
-      {(category || (tags && tags.length > 0)) && (
-        <div class="mt-4 flex flex-wrap gap-2">
-          {category && (
-            <a
-              href={`/writing/tag/${slugify(category)}/`}
-              class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-paper-200 text-ink-800 dark:bg-graphite-600 dark:text-paper-100 hover:bg-graphite-400/20 dark:hover:bg-ink-600 transition-colors"
-              onclick="event.stopPropagation();"
-            >
-              {getCategoryLabel(category)}
-            </a>
-          )}
-          {tags && tags.map((tag) => (
-            <a
-              href={`/writing/tag/${slugify(tag)}/`}
-              class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-paper-200 text-ink-800 dark:bg-graphite-700 dark:text-paper-200 hover:bg-graphite-400/20 dark:hover:bg-graphite-600 transition-colors"
-              onclick="event.stopPropagation();"
-            >
-              {tag}
-            </a>
-          ))}
-        </div>
-      )}
     </div>
   </a>
+
+  {(category || (tags && tags.length > 0)) && (
+    <div class="px-6 pb-6 flex flex-wrap gap-2">
+      {category && (
+        <a
+          href={`/writing/tag/${slugify(category)}/`}
+          class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-paper-200 text-ink-800 dark:bg-graphite-600 dark:text-paper-100 hover:bg-graphite-400/20 dark:hover:bg-ink-600 transition-colors"
+        >
+          {getCategoryLabel(category)}
+        </a>
+      )}
+      {tags && tags.map((tag) => (
+        <a
+          href={`/writing/tag/${slugify(tag)}/`}
+          class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-paper-200 text-ink-800 dark:bg-graphite-700 dark:text-paper-200 hover:bg-graphite-400/20 dark:hover:bg-graphite-600 transition-colors"
+        >
+          {tag}
+        </a>
+      ))}
+    </div>
+  )}
 </article>
