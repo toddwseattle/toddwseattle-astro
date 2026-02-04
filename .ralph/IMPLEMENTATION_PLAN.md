@@ -6,6 +6,33 @@ Last Updated: 2026-01-30
 
 ## Active Tasks
 
+### TODO: Google Analytics 4 Integration
+- **Priority:** High
+- **Spec:** `specs/seo-improvements/google-analytics-spec.md`
+- **Acceptance Criteria:**
+  - [ ] GA4 script loads on all pages
+  - [ ] Pageviews tracked automatically
+  - [ ] No tracking in development environment
+  - [ ] GA Measurement ID configurable via env variable
+  - [ ] No console errors or warnings
+  - [ ] No measurable impact on page load performance
+  - [ ] TypeScript type safety for env variables
+- **Status:** TODO
+- **Attempts:** 0
+
+### TODO: Blog Monochrome Redesign Pilot
+- **Priority:** High
+- **Spec:** `specs/color-scheme/plan-blogMonochromeRedesignPilot.md`
+- **Acceptance Criteria:**
+  - [ ] Update blog components to monochrome color scheme
+  - [ ] Update blog pages to monochrome color scheme
+  - [ ] Update global CSS for monochrome colors
+  - [ ] Verify no color accents remain
+  - [ ] Ensure readability and accessibility
+  - [ ] Build passes without errors
+- **Status:** TODO
+- **Attempts:** 0 
+
 ### TODO: Add Related Posts Component
 
 - **Priority:** Medium

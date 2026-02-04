@@ -121,7 +121,7 @@ const siteConfig = {
   title: "Todd Warren - Tech Consultant & Educator",
   description: "Technology consultant, software developer, and educator...",
   url: "https://toddwseattle.com",
-  defaultImage: "/og-image.jpg",
+  defaultImage: "src/assets/images/tw-icon.png", // default OG image path adjust as needed for astro build
   twitter: "@toddwseattle", // if exists
 };
 ```

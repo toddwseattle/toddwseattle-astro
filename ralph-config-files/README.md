@@ -234,6 +234,7 @@ To add a new category of work:
    ```
 
 3. **Add to IMPLEMENTATION_PLAN.md:**
+
    ```markdown
    ### TODO: New Feature
 

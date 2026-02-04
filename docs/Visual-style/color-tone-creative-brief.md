@@ -190,8 +190,3 @@ If the answer is no, simplify.
 
 ---
 
-If you want, next we can:
-
-- Add a **one-page visual reference** (swatches + do/don’t)
-- Create a **paired typography brief**
-- Generate a **README excerpt** agents must read before UI changes
