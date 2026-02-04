@@ -5,18 +5,18 @@
 
 [1m[46m RUN [49m[22m [36mv4.0.8 [39m[90m/Users/toddwseattle/dev/toddwseattle-astro[39m
 
- [32m✓[39m src/components/ui/ProgressBar.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 36[2mms[22m[39m
- [32m✓[39m src/lib/readingTime.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 5[2mms[22m[39m
- [32m✓[39m src/components/ui/Container.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 19[2mms[22m[39m
- [32m✓[39m src/components/ui/Icon.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 72[2mms[22m[39m
- [32m✓[39m src/components/ui/TitleSection.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[32m 163[2mms[22m[39m
- [32m✓[39m src/components/ui/InfoBlock.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 132[2mms[22m[39m
- [32m✓[39m src/components/ui/Button.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 222[2mms[22m[39m
- [32m✓[39m src/components/TutorialProgress.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 178[2mms[22m[39m
- [32m✓[39m src/components/Header.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[32m 249[2mms[22m[39m
+ [32m✓[39m src/components/ui/ProgressBar.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+ [32m✓[39m src/lib/readingTime.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m src/components/ui/Container.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 23[2mms[22m[39m
+ [32m✓[39m src/components/ui/Icon.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 56[2mms[22m[39m
+ [32m✓[39m src/components/ui/TitleSection.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[32m 134[2mms[22m[39m
+ [32m✓[39m src/components/ui/InfoBlock.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 125[2mms[22m[39m
+ [32m✓[39m src/components/TutorialProgress.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 143[2mms[22m[39m
+ [32m✓[39m src/components/ui/Button.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 179[2mms[22m[39m
+ [32m✓[39m src/components/Header.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[32m 237[2mms[22m[39m
 
 [2m Test Files [22m [1m[32m9 passed[39m[22m[90m (9)[39m
 [2m      Tests [22m [1m[32m46 passed[39m[22m[90m (46)[39m
-[2m   Start at [22m 16:45:01
-[2m   Duration [22m 1.33s[2m (transform 194ms, setup 716ms, collect 1.94s, tests 1.07s, environment 5.50s, prepare 87ms)[22m
+[2m   Start at [22m 16:45:25
+[2m   Duration [22m 1.19s[2m (transform 204ms, setup 532ms, collect 1.87s, tests 925ms, environment 4.24s, prepare 45ms)[22m
 
