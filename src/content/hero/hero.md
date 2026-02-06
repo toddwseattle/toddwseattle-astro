@@ -1,14 +1,8 @@
 ---
 category: "hero section"
-title: "Passionate Software Guy and Entrepreneurship Educator"
-subtitle: "Consulting, Teaching, and Assisting Impact "
-content: "Todd teaches classes at
-  Northwestern University and Ashesi, does consulting through Envorso to
-  help companies understand and scale software development, and is involved
-  in several non-profits. He works on some dev projects for fun and to
-  support his classes. He ran a venture firm (Divergent Ventures) with partners and
-  worked at Microsoft in past pursuits. He likes to ride a tandem bicycle
-  with his wife; and loves music in its many facets."
+title: "Todd Warren"
+subtitle: "Technology Leader & Educator"
+content: "I am a technology leader, educator, and advisor based between Seattle and Park City, focused on writing, teaching, and helping teams ship meaningful software. I worked at Microsoft, ran a venture firm (Divergent Ventures), and was an interim executive at Ford.  I serve on the boards of Venturewell and Ashesi University in Ghana; and several advisory board at Northwestern University"
 linkTo: "/resume/"
-linkText: "View My Profile"
+linkText: "Learn more about my work"
 ---

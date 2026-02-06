@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Container from './ui/Container';
 import TitleSection from './ui/TitleSection';
@@ -23,9 +24,13 @@ const projects = await getCollection('projects');
           <div class="bg-paper-50 dark:bg-surface-dark rounded-lg border border-graphite-600/20 dark:border-graphite-600 overflow-hidden">
             {imagePath && (
               <div class="aspect-video bg-paper-200 dark:bg-graphite-700 flex items-center justify-center p-8">
-                <img
+                <Image
                   src={imagePath}
                   alt={project.data.title}
+                  width={1280}
+                  height={720}
+                  loading="lazy"
+                  decoding="async"
                   class="max-h-full max-w-full object-contain"
                 />
               </div>

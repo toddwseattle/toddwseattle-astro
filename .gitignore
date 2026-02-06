@@ -31,4 +31,4 @@ test-results/
 .ralph/logs/
 .ralph/docs/generated/
 .ralphrc
-.ralph_errors.log
+.ralph_errors.log*
