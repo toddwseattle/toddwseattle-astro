@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "toddwseattle-astro"
+  },
+  "targets": {
+    "toddwseattle-astro": {
+      "hosting": {
+        "staging": [
+          "toddwseattle-astro-staging"
+        ],
+        "prod": [
+          "toddwseattle-astro"
+        ]
+      }
+    }
+  }
+}
