@@ -96,14 +96,14 @@ const nonprofit = defineCollection({
 
 ```astro
 ---
-import { getCollection } from 'astro:content';
+import { getCollection } from "astro:content";
 
 // Original: GraphQL query with filter and sort
 // New: Astro content collection
-const nonprofits = await getCollection('nonprofit');
+const nonprofits = await getCollection("nonprofit");
 // Sort by company name (title) ascending
 const sortedNonprofits = nonprofits.sort((a, b) =>
-  (a.data.company || '').localeCompare(b.data.company || '')
+  (a.data.company || "").localeCompare(b.data.company || ""),
 );
 ---
 ```
@@ -112,14 +112,14 @@ const sortedNonprofits = nonprofits.sort((a, b) =>
 
 ```astro
 ---
-import { getCollection } from 'astro:content';
-import Container from './ui/Container';
-import TitleSection from './ui/TitleSection';
-import Timeline from './ui/Timeline';
+import { getCollection } from "astro:content";
+import Container from "./ui/Container";
+import TitleSection from "./ui/TitleSection";
+import Timeline from "./ui/Timeline";
 
-const nonprofits = await getCollection('nonprofit');
+const nonprofits = await getCollection("nonprofit");
 const sortedNonprofits = nonprofits.sort((a, b) =>
-  (a.data.company || '').localeCompare(b.data.company || '')
+  (a.data.company || "").localeCompare(b.data.company || ""),
 );
 ---
 
@@ -131,19 +131,21 @@ const sortedNonprofits = nonprofits.sort((a, b) =>
       client:load
     />
     <div class="mt-8">
-      {sortedNonprofits.map(async (nonprofit) => {
-        const { Content } = await nonprofit.render();
-        return (
-          <Timeline
-            title={nonprofit.data.company || 'Organization'}
-            subtitle={nonprofit.data.position || 'Board Member'}
-            content={<Content />}
-            startDate={nonprofit.data.startDate || ''}
-            endDate={nonprofit.data.endDate || 'Present'}
-            client:load
-          />
-        );
-      })}
+      {
+        sortedNonprofits.map(async (nonprofit) => {
+          const { Content } = await nonprofit.render();
+          return (
+            <Timeline
+              title={nonprofit.data.company || "Organization"}
+              subtitle={nonprofit.data.position || "Board Member"}
+              content={<Content />}
+              startDate={nonprofit.data.startDate || ""}
+              endDate={nonprofit.data.endDate || "Present"}
+              client:load
+            />
+          );
+        })
+      }
     </div>
   </Container>
 </section>

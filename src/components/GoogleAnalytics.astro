@@ -15,6 +15,7 @@ const isProd = import.meta.env.PROD;
 const shouldRender = GA_ID && isProd;
 ---
 
+<!-- prettier-ignore-start -->
 {shouldRender && (
   <>
     <script
@@ -32,3 +33,4 @@ const shouldRender = GA_ID && isProd;
     </script>
   </>
 )}
+<!-- prettier-ignore-end -->

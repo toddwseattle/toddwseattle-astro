@@ -1,33 +1,33 @@
 ---
-import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
-import { Image } from 'astro:assets';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import Container from '../../components/ui/Container';
-import { calculateReadingTime, formatReadingTime } from '../../lib/readingTime';
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import Container from "../../components/ui/Container";
+import { calculateReadingTime, formatReadingTime } from "../../lib/readingTime";
 
 const slugify = (value: string) =>
   value
     .toLowerCase()
     .trim()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 
 const categoryLabels: Record<string, string> = {
-  'innovation': 'Innovation & Org Design',
-  'software-engineering': 'Software Engineering',
-  'teaching': 'Teaching Reflections',
-  'automotive-software': 'Automotive Software',
-  'cycling': 'Cycling',
-  'music': 'Guitar & Music',
+  innovation: "Innovation & Org Design",
+  "software-engineering": "Software Engineering",
+  teaching: "Teaching Reflections",
+  "automotive-software": "Automotive Software",
+  cycling: "Cycling",
+  music: "Guitar & Music",
 };
 
 const displayLabel = (value: string) => categoryLabels[slugify(value)] ?? value;
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+  const posts = await getCollection("blog");
   return posts.map((post) => ({
     params: { slug: post.slug },
     props: { post },
@@ -35,7 +35,7 @@ export async function getStaticPaths() {
 }
 
 interface Props {
-  post: CollectionEntry<'blog'>;
+  post: CollectionEntry<"blog">;
 }
 
 const { post } = Astro.props;
@@ -43,19 +43,23 @@ const { title, description, date, tags, cover, category } = post.data;
 const { Content } = await post.render();
 
 // Calculate reading time from post body
-const readingTime = formatReadingTime(calculateReadingTime(post.body ?? ''));
+const readingTime = formatReadingTime(calculateReadingTime(post.body ?? ""));
 
 // Format date to readable format
 const formatDate = (dateString: string) => {
   const d = new Date(dateString);
-  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  return d.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 };
 
 // Extract src for OG image metadata (needs string URL)
 const coverSrc = cover?.src;
 
 const tagLinks = Array.from(
-  new Set([...(category ? [category] : []), ...(tags ?? [])].filter(Boolean))
+  new Set([...(category ? [category] : []), ...(tags ?? [])].filter(Boolean)),
 );
 ---
 
@@ -69,26 +73,34 @@ const tagLinks = Array.from(
 >
   <Header client:load />
   <article class="py-16">
-    {cover && (
-      <div class="w-full md:w-1/2 mx-auto mb-10 overflow-hidden rounded-xl bg-paper-200 dark:bg-graphite-700 aspect-video">
-        <Image
-          src={cover}
-          alt={title}
-          width={1200}
-          height={675}
-          loading="eager"
-          decoding="async"
-          class="w-full h-full object-cover"
-        />
-      </div>
-    )}
+    {
+      cover && (
+        <div class="w-full md:w-1/2 mx-auto mb-10 overflow-hidden rounded-xl bg-paper-200 dark:bg-graphite-700 aspect-video">
+          <Image
+            src={cover}
+            alt={title}
+            width={1200}
+            height={675}
+            loading="eager"
+            decoding="async"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      )
+    }
 
     <Container>
       <div class="max-w-3xl mx-auto">
-        <a href="/writing" class="inline-flex items-center text-ink-800 dark:text-paper-100 underline decoration-graphite-400 hover:decoration-ink-800 dark:hover:decoration-paper-100 mb-8 font-medium">&larr; Back to Writing</a>
+        <a
+          href="/writing"
+          class="inline-flex items-center text-ink-800 dark:text-paper-100 underline decoration-graphite-400 hover:decoration-ink-800 dark:hover:decoration-paper-100 mb-8 font-medium"
+          >&larr; Back to Writing</a
+        >
 
         <header class="mb-8">
-          <div class="flex items-center gap-2 text-sm text-graphite-400 font-medium">
+          <div
+            class="flex items-center gap-2 text-sm text-graphite-400 font-medium"
+          >
             <time datetime={date}>
               {formatDate(date)}
             </time>
@@ -96,7 +108,9 @@ const tagLinks = Array.from(
             <span>{readingTime}</span>
           </div>
 
-          <h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-ink-800 dark:text-paper-100">
+          <h1
+            class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-ink-800 dark:text-paper-100"
+          >
             {title}
           </h1>
 
@@ -104,26 +118,34 @@ const tagLinks = Array.from(
             {description}
           </p>
 
-          {tagLinks.length > 0 && (
-            <div class="mt-6 flex flex-wrap gap-2">
-              {tagLinks.map((tag) => (
-                <a
-                  href={`/writing/tag/${slugify(tag)}/`}
-                  class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-paper-200 text-ink-800 dark:bg-graphite-600 dark:text-paper-100 hover:bg-graphite-400/20 dark:hover:bg-ink-600 transition-colors"
-                >
-                  {displayLabel(tag)}
-                </a>
-              ))}
-            </div>
-          )}
+          {
+            tagLinks.length > 0 && (
+              <div class="mt-6 flex flex-wrap gap-2">
+                {tagLinks.map((tag) => (
+                  <a
+                    href={`/writing/tag/${slugify(tag)}/`}
+                    class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-paper-200 text-ink-800 dark:bg-graphite-600 dark:text-paper-100 hover:bg-graphite-400/20 dark:hover:bg-ink-600 transition-colors"
+                  >
+                    {displayLabel(tag)}
+                  </a>
+                ))}
+              </div>
+            )
+          }
         </header>
 
         <div class="prose prose-lg max-w-none">
           <Content />
         </div>
 
-        <div class="mt-12 pt-8 border-t border-graphite-600/20 dark:border-graphite-600">
-          <a href="/writing" class="inline-flex items-center text-ink-800 dark:text-paper-100 underline decoration-graphite-400 hover:decoration-ink-800 dark:hover:decoration-paper-100 font-medium">&larr; Back to all posts</a>
+        <div
+          class="mt-12 pt-8 border-t border-graphite-600/20 dark:border-graphite-600"
+        >
+          <a
+            href="/writing"
+            class="inline-flex items-center text-ink-800 dark:text-paper-100 underline decoration-graphite-400 hover:decoration-ink-800 dark:hover:decoration-paper-100 font-medium"
+            >&larr; Back to all posts</a
+          >
         </div>
       </div>
     </Container>

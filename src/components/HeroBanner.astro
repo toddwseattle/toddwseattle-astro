@@ -1,20 +1,22 @@
 ---
-import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
-import Container from './ui/Container';
-import profileImage from '../assets/images/profile.jpg';
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import Container from "./ui/Container";
+import profileImage from "../assets/images/profile.jpg";
 
-const heroEntries = await getCollection('hero');
+const heroEntries = await getCollection("hero");
 const hero = heroEntries[0];
 
 if (!hero) {
-  throw new Error('Hero content not found');
+  throw new Error("Hero content not found");
 }
 
 const { title, subtitle, content, linkTo, linkText } = hero.data;
 ---
 
-<section class="bg-paper-100 dark:bg-graphite-700 py-16 md:py-24 border-b border-graphite-600/20 dark:border-graphite-600">
+<section
+  class="bg-paper-100 dark:bg-graphite-700 py-16 md:py-24 border-b border-graphite-600/20 dark:border-graphite-600"
+>
   <Container section client:load>
     <div class="max-w-4xl">
       <div class="flex flex-col md:flex-row gap-8 items-start">
@@ -26,10 +28,14 @@ const { title, subtitle, content, linkTo, linkText } = hero.data;
           class="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover flex-shrink-0"
         />
         <div class="flex-1">
-          <h1 class="text-4xl md:text-5xl font-bold text-ink-800 dark:text-paper-100 mb-2">
+          <h1
+            class="text-4xl md:text-5xl font-bold text-ink-800 dark:text-paper-100 mb-2"
+          >
             {title}
           </h1>
-          <p class="text-xl md:text-2xl text-ink-600 dark:text-graphite-400 mb-6">
+          <p
+            class="text-xl md:text-2xl text-ink-600 dark:text-graphite-400 mb-6"
+          >
             {subtitle}
           </p>
           <p class="text-lg text-ink-600 dark:text-paper-200 mb-8">

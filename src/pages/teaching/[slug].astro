@@ -1,15 +1,15 @@
 ---
-import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import Container from '../../components/ui/Container';
-import TitleSection from '../../components/ui/TitleSection';
-import CourseMaterialsList from '../../components/teaching/CourseMaterialsList.astro';
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import Container from "../../components/ui/Container";
+import TitleSection from "../../components/ui/TitleSection";
+import CourseMaterialsList from "../../components/teaching/CourseMaterialsList.astro";
 
 export async function getStaticPaths() {
-  const courses = await getCollection('teaching');
+  const courses = await getCollection("teaching");
   return courses.map((course) => ({
     params: { slug: course.slug },
     props: { course },
@@ -17,34 +17,46 @@ export async function getStaticPaths() {
 }
 
 interface Props {
-  course: CollectionEntry<'teaching'>;
+  course: CollectionEntry<"teaching">;
 }
 
 const { course } = Astro.props as Props;
-const { title, description, philosophy, topics, exampleProjects, publicArtifacts, cover } = course.data;
+const {
+  title,
+  description,
+  philosophy,
+  topics,
+  exampleProjects,
+  publicArtifacts,
+  cover,
+} = course.data;
 const { Content } = await course.render();
 
 // Extract src from ImageMetadata object or use string directly
-const coverSrc = cover && typeof cover === 'object' && 'src' in cover ? (cover as any).src : cover;
-
+const coverSrc =
+  cover && typeof cover === "object" && "src" in cover
+    ? (cover as any).src
+    : cover;
 ---
 
-<BaseLayout 
-  title={title}
-  description={description}
-  image={coverSrc}
->
+<BaseLayout title={title} description={description} image={coverSrc}>
   <Header client:load />
-  
+
   <TitleSection title={title} subtitle={description} client:load />
 
   <Container>
     <div class="max-w-3xl mx-auto py-12">
-      <a href="/teaching" class="inline-flex items-center text-ink-800 underline decoration-graphite-400 hover:decoration-ink-800 dark:text-paper-100 dark:hover:decoration-paper-100 hover:underline mb-8 font-medium">← Back to Teaching</a>
-      
+      <a
+        href="/teaching"
+        class="inline-flex items-center text-ink-800 underline decoration-graphite-400 hover:decoration-ink-800 dark:text-paper-100 dark:hover:decoration-paper-100 hover:underline mb-8 font-medium"
+        >← Back to Teaching</a
+      >
+
       {/* Philosophy Section */}
       <section class="mb-12">
-        <h2 class="text-2xl font-bold text-ink-800 dark:text-paper-100 mb-4">Course Philosophy</h2>
+        <h2 class="text-2xl font-bold text-ink-800 dark:text-paper-100 mb-4">
+          Course Philosophy
+        </h2>
         <p class="text-lg text-ink-600 dark:text-paper-200 leading-relaxed">
           {philosophy}
         </p>
@@ -52,67 +64,93 @@ const coverSrc = cover && typeof cover === 'object' && 'src' in cover ? (cover a
 
       {/* Topics Section */}
       <section class="mb-12">
-        <h2 class="text-2xl font-bold text-ink-800 dark:text-paper-100 mb-4">Topics Covered</h2>
+        <h2 class="text-2xl font-bold text-ink-800 dark:text-paper-100 mb-4">
+          Topics Covered
+        </h2>
         <ul class="space-y-2 text-ink-600 dark:text-paper-200">
-          {topics.map((topic) => (
-            <li class="flex items-start">
-              <span class="text-ink-800 dark:text-paper-100 mr-3 font-bold">•</span>
-              <span>{topic}</span>
-            </li>
-          ))}
+          {
+            topics.map((topic) => (
+              <li class="flex items-start">
+                <span class="text-ink-800 dark:text-paper-100 mr-3 font-bold">
+                  •
+                </span>
+                <span>{topic}</span>
+              </li>
+            ))
+          }
         </ul>
       </section>
 
       {/* Example Projects Section */}
-      {exampleProjects && exampleProjects.length > 0 && (
-        <section class="mb-12">
-          <h2 class="text-2xl font-bold text-ink-800 dark:text-paper-100 mb-4">Example Projects</h2>
-          <ul class="space-y-2 text-ink-600 dark:text-paper-200">
-            {exampleProjects.map((project) => (
-              <li class="flex items-start">
-                <span class="text-ink-800 dark:text-paper-100 mr-3 font-bold">→</span>
-                <span>{project}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
+      {
+        exampleProjects && exampleProjects.length > 0 && (
+          <section class="mb-12">
+            <h2 class="text-2xl font-bold text-ink-800 dark:text-paper-100 mb-4">
+              Example Projects
+            </h2>
+            <ul class="space-y-2 text-ink-600 dark:text-paper-200">
+              {exampleProjects.map((project) => (
+                <li class="flex items-start">
+                  <span class="text-ink-800 dark:text-paper-100 mr-3 font-bold">
+                    →
+                  </span>
+                  <span>{project}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
 
       {/* Public Artifacts Section */}
-      {publicArtifacts && publicArtifacts.length > 0 && (
-        <section class="mb-12">
-          <h2 class="text-2xl font-bold text-ink-800 dark:text-paper-100 mb-4">Public Artifacts & Links</h2>
-          <ul class="space-y-3">
-            {publicArtifacts.map((artifact) => (
-              <li>
-                <a
-                  href={artifact.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-ink-800 underline decoration-graphite-400 hover:decoration-ink-800 dark:text-paper-100 dark:hover:decoration-paper-100 hover:underline font-medium"
-                >
-                  {artifact.title} →
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
+      {
+        publicArtifacts && publicArtifacts.length > 0 && (
+          <section class="mb-12">
+            <h2 class="text-2xl font-bold text-ink-800 dark:text-paper-100 mb-4">
+              Public Artifacts & Links
+            </h2>
+            <ul class="space-y-3">
+              {publicArtifacts.map((artifact) => (
+                <li>
+                  <a
+                    href={artifact.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-ink-800 underline decoration-graphite-400 hover:decoration-ink-800 dark:text-paper-100 dark:hover:decoration-paper-100 hover:underline font-medium"
+                  >
+                    {artifact.title} →
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
 
       {/* Course Content Section */}
       <section class="mb-12 prose prose-lg dark:prose-invert max-w-none">
-        <h2 class="text-2xl font-bold text-ink-800 dark:text-paper-100 mb-4">About This Course</h2>
+        <h2 class="text-2xl font-bold text-ink-800 dark:text-paper-100 mb-4">
+          About This Course
+        </h2>
         <Content />
       </section>
 
       {/* Course Materials Section */}
       <section class="mb-12">
-        <h2 class="text-3xl font-bold text-ink-800 dark:text-paper-100 mb-8">Course Materials & Resources</h2>
+        <h2 class="text-3xl font-bold text-ink-800 dark:text-paper-100 mb-8">
+          Course Materials & Resources
+        </h2>
         <CourseMaterialsList courseSlug={course.slug} />
       </section>
 
-      <div class="mt-12 pt-8 border-t border-graphite-600/20 dark:border-graphite-600">
-        <a href="/teaching" class="inline-flex items-center text-ink-800 underline decoration-graphite-400 hover:decoration-ink-800 dark:text-paper-100 dark:hover:decoration-paper-100 hover:underline font-medium">← Back to all courses</a>
+      <div
+        class="mt-12 pt-8 border-t border-graphite-600/20 dark:border-graphite-600"
+      >
+        <a
+          href="/teaching"
+          class="inline-flex items-center text-ink-800 underline decoration-graphite-400 hover:decoration-ink-800 dark:text-paper-100 dark:hover:decoration-paper-100 hover:underline font-medium"
+          >← Back to all courses</a
+        >
       </div>
     </div>
   </Container>

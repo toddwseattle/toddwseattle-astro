@@ -1,19 +1,22 @@
 ---
-import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import TitleSection from '../../components/ui/TitleSection';
-import WritingList from '../../components/blog/WritingList.astro';
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import TitleSection from "../../components/ui/TitleSection";
+import WritingList from "../../components/blog/WritingList.astro";
 
 // Fetch and filter blog posts
-const allPosts = await getCollection('blog');
+const allPosts = await getCollection("blog");
 const publishedPosts = allPosts
   .filter((post) => post.data.published !== false)
-  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+  .sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+  );
 
-const title = 'Writing';
-const description = 'Thoughts on innovation, software, teaching, cycling, and music';
+const title = "Writing";
+const description =
+  "Thoughts on innovation, software, teaching, cycling, and music";
 ---
 
 <BaseLayout title={title} description={description}>

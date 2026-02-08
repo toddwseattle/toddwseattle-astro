@@ -47,21 +47,21 @@ Complete the navigation infrastructure by creating missing pages, aligning blog/
 
 ```astro
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import TitleSection from '../../components/ui/TitleSection';
-import BlogGrid from '../../components/blog/BlogGrid.astro';
-import { getCollection } from 'astro:content';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import TitleSection from "../../components/ui/TitleSection";
+import BlogGrid from "../../components/blog/BlogGrid.astro";
+import { getCollection } from "astro:content";
 
-const allPosts = await getCollection('blog');
+const allPosts = await getCollection("blog");
 const publishedPosts = allPosts
-  .filter(post => !post.data.draft)
+  .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 const seo = {
-  title: 'Writing',
-  description: 'Thoughts on innovation, software, teaching, cycling, and music'
+  title: "Writing",
+  description: "Thoughts on innovation, software, teaching, cycling, and music",
 };
 ---
 
@@ -98,7 +98,7 @@ const seo = {
 
 ```astro
 ---
-return Astro.redirect('/writing/', 301);
+return Astro.redirect("/writing/", 301);
 ---
 ```
 
@@ -140,15 +140,15 @@ return Astro.redirect('/writing/', 301);
 
 ```astro
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import Container from '../../components/ui/Container';
-import TitleSection from '../../components/ui/TitleSection';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import Container from "../../components/ui/Container";
+import TitleSection from "../../components/ui/TitleSection";
 
 const seo = {
-  title: 'Teaching',
-  description: 'Courses on corporate innovation and software engineering'
+  title: "Teaching",
+  description: "Courses on corporate innovation and software engineering",
 };
 ---
 
@@ -190,15 +190,16 @@ const seo = {
 
 ```astro
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import Container from '../../components/ui/Container';
-import TitleSection from '../../components/ui/TitleSection';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import Container from "../../components/ui/Container";
+import TitleSection from "../../components/ui/TitleSection";
 
 const seo = {
-  title: 'AutoSoft Today',
-  description: 'Exploring the intersection of automotive technology and software'
+  title: "AutoSoft Today",
+  description:
+    "Exploring the intersection of automotive technology and software",
 };
 ---
 
@@ -215,8 +216,12 @@ const seo = {
       <div class="mt-12 prose prose-lg max-w-prose mx-auto">
         <p>Content will be added here as part of Story 4.</p>
         <p>
-          <a href="https://autosofttoday.com" target="_blank" rel="noopener noreferrer"
-             class="text-indigo-600 hover:text-indigo-800">
+          <a
+            href="https://autosofttoday.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-indigo-600 hover:text-indigo-800"
+          >
             Visit AutoSoft Today →
           </a>
         </p>
@@ -245,15 +250,15 @@ const seo = {
 
 ```astro
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import Container from '../../components/ui/Container';
-import TitleSection from '../../components/ui/TitleSection';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import Container from "../../components/ui/Container";
+import TitleSection from "../../components/ui/TitleSection";
 
 const seo = {
-  title: 'Consulting',
-  description: 'Advisory services for innovation and software engineering'
+  title: "Consulting",
+  description: "Advisory services for innovation and software engineering",
 };
 ---
 
@@ -295,15 +300,15 @@ const seo = {
 
 ```astro
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import Container from '../../components/ui/Container';
-import TitleSection from '../../components/ui/TitleSection';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import Container from "../../components/ui/Container";
+import TitleSection from "../../components/ui/TitleSection";
 
 const seo = {
-  title: 'About',
-  description: 'About Todd Warren - software leader, educator, advisor'
+  title: "About",
+  description: "About Todd Warren - software leader, educator, advisor",
 };
 ---
 

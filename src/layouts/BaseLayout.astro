@@ -1,9 +1,9 @@
 ---
-import { SEO } from 'astro-seo';
-import { siteConfig } from '../config/site';
-import '../assets/styles/global.css';
-import '@fortawesome/fontawesome-svg-core/styles.css';
-import GoogleAnalytics from '../components/GoogleAnalytics.astro';
+import { SEO } from "astro-seo";
+import { siteConfig } from "../config/site";
+import "../assets/styles/global.css";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import GoogleAnalytics from "../components/GoogleAnalytics.astro";
 
 interface Props {
   title?: string;
@@ -30,10 +30,14 @@ const {
 } = Astro.props;
 
 // Construct full title with site name
-const fullTitle = title === siteConfig.title ? title : `${title} | ${siteConfig.title}`;
+const fullTitle =
+  title === siteConfig.title ? title : `${title} | ${siteConfig.title}`;
 
 // Get canonical URL
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? siteConfig.siteUrl).href;
+const canonicalURL = new URL(
+  Astro.url.pathname,
+  Astro.site ?? siteConfig.siteUrl,
+).href;
 
 // Construct full image URL
 const fullImageURL = new URL(image, Astro.site ?? siteConfig.siteUrl).href;
@@ -61,14 +65,15 @@ const fullImageURL = new URL(image, Astro.site ?? siteConfig.siteUrl).href;
           locale: siteConfig.locale,
           siteName: siteConfig.title,
         },
-        ...(article && publishedTime && {
-          article: {
-            publishedTime,
-            modifiedTime,
-            authors: [siteConfig.author.name],
-            tags: tags.length > 0 ? tags : undefined,
-          }
-        })
+        ...(article &&
+          publishedTime && {
+            article: {
+              publishedTime,
+              modifiedTime,
+              authors: [siteConfig.author.name],
+              tags: tags.length > 0 ? tags : undefined,
+            },
+          }),
       }}
       twitter={{
         card: "summary_large_image",
@@ -85,7 +90,10 @@ const fullImageURL = new URL(image, Astro.site ?? siteConfig.siteUrl).href;
           { rel: "sitemap", href: "/sitemap-index.xml" },
         ],
         meta: [
-          { name: "viewport", content: "width=device-width, initial-scale=1.0" },
+          {
+            name: "viewport",
+            content: "width=device-width, initial-scale=1.0",
+          },
           { name: "generator", content: Astro.generator },
           { name: "author", content: siteConfig.author.name },
         ],
@@ -93,19 +101,20 @@ const fullImageURL = new URL(image, Astro.site ?? siteConfig.siteUrl).href;
     />
     <GoogleAnalytics />
   </head>
-  <body class="m-0 text-ink-800 bg-paper-100 dark:bg-graphite-700 dark:text-paper-100">
+  <body
+    class="m-0 text-ink-800 bg-paper-100 dark:bg-graphite-700 dark:text-paper-100"
+  >
     <div class="flex flex-col min-h-screen">
       <slot />
     </div>
+    <style is:global>
+      a {
+        @apply text-ink-800 dark:text-paper-100;
+      }
+
+      p + p {
+        @apply mt-3;
+      }
+    </style>
   </body>
 </html>
-
-<style is:global>
-  a {
-    @apply text-ink-800 dark:text-paper-100;
-  }
-
-  p + p {
-    @apply mt-3;
-  }
-</style>

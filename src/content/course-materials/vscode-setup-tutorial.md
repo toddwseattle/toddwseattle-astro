@@ -137,7 +137,7 @@ Your settings should include something like:
 
 ## Step 5: Enable GitHub Copilot Pro for Students
 
-As a verified student, you have free access to **GitHub Copilot Pro**—a significant upgrade from the free tier. Copilot Pro gives you unlimited code suggestions and access to advanced AI models.
+As a verified student, you have free access to **GitHub Copilot Pro**—a significant upgrade from the free tier. Copilot Pro gives you unlimited code suggestions and access to advanced AI models. We wll use agent mode as part of our projects; and in the labs there will be instructions for copilot to help you learn more effectively.
 
 ### Get GitHub Student Benefits
 
@@ -147,8 +147,7 @@ As a verified student, you have free access to **GitHub Copilot Pro**—a signif
 4. Once verified, you automatically get:
    - **Free GitHub Copilot Pro** (normally $10/month)
    - Free GitHub Pro account
-   - GitHub Codespaces hours
-   - Student Developer Pack with 30+ partner tools
+   - GitHub Codespaces hours to use vscode in the cloud
 
 ### Install Copilot in VS Code
 
@@ -166,14 +165,6 @@ As a verified student, you have free access to **GitHub Copilot Pro**—a signif
 4. Press `Tab` to accept a suggestion or `Escape` to dismiss
 
 You'll know Copilot Pro is active when you see the Copilot icon in the bottom status bar (showing a Copilot symbol).
-
-### What Copilot Pro Gives You
-
-- **Unlimited code completions** (vs 2,000/month on free tier)
-- **Unlimited chat and agent requests** (vs 50/month on free tier)
-- Access to GPT-5 mini and other advanced models
-- Copilot coding agent for complex tasks
-- Code review assistance
 
 ### Using Copilot in Your Projects
 
@@ -266,4 +257,4 @@ Your VS Code environment is now configured. You're ready to:
 - Manage code with Git and GitHub
 - Deploy projects with Firebase
 
-For specific course requirements or setup issues, reach out to your instructor.
+For specific course requirements or setup issues, reach out to the instructor or teaching assistant.

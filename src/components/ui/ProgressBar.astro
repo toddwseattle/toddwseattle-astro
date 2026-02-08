@@ -9,10 +9,16 @@ const { title, percentage } = Astro.props;
 
 <div class="progress-bar mb-6">
   <div class="flex justify-between items-center mb-2">
-    <span class="text-sm font-medium text-ink-600 dark:text-paper-200">{title}</span>
-    <span class="text-sm font-semibold text-ink-800 dark:text-paper-100">{percentage}%</span>
+    <span class="text-sm font-medium text-ink-600 dark:text-paper-200"
+      >{title}</span
+    >
+    <span class="text-sm font-semibold text-ink-800 dark:text-paper-100"
+      >{percentage}%</span
+    >
   </div>
-  <div class="w-full h-2 bg-paper-200 dark:bg-graphite-600 rounded-full overflow-hidden">
+  <div
+    class="w-full h-2 bg-paper-200 dark:bg-graphite-600 rounded-full overflow-hidden"
+  >
     <div
       class="h-full bg-ink-800 dark:bg-paper-100 rounded-full transition-all duration-1000 ease-out progress-fill"
       style={`width: ${percentage}%`}
@@ -21,7 +27,8 @@ const { title, percentage } = Astro.props;
       aria-valuemin="0"
       aria-valuemax="100"
       aria-label={`${title}: ${percentage}%`}
-    ></div>
+    >
+    </div>
   </div>
 </div>
 
