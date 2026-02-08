@@ -1,0 +1,2 @@
+# Ignore Google Analytics component - uses 'arguments' which conflicts with prettier-plugin-astro
+src/components/GoogleAnalytics.astro
