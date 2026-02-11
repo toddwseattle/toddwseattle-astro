@@ -5,6 +5,7 @@ courses:
   - "corporate-innovation"
   - "nuvention-web"
 type: "tutorial"
+draft: true
 difficulty: "beginner"
 date: "2025-01-06"
 ---

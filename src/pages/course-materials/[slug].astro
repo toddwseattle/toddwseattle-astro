@@ -13,7 +13,8 @@ import PostLayout from "../../layouts/materials/PostLayout.astro";
 
 export async function getStaticPaths() {
   const entries = await getCollection("course-materials");
-  return entries.map((entry) => ({
+  const published = entries.filter((entry) => entry.data.draft !== true);
+  return published.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
   }));

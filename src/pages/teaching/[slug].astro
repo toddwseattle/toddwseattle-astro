@@ -10,7 +10,8 @@ import CourseMaterialsList from "../../components/teaching/CourseMaterialsList.a
 
 export async function getStaticPaths() {
   const courses = await getCollection("teaching");
-  return courses.map((course) => ({
+  const published = courses.filter((course) => course.data.draft !== true);
+  return published.map((course) => ({
     params: { slug: course.slug },
     props: { course },
   }));

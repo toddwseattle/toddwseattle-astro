@@ -5,7 +5,7 @@ import type { APIRoute } from "astro";
 
 export const GET: APIRoute = async (context) => {
   const blog = await getCollection("blog");
-  const publishedPosts = blog.filter((post) => post.data.published !== false);
+  const publishedPosts = blog.filter((post) => post.data.draft !== true);
 
   return rss({
     title: `${siteConfig.title} Writing`,

@@ -9,7 +9,7 @@ import WritingList from "../../components/blog/WritingList.astro";
 // Fetch and filter blog posts
 const allPosts = await getCollection("blog");
 const publishedPosts = allPosts
-  .filter((post) => post.data.published !== false)
+  .filter((post) => post.data.draft !== true)
   .sort(
     (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
   );

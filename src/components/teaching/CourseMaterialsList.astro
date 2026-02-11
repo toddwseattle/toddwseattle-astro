@@ -2,15 +2,19 @@
 import { getCollection } from "astro:content";
 
 interface Props {
-  courseSlug: string;
+  courseSlug?: string;
 }
 
 const { courseSlug } = Astro.props;
 
-// Fetch and filter course materials for this specific course
+// Fetch and filter course materials
 const allMaterials = await getCollection("course-materials");
 const materials = allMaterials
-  .filter((material) => material.data.courses.includes(courseSlug))
+  .filter(
+    (material) =>
+      material.data.draft !== true &&
+      (courseSlug ? material.data.courses.includes(courseSlug) : true),
+  )
   .sort(
     (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
   );

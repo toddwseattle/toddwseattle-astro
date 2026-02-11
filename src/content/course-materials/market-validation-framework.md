@@ -5,6 +5,7 @@ courses:
   - "corporate-innovation"
   - "nuvention-web"
 type: "resource"
+draft: true
 date: "2025-01-06"
 ---
 

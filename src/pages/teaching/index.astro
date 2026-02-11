@@ -5,15 +5,16 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Container from "../../components/ui/Container";
 import TitleSection from "../../components/ui/TitleSection";
+import CourseMaterialsList from "../../components/teaching/CourseMaterialsList.astro";
 
 const title = "Teaching";
 const description = "Courses on corporate innovation and software engineering";
 
 // Fetch all courses and sort by title
 const courses = await getCollection("teaching");
-const sortedCourses = courses.sort((a, b) =>
-  a.data.title.localeCompare(b.data.title),
-);
+const sortedCourses = courses
+  .filter((course) => course.data.draft !== true)
+  .sort((a, b) => a.data.title.localeCompare(b.data.title));
 ---
 
 <BaseLayout title={title} description={description}>
@@ -66,6 +67,14 @@ const sortedCourses = courses.sort((a, b) =>
           Each course combines theory with real-world application, emphasizing
           that deep understanding comes from doing.
         </p>
+      </div>
+
+      {/* All Course Materials */}
+      <div class="mt-16">
+        <h2 class="text-3xl font-bold text-ink-800 dark:text-paper-100 mb-8 text-center">
+          All Course Materials & Resources
+        </h2>
+        <CourseMaterialsList />
       </div>
     </Container>
   </main>

@@ -56,9 +56,7 @@ export async function getStaticPaths() {
   };
 
   const allPosts = await getCollection("blog");
-  const publishedPosts = allPosts.filter(
-    (post) => post.data.published !== false,
-  );
+  const publishedPosts = allPosts.filter((post) => post.data.draft !== true);
   const tagMap = new Map<string, string>();
 
   publishedPosts.forEach((post) => {
@@ -89,7 +87,7 @@ export async function getStaticPaths() {
 const { tag } = Astro.params;
 
 const allPosts = await getCollection("blog");
-const publishedPosts = allPosts.filter((post) => post.data.published !== false);
+const publishedPosts = allPosts.filter((post) => post.data.draft !== true);
 
 const filteredPosts = publishedPosts
   .filter((post) => {

@@ -14,21 +14,25 @@ const experiences = await getCollection("experiences");
 const education = await getCollection("education");
 const nonprofits = await getCollection("nonprofit");
 
-const sortedExperiences = experiences.sort((a, b) => {
-  const dateA = new Date(a.data.startDate);
-  const dateB = new Date(b.data.startDate);
-  return dateB.getTime() - dateA.getTime();
-});
+const sortedExperiences = experiences
+  .filter((entry) => entry.data.draft !== true)
+  .sort((a, b) => {
+    const dateA = new Date(a.data.startDate);
+    const dateB = new Date(b.data.startDate);
+    return dateB.getTime() - dateA.getTime();
+  });
 
-const sortedEducation = education.sort((a, b) => {
-  const dateA = new Date(a.data.endDate ?? a.data.startDate ?? "");
-  const dateB = new Date(b.data.endDate ?? b.data.startDate ?? "");
-  return dateB.getTime() - dateA.getTime();
-});
+const sortedEducation = education
+  .filter((entry) => entry.data.draft !== true)
+  .sort((a, b) => {
+    const dateA = new Date(a.data.endDate ?? a.data.startDate ?? "");
+    const dateB = new Date(b.data.endDate ?? b.data.startDate ?? "");
+    return dateB.getTime() - dateA.getTime();
+  });
 
-const sortedNonprofits = nonprofits.sort((a, b) =>
-  (a.data.company || "").localeCompare(b.data.company || ""),
-);
+const sortedNonprofits = nonprofits
+  .filter((entry) => entry.data.draft !== true)
+  .sort((a, b) => (a.data.company || "").localeCompare(b.data.company || ""));
 ---
 
 <BaseLayout title={title} description={description}>
