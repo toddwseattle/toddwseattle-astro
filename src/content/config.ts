@@ -181,6 +181,7 @@ const courseMaterialsCollection = defineCollection({
     difficulty: z.enum(["beginner", "intermediate", "advanced"]).optional(),
     date: z.string(),
     cover: z.string().optional(),
+    draft: z.boolean().default(false),
     resources: z
       .array(
         z.object({
