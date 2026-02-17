@@ -3,6 +3,7 @@ title: "Foundational Algorithms Resources"
 description: "Curated links to learn core algorithms and data structures."
 courses: ["software-engineering"]
 type: "resource"
+draft: true
 date: "2026-01-07"
 resources:
   - title: "Khan Academy: Algorithms"

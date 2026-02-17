@@ -1,4 +1,3 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import InfoBlock from "./InfoBlock";
 
@@ -16,7 +15,7 @@ describe("InfoBlock", () => {
 
   it("renders title and content", () => {
     const { container } = render(
-      <InfoBlock icon={{} as any} title={title} content={content} />
+      <InfoBlock icon={{} as any} title={title} content={content} />,
     );
 
     expect(screen.getByRole("heading", { name: title })).toBeInTheDocument();
@@ -30,7 +29,7 @@ describe("InfoBlock", () => {
 
   it("applies centered layout when center=true", () => {
     const { container } = render(
-      <InfoBlock icon={{} as any} title={title} content={content} center />
+      <InfoBlock icon={{} as any} title={title} content={content} center />,
     );
 
     const root = container.firstElementChild as HTMLElement;
@@ -40,6 +39,6 @@ describe("InfoBlock", () => {
     // icon wrapper gets margin-bottom when centered
     const iconEl = screen.getByTestId("icon");
     const iconWrapper = iconEl.parentElement as HTMLElement;
-    expect(iconWrapper).toHaveClass("text-indigo-600", "text-3xl", "mb-4");
+    expect(iconWrapper).toHaveClass("text-ink-600", "text-3xl", "mb-4");
   });
 });

@@ -1,4 +1,3 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import Container from "./Container";
 
@@ -28,7 +27,7 @@ describe("Container", () => {
 
   it("applies custom className", () => {
     const { container } = render(
-      <Container className="custom-class">Content</Container>
+      <Container className="custom-class">Content</Container>,
     );
     const div = container.firstElementChild as HTMLElement;
     expect(div).toHaveClass("custom-class");

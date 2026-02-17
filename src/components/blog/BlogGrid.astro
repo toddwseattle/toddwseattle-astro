@@ -1,10 +1,10 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import BlogCard from './BlogCard.astro';
-import Container from '../ui/Container';
+import type { CollectionEntry } from "astro:content";
+import BlogCard from "./BlogCard.astro";
+import Container from "../ui/Container";
 
 interface Props {
-  posts: CollectionEntry<'blog'>[];
+  posts: CollectionEntry<"blog">[];
 }
 
 const { posts } = Astro.props;
@@ -12,8 +12,6 @@ const { posts } = Astro.props;
 
 <Container>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    {posts.map((post) => (
-      <BlogCard post={post} />
-    ))}
+    {posts.map((post) => <BlogCard post={post} />)}
   </div>
 </Container>

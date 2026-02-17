@@ -1,5 +1,5 @@
 ---
-category: 'skills'
-title: 'Angular'
+category: "skills"
+title: "Angular"
 percentage: 70
 ---

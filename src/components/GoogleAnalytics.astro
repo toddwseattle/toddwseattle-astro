@@ -1,0 +1,36 @@
+---
+/**
+ * Google Analytics 4 Component
+ *
+ * Loads GA4 tracking script only in production mode.
+ * Requires PUBLIC_GA_ID environment variable (format: G-XXXXXXXXXX).
+ *
+ * Usage: Include in <head> of BaseLayout.astro
+ */
+
+const GA_ID = import.meta.env.PUBLIC_GA_ID;
+const isProd = import.meta.env.PROD;
+
+// Only render if we have a GA ID and are in production
+const shouldRender = GA_ID && isProd;
+---
+
+<!-- prettier-ignore-start -->
+{shouldRender && (
+  <>
+    <script
+      async
+      is:inline
+      src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+    />
+    <script define:vars={{ GA_ID }} is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', GA_ID);
+    </script>
+  </>
+)}
+<!-- prettier-ignore-end -->

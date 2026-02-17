@@ -2,21 +2,19 @@
 category: "software-engineering"
 title: "VSCode Setup Recommendations for CS394 Spring 2025"
 date: "2025-03-24"
-tags: [
-    "teaching",
-    "software development",
-    "software engineering",
-    "northwestern"
-  ]
+tags:
+  ["teaching", "software development", "software engineering", "northwestern"]
 description: "How to to set up your VSCode for the CS394 Spring 2025 course to develop typescript, react, firebase apps"
-published: false
+draft: true
 excerpt_separator: <!--more-->
 ---
+
 # Getting Started with the CS394 React TypeScript Starter Template
 
 In CS394, we'll be using a custom starter template for our React projects. This guide will walk you through setting up and using the template for your coursework.
 
 ## Table of Contents
+
 1. [About the Template](#about-the-template)
 2. [Prerequisites](#prerequisites)
 3. [Setting Up a New Project](#setting-up-a-new-project)
@@ -41,8 +39,7 @@ The [pretty-vitest-react-ts-template](https://github.com/toddwseattle/pretty-vit
 - **Prettier**: Ensures consistent code formatting
 - **Pre-configured settings**: Ready-to-use configuration for an optimal development experience
 
-The template is lightweight and easy to customize for your projects. It includes a simple component structure, testing setup, and linting rules to help you get started quickly.
----
+## The template is lightweight and easy to customize for your projects. It includes a simple component structure, testing setup, and linting rules to help you get started quickly.
 
 ## Prerequisites
 
@@ -51,7 +48,7 @@ Before using the template, make sure you have:
 - **Node.js**: Version 20.x or newer recommended
 - **npm**: For package management (comes bundled with Node.js)
 - **Git**: For version control
-- **VS Code**: Recommended editor (see the [VS Code setup](../2025-03-15-VSCode-Setup-Recomendations/index.md) guide)
+- **VS Code**: Recommended editor (see the [VS Code setup](/writing/2025-03-15-vscode-setup-recomendations/) guide)
 
 To check your Node.js and npm versions:
 
@@ -201,14 +198,14 @@ Here's a simple example of a component test:
 
 ```tsx
 // Button.test.tsx
-import { render, screen } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
-import Button from './Button';
+import { render, screen } from "@testing-library/react";
+import { describe, it, expect } from "vitest";
+import Button from "./Button";
 
-describe('Button component', () => {
-  it('renders correctly', () => {
+describe("Button component", () => {
+  it("renders correctly", () => {
     render(<Button>Click me</Button>);
-    expect(screen.getByText('Click me')).toBeInTheDocument();
+    expect(screen.getByText("Click me")).toBeInTheDocument();
   });
 });
 ```
@@ -283,12 +280,12 @@ export default defineConfig({
   // ... existing config
   server: {
     proxy: {
-      '/api': {
-        target: 'http://localhost:5000',
+      "/api": {
+        target: "http://localhost:5000",
         changeOrigin: true,
-      }
-    }
-  }
+      },
+    },
+  },
 });
 ```
 
@@ -338,8 +335,8 @@ If you encounter issues with the template that you can't resolve:
 
 1. Check the [Vite documentation](https://vitejs.dev/guide/)
 2. Look for solutions on the [React TypeScript documentation](https://react-typescript-cheatsheet.netlify.app/)
-4. Bring your questions to office hours
+3. Bring your questions to office hours
 
 ---
 
-*This guide was last updated on March 15, 2025, for CS394: Software Engineering.*
+_This guide was last updated on March 15, 2025, for CS394: Software Engineering._

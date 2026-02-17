@@ -1,4 +1,3 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Button from "./Button";
@@ -7,20 +6,20 @@ describe("Button", () => {
   it("renders children content", () => {
     render(<Button>Click me</Button>);
     expect(
-      screen.getByRole("button", { name: "Click me" })
+      screen.getByRole("button", { name: "Click me" }),
     ).toBeInTheDocument();
   });
 
   it("applies primary variant styles", () => {
     render(<Button primary>Primary Button</Button>);
     const button = screen.getByRole("button");
-    expect(button).toHaveClass("bg-indigo-600", "text-white");
+    expect(button).toHaveClass("bg-ink-800", "text-paper-50");
   });
 
   it("applies secondary variant styles by default", () => {
     render(<Button>Secondary Button</Button>);
     const button = screen.getByRole("button");
-    expect(button).toHaveClass("bg-gray-200", "text-indigo-900");
+    expect(button).toHaveClass("bg-paper-200", "text-ink-800");
   });
 
   it("applies custom className", () => {

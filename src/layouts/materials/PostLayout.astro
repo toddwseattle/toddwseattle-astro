@@ -1,10 +1,10 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import Container from '../../components/ui/Container';
+import type { CollectionEntry } from "astro:content";
+import Container from "../../components/ui/Container";
 
 interface Props {
-  entry: CollectionEntry<'course-materials'>;
-  rendered: Awaited<ReturnType<CollectionEntry<'course-materials'>['render']>>;
+  entry: CollectionEntry<"course-materials">;
+  rendered: Awaited<ReturnType<CollectionEntry<"course-materials">["render"]>>;
 }
 
 const { entry, rendered } = Astro.props as Props;
@@ -15,8 +15,14 @@ const date = (entry.data as any).date as string;
   <Container>
     <div class="max-w-4xl mx-auto">
       <header class="mb-8">
-        <time datetime={date} class="text-sm text-gray-500 dark:text-gray-400 font-medium">
-          {new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        <time datetime={date} class="text-sm text-graphite-400 font-medium">
+          {
+            new Date(date).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })
+          }
         </time>
       </header>
       <div class="prose prose-lg dark:prose-invert max-w-none">

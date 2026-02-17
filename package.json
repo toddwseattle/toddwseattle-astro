@@ -10,11 +10,17 @@
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,astro,json,md}\"",
+    "deploy:staging": "firebase deploy --only hosting:staging",
+    "deploy:prod": "firebase deploy --only hosting:prod",
+    "ship:staging": "npm run test:run && npm run format && npm run build && npm run deploy:staging",
+    "firebase:login": "firebase login",
+    "firebase:init": "firebase init",
     "test": "vitest",
     "test:watch": "vitest --watch",
     "test:run": "vitest run",
     "test:e2e": "playwright test",
-    "test:e2e:ui": "playwright test --ui"
+    "test:e2e:ui": "playwright test --ui",
+    "ralph": "bash ./scripts/ralph.sh"
   },
   "dependencies": {
     "@astrojs/react": "^3.6.2",
@@ -44,6 +50,7 @@
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "@types/react-slick": "^0.23.13",
+    "baseline-browser-mapping": "^2.9.19",
     "chrome-launcher": "^1.2.1",
     "jsdom": "^27.2.0",
     "lighthouse": "^13.0.1",

@@ -7,7 +7,9 @@ export const siteConfig = {
     twitter: "@toddwseattle",
   },
   siteUrl: "https://toddwseattle.com",
-  defaultImage: "/og-image.jpg", // Default Open Graph image
+  // Default Open Graph image - using existing pitch-eval logo as fallback
+  // TODO: Create a proper 1200x630 OG image for the site
+  defaultImage: "/pitch-eval-logo_white_background.jpg",
   lang: "en",
   locale: "en_US",
 };

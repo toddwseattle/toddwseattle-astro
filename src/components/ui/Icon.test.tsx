@@ -1,4 +1,3 @@
-import React from "react";
 import { render } from "@testing-library/react";
 import Icon from "./Icon";
 
@@ -10,7 +9,7 @@ describe("Icon", () => {
 
   it("applies custom className", () => {
     const { container } = render(
-      <Icon icon="laptop-code" className="custom-icon-class" />
+      <Icon icon="laptop-code" className="custom-icon-class" />,
     );
     const svg = container.querySelector("svg");
     expect(svg).toHaveClass("custom-icon-class");

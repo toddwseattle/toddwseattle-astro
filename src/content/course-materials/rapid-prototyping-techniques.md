@@ -6,6 +6,7 @@ courses:
   - "corporate-innovation"
   - "software-engineering"
 type: "examples"
+draft: true
 difficulty: "beginner"
 date: "2025-01-06"
 ---

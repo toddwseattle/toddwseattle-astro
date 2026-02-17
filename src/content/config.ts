@@ -18,8 +18,9 @@ const blog = defineCollection({
       title: z.string(),
       description: z.string(),
       date: z.string(),
+      featured: z.boolean().optional(),
       tags: z.array(z.string()).optional(),
-      published: z.boolean().default(true),
+      draft: z.boolean().default(false),
     }),
 });
 
@@ -31,6 +32,7 @@ const experiences = defineCollection({
     position: z.string(),
     startDate: z.string(),
     endDate: z.string().optional(),
+    draft: z.boolean().default(false),
   }),
 });
 
@@ -40,6 +42,7 @@ const projects = defineCollection({
     category: z.string(),
     cover: z.string().optional(),
     title: z.string(),
+    draft: z.boolean().default(false),
   }),
 });
 
@@ -49,6 +52,7 @@ const skills = defineCollection({
     category: z.string(),
     title: z.string(),
     percentage: z.number().optional(),
+    draft: z.boolean().default(false),
   }),
 });
 
@@ -59,6 +63,7 @@ const activities = defineCollection({
     title: z.string().optional(),
     icon: z.string().optional(),
     description: z.string().optional(),
+    draft: z.boolean().default(false),
   }),
 });
 
@@ -69,6 +74,7 @@ const contacts = defineCollection({
     title: z.string().optional(),
     icon: z.string().optional(),
     content: z.string().optional(),
+    draft: z.boolean().default(false),
   }),
 });
 
@@ -80,6 +86,7 @@ const education = defineCollection({
     degree: z.string().optional(),
     startDate: z.string().optional(),
     endDate: z.string().optional(),
+    draft: z.boolean().default(false),
   }),
 });
 
@@ -90,6 +97,7 @@ const services = defineCollection({
     title: z.string().optional(),
     icon: z.string().optional(),
     description: z.string().optional(),
+    draft: z.boolean().default(false),
   }),
 });
 
@@ -99,6 +107,7 @@ const testimonials = defineCollection({
     category: z.string(),
     title: z.string().optional(),
     cover: z.string().optional(),
+    draft: z.boolean().default(false),
   }),
 });
 
@@ -110,6 +119,7 @@ const nonprofit = defineCollection({
     position: z.string().optional(),
     startDate: z.string().optional(),
     endDate: z.string().optional(),
+    draft: z.boolean().default(false),
   }),
 });
 
@@ -118,6 +128,7 @@ const investments = defineCollection({
   schema: z.object({
     category: z.string(),
     company: z.string().optional(),
+    draft: z.boolean().default(false),
   }),
 });
 
@@ -130,6 +141,7 @@ const hero = defineCollection({
     content: z.string().optional(),
     linkTo: z.string().optional(),
     linkText: z.string().optional(),
+    draft: z.boolean().default(false),
   }),
 });
 
@@ -139,6 +151,7 @@ const newsletter = defineCollection({
     category: z.string(),
     title: z.string().optional(),
     description: z.string().optional(),
+    draft: z.boolean().default(false),
   }),
 });
 
@@ -160,6 +173,7 @@ const teaching = defineCollection({
       .optional(),
     date: z.string(),
     cover: z.string().optional(),
+    draft: z.boolean().default(false),
   }),
 });
 
@@ -189,6 +203,7 @@ const courseMaterialsCollection = defineCollection({
         }),
       )
       .optional(),
+    draft: z.boolean().default(false),
   }),
 });
 

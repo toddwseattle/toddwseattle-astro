@@ -1,91 +1,139 @@
 ---
-import { getCollection } from 'astro:content';
-import BaseLayout from '../../../layouts/BaseLayout.astro';
-import Header from '../../../components/Header';
-import Footer from '../../../components/Footer';
-import TitleSection from '../../../components/ui/TitleSection';
-import BlogGrid from '../../../components/blog/BlogGrid.astro';
+import { getCollection } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/Header";
+import Footer from "../../../components/Footer";
+import TitleSection from "../../../components/ui/TitleSection";
+import BlogGrid from "../../../components/blog/BlogGrid.astro";
 
-// Define the valid categories
-const validCategories = [
-  'innovation',
-  'software-engineering',
-  'teaching',
-  'automotive-software',
-  'cycling',
-  'music',
-] as const;
+const slugify = (value: string) =>
+  value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 
-type Category = (typeof validCategories)[number];
+const formatLabel = (value: string) =>
+  value
+    .replace(/[-_]+/g, " ")
+    .split(" ")
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
 
-// Category display labels
-const categoryLabels: Record<Category, string> = {
-  'innovation': 'Innovation & Org Design',
-  'software-engineering': 'Software Engineering',
-  'teaching': 'Teaching Reflections',
-  'automotive-software': 'Automotive Software',
-  'cycling': 'Cycling',
-  'music': 'Guitar & Music',
-};
-
-// Category descriptions for SEO
-const categoryDescriptions: Record<Category, string> = {
-  'innovation': 'Posts about entrepreneurship, innovation, and organizational design',
-  'software-engineering': 'Posts about software engineering, development practices, and tools',
-  'teaching': 'Reflections on teaching and education',
-  'automotive-software': 'Analysis of automotive industry software and recalls',
-  'cycling': 'Thoughts on cycling',
-  'music': 'Posts about guitar and music',
+const categoryLabels: Record<string, string> = {
+  innovation: "Innovation & Org Design",
+  "software-engineering": "Software Engineering",
+  teaching: "Teaching Reflections",
+  "automotive-software": "Automotive Software",
+  cycling: "Cycling",
+  music: "Guitar & Music",
 };
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection('blog');
+  const slugifyLocal = (value: string) =>
+    value
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
 
-  // Get all unique categories that have published posts
-  const categoriesWithPosts = [...new Set(
-    allPosts
-      .filter((post) => post.data.published !== false && post.data.category)
-      .map((post) => post.data.category)
-  )];
+  const formatLabelLocal = (value: string) =>
+    value
+      .replace(/[-_]+/g, " ")
+      .split(" ")
+      .filter(Boolean)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
 
-  return categoriesWithPosts.map((category) => ({
-    params: { tag: category },
+  const categoryLabelsLocal: Record<string, string> = {
+    innovation: "Innovation & Org Design",
+    "software-engineering": "Software Engineering",
+    teaching: "Teaching Reflections",
+    "automotive-software": "Automotive Software",
+    cycling: "Cycling",
+    music: "Guitar & Music",
+  };
+
+  const allPosts = await getCollection("blog");
+  const publishedPosts = allPosts.filter((post) => post.data.draft !== true);
+  const tagMap = new Map<string, string>();
+
+  publishedPosts.forEach((post) => {
+    if (post.data.category) {
+      const categorySlug = slugifyLocal(post.data.category);
+      if (!tagMap.has(categorySlug)) {
+        tagMap.set(
+          categorySlug,
+          categoryLabelsLocal[categorySlug] ??
+            formatLabelLocal(post.data.category),
+        );
+      }
+    }
+
+    (post.data.tags ?? []).forEach((tag) => {
+      const tagSlug = slugifyLocal(tag);
+      if (!tagMap.has(tagSlug)) {
+        tagMap.set(tagSlug, formatLabelLocal(tag));
+      }
+    });
+  });
+
+  return [...tagMap.keys()].map((tag) => ({
+    params: { tag },
   }));
 }
 
 const { tag } = Astro.params;
 
-// Type guard to check if tag is valid category
-const isValidCategory = (t: string | undefined): t is Category => {
-  return validCategories.includes(t as Category);
-};
+const allPosts = await getCollection("blog");
+const publishedPosts = allPosts.filter((post) => post.data.draft !== true);
 
-// Fetch posts for this category
-const allPosts = await getCollection('blog');
-const filteredPosts = allPosts
-  .filter((post) => post.data.published !== false && post.data.category === tag)
-  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+const filteredPosts = publishedPosts
+  .filter((post) => {
+    const categoryMatch = post.data.category
+      ? slugify(post.data.category) === tag
+      : false;
+    const tagMatch = (post.data.tags ?? []).some(
+      (item) => slugify(item) === tag,
+    );
+    return categoryMatch || tagMatch;
+  })
+  .sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+  );
 
-const categoryLabel = isValidCategory(tag) ? categoryLabels[tag] : tag || 'Posts';
-const categoryDescription = isValidCategory(tag) ? categoryDescriptions[tag] : `Posts tagged with ${tag}`;
+const tagLabel = tag ? (categoryLabels[tag] ?? formatLabel(tag)) : "Posts";
+const tagDescription = tag
+  ? `Posts tagged with ${tagLabel}`
+  : "Posts tagged in Writing";
 ---
 
-<BaseLayout title={`${categoryLabel} | Writing`} description={categoryDescription}>
+<BaseLayout title={`${tagLabel} | Writing`} description={tagDescription}>
   <Header client:load />
   <main class="py-16">
     <TitleSection
       client:load
-      title={categoryLabel}
-      subtitle={categoryDescription}
+      title={tagLabel}
+      subtitle={tagDescription}
       center
     />
     <div class="mt-4 mb-8 text-center">
       <a
         href="/writing/"
-        class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline"
+        class="inline-flex items-center text-ink-800 dark:text-paper-100 underline decoration-graphite-400 hover:decoration-ink-800 dark:hover:decoration-paper-100"
       >
-        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        <svg
+          class="w-4 h-4 mr-1"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"></path>
         </svg>
         View all posts
       </a>

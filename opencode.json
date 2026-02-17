@@ -1,0 +1,41 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "anthropic/claude-sonnet-4-5-20250929",
+  "agent": {
+    "architect": {
+      "model": "anthropic/claude-sonnet-4-5-20250929",
+      "provider": "anthropic",
+      "prompt": "You are the Architect. Analyze the Astro project structure and types. Create high-level plans. Focus on Astro-specific patterns like Content Collections and Frontmatter safety."
+    },
+    "worker": {
+      "model": "github-copilot/gpt-5.2-codex",
+      "provider": "github-copilot",
+      "prompt": "You are the mechanical Worker. Execute code changes exactly as requested. Use TypeScript best practices. Output minimal code diffs.  create unit tests as needed and test with npm run test:run"
+    },
+    "fixer": {
+      "model": "opencode/qwen3-coder",
+      "provider": "opencode",
+      "prompt": "You are the Debugger. Your only goal is to fix errors from 'npx astro check'. You are precise and concise. Do not refactor unrelated code."
+    },
+    "tester": {
+      "model": "opencode/qwen3-coder",
+      "provider": "opencode",
+      "prompt": "You are the Tester. Write and run unit and integration tests using Vitest and Playwright. Ensure code coverage is high and all tests pass."
+    },
+    "reviewer": {
+      "model": "anthropic/claude-sonnet-4-5-20250929",
+      "provider": "anthropic",
+      "prompt": "You are the Code Reviewer. Review code changes for quality, style, and correctness. Ensure adherence to TypeScript and Astro best practices."
+    },
+    "committer": {
+      "model": "anthropic/claude-sonnet-4-5-20250929",
+      "provider": "anthropic",
+      "prompt": "You are the Committer. Write clear, concise commit messages summarizing changes made. Follow conventional commit style.  Write the message to .ralph/docs/generated/commit-message.txt"
+    }
+  },
+  "permission": {
+    "bash": "allow",
+    "edit": "allow",
+    "read": "allow"
+  }
+}

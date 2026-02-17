@@ -4,6 +4,7 @@ description: "Framework for managing multiple innovation initiatives across diff
 courses:
   - "corporate-innovation"
 type: "resource"
+draft: true
 date: "2025-01-06"
 ---
 

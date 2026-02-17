@@ -4,7 +4,7 @@ title: "Roundup of current AI Software Assistance tools for VS Code"
 date: "2024-04-11"
 tags: ["CS394", "teaching", "software development", "React", "firebase", "AI"]
 description: "Installation Instructions and Descriptions of Four AI software development assistance tools"
-published: false
+draft: true
 excerpt_separator: <!--more-->
 ---
 

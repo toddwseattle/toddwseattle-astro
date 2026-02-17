@@ -3,20 +3,16 @@ category: "software-engineering"
 cover: "./2024-02-05-CS394-Spring-Software-Engineering-Course-DallE-SoftwareEngineering-Class.jpg"
 title: "Northwestern CS394 Spring Software Engineering Course"
 date: "2024-02-05"
-tags: [
-    "teaching",
-    "software development",
-    "software engineering",
-    "northwestern"
-  ]
+tags:
+  ["teaching", "software development", "software engineering", "northwestern"]
 description: "This post is background primarily aimed at potential students of spring CS394 software engineering with me at Northwestern University"
-published: true
+draft: false
 excerpt_separator: <!--more-->
 ---
 
 #### Introduction and Overview
 
-In the spring of 2024, I will be teaching CS394 at Northwestern University in Evanston, IL. The course will focus on answering and exploring the question, *how do we best work in teams to build software reliably and predictably that users love.* With few exceptions, most software is built by a team of people working together, whether that is in a company or as part of an open-source project. Since the 1960s, a significant branch of computer science, software engineering, has explored tools and methods for humans to work better together to produce machine code that solves problems. In the early 2000s, a significant breakthrough in team software development, which built on lessons of the previous decades, was the creation of agile methodologies and the drafting of the [agile manifesto](https://agilemanifesto.org/).
+In the spring of 2024, I will be teaching CS394 at Northwestern University in Evanston, IL. The course will focus on answering and exploring the question, _how do we best work in teams to build software reliably and predictably that users love._ With few exceptions, most software is built by a team of people working together, whether that is in a company or as part of an open-source project. Since the 1960s, a significant branch of computer science, software engineering, has explored tools and methods for humans to work better together to produce machine code that solves problems. In the early 2000s, a significant breakthrough in team software development, which built on lessons of the previous decades, was the creation of agile methodologies and the drafting of the [agile manifesto](https://agilemanifesto.org/).
 
 The course I will teach will have a very similar structure to [Chris Riesbeck's 394 Course](https://courses.cs.northwestern.edu/394/). We will have two team projects as the significant focus of the course. The first will be a startup-like project in React and Firebase. The second will be a client-oriented project where software is developed on behalf of a 'customer' outside of the students. In the second half, we will also explore some of the issues in large-scale software development through both guest speakers and topics integrated into the client project.
 
@@ -28,7 +24,7 @@ Students should have done some significant programming. A good knowledge of data
 
 There is a [survey students must take](https://forms.gle/ytnBETiGTF9s9NXW6) in order to be eligible for permission to take the course. This survey is distinct from the survey Dr. Riesbeck has for his course (See [FAQ](#faq) below).
 
-#### Some more on Professor Warren   
+#### Some more on Professor Warren
 
 This site provides a pretty complete background on me in [the profile on this site](/resume). I've been teaching off and on at Northwestern for more than ten years. I have not taught software engineering in quite a few, but many elements of CS394 also existed within the NUvention Web course. I'm a "pracademic"--that is, most of my approach is based on my work experience at big companies (Microsoft and Ford Motor Company) and startups. Most recently, I was involved in leading software at Ford Motor Company, where I was responsible for all in-vehicle software, connected cloud systems, and mobile applications. I will also be co-teaching a course in [corporate innovation](https://farley.northwestern.edu/news-events/news/articles/2024/innovating-from-within.html) in the Farley Center for Innovation and Entrepreneurship.
 

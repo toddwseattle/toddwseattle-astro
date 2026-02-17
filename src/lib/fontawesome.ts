@@ -33,7 +33,7 @@ library.add(
   faComments,
   faChartLine,
   faChalkboardTeacher,
-  faSchool
+  faSchool,
 );
 
 // Icon name mapping from kebab-case to icon definitions

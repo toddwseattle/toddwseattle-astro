@@ -17,6 +17,9 @@ pnpm-debug.log*
 .env
 .env.production
 
+# Firebase CLI local cache
+.firebase/
+
 # macOS-specific files
 .DS_Store
 
@@ -26,3 +29,9 @@ pnpm-debug.log*
 # Playwright
 playwright-report/
 test-results/
+
+# Ralph working directories
+.ralph/logs/
+.ralph/docs/generated/
+.ralphrc
+.ralph_errors.log*

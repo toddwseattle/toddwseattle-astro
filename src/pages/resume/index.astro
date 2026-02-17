@@ -1,0 +1,147 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import Container from "../../components/ui/Container";
+import TitleSection from "../../components/ui/TitleSection";
+import Timeline from "../../components/ui/Timeline.astro";
+
+const title = "Todd Warren - Resume";
+const description = "Experience, skills, education, and nonprofit work";
+
+const experiences = await getCollection("experiences");
+const education = await getCollection("education");
+const nonprofits = await getCollection("nonprofit");
+
+const sortedExperiences = experiences
+  .filter((entry) => entry.data.draft !== true)
+  .sort((a, b) => {
+    const dateA = new Date(a.data.startDate);
+    const dateB = new Date(b.data.startDate);
+    return dateB.getTime() - dateA.getTime();
+  });
+
+const sortedEducation = education
+  .filter((entry) => entry.data.draft !== true)
+  .sort((a, b) => {
+    const dateA = new Date(a.data.endDate ?? a.data.startDate ?? "");
+    const dateB = new Date(b.data.endDate ?? b.data.startDate ?? "");
+    return dateB.getTime() - dateA.getTime();
+  });
+
+const sortedNonprofits = nonprofits
+  .filter((entry) => entry.data.draft !== true)
+  .sort((a, b) => (a.data.company || "").localeCompare(b.data.company || ""));
+---
+
+<BaseLayout title={title} description={description}>
+  <Header client:load />
+  <main class="py-16">
+    <Container>
+      <TitleSection
+        client:load
+        title="Todd Warren - Resume"
+        subtitle="Experience, skills, education, and nonprofit work"
+        center
+        sections={[
+          { id: "experience", label: "Experience" },
+          { id: "education", label: "Education" },
+          { id: "nonprofit", label: "Nonprofit & Board Work" },
+        ]}
+      />
+
+      <section id="experience" class="mt-12">
+        <h2
+          class="text-2xl md:text-3xl font-bold text-ink-800 dark:text-paper-100 mb-6"
+        >
+          Experience
+        </h2>
+        <div class="space-y-6">
+          {
+            sortedExperiences.map(async (experience) => {
+              const { Content } = await experience.render();
+              return (
+                <Timeline
+                  title={experience.data.company}
+                  subtitle={experience.data.position}
+                  startDate={experience.data.startDate}
+                  endDate={experience.data.endDate || "Present"}
+                >
+                  <Content />
+                </Timeline>
+              );
+            })
+          }
+        </div>
+      </section>
+
+      <section id="education" class="mt-12">
+        <h2
+          class="text-2xl md:text-3xl font-bold text-ink-800 dark:text-paper-100 mb-6"
+        >
+          Education
+        </h2>
+        <div class="space-y-6">
+          {
+            sortedEducation.map(async (entry) => {
+              const { Content } = await entry.render();
+              const startDate = entry.data.startDate ?? "";
+              const endDate = entry.data.endDate ?? "";
+              const dateRange =
+                startDate && endDate
+                  ? `${startDate} - ${endDate}`
+                  : startDate || endDate;
+              return (
+                <div class="rounded-lg border border-graphite-600/20 dark:border-graphite-600 bg-paper-50 dark:bg-surface-dark p-6">
+                  <div class="flex flex-wrap items-center justify-between gap-2">
+                    <div>
+                      <h3 class="text-xl font-semibold text-ink-800 dark:text-paper-100">
+                        {entry.data.university || "Institution"}
+                      </h3>
+                      <p class="text-ink-600 dark:text-graphite-400">
+                        {entry.data.degree}
+                      </p>
+                    </div>
+                    {dateRange && (
+                      <span class="text-sm text-graphite-400">{dateRange}</span>
+                    )}
+                  </div>
+                  <div class="prose prose-sm mt-4 max-w-none">
+                    <Content />
+                  </div>
+                </div>
+              );
+            })
+          }
+        </div>
+      </section>
+
+      <section id="nonprofit" class="mt-12">
+        <h2
+          class="text-2xl md:text-3xl font-bold text-ink-800 dark:text-paper-100 mb-6"
+        >
+          Nonprofit & Board Work
+        </h2>
+        <div class="space-y-6">
+          {
+            sortedNonprofits.map(async (nonprofit) => {
+              const { Content } = await nonprofit.render();
+              return (
+                <Timeline
+                  title={nonprofit.data.company || "Organization"}
+                  subtitle={nonprofit.data.position || "Board Member"}
+                  startDate={nonprofit.data.startDate || ""}
+                  endDate={nonprofit.data.endDate || "Present"}
+                >
+                  <Content />
+                </Timeline>
+              );
+            })
+          }
+        </div>
+      </section>
+    </Container>
+  </main>
+  <Footer client:load />
+</BaseLayout>

@@ -4,6 +4,7 @@ description: "Learn to design and implement REST and GraphQL APIs that can handl
 courses:
   - "software-engineering"
 type: "tutorial"
+draft: true
 difficulty: "intermediate"
 date: "2025-01-06"
 ---

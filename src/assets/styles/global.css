@@ -2,40 +2,83 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Monochrome Color System - Design Tokens
+ * See docs/Visual-style/short-color-brief.md for reference
+ * See tailwind.config.js for token definitions
+ *
+ * Ink = text, meaning, content
+ * Graphite = structure, headers, dividers
+ * Paper = background, reading surface
+ */
+
 /* Custom base styles */
 @layer base {
   body {
-    @apply m-0 text-indigo-900 bg-white;
+    @apply m-0 text-ink-800 bg-paper-100;
+  }
+
+  /* Dark mode base - using design tokens */
+  .dark body,
+  body:where(.dark) {
+    @apply bg-graphite-700 text-paper-100;
   }
 }
 
 /* Custom prose styling for markdown content */
 @layer components {
   .prose {
-    @apply text-gray-700 dark:text-gray-300;
+    @apply text-ink-600;
+  }
+
+  .dark .prose {
+    @apply text-paper-200;
   }
 
   .prose h1,
   .prose h2,
   .prose h3,
   .prose h4 {
-    @apply font-bold text-gray-900 dark:text-white;
+    @apply font-bold text-ink-800;
   }
 
+  .dark .prose h1,
+  .dark .prose h2,
+  .dark .prose h3,
+  .dark .prose h4 {
+    @apply text-paper-100;
+  }
+
+  /* Monochrome links: same color as text, always underlined */
   .prose a {
-    @apply text-blue-600 dark:text-blue-400 no-underline hover:underline;
+    @apply text-ink-800 underline decoration-graphite-400 hover:decoration-ink-800;
+  }
+
+  .dark .prose a {
+    @apply text-paper-100 decoration-graphite-400 hover:decoration-paper-100;
   }
 
   .prose strong {
-    @apply font-semibold text-gray-900 dark:text-white;
+    @apply font-semibold text-ink-800;
+  }
+
+  .dark .prose strong {
+    @apply text-paper-100;
   }
 
   .prose code {
-    @apply bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-1 py-0.5 rounded text-sm;
+    @apply bg-paper-200 text-ink-800 px-1 py-0.5 rounded text-sm;
+  }
+
+  .dark .prose code {
+    @apply bg-surface-dark text-paper-100;
   }
 
   .prose pre {
-    @apply bg-gray-900 dark:bg-gray-950 overflow-x-auto;
+    @apply bg-ink-950 overflow-x-auto;
+  }
+
+  .dark .prose pre {
+    @apply bg-ink-800;
   }
 
   .prose pre code {
@@ -43,15 +86,24 @@
   }
 
   .prose img {
-    @apply rounded-lg shadow-md;
+    @apply rounded-lg;
   }
 
+  /* Monochrome blockquote: neutral border */
   .prose blockquote {
-    @apply border-l-4 border-blue-600 dark:border-blue-400 pl-4 italic;
+    @apply border-l-4 border-graphite-400 pl-4 italic;
+  }
+
+  .dark .prose blockquote {
+    @apply border-ink-600;
   }
 
   .prose hr {
-    @apply border-gray-300 dark:border-gray-700;
+    @apply border-graphite-600/30;
+  }
+
+  .dark .prose hr {
+    @apply border-graphite-600;
   }
 
   .prose ul,

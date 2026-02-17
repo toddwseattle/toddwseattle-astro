@@ -1,38 +1,205 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import HeroBanner from '../components/HeroBanner.astro';
-import Activities from '../components/Activities.astro';
-import Projects from '../components/Projects.astro';
-import Experience from '../components/Experience.astro';
-import NonProfit from '../components/NonProfit.astro';
-import StructuredData from '../components/StructuredData.astro';
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import HeroBanner from "../components/HeroBanner.astro";
+import BlogGrid from "../components/blog/BlogGrid.astro";
+import StructuredData from "../components/StructuredData.astro";
+
+const allPosts = await getCollection("blog");
+const publishedPosts = allPosts
+  .filter((post) => post.data.draft !== true)
+  .sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+  );
+const featuredPosts = publishedPosts.filter((post) => post.data.featured);
+const recentPosts = (
+  featuredPosts.length > 0 ? featuredPosts : publishedPosts
+).slice(0, 3);
 ---
 
-<BaseLayout 
+<BaseLayout
   title="Home"
   description="Todd Warren - Technology leader, educator, and startup advisor specializing in consulting, teaching, and assisting impact-driven organizations"
 >
-  <StructuredData type="Person" data={{
-    name: "Todd Warren",
-    jobTitle: "Technology Leader & Educator",
-    description: "Technology leader, educator, and startup advisor",
-  }} />
-  
+  <StructuredData
+    type="Person"
+    data={{
+      name: "Todd Warren",
+      jobTitle: "Technology Leader & Educator",
+      description: "Technology leader, educator, and startup advisor",
+    }}
+  />
+
   <Header client:load />
-  
+
   <main>
     <HeroBanner />
-    <Activities />
-    <hr class="border-gray-200" />
-    <Projects />
-    <hr class="border-gray-200" />
-    <Experience />
-    <hr class="border-gray-200" />
-    <NonProfit />
+    <section class="py-12 md:py-16 bg-white dark:bg-surface-dark">
+      <div class="container mx-auto px-4 max-w-4xl">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-ink-800 dark:text-paper-100 mb-4"
+        >
+          Now
+        </h2>
+        <p class="text-lg text-ink-600 dark:text-graphite-400 mb-6">
+          Current focus across teaching, writing, consulting, and AutoSoftToday.
+        </p>
+        <ul class="space-y-3 text-ink-600 dark:text-paper-200">
+          <li>
+            <a
+              class="font-medium text-ink-800 dark:text-paper-100 underline decoration-graphite-400 hover:decoration-ink-800 dark:hover:decoration-paper-100"
+              href="/teaching/"
+            >
+              Teaching
+            </a>
+            : teaching spring courses on software engineering and corporate innovation.
+          </li>
+          <li>
+            <a
+              class="font-medium text-ink-800 dark:text-paper-100 underline decoration-graphite-400 hover:decoration-ink-800 dark:hover:decoration-paper-100"
+              href="/writing/"
+            >
+              Writing
+            </a>
+            : essays on innovation, software, teaching practice, and impact.
+          </li>
+          <li>
+            <a
+              class="font-medium text-ink-800 dark:text-paper-100 underline decoration-graphite-400 hover:decoration-ink-800 dark:hover:decoration-paper-100"
+              href="/consulting/"
+            >
+              Consulting
+            </a>
+            : advising teams on product strategy, org design, and delivery.
+          </li>
+          <li>
+            <a
+              class="font-medium text-ink-800 dark:text-paper-100 underline decoration-graphite-400 hover:decoration-ink-800 dark:hover:decoration-paper-100"
+              href="/autosoft-today/"
+            >
+              AutoSoftToday
+            </a>
+            : analysis and commentary on automotive software and safety, with an
+            emphasis on software recalls.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section
+      class="py-12 md:py-16 bg-paper-200 dark:bg-graphite-700 border-y border-graphite-600/20 dark:border-graphite-600"
+    >
+      <div class="container mx-auto px-4">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-ink-800 dark:text-paper-100 mb-8"
+        >
+          Areas of Work
+        </h2>
+        <div class="grid gap-6 md:grid-cols-2">
+          <a
+            href="/teaching/"
+            class="block rounded-xl border border-graphite-600/20 dark:border-graphite-600 bg-paper-50 dark:bg-surface-dark p-6 hover:border-graphite-400 dark:hover:border-ink-600 transition-colors"
+          >
+            <h3
+              class="text-xl font-semibold text-ink-800 dark:text-paper-100 mb-2 group-hover:underline"
+            >
+              Teaching
+            </h3>
+            <p class="text-ink-600 dark:text-graphite-400">
+              Courses and public materials on software engineering and corporate
+              innovation.
+            </p>
+          </a>
+          <a
+            href="/writing/"
+            class="block rounded-xl border border-graphite-600/20 dark:border-graphite-600 bg-paper-50 dark:bg-surface-dark p-6 hover:border-graphite-400 dark:hover:border-ink-600 transition-colors"
+          >
+            <h3
+              class="text-xl font-semibold text-ink-800 dark:text-paper-100 mb-2"
+            >
+              Writing
+            </h3>
+            <p class="text-ink-600 dark:text-graphite-400">
+              Long-form essays and notes focused on building, leadership, and
+              systems.
+            </p>
+          </a>
+          <a
+            href="/autosoft-today/"
+            class="block rounded-xl border border-graphite-600/20 dark:border-graphite-600 bg-paper-50 dark:bg-surface-dark p-6 hover:border-graphite-400 dark:hover:border-ink-600 transition-colors"
+          >
+            <h3
+              class="text-xl font-semibold text-ink-800 dark:text-paper-100 mb-2"
+            >
+              AutoSoftToday
+            </h3>
+            <p class="text-ink-600 dark:text-graphite-400">
+              A landing page for the external publication and research links.
+            </p>
+          </a>
+          <a
+            href="/consulting/"
+            class="block rounded-xl border border-graphite-600/20 dark:border-graphite-600 bg-paper-50 dark:bg-surface-dark p-6 hover:border-graphite-400 dark:hover:border-ink-600 transition-colors"
+          >
+            <h3
+              class="text-xl font-semibold text-ink-800 dark:text-paper-100 mb-2"
+            >
+              Consulting
+            </h3>
+            <p class="text-ink-600 dark:text-graphite-400">
+              Advisory services for product strategy, org design, and delivery
+              systems.
+            </p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-12 md:py-16 bg-paper-50 dark:bg-surface-dark">
+      <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between flex-wrap gap-4 mb-8">
+          <h2
+            class="text-3xl md:text-4xl font-bold text-ink-800 dark:text-paper-100"
+          >
+            Recent writing
+          </h2>
+          <a
+            href="/writing/"
+            class="text-ink-800 dark:text-paper-100 font-medium underline decoration-graphite-400 hover:decoration-ink-800 dark:hover:decoration-paper-100"
+          >
+            View all writing &rarr;
+          </a>
+        </div>
+      </div>
+      <BlogGrid posts={recentPosts} />
+    </section>
+
+    <section class="py-12 md:py-16 bg-paper-50 dark:bg-surface-dark">
+      <div class="container mx-auto px-4 max-w-4xl">
+        <div
+          class="rounded-2xl border border-graphite-600/20 dark:border-graphite-600 bg-paper-200 dark:bg-graphite-700 p-8"
+        >
+          <h2
+            class="text-3xl md:text-4xl font-bold text-ink-800 dark:text-paper-100 mb-3"
+          >
+            Let's work together
+          </h2>
+          <p class="text-lg text-ink-600 dark:text-paper-200 mb-6">
+            If you are exploring consulting, speaking, or a collaborative
+            project, I would love to hear from you.
+          </p>
+          <a
+            href="/consulting/"
+            class="inline-flex items-center rounded-lg bg-ink-800 dark:bg-paper-100 px-5 py-3 font-medium text-paper-50 dark:text-ink-800 hover:bg-ink-950 dark:hover:bg-paper-200 transition-colors"
+          >
+            Start a conversation
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <Footer client:load />
 </BaseLayout>
-

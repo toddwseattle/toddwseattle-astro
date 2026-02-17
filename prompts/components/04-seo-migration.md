@@ -73,10 +73,10 @@ Import and use the SEO component:
 
 ```astro
 ---
-import { SEO } from 'astro-seo';
-import { siteConfig } from '../config/site';
-import '../assets/styles/global.css';
-import '@fortawesome/fontawesome-svg-core/styles.css';
+import { SEO } from "astro-seo";
+import { siteConfig } from "../config/site";
+import "../assets/styles/global.css";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 
 interface Props {
   title?: string;
@@ -101,10 +101,14 @@ const {
 } = Astro.props;
 
 // Construct full title with site name
-const fullTitle = title === siteConfig.title ? title : `${title} | ${siteConfig.title}`;
+const fullTitle =
+  title === siteConfig.title ? title : `${title} | ${siteConfig.title}`;
 
 // Get canonical URL
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? siteConfig.siteUrl).href;
+const canonicalURL = new URL(
+  Astro.url.pathname,
+  Astro.site ?? siteConfig.siteUrl,
+).href;
 
 // Construct full image URL
 const fullImageURL = new URL(image, Astro.site ?? siteConfig.siteUrl).href;
@@ -132,13 +136,14 @@ const fullImageURL = new URL(image, Astro.site ?? siteConfig.siteUrl).href;
           locale: siteConfig.locale,
           siteName: siteConfig.title,
         },
-        ...(article && publishedTime && {
-          article: {
-            publishedTime,
-            modifiedTime,
-            authors: [siteConfig.author.name],
-          }
-        })
+        ...(article &&
+          publishedTime && {
+            article: {
+              publishedTime,
+              modifiedTime,
+              authors: [siteConfig.author.name],
+            },
+          }),
       }}
       twitter={{
         card: "summary_large_image",
@@ -155,7 +160,10 @@ const fullImageURL = new URL(image, Astro.site ?? siteConfig.siteUrl).href;
           { rel: "sitemap", href: "/sitemap-index.xml" },
         ],
         meta: [
-          { name: "viewport", content: "width=device-width, initial-scale=1.0" },
+          {
+            name: "viewport",
+            content: "width=device-width, initial-scale=1.0",
+          },
           { name: "generator", content: Astro.generator },
           { name: "author", content: siteConfig.author.name },
         ],
@@ -166,18 +174,17 @@ const fullImageURL = new URL(image, Astro.site ?? siteConfig.siteUrl).href;
     <div class="flex flex-col min-h-screen">
       <slot />
     </div>
+    <style is:global>
+      a {
+        @apply text-indigo-600 hover:text-indigo-700;
+      }
+
+      p + p {
+        @apply mt-3;
+      }
+    </style>
   </body>
 </html>
-
-<style is:global>
-  a {
-    @apply text-indigo-600 hover:text-indigo-700;
-  }
-
-  p + p {
-    @apply mt-3;
-  }
-</style>
 ```
 
 ### 4. Configure astro.config.mjs
@@ -285,7 +292,7 @@ export const GET: APIRoute = async (context) => {
 
 ```astro
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
@@ -300,7 +307,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 ```astro
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const { entry } = Astro.props;
 ---
@@ -325,18 +332,18 @@ For enhanced rich snippets, create a reusable component:
 
 ```astro
 ---
-import { siteConfig } from '../config/site';
+import { siteConfig } from "../config/site";
 
 interface Props {
-  type?: 'Person' | 'Organization' | 'Article' | 'WebSite';
+  type?: "Person" | "Organization" | "Article" | "WebSite";
   data?: Record<string, any>;
 }
 
-const { type = 'WebSite', data = {} } = Astro.props;
+const { type = "WebSite", data = {} } = Astro.props;
 
 const baseData = {
-  '@context': 'https://schema.org',
-  '@type': type,
+  "@context": "https://schema.org",
+  "@type": type,
 };
 
 const schemas = {
@@ -355,11 +362,11 @@ const schemas = {
     ...baseData,
     headline: data.title,
     author: {
-      '@type': 'Person',
+      "@type": "Person",
       name: siteConfig.author.name,
     },
     publisher: {
-      '@type': 'Organization',
+      "@type": "Organization",
       name: siteConfig.title,
     },
     datePublished: data.publishedTime,

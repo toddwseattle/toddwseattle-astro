@@ -2,7 +2,22 @@
 
 Date: 2025-11-15 (Updated)
 Owner: toddwseattle
-Status: Not Started (0% Complete - HIGH PRIORITY)
+Status: Completed (Redirects Implemented)
+
+## Status Update (2026-02-07)
+
+This plan is now superseded by the implemented redirect strategy. The Gatsby blog content has been migrated into `src/content/blog`, and the legacy `/blog` routes redirect to `/writing`.
+
+- Canonical content routes live under `/writing`.
+- Legacy `/blog` URLs are preserved via redirects in:
+  - `src/pages/blog/index.astro`
+  - `src/pages/blog/[slug].astro`
+- Documentation and verification checklist live in:
+  - `docs/redirect-blog-posts/story.md`
+  - `docs/redirect-blog-posts/work-items.md`
+  - `docs/redirect-blog-posts/verification-todo.md`
+
+Keep the remainder of this file for historical context only.
 
 ## Overview
 

@@ -5,6 +5,7 @@ courses:
   - "software-engineering"
   - "nuvention-web"
 type: "exercise"
+draft: true
 difficulty: "intermediate"
 date: "2025-01-06"
 ---

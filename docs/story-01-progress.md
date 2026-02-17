@@ -2,11 +2,11 @@
 
 ## Objective
 
-Replace the legacy Gatsby navigation with six-item IA (Home, Teaching, Writing, AutoSoft Today, Consulting, About) and ensure consistency across layouts.
+Replace the legacy Gatsby navigation with six-item IA (Home, Teaching, Writing, AutoSoftToday, Consulting, About) and ensure consistency across layouts.
 
 ## Work Items and Todos
 
-- [x] Render the six links (Home, Teaching, Writing, AutoSoft Today, Consulting, About) in desktop layout.
+- [x] Render the six links (Home, Teaching, Writing, AutoSoftToday, Consulting, About) in desktop layout.
 - [x] Ensure all navigation links function correctly (no broken links).
 - [x] Confirm mobile layouts render the same navigation links.
 - [x] Verify no residual Gatsby-era navigation items exist.
@@ -36,7 +36,7 @@ Replace the legacy Gatsby navigation with six-item IA (Home, Teaching, Writing, 
 
 5. **Created placeholder pages** with Header/Footer:
    - `/teaching/` - Teaching landing page
-   - `/autosoft-today/` - AutoSoft Today with external link
+   - `/autosoft-today/` - AutoSoftToday with external link
    - `/consulting/` - Consulting services overview
    - `/about/` - About/bio page
 
@@ -69,7 +69,7 @@ All acceptance criteria from Story 1 have been met:
 - [x] Teaching (/teaching/) loads with placeholder content
 - [x] Writing (/writing/) shows blog posts with Header/Footer
 - [x] Blog (/blog/) redirects to /writing/ (301)
-- [x] AutoSoft Today (/autosoft-today/) loads with placeholder
+- [x] AutoSoftToday (/autosoft-today/) loads with placeholder
 - [x] Consulting (/consulting/) loads with placeholder
 - [x] About (/about/) loads with placeholder
 - [x] Individual blog posts (/blog/[slug]/) include Header/Footer

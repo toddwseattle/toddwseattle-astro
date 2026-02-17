@@ -7,11 +7,12 @@
 3. Create astro.config.mjs with React and Tailwind integrations
 4. Create src/content/config.ts to define content collections based on the structure in src/data/
 5. Install all dependencies
-> **Strategic Context:** 
-> - **Epic & Objectives:** `/docs/01-epic.md` - IA Refresh goals and constraints
-> - **User Stories:** `/docs/02-stories.md` - Navigation, Teaching, Writing, etc.
-> - **Style Guide:** `/docs/04-style-guide.md` - Tone, architecture, and design principles
-> - **Work Items:** `/docs/03-workitems.md` - Detailed implementation tasks
+   > **Strategic Context:**
+   >
+   > - **Epic & Objectives:** `/docs/01-epic.md` - IA Refresh goals and constraints
+   > - **User Stories:** `/docs/02-stories.md` - Navigation, Teaching, Writing, etc.
+   > - **Style Guide:** `/docs/04-style-guide.md` - Tone, architecture, and design principles
+   > - **Work Items:** `/docs/03-workitems.md` - Detailed implementation tasks
 
 ## Original Bootstrap Tasks (Completed)
 
@@ -37,7 +38,7 @@ The migration is now focused on:
 
 1. **Navigation Alignment** - Implementing the six-item IA (Story 1 in `/docs/02-stories.md`)
 2. **Content Collections** - Teaching, Writing sections (Stories 2-3)
-3. **Page Development** - AutoSoft Today, Consulting, About pages (Stories 4-6)
+3. **Page Development** - AutoSoftToday, Consulting, About pages (Stories 4-6)
 4. **Component Migration** - Remaining components per `migrate-components.md`
 
 All work should align with the strategic goals in `/docs/` while respecting the locked constraints (no restart, preserve slugs/routes, no re-imports).

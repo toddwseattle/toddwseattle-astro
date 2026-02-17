@@ -21,7 +21,7 @@ This is a personal portfolio website built with Astro, migrated from Gatsby. The
 **Key Context:**
 
 - Migration from Gatsby to Astro (see `/docs` for epic, stories, and work items)
-- Information architecture refresh focusing on teaching, writing, AutoSoft Today, and consulting
+- Information architecture refresh focusing on teaching, writing, AutoSoftToday, and consulting
 - Original Gatsby version: https://github.com/toddwseattle/toddwseattle-gb
 - Live site: https://toddwseattle.com
 
@@ -126,7 +126,7 @@ This is a personal portfolio website built with Astro, migrated from Gatsby. The
 1. Home – Landing page
 1. Teaching – Corporate Innovation and Software Engineering courses
 1. Writing – Primary content stream (replaces “blog”)
-1. AutoSoft Today – Overview with links to autosofttoday.com
+1. AutoSoftToday – Overview with links to autosofttoday.com
 1. Consulting – Advisory services overview
 1. About – Current bio, roles, and location
 
@@ -238,25 +238,27 @@ All React components must be tested using Vitest and Testing Library. Follow the
 ### Test File Locations
 
 **Unit Tests (Vitest):**
+
 - Colocate with components: `ComponentName.test.tsx`
 - Run: `npm run test` or `npm run test:watch`
 - Check coverage with Vitest extension in VSCode
 
 **E2E Tests (Playwright):**
+
 - Located in `e2e/` directory: `feature-name.spec.ts`
 - Run: `npm run test:e2e` or `npm run test:e2e:ui`
 - Auto-starts dev server for testing
 
 ### When to Use Unit vs E2E Tests
 
-| Scenario | Test Type | Why |
-|----------|-----------|-----|
-| Component props/state | Unit | Fast, isolated |
-| User interactions in component | Unit | Mockable |
-| Image loading on pages | E2E | Real browser behavior |
-| Navigation between pages | E2E | Full routing |
-| Page filtering/search | E2E | Multi-component |
-| Build output verification | E2E | Production-like |
+| Scenario                       | Test Type | Why                   |
+| ------------------------------ | --------- | --------------------- |
+| Component props/state          | Unit      | Fast, isolated        |
+| User interactions in component | Unit      | Mockable              |
+| Image loading on pages         | E2E       | Real browser behavior |
+| Navigation between pages       | E2E       | Full routing          |
+| Page filtering/search          | E2E       | Multi-component       |
+| Build output verification      | E2E       | Production-like       |
 
 ### Incremental Testing Strategy
 

@@ -1,6 +1,6 @@
 ---
-category: 'investments'
-title: 'Divergent Portfolio Companies'
+category: "investments"
+title: "Divergent Portfolio Companies"
 ---
 
 # Divergent Investments

@@ -1,29 +1,44 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import { Image } from 'astro:assets';
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+import { calculateReadingTime, formatReadingTime } from "../../lib/readingTime";
 
 interface Props {
-  post: CollectionEntry<'blog'>;
+  post: CollectionEntry<"blog">;
 }
 
 const { post } = Astro.props;
 const { title, description, date, tags, cover, category } = post.data;
 const slug = post.slug;
 
+// Calculate reading time from post body
+const readingTime = formatReadingTime(calculateReadingTime(post.body ?? ""));
+
+const slugify = (value: string) =>
+  value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
 // Format date to readable format
 const formatDate = (dateString: string) => {
   const d = new Date(dateString);
-  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  return d.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 };
 
 // Category display labels
 const categoryLabels: Record<string, string> = {
-  'innovation': 'Innovation',
-  'software-engineering': 'Software Engineering',
-  'teaching': 'Teaching',
-  'automotive-software': 'Automotive Software',
-  'cycling': 'Cycling',
-  'music': 'Music',
+  innovation: "Innovation",
+  "software-engineering": "Software Engineering",
+  teaching: "Teaching",
+  "automotive-software": "Automotive Software",
+  cycling: "Cycling",
+  music: "Music",
 };
 
 // Get display label for category
@@ -32,55 +47,70 @@ const getCategoryLabel = (cat: string) => {
 };
 ---
 
-<article class="group relative bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden focus-within:ring-2 ring-blue-400">
-  <a href={`/blog/${slug}/`} class="block">
-    {cover && (
-      <div class="relative aspect-video w-full overflow-hidden bg-gray-100 dark:bg-gray-700">
-        <Image
-          src={cover}
-          alt={title}
-          width={600}
-          height={338}
-          loading="lazy"
-          decoding="async"
-          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-        />
-      </div>)}
-    
+<article
+  class="group relative bg-paper-50 dark:bg-surface-dark rounded-lg border border-graphite-600/20 dark:border-graphite-600 hover:border-graphite-400 dark:hover:border-ink-600 transition-colors duration-300 overflow-hidden focus-within:ring-2 ring-graphite-400"
+>
+  <a href={`/writing/${slug}/`} class="block">
+    {
+      cover && (
+        <div class="relative aspect-video w-full overflow-hidden bg-paper-200 dark:bg-graphite-700">
+          <Image
+            src={cover}
+            alt={title}
+            width={600}
+            height={338}
+            loading="lazy"
+            decoding="async"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+        </div>
+      )
+    }
+
     <div class="p-6">
-      <time
-        datetime={date}
-        class="text-sm text-gray-500 dark:text-gray-400 font-medium"
+      <div
+        class="flex items-center gap-2 text-sm text-graphite-400 font-medium"
       >
-        {formatDate(date)}
-      </time>
-      
-      <h3 class="mt-2 text-xl font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
+        <time datetime={date}>
+          {formatDate(date)}
+        </time>
+        <span aria-hidden="true">·</span>
+        <span>{readingTime}</span>
+      </div>
+
+      <h3
+        class="mt-2 text-xl font-semibold text-ink-800 dark:text-paper-100 group-hover:underline transition-colors line-clamp-2"
+      >
         {title}
       </h3>
-      
-      <p class="mt-3 text-gray-600 dark:text-gray-300 line-clamp-3">
+
+      <p class="mt-3 text-ink-600 dark:text-paper-200 line-clamp-3">
         {description}
       </p>
-      
-      {(category || (tags && tags.length > 0)) && (
-        <div class="mt-4 flex flex-wrap gap-2">
-          {category && (
-            <a
-              href={`/writing/tag/${category}/`}
-              class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors"
-              onclick="event.stopPropagation();"
-            >
-              {getCategoryLabel(category)}
-            </a>
-          )}
-          {tags && tags.map((tag) => (
-            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 dark:bg-slate-700 dark:text-slate-200">
-              {tag}
-            </span>
-          ))}
-        </div>
-      )}
     </div>
   </a>
+
+  {
+    (category || (tags && tags.length > 0)) && (
+      <div class="px-6 pb-6 flex flex-wrap gap-2">
+        {category && (
+          <a
+            href={`/writing/tag/${slugify(category)}/`}
+            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-paper-200 text-ink-800 dark:bg-graphite-600 dark:text-paper-100 hover:bg-graphite-400/20 dark:hover:bg-ink-600 transition-colors"
+          >
+            {getCategoryLabel(category)}
+          </a>
+        )}
+        {tags &&
+          tags.map((tag) => (
+            <a
+              href={`/writing/tag/${slugify(tag)}/`}
+              class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-paper-200 text-ink-800 dark:bg-graphite-700 dark:text-paper-200 hover:bg-graphite-400/20 dark:hover:bg-graphite-600 transition-colors"
+            >
+              {tag}
+            </a>
+          ))}
+      </div>
+    )
+  }
 </article>

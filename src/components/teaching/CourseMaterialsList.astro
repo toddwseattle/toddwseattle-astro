@@ -1,17 +1,23 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection } from "astro:content";
 
 interface Props {
-  courseSlug: string;
+  courseSlug?: string;
 }
 
 const { courseSlug } = Astro.props;
 
-// Fetch and filter course materials for this specific course
-const allMaterials = await getCollection('course-materials');
+// Fetch and filter course materials
+const allMaterials = await getCollection("course-materials");
 const materials = allMaterials
-  .filter((material) => material.data.courses.includes(courseSlug))
-  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+  .filter(
+    (material) =>
+      material.data.draft !== true &&
+      (courseSlug ? material.data.courses.includes(courseSlug) : true),
+  )
+  .sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+  );
 
 // Extract unique material types for the filter dropdown
 const materialTypes = [...new Set(materials.map((m) => m.data.type))].sort();
@@ -19,143 +25,158 @@ const materialTypes = [...new Set(materials.map((m) => m.data.type))].sort();
 // Format date to readable format
 const formatDate = (dateString: string) => {
   const d = new Date(dateString);
-  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  return d.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 };
 
-// Get badge color classes for material type
-const getTypeBadgeClasses = (type: string) => {
-  const colorMap: Record<string, string> = {
-    exercise: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
-    resource: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
-    post: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
-    tutorial: 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200',
-    examples: 'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200',
-    'student work': 'bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200',
-  };
-  return colorMap[type] || 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200';
+// Get badge classes for material type (monochrome)
+const getTypeBadgeClasses = (_type: string) => {
+  // All badges use monochrome styling per design system
+  return "bg-paper-200 text-ink-800 dark:bg-graphite-600 dark:text-paper-100";
 };
 
-// Get badge color classes for difficulty
-const getDifficultyBadgeClasses = (difficulty: string) => {
-  const colorMap: Record<string, string> = {
-    beginner: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200',
-    intermediate: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
-    advanced: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
-  };
-  return colorMap[difficulty] || 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200';
+// Get badge classes for difficulty (monochrome)
+const getDifficultyBadgeClasses = (_difficulty: string) => {
+  // All badges use monochrome styling per design system
+  return "bg-paper-200 text-ink-600 dark:bg-graphite-700 dark:text-paper-200";
 };
 
 // Extract src from ImageMetadata object or use string directly
 const getCoverSrc = (cover: any) => {
-  return cover && typeof cover === 'object' && 'src' in cover ? cover.src : cover;
+  return cover && typeof cover === "object" && "src" in cover
+    ? cover.src
+    : cover;
 };
 ---
 
-{materials.length === 0 ? (
-  <div class="text-center py-12 text-gray-600 dark:text-gray-400">
-    <p class="text-lg">No materials yet for this course. Check back soon!</p>
-  </div>
-) : (
-  <div>
-    {/* Filter Controls */}
-    {materialTypes.length > 1 && (
-      <div class="mb-8 flex items-center gap-3">
-        <label for="type-filter" class="sr-only">Filter materials by type</label>
-        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Filter by type:</span>
-        <select
-          id="type-filter"
-          class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white transition-colors"
-          aria-label="Filter materials by type"
-        >
-          <option value="all">All Materials</option>
-          {materialTypes.map((type) => (
-            <option value={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</option>
-          ))}
-        </select>
-      </div>
-    )}
-
-    {/* Materials Grid */}
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {materials.map((material) => {
-        const { title, description, type, difficulty, date, cover } = material.data;
-        const coverSrc = getCoverSrc(cover);
-        
-        return (
-          <article
-            class="material-card group relative bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden focus-within:ring-2 ring-indigo-400 hover:scale-[1.02]"
-            data-type={type}
-          >
-            <a href={`/course-materials/${material.slug}`} aria-label={`Open ${title}`} class="block focus:outline-none">
-              {coverSrc && (
-                <div class="relative aspect-video w-full overflow-hidden bg-gray-100 dark:bg-gray-700">
-                  <img
-                    src={coverSrc}
-                    alt={title}
-                    loading="lazy"
-                    decoding="async"
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-              )}
-              
-              <div class="p-6">
-                {/* Date */}
-                <time
-                  datetime={date}
-                  class="text-sm text-gray-500 dark:text-gray-400 font-medium"
-                >
-                  {formatDate(date)}
-                </time>
-                
-                {/* Title */}
-                <h3 class="mt-2 text-xl font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-2">
-                  {title}
-                </h3>
-                
-                {/* Description */}
-                <p class="mt-3 text-gray-600 dark:text-gray-300 line-clamp-3">
-                  {description}
-                </p>
-                
-                {/* Badges */}
-                <div class="mt-4 flex flex-wrap gap-2">
-                  {/* Type Badge */}
-                  <span class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getTypeBadgeClasses(type)}`}>
-                    {type.charAt(0).toUpperCase() + type.slice(1)}
-                  </span>
-                  
-                  {/* Difficulty Badge */}
-                  {difficulty && (
-                    <span class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getDifficultyBadgeClasses(difficulty)}`}>
-                      {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
-                    </span>
-                  )}
-                </div>
-              </div>
-            </a>
-          </article>
-        );
-      })}
+{
+  materials.length === 0 ? (
+    <div class="text-center py-12 text-graphite-400">
+      <p class="text-lg">No materials yet for this course. Check back soon!</p>
     </div>
-  </div>
-)}
+  ) : (
+    <div>
+      {/* Filter Controls */}
+      {materialTypes.length > 1 && (
+        <div class="mb-8 flex items-center gap-3">
+          <label for="type-filter" class="sr-only">
+            Filter materials by type
+          </label>
+          <span class="text-sm font-medium text-ink-600 dark:text-paper-200">
+            Filter by type:
+          </span>
+          <select
+            id="type-filter"
+            class="px-4 py-2 border border-graphite-600/30 rounded-lg focus:ring-2 focus:ring-graphite-400 focus:border-graphite-400 dark:bg-surface-dark dark:border-graphite-600 dark:text-paper-100 transition-colors"
+            aria-label="Filter materials by type"
+          >
+            <option value="all">All Materials</option>
+            {materialTypes.map((type) => (
+              <option value={type}>
+                {type.charAt(0).toUpperCase() + type.slice(1)}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
+      {/* Materials Grid */}
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {materials.map((material) => {
+          const { title, description, type, difficulty, date, cover } =
+            material.data;
+          const coverSrc = getCoverSrc(cover);
+
+          return (
+            <article
+              class="material-card group relative bg-paper-50 dark:bg-surface-dark rounded-lg border border-graphite-600/20 dark:border-graphite-600 hover:border-graphite-400 dark:hover:border-ink-600 transition-all duration-300 overflow-hidden focus-within:ring-2 ring-graphite-400"
+              data-type={type}
+            >
+              <a
+                href={`/course-materials/${material.slug}`}
+                aria-label={`Open ${title}`}
+                class="block focus:outline-none"
+              >
+                {coverSrc && (
+                  <div class="relative aspect-video w-full overflow-hidden bg-paper-200 dark:bg-graphite-700">
+                    <img
+                      src={coverSrc}
+                      alt={title}
+                      loading="lazy"
+                      decoding="async"
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                )}
+
+                <div class="p-6">
+                  {/* Date */}
+                  <time
+                    datetime={date}
+                    class="text-sm text-graphite-400 font-medium"
+                  >
+                    {formatDate(date)}
+                  </time>
+
+                  {/* Title */}
+                  <h3 class="mt-2 text-xl font-semibold text-ink-800 dark:text-paper-100 group-hover:underline transition-colors line-clamp-2">
+                    {title}
+                  </h3>
+
+                  {/* Description */}
+                  <p class="mt-3 text-ink-600 dark:text-paper-200 line-clamp-3">
+                    {description}
+                  </p>
+
+                  {/* Badges */}
+                  <div class="mt-4 flex flex-wrap gap-2">
+                    {/* Type Badge */}
+                    <span
+                      class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getTypeBadgeClasses(type)}`}
+                    >
+                      {type.charAt(0).toUpperCase() + type.slice(1)}
+                    </span>
+
+                    {/* Difficulty Badge */}
+                    {difficulty && (
+                      <span
+                        class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getDifficultyBadgeClasses(difficulty)}`}
+                      >
+                        {difficulty.charAt(0).toUpperCase() +
+                          difficulty.slice(1)}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </a>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  )
+}
 
 <script>
-  const filterSelect = document.getElementById('type-filter') as HTMLSelectElement;
-  const materialCards = document.querySelectorAll('.material-card');
+  const filterSelect = document.getElementById(
+    "type-filter",
+  ) as HTMLSelectElement;
+  const materialCards = document.querySelectorAll(".material-card");
 
   if (filterSelect && materialCards.length > 0) {
-    filterSelect.addEventListener('change', (e) => {
+    filterSelect.addEventListener("change", (e) => {
       const selectedType = (e.target as HTMLSelectElement).value;
-      
+
       materialCards.forEach((card) => {
-        const cardType = card.getAttribute('data-type');
-        
-        if (selectedType === 'all' || cardType === selectedType) {
-          card.classList.remove('hidden');
+        const cardType = card.getAttribute("data-type");
+
+        if (selectedType === "all" || cardType === selectedType) {
+          card.classList.remove("hidden");
         } else {
-          card.classList.add('hidden');
+          card.classList.add("hidden");
         }
       });
     });

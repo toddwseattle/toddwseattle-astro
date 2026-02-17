@@ -65,7 +65,8 @@ const { title, percentage } = Astro.props;
     <div
       class="h-full bg-indigo-600 rounded-full transition-all duration-1000 ease-out progress-fill"
       style={`width: ${percentage}%`}
-    ></div>
+    >
+    </div>
   </div>
 </div>
 
@@ -111,6 +112,7 @@ Could add ARIA attributes:
   aria-valuemax="100"
   aria-label={`${title}: ${percentage}%`}
 >
+</div>
 ```
 
 ## Usage Example
@@ -119,18 +121,20 @@ Will be used by Skills component:
 
 ```astro
 ---
-import ProgressBar from './ui/ProgressBar.astro';
+import ProgressBar from "./ui/ProgressBar.astro";
 
-const skills = await getCollection('skills');
+const skills = await getCollection("skills");
 ---
 
 <div>
-  {skills.map((skill) => (
-    <ProgressBar
-      title={skill.data.title}
-      percentage={skill.data.percentage || 0}
-    />
-  ))}
+  {
+    skills.map((skill) => (
+      <ProgressBar
+        title={skill.data.title}
+        percentage={skill.data.percentage || 0}
+      />
+    ))
+  }
 </div>
 ```
 

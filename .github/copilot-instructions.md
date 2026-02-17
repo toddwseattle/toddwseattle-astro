@@ -39,7 +39,7 @@ const posts = await getCollection(‘blog’)
 
 ### Islands Architecture
 
-**Always specify client:* directives for React components:**
+**Always specify client:\* directives for React components:**
 
 ```astro
 <!— Interactive immediately —>
@@ -215,9 +215,9 @@ interface ComponentNameProps {
   onAction?: () => void
 }
 
-export const ComponentName: React.FC<ComponentNameProps> = ({ 
-  title, 
-  onAction 
+export const ComponentName: React.FC<ComponentNameProps> = ({
+  title,
+  onAction
 }) => {
   return (
     <div data-testid=“component-name” className=“bg-white p-4”>
@@ -453,7 +453,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
 1. **Astro-First** - Prefer .astro over React unless interactivity required
 1. **Zero-JS Default** - Ship no JavaScript unless necessary
-1. **Islands Architecture** - Always use client:* directives for framework components
+1. **Islands Architecture** - Always use client:\* directives for framework components
 1. **Vitest, not Jest** - Always use `vi` not `jest`
 1. **Incremental tests** - Build one test at a time
 1. **Tailwind only** - Use design tokens, no inline styles or CSS modules

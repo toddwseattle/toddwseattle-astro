@@ -1,0 +1,17 @@
+# Ignore Google Analytics component - uses 'arguments' which conflicts with prettier-plugin-astro
+src/components/GoogleAnalytics.astro
+
+# Ignore docs and prompt content
+# docs/
+prompts/
+
+# Ignore Ralph config and plan files
+ralph-config-files/
+.ralph_plan.md
+
+# Ignore misc instruction/plan docs that break prettier parsing
+.github/copilot-instructions.md
+.github/copilot-test-instructions.md
+.ralph/AGENTS.md
+AGENTS.md
+docs/implement-draft.md
