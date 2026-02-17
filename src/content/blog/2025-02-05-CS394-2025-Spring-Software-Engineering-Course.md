@@ -10,11 +10,11 @@ published: true
 excerpt_separator: <!--more-->
 ---
 
-<div style="text-align: center;">
-  <img src="./20250206_1319_Tech-Savvy-Wildcat-triumph.gif" alt="Willy the Wildcat Successfully Coding">
-</div>
+![Willy the Wildcat Successfully Coding](./2025-willy-coding.gif)
 
 #### Introduction and Overview
+
+**Update 2/15/2026: I will be teaching CS394 again in spring 2026. See [this post](/writing/2026-02-15-cs394-software-engineering-course-spring-2026/) for details on the 2026 course.**
 
 In the spring of 2025, I will again be teaching CS394 at Northwestern University in Evanston, IL. The course will focus on answering and exploring the question, _how do we best work in teams to build software reliably and predictably that users love._ With few exceptions, most software is built by a team of people working together, whether that is in a company or as part of an open-source project. Since the 1960s, a significant branch of computer science, software engineering, has explored tools and methods for humans to work better together to produce machine code that solves problems. In the early 2000s, a significant breakthrough in team software development, which built on lessons of the previous decades, was the creation of agile methodologies and the drafting of the [agile manifesto](https://agilemanifesto.org/).
 

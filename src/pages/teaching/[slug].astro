@@ -43,7 +43,9 @@ const coverSrc =
 <BaseLayout title={title} description={description} image={coverSrc}>
   <Header client:load />
 
-  <TitleSection title={title} subtitle={description} client:load />
+  <Container>
+    <TitleSection title={title} subtitle={description} client:load />
+  </Container>
 
   <Container>
     <div class="max-w-3xl mx-auto py-12">

@@ -44,9 +44,14 @@ const sortedNonprofits = nonprofits
         title="Todd Warren - Resume"
         subtitle="Experience, skills, education, and nonprofit work"
         center
+        sections={[
+          { id: "experience", label: "Experience" },
+          { id: "education", label: "Education" },
+          { id: "nonprofit", label: "Nonprofit & Board Work" },
+        ]}
       />
 
-      <section class="mt-12">
+      <section id="experience" class="mt-12">
         <h2
           class="text-2xl md:text-3xl font-bold text-ink-800 dark:text-paper-100 mb-6"
         >
@@ -71,7 +76,7 @@ const sortedNonprofits = nonprofits
         </div>
       </section>
 
-      <section class="mt-12">
+      <section id="education" class="mt-12">
         <h2
           class="text-2xl md:text-3xl font-bold text-ink-800 dark:text-paper-100 mb-6"
         >
@@ -112,7 +117,7 @@ const sortedNonprofits = nonprofits
         </div>
       </section>
 
-      <section class="mt-12">
+      <section id="nonprofit" class="mt-12">
         <h2
           class="text-2xl md:text-3xl font-bold text-ink-800 dark:text-paper-100 mb-6"
         >

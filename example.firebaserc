@@ -1,22 +1,13 @@
 {
-  "hosting": [
-    {
-      "target": "staging",
-      "public": "dist",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ]
-    },
-    {
-      "target": "prod",
-      "public": "dist",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ]
+  "projects": {
+    "default": "your-firebase-project-id"
+  },
+  "targets": {
+    "your-firebase-project-id": {
+      "hosting": {
+        "staging": ["staging"],
+        "prod": ["prod"]
+      }
     }
-  ]
+  }
 }

@@ -17,7 +17,7 @@ describe("Header", () => {
       "Home",
       "Teaching",
       "Writing",
-      "AutoSoft Today",
+      "AutoSoftToday",
       "Consulting",
       "About",
     ];
@@ -35,7 +35,7 @@ describe("Header", () => {
       { text: "Home", href: "/" },
       { text: "Teaching", href: "/teaching/" },
       { text: "Writing", href: "/writing/" },
-      { text: "AutoSoft Today", href: "/autosoft-today/" },
+      { text: "AutoSoftToday", href: "/autosoft-today/" },
       { text: "Consulting", href: "/consulting/" },
       { text: "About", href: "/about/" },
     ];

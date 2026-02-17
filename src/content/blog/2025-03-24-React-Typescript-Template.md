@@ -5,7 +5,7 @@ date: "2025-03-24"
 tags:
   ["teaching", "software development", "software engineering", "northwestern"]
 description: "How to to set up your VSCode for the CS394 Spring 2025 course to develop typescript, react, firebase apps"
-published: false
+draft: true
 excerpt_separator: <!--more-->
 ---
 
@@ -48,7 +48,7 @@ Before using the template, make sure you have:
 - **Node.js**: Version 20.x or newer recommended
 - **npm**: For package management (comes bundled with Node.js)
 - **Git**: For version control
-- **VS Code**: Recommended editor (see the [VS Code setup](../2025-03-15-VSCode-Setup-Recomendations/index.md) guide)
+- **VS Code**: Recommended editor (see the [VS Code setup](/writing/2025-03-15-vscode-setup-recomendations/) guide)
 
 To check your Node.js and npm versions:
 

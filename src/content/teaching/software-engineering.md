@@ -10,6 +10,8 @@ topics:
   - "Stories, estimation, storypoints, and velocity"
   - "Working with real clients and managing backlogs"
   - "Modern web development with React, TypeScript, and Firebase"
+  - "Self-paced React labs: fundamentals, TypeScript, testing, and Git/GitHub workflows"
+  - "Harness Engineering and agentic AI tools for client-oriented development"
   - "AI-assisted coding and development workflows"
   - "Git-based collaboration and contribution tracking"
   - "Testing strategies including unit and end-to-end testing"
@@ -22,9 +24,11 @@ exampleProjects:
 publicArtifacts:
   - title: "Chris Riesbeck's CS394 Course Page"
     url: "https://courses.cs.northwestern.edu/394/"
-  - title: "2025Course Overview Post"
-    url: "/writing/2025-02-05-cs394-2025-spring-software-engineering-course/"
-date: "2025-01-06"
+  - title: "2026 Course Overview Post"
+    url: "/writing/2026-02-15-cs394-software-engineering-course-spring-2026/"
+  - title: "Harness Engineering (OpenAI)"
+    url: "https://openai.com/index/harness-engineering/"
+date: "2026-02-15"
 ---
 
 ## Overview
@@ -38,15 +42,19 @@ By the end of this course, students will:
 - Have hands-on experience building software in agile teams with real deadlines and real users
 - Understand and apply agile practices: sprints, retrospectives, user stories, estimation, and velocity tracking
 - Ship a working product built in React/TypeScript with Firebase, deployed and publicly accessible
+- Master React, TypeScript fundamentals, and testing disciplines through focused self-paced labs
 - Conduct user testing, interpret feedback, and iterate on a product
 - Navigate the challenges of multi-team coordination on a shared client project
-- Use Git effectively for team-based development, with meaningful individual contributions tracked through commit history
+- Apply Harness Engineering principles and agentic AI tools effectively in professional development workflows
+- Use Git and GitHub effectively for team-based development, with meaningful individual contributions tracked through commit history
 - Develop opinions—grounded in experience—on how to run a team software project well
 - Be prepared to pass an entry-level full-stack technical interview
 
 ## Course Structure
 
-The course is built around two major team projects, not lectures. The first project is a startup simulation where small teams go from ideation through four-panel storyboards to a deployed, user-tested product in about five weeks. The second project introduces the complexity of real-world development: multiple agile teams coordinate to build software for an actual external client, navigating shared architecture, inter-team dependencies, and client communication. Self-paced labs in React, TypeScript, testing, and related tools provide technical skill-building throughout.
+The course is built around two major team projects, not lectures. The first project is a startup simulation where small teams go from ideation through four-panel storyboards to a deployed, user-tested product in about five weeks. Students also complete a self-paced lab component (5-7 focused labs) covering React fundamentals, TypeScript best practices, advanced Git and GitHub workflows, and testing techniques for AI-aided development.
+
+The second project introduces the complexity of real-world development: multiple agile teams coordinate to build software for an actual external client, with a heavy emphasis on [Harness Engineering](https://openai.com/index/harness-engineering/) techniques using agentic AI tools. Teams navigate shared architecture, inter-team dependencies, client communication, and modern AI-assisted development practices.
 
 ## Who Should Take This Course
 

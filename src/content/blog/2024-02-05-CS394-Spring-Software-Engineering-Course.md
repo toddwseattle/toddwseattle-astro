@@ -6,7 +6,7 @@ date: "2024-02-05"
 tags:
   ["teaching", "software development", "software engineering", "northwestern"]
 description: "This post is background primarily aimed at potential students of spring CS394 software engineering with me at Northwestern University"
-published: true
+draft: false
 excerpt_separator: <!--more-->
 ---
 

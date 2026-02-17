@@ -129,34 +129,34 @@ Use the Vitest extension's coverage report (via the "play with timer" icon) to e
 
 Here's our sample `ColorBlocks` component:
 
-```typescript
+```tsx
 /*** ColorBlocks React component Creates a set of color blocks for an array of blocks, where each block contains an array of strings
  *  the component takes a valid css color as well as the array of blocks
  * **/
-import "./ColorBlocks.css"
+import "./ColorBlocks.css";
 
-import React, { useState } from "react"
+import React, { useState } from "react";
 
-import BulletBlock from "../BulletBlock/BulletBlock"
+import BulletBlock from "../BulletBlock/BulletBlock";
 export interface ColorBlock {
-  color: string
-  content: string[]
+  color: string;
+  content: string[];
 }
 export interface ColorBlocksProps {
-  blocks: ColorBlock[]
-  updateColorBlocks: (blocks: ColorBlock[]) => void
+  blocks: ColorBlock[];
+  updateColorBlocks: (blocks: ColorBlock[]) => void;
 }
 export const ColorBlocks: React.FC<ColorBlocksProps> = ({
   blocks,
   updateColorBlocks,
 }) => {
-  const [currentBlocks, setCurrentBlocks] = useState(blocks)
+  const [currentBlocks, setCurrentBlocks] = useState(blocks);
   const updateColorBlockStrings = (index: number, newBlocks: string[]) => {
-    const newColorBlocks = [...currentBlocks]
-    newColorBlocks[index].content = newBlocks
-    setCurrentBlocks(newColorBlocks)
-    updateColorBlocks(newColorBlocks)
-  }
+    const newColorBlocks = [...currentBlocks];
+    newColorBlocks[index].content = newBlocks;
+    setCurrentBlocks(newColorBlocks);
+    updateColorBlocks(newColorBlocks);
+  };
 
   return (
     <div data-testid="color-blocks">
@@ -170,7 +170,7 @@ export const ColorBlocks: React.FC<ColorBlocksProps> = ({
           >
             <BulletBlock
               items={block.content}
-              onSave={newBlocks => updateColorBlockStrings(index, newBlocks)}
+              onSave={(newBlocks) => updateColorBlockStrings(index, newBlocks)}
             />
           </div>
         ))
@@ -178,8 +178,8 @@ export const ColorBlocks: React.FC<ColorBlocksProps> = ({
         <div>No blocks to display, add a block</div>
       )}
     </div>
-  )
-}
+  );
+};
 ```
 
 ###### Step 1: Create a Basic Test
@@ -200,19 +200,19 @@ import { describe, expect, test, vi } from "vitest";
 
 Your first test might look like:
 
-```typescript
-import React from "react"
-import { render, screen } from "@testing-library/react"
-import { describe, it, vi, expect } from "vitest"
-import { ColorBlocks, ColorBlocksProps } from "./ColorBlocks"
-import "@testing-library/jest-dom"
+```tsx
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import { describe, it, vi, expect } from "vitest";
+import { ColorBlocks, ColorBlocksProps } from "./ColorBlocks";
+import "@testing-library/jest-dom";
 
 // Copilot test instructions: Using vitest, mock subcomponents with vi.mock, and group tests in describe blocks as instructed.
 
 // Mock the BulletBlock subcomponent
 vi.mock("../BulletBlock/BulletBlock", () => ({
   default: () => <div data-testid="mock-bullet-block" />,
-}))
+}));
 
 describe("ColorBlocks", () => {
   describe("when passed an empty array of colorblocks", () => {
@@ -220,16 +220,16 @@ describe("ColorBlocks", () => {
       const props: ColorBlocksProps = {
         blocks: [],
         updateColorBlocks: vi.fn(),
-      }
+      };
 
-      render(<ColorBlocks {...props} />)
-      expect(screen.getByTestId("color-blocks")).toBeInTheDocument()
+      render(<ColorBlocks {...props} />);
+      expect(screen.getByTestId("color-blocks")).toBeInTheDocument();
       expect(
-        screen.getByText(/No blocks to display, add a block/i)
-      ).toBeInTheDocument()
-    })
-  })
-})
+        screen.getByText(/No blocks to display, add a block/i),
+      ).toBeInTheDocument();
+    });
+  });
+});
 ```
 
 ###### Step 2: Identify Additional Test Cases
@@ -248,16 +248,16 @@ Here are some additional Tests to add:
 
 Here's the final implementation after adding all test cases through the incremental approach described above:
 
-```typescript
+```tsx
 // Copilot test instructions: Using vitest, mock subcomponents with vi.mock, and group tests in describe blocks as instructed.
 
-import React from "react"
-import { render, screen, fireEvent } from "@testing-library/react"
-import { describe, it, vi, expect } from "vitest"
-import { ColorBlocks, ColorBlocksProps } from "./ColorBlocks"
-import "@testing-library/jest-dom"
+import React from "react";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { describe, it, vi, expect } from "vitest";
+import { ColorBlocks, ColorBlocksProps } from "./ColorBlocks";
+import "@testing-library/jest-dom";
 // Mock the BulletBlock subcomponent
-const mockOnSave = vi.fn()
+const mockOnSave = vi.fn();
 vi.mock("../BulletBlock/BulletBlock", () => ({
   __esModule: true,
   default: (props: any) => (
@@ -276,7 +276,7 @@ vi.mock("../BulletBlock/BulletBlock", () => ({
         ))}
     </div>
   ),
-}))
+}));
 
 describe("ColorBlocks", () => {
   describe("when passed an empty array of colorblocks", () => {
@@ -284,15 +284,15 @@ describe("ColorBlocks", () => {
       const props: ColorBlocksProps = {
         blocks: [],
         updateColorBlocks: vi.fn(),
-      }
+      };
 
-      render(<ColorBlocks {...props} />)
-      expect(screen.getByTestId("color-blocks")).toBeInTheDocument()
+      render(<ColorBlocks {...props} />);
+      expect(screen.getByTestId("color-blocks")).toBeInTheDocument();
       expect(
-        screen.getByText(/No blocks to display, add a block/i)
-      ).toBeInTheDocument()
-    })
-  })
+        screen.getByText(/No blocks to display, add a block/i),
+      ).toBeInTheDocument();
+    });
+  });
 
   describe("when passed a single colorblock with a single string", () => {
     it("renders the colorblock and its string", () => {
@@ -306,16 +306,16 @@ describe("ColorBlocks", () => {
           },
         ],
         updateColorBlocks: vi.fn(),
-      }
+      };
 
-      render(<ColorBlocks {...props} />)
-      expect(screen.getByTestId("color-blocks")).toBeInTheDocument()
-      expect(screen.getByTestId("color-block")).toBeInTheDocument()
-      expect(screen.getByText("Block 1")).toBeInTheDocument()
-      expect(screen.getByTestId("mock-bullet-block")).toBeInTheDocument()
-      expect(screen.getByText("Item 1")).toBeInTheDocument()
-    })
-  })
+      render(<ColorBlocks {...props} />);
+      expect(screen.getByTestId("color-blocks")).toBeInTheDocument();
+      expect(screen.getByTestId("color-block")).toBeInTheDocument();
+      expect(screen.getByText("Block 1")).toBeInTheDocument();
+      expect(screen.getByTestId("mock-bullet-block")).toBeInTheDocument();
+      expect(screen.getByText("Item 1")).toBeInTheDocument();
+    });
+  });
 
   describe("when passed a single colorblock with multiple strings", () => {
     it("renders the colorblock and all its strings", () => {
@@ -329,17 +329,17 @@ describe("ColorBlocks", () => {
           },
         ],
         updateColorBlocks: vi.fn(),
-      }
+      };
 
-      render(<ColorBlocks {...props} />)
-      expect(screen.getByTestId("color-block")).toBeInTheDocument()
-      expect(screen.getByText("Block 2")).toBeInTheDocument()
-      expect(screen.getAllByTestId("mock-bullet-item")).toHaveLength(3)
-      expect(screen.getByText("First")).toBeInTheDocument()
-      expect(screen.getByText("Second")).toBeInTheDocument()
-      expect(screen.getByText("Third")).toBeInTheDocument()
-    })
-  })
+      render(<ColorBlocks {...props} />);
+      expect(screen.getByTestId("color-block")).toBeInTheDocument();
+      expect(screen.getByText("Block 2")).toBeInTheDocument();
+      expect(screen.getAllByTestId("mock-bullet-item")).toHaveLength(3);
+      expect(screen.getByText("First")).toBeInTheDocument();
+      expect(screen.getByText("Second")).toBeInTheDocument();
+      expect(screen.getByText("Third")).toBeInTheDocument();
+    });
+  });
 
   describe("when passed multiple colorblocks with multiple strings", () => {
     it("renders all colorblocks and their strings", () => {
@@ -359,25 +359,25 @@ describe("ColorBlocks", () => {
           },
         ],
         updateColorBlocks: vi.fn(),
-      }
+      };
 
-      render(<ColorBlocks {...props} />)
-      const colorBlocks = screen.getAllByTestId("color-block")
-      expect(colorBlocks).toHaveLength(2)
-      expect(screen.getByText("Block 3")).toBeInTheDocument()
-      expect(screen.getByText("Block 4")).toBeInTheDocument()
-      expect(screen.getAllByTestId("mock-bullet-block")).toHaveLength(2)
-      expect(screen.getByText("A")).toBeInTheDocument()
-      expect(screen.getByText("B")).toBeInTheDocument()
-      expect(screen.getByText("X")).toBeInTheDocument()
-      expect(screen.getByText("Y")).toBeInTheDocument()
-      expect(screen.getByText("Z")).toBeInTheDocument()
-    })
-  })
+      render(<ColorBlocks {...props} />);
+      const colorBlocks = screen.getAllByTestId("color-block");
+      expect(colorBlocks).toHaveLength(2);
+      expect(screen.getByText("Block 3")).toBeInTheDocument();
+      expect(screen.getByText("Block 4")).toBeInTheDocument();
+      expect(screen.getAllByTestId("mock-bullet-block")).toHaveLength(2);
+      expect(screen.getByText("A")).toBeInTheDocument();
+      expect(screen.getByText("B")).toBeInTheDocument();
+      expect(screen.getByText("X")).toBeInTheDocument();
+      expect(screen.getByText("Y")).toBeInTheDocument();
+      expect(screen.getByText("Z")).toBeInTheDocument();
+    });
+  });
 
   describe("when bullet points are entered", () => {
     it("calls updateColorBlocks callback", () => {
-      const updateColorBlocks = vi.fn()
+      const updateColorBlocks = vi.fn();
       const props: ColorBlocksProps = {
         blocks: [
           {
@@ -388,11 +388,11 @@ describe("ColorBlocks", () => {
           },
         ],
         updateColorBlocks,
-      }
+      };
 
-      render(<ColorBlocks {...props} />)
-      const saveButton = screen.getByTestId("mock-save")
-      fireEvent.click(saveButton)
+      render(<ColorBlocks {...props} />);
+      const saveButton = screen.getByTestId("mock-save");
+      fireEvent.click(saveButton);
       expect(updateColorBlocks).toHaveBeenCalledWith([
         {
           id: "5",
@@ -400,10 +400,10 @@ describe("ColorBlocks", () => {
           title: "Block 5",
           content: ["new item"],
         },
-      ])
-    })
-  })
-})
+      ]);
+    });
+  });
+});
 ```
 
 ##### Common Pitfalls to Watch For

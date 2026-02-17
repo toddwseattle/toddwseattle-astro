@@ -10,8 +10,6 @@ published: true
 excerpt_separator: <!--more-->
 ---
 
-# Setting Up VS Code for CS394: A Complete Guide
-
 Welcome to CS394: Software Engineering! This guide will help you set up Visual Studio Code (VS Code) - the recommended code editor for this course. You'll need a properly configured development environment for working with React, TypeScript, Firebase, and Git throughout the quarter. This guide works for both Windows and Mac operating systems.
 
 ## Table of Contents

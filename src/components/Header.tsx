@@ -19,7 +19,7 @@ const mainNavItems: MainNavItem[] = [
     slug: "/writing/",
   },
   {
-    title: "AutoSoft Today",
+    title: "AutoSoftToday",
     slug: "/autosoft-today/",
   },
   {
