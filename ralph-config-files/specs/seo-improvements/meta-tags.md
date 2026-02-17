@@ -136,14 +136,14 @@ const siteConfig = {
 
 ### Content Type Matrix
 
-| Page Type      | og:type | Extra Tags           |
-| -------------- | ------- | -------------------- |
-| Home           | website | -                    |
-| About          | website | -                    |
-| Blog List      | website | -                    |
-| Blog Post      | article | published_time, tags |
-| Teaching       | website | -                    |
-| AutoSoft Today | website | -                    |
+| Page Type     | og:type | Extra Tags           |
+| ------------- | ------- | -------------------- |
+| Home          | website | -                    |
+| About         | website | -                    |
+| Blog List     | website | -                    |
+| Blog Post     | article | published_time, tags |
+| Teaching      | website | -                    |
+| AutoSoftToday | website | -                    |
 
 ### Testing Strategy
 

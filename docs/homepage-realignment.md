@@ -39,7 +39,7 @@ Top-level nav (ONLY):
 - Home
 - Teaching
 - Writing
-- AutoSoft Today
+- AutoSoftToday
 - Consulting
 - About
 
@@ -49,7 +49,7 @@ Principles:
 - Tags over deep nesting
 - Evergreen over timeline/resume
 - Home is curated, not a feed dump
-- AutoSoft Today is a landing page that links out to autosofttoday.com; no duplicated content
+- AutoSoftToday is a landing page that links out to autosofttoday.com; no duplicated content
 
 ## Task A — Inventory (No Deletions)
 
@@ -162,7 +162,7 @@ Navigation and route behavior:
 Home page content and sequencing:
 
 - Replace any portfolio or resume-driven sections with the target home structure.
-- Verify "Now" bullets link to Teaching, Writing, Consulting, and AutoSoft Today.
+- Verify "Now" bullets link to Teaching, Writing, Consulting, and AutoSoftToday.
 - Limit writing on home to a curated set (featured or latest 3).
 - Add a short "Mini About" block with Seattle/Park City.
 - Ensure the home layout remains writing-first (no projects grid, no resume timeline).
@@ -205,8 +205,8 @@ Implementation notes (non-destructive):
 Home sections (top to bottom):
 
 1. Hero (positioning + 2 CTAs max)
-2. “Now” (3–5 bullets, present tense, links into Teaching/Writing/Consulting/AutoSoft Today)
-3. Four pillar cards (Teaching / Writing / AutoSoft Today / Consulting)
+2. "Now" (3–5 bullets, present tense, links into Teaching/Writing/Consulting/AutoSoftToday)
+3. Four pillar cards (Teaching / Writing / AutoSoftToday / Consulting)
 4. Recent writing (max 3 posts, curated; use frontmatter like `featured: true` or fallback to latest)
 5. Mini About (present tense + Seattle/Park City)
 6. Contact CTA

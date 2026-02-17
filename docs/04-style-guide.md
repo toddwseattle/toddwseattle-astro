@@ -4,7 +4,7 @@ Use this guide to keep future work aligned with the IA refresh and writing-first
 
 ## Information Architecture Guardrails
 
-- **Navigation (fixed):** Home, Teaching, Writing, AutoSoft Today, Consulting, About.
+- **Navigation (fixed):** Home, Teaching, Writing, AutoSoftToday, Consulting, About.
 - **Collections (recommended):** `content/writing`, `content/teaching/corporate-innovation`, `content/teaching/software-engineering`, `content/pages`.
 - Prefer tags over deep folder nesting; avoid year-based routing.
 - Writing is the primary stream; hobbies (cycling, guitar) belong as tags under Writing.
@@ -34,7 +34,7 @@ Use this guide to keep future work aligned with the IA refresh and writing-first
 
 - Navigation matches the fixed IA; no stray Gatsby-era items.
 - Site builds successfully; routes remain intact; posts render with updated typography and cards.
-- AutoSoft Today page links externally without duplicated content.
+- AutoSoftToday page links externally without duplicated content.
 
 ## Working Practices
 

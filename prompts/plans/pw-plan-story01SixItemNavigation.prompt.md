@@ -23,7 +23,7 @@ Complete the navigation infrastructure by creating missing pages, aligning blog/
 
 1. `/teaching/` - Landing page for courses (Teaching)
 2. `/writing/` - Primary content stream (Writing, replaces Blog)
-3. `/autosoft-today/` - Links to external site (AutoSoft Today)
+3. `/autosoft-today/` - Links to external site (AutoSoftToday)
 4. `/consulting/` - Advisory services overview (Consulting)
 5. `/about/` - Bio and current roles (About)
 
@@ -172,16 +172,16 @@ const seo = {
 </BaseLayout>
 ```
 
-### Step 5: Create AutoSoft Today Page
+### Step 5: Create AutoSoftToday Page
 
 **File:** `src/pages/autosoft-today/index.astro`
-**Action:** Create landing page with external links
+**Action:** Create placeholder page for Story 4
 
 **Requirements:**
 
 - Import Header/Footer with `client:load`
 - Use `BaseLayout` wrapper
-- Brief description of AutoSoft Today
+- Brief description of AutoSoftToday
 - Clear external link to autosofttoday.com
 - No duplicate content from external site
 - Keep simple and concise (Story 4)
@@ -197,7 +197,7 @@ import Container from "../../components/ui/Container";
 import TitleSection from "../../components/ui/TitleSection";
 
 const seo = {
-  title: "AutoSoft Today",
+  title: "AutoSoftToday",
   description:
     "Exploring the intersection of automotive technology and software",
 };
@@ -209,7 +209,7 @@ const seo = {
     <Container>
       <TitleSection
         client:load
-        title="AutoSoft Today"
+        title="AutoSoftToday"
         subtitle="Exploring the intersection of automotive technology and software"
         center
       />
@@ -222,7 +222,7 @@ const seo = {
             rel="noopener noreferrer"
             class="text-indigo-600 hover:text-indigo-800"
           >
-            Visit AutoSoft Today →
+            Visit AutoSoftToday →
           </a>
         </p>
       </div>
@@ -368,7 +368,7 @@ const seo = {
 - [ ] Teaching (/teaching/) loads with placeholder content
 - [ ] Writing (/writing/) shows blog posts with Header/Footer
 - [ ] Blog (/blog/) redirects to /writing/
-- [ ] AutoSoft Today (/autosoft-today/) loads with placeholder
+- [ ] AutoSoftToday (/autosoft-today/) loads with placeholder
 - [ ] Consulting (/consulting/) loads with placeholder
 - [ ] About (/about/) loads with placeholder
 - [ ] Individual blog posts (/blog/[slug]/) still work
@@ -510,7 +510,7 @@ From `docs/04-style-guide.md`:
 5. Test all navigation links
 6. Verify acceptance criteria
 
-**Priority 2 (Future Stories):** 7. Create teaching content (Story 2) 8. Add consulting content (Story 5) 9. Write about page content (Story 6) 10. Add AutoSoft Today content (Story 4) 11. Content audit and tagging (Story 7)
+**Priority 2 (Future Stories):** 7. Create teaching content (Story 2) 8. Add consulting content (Story 5) 9. Write about page content (Story 6) 10. Add AutoSoftToday content (Story 4) 11. Content audit and tagging (Story 7)
 
 **Priority 3 (Enhancements):** 12. Consider PageLayout abstraction 13. Add site navigation to Footer 14. Evaluate blog collection rename 15. Add more comprehensive tests
 

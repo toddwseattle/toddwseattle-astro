@@ -6,7 +6,7 @@
 
 This plan outlines the migration of components from the old Gatsby site (`/home/toddwseattle/pw-toddwseattle`) to the new Astro project (`/home/toddwseattle/pw-toddwseattle-astro`).
 
-The migration aligns with the **six-item navigation structure** (Home, Teaching, Writing, AutoSoft Today, Consulting, About) and the **writing-forward, modern posture** described in the strategic documentation.
+The migration aligns with the **six-item navigation structure** (Home, Teaching, Writing, AutoSoftToday, Consulting, About) and the **writing-forward, modern posture** described in the strategic documentation.
 
 ## Current State Assessment
 

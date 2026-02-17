@@ -9,12 +9,12 @@ Migrating from hardcoded colors (indigo, blue, teal, raw hex values) to centrali
 ## Design Tokens (tailwind.config.js)
 
 ```js
-colors: {
-  ink: { 950: '#0D0D0F', 800: '#1A1A1C', 600: '#5C5B5E' },
-  graphite: { 700: '#403F41', 600: '#4A494C', 400: '#8A898D' },
-  paper: { 50: '#FFFFFF', 100: '#F4F3F2', 200: '#ECEBEC' },
-  surface: { light: '#FFFFFF', dark: '#2E2D30' },
-}
+const colors = {
+  ink: { 950: "#0D0D0F", 800: "#1A1A1C", 600: "#5C5B5E" },
+  graphite: { 700: "#403F41", 600: "#4A494C", 400: "#8A898D" },
+  paper: { 50: "#FFFFFF", 100: "#F4F3F2", 200: "#ECEBEC" },
+  surface: { light: "#FFFFFF", dark: "#2E2D30" },
+};
 ```
 
 ## Status: COMPLETE
@@ -87,7 +87,7 @@ All files have been migrated to use the design token system. Build passes (71 pa
 
 - [x] **src/pages/index.astro** - Homepage
 - [x] **src/pages/resume/index.astro** - Resume page
-- [x] **src/pages/autosoft-today/index.astro** - AutoSoft Today
+- [x] **src/pages/autosoft-today/index.astro** - AutoSoftToday
 - [x] **src/pages/teaching/index.astro** - Teaching index
 - [x] **src/pages/teaching/[slug].astro** - Teaching detail
 - [x] **src/pages/course-materials/[slug].astro** - Course material detail

@@ -2,7 +2,7 @@
 
 ## Story 1: Define Top-Level Navigation
 
-Replace the legacy Gatsby navigation with the six-item IA (Home, Teaching, Writing, AutoSoft Today, Consulting, About) and ensure consistency across layouts.
+Replace the legacy Gatsby navigation with the six-item IA (Home, Teaching, Writing, AutoSoftToday, Consulting, About) and ensure consistency across layouts.
 
 ### Acceptance Criteria
 
@@ -30,13 +30,13 @@ Migrate the blog feed into a Writing collection with tag-driven discovery instea
 - Tags include at least: innovation & org design, software engineering, teaching reflections, cycling, guitar & music.
 - Writing index uses strong post cards with optional images.
 
-## Story 4: AutoSoft Today Landing Page
+## Story 4: AutoSoftToday Landing Page
 
-Add a concise landing page describing AutoSoft Today, linking out to autosofttoday.com without duplicating content.
+Add a concise landing page describing AutoSoftToday, linking out to autosofttoday.com without duplicating content.
 
 ### Acceptance Criteria
 
-- Page explains what AutoSoft Today is and why it matters.
+- Page explains what AutoSoftToday is and why it matters.
 - Clear external link to autosofttoday.com is present.
 - No imported/duplicated articles from the external site.
 

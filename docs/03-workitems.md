@@ -3,7 +3,7 @@
 ## For Story 1: Define Top-Level Navigation
 
 1. Inventory current navigation and header components to remove Gatsby-era menu items while preserving route integrity.
-2. Implement the six-link navigation (Home, Teaching, Writing, AutoSoft Today, Consulting, About) in shared layout(s) for desktop and mobile.
+2. Implement the six-link navigation (Home, Teaching, Writing, AutoSoftToday, Consulting, About) in shared layout(s) for desktop and mobile.
 3. Update internal links to point to new/realigned pages or collections without changing existing slugs.
 
 ## For Story 2: Create Teaching Section
@@ -20,9 +20,9 @@
 3. Update the Writing index to use PostCard-style listings with optional images and tag chips.
 4. Validate that existing blog routes resolve and redirect appropriately if needed without breaking URLs.
 
-## For Story 4: AutoSoft Today Landing Page
+## For Story 4: AutoSoftToday Landing Page
 
-1. Draft a concise landing page describing AutoSoft Today’s purpose and current status.
+1. Draft a concise landing page describing AutoSoftToday's purpose and current status.
 2. Add prominent external links to autosofttoday.com and representative content highlights without importing that content.
 3. Integrate the page into navigation and ensure layout consistency.
 

@@ -38,7 +38,7 @@ The migration is now focused on:
 
 1. **Navigation Alignment** - Implementing the six-item IA (Story 1 in `/docs/02-stories.md`)
 2. **Content Collections** - Teaching, Writing sections (Stories 2-3)
-3. **Page Development** - AutoSoft Today, Consulting, About pages (Stories 4-6)
+3. **Page Development** - AutoSoftToday, Consulting, About pages (Stories 4-6)
 4. **Component Migration** - Remaining components per `migrate-components.md`
 
 All work should align with the strategic goals in `/docs/` while respecting the locked constraints (no restart, preserve slugs/routes, no re-imports).

@@ -75,14 +75,16 @@ No other color roles should be introduced.
 
 The dark theme is the canonical expression of the brand.
 
-````css
---bg-primary:    #403F41; /* charcoal */
---bg-secondary:  #2E2D30; /* deep graphite */
---text-primary:  #F2F2F2; /* warm off-white */
---text-muted:    #B8B7BA;
---accent-strong: #0D0D0F; /* near-black ink */
---accent-soft:   #6A696D;
---border-subtle: #4A494C;
+```css
+--bg-primary: #403f41; /* charcoal */
+--bg-secondary: #2e2d30; /* deep graphite */
+--text-primary: #f2f2f2; /* warm off-white */
+--text-muted: #b8b7ba;
+--accent-strong: #0d0d0f; /* near-black ink */
+--accent-soft: #6a696d;
+--border-subtle: #4a494c;
+```
+
 Intent
 
 Calm, focused, slightly warm
@@ -96,14 +98,14 @@ Light Theme
 Light mode is intentionally paper-like, not stark white.
 
 ```css
---bg-primary:    #F4F3F2; /* warm paper */
---bg-secondary:  #FFFFFF;
---text-primary:  #1A1A1C; /* graphite ink */
---text-muted:    #5C5B5E;
---accent-strong: #403F41; /* charcoal */
---accent-soft:   #8A898D;
---border-subtle: #E1E0E2;
-````
+--bg-primary: #f4f3f2; /* warm paper */
+--bg-secondary: #ffffff;
+--text-primary: #1a1a1c; /* graphite ink */
+--text-muted: #5c5b5e;
+--accent-strong: #403f41; /* charcoal */
+--accent-soft: #8a898d;
+--border-subtle: #e1e0e2;
+```
 
 Intent
 

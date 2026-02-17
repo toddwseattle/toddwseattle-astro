@@ -26,6 +26,11 @@
       ],
       "redirects": [
         {
+          "source": "/blog/2025-02-05-CS394-2025-Spring-Software-Engineering-Course/",
+          "destination": "/writing/2025-02-05-cs394-2025-spring-software-engineering-course/",
+          "type": 301
+        },
+        {
           "source": "/blog",
           "destination": "/writing/",
           "type": 301
@@ -67,6 +72,11 @@
         }
       ],
       "redirects": [
+        {
+          "source": "/blog/2025-02-05-CS394-2025-Spring-Software-Engineering-Course/",
+          "destination": "/writing/2025-02-05-cs394-2025-spring-software-engineering-course/",
+          "type": 301
+        },
         {
           "source": "/blog",
           "destination": "/writing/",

@@ -72,6 +72,26 @@ Production:  G-PROD456
    # GA loads in production mode: npm run build && npm run preview
    ```
 
+### Step 3b: Verify GA in preview builds (exact steps)
+
+Use these steps to confirm GA only loads in production-like preview builds:
+
+1. Ensure `.env` is present with a valid staging ID:
+   ```bash
+   cp .env.example .env
+   # edit .env to set PUBLIC_GA_ID=G-STAGING123
+   ```
+2. Build and run preview:
+   ```bash
+   npm run build
+   npm run preview
+   ```
+3. Open the preview URL (usually `http://localhost:4321`) and confirm:
+   - A request to `https://www.googletagmanager.com/gtag/js?id=G-...` appears.
+   - `window.dataLayer` exists in the browser console.
+
+Note: GA will not load on `npm run dev` because `PROD` is false.
+
 ### Step 4: Deploy with production environment variables
 
 For **Firebase Hosting production**, set the environment variable to use your **production** Measurement ID:
@@ -92,6 +112,18 @@ firebase deploy --env .env --only hosting:staging
 # Set PUBLIC_GA_ID=G-PROD456 in your environment first
 firebase deploy --only hosting:prod
 ```
+
+### Step 4b: Verify GA in production builds (exact steps)
+
+After a production deploy, confirm GA is active:
+
+1. Open the production site (`https://toddwseattle.com`).
+2. In DevTools > Network, filter by `gtag/js` and confirm a 200 response.
+3. In DevTools Console, run:
+   ```js
+   window.dataLayer && window.dataLayer.length > 0;
+   ```
+4. In GA4 Realtime, verify at least one active user within 60 seconds.
 
 > **Note**: `PUBLIC_GA_ID` only loads when `PROD=true` (during build time), not in dev mode. The staging and production Measurement IDs are independent—data won't mix between environments.
 
