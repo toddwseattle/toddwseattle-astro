@@ -52,7 +52,7 @@ The course is by permission only. Dr. Riesbeck and I use a common 394 applicatio
 
 ##### How is the course the same or different from Professor Riesbeck's CS394?
 
-They will be very similar. Dr. Riesbeck and I have taught together in [NUVention Web](../2020-04-07-NUvention-Web+Media-2020-Q1/), and the syllabus for spring 394 is a second derivative of his.
+They will be very similar. Dr. Riesbeck and I have taught together in [NUvention Web](../2020-04-07-NUvention-Web+Media-2020-Q1/), and the syllabus for spring 394 is a second derivative of his.
 
 The two biggest differences are the following:
 

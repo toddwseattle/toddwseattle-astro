@@ -30,7 +30,7 @@ A common survey is used for CS 394 to get into the course and the survey is avai
 
 #### Some more on Professor Warren
 
-This site provides a pretty complete background on me in [the profile on this site](/resume). I've been teaching off and on at Northwestern for more than ten years. I've taught software engineering multiple times recently, and elements of CS394 also existed within the NUvention Web course I team-taught for more than 15 years. I'm a "pracademic"--that is, most of my approach is based on my work experience at big companies (Microsoft and Ford Motor Company) and startups. Most recently, I was involved in leading software at Ford Motor Company, where I was responsible for all in-vehicle software, connected cloud systems, and mobile applications. I will also be co-teaching a course in [corporate innovation](/teaching/corporate-innovation/) for the second year in the Farley Center for Innovation and Entrepreneurship.
+This site provides a pretty complete background on me in [the profile on this site](/resume). I've been teaching off and on at Northwestern for more than ten years. I've taught software engineering multiple times recently, and elements of CS394 also existed within the NUvention Web course I team-taught for more than 15 years (Professor Riesbeck was on that teaching team too). I'm a "pracademic"--that is, most of my approach is based on my work experience at big companies (Microsoft and Ford Motor Company) and startups. Most recently, I was involved in leading software at Ford Motor Company, where I was responsible for all in-vehicle software, connected cloud systems, and mobile applications. I will also be co-teaching a course in [corporate innovation](/teaching/corporate-innovation/) in the Farley Center for Innovation and Entrepreneurship.
 
 #### Guest Speakers
 
@@ -40,7 +40,7 @@ We will have a few guest speakers, some in person, some on Zoom for short Q & A'
 
 **When is the course?**
 
-The course is scheduled for Monday and Wednesday in person at 3:30pm-4:50pm. Room TBD.
+The course is scheduled for Monday and Wednesday in person at 3:30pm-4:50pm. In Annenberg G01.
 
 **How can I take the course?**
 
@@ -48,7 +48,7 @@ The course is by permission only. Dr. Riesbeck and I use a common 394 applicatio
 
 **How is the course the same or different from Professor Riesbeck's CS394?**
 
-They will be very similar. Dr. Riesbeck and I have taught together in [NUVention Web](/teaching/nuvention-web/), and the syllabus for spring 394 is a second derivative of his.
+They will be very similar. Dr. Riesbeck and I have taught together in [NUvention Web](/teaching/nuvention-web/), and the syllabus for spring 394 is a second derivative of his.
 
 Three differences are the following:
 
