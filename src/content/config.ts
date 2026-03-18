@@ -203,6 +203,7 @@ const courseMaterialsCollection = defineCollection({
         }),
       )
       .optional(),
+    timelineKey: z.enum(["software-engineering-history"]).optional(),
     draft: z.boolean().default(false),
   }),
 });

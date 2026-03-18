@@ -1,0 +1,31 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Container from "../../components/ui/Container";
+import TimelineExplorer from "../../components/timeline/TimelineExplorer";
+import { getTimelineByKey } from "../../data/se-timeline";
+
+interface Props {
+  entry: CollectionEntry<"course-materials">;
+  rendered: Awaited<ReturnType<CollectionEntry<"course-materials">["render"]>>;
+}
+
+const { entry, rendered } = Astro.props as Props;
+
+if (!entry.data.timelineKey) {
+  throw new Error("TimelineLayout requires entry.data.timelineKey.");
+}
+
+const timeline = getTimelineByKey(entry.data.timelineKey);
+---
+
+<article class="py-16">
+  <Container>
+    <div class="max-w-4xl mx-auto">
+      <div class="prose prose-lg dark:prose-invert max-w-none">
+        <rendered.Content />
+      </div>
+
+      <TimelineExplorer timeline={timeline} client:load />
+    </div>
+  </Container>
+</article>
