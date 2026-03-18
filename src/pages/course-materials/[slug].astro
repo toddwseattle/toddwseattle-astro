@@ -10,6 +10,7 @@ import ResourceLayout from "../../layouts/materials/ResourceLayout.astro";
 import ExampleLayout from "../../layouts/materials/ExampleLayout.astro";
 import ExerciseLayout from "../../layouts/materials/ExerciseLayout.astro";
 import PostLayout from "../../layouts/materials/PostLayout.astro";
+import TimelineLayout from "../../layouts/materials/TimelineLayout.astro";
 
 export async function getStaticPaths() {
   const entries = await getCollection("course-materials");
@@ -25,7 +26,7 @@ interface Props {
 }
 
 const { entry } = Astro.props as Props;
-const { title, description, cover, type } = entry.data as any;
+const { title, description, cover, type, timelineKey } = entry.data as any;
 const rendered = await entry.render();
 
 // Extract src from ImageMetadata object or use string directly
@@ -43,7 +44,9 @@ const coverSrc =
 >
   <Header client:load />
   {
-    type === "tutorial" ? (
+    timelineKey ? (
+      <TimelineLayout entry={entry} rendered={rendered} />
+    ) : type === "tutorial" ? (
       <TutorialLayout entry={entry} rendered={rendered} />
     ) : type === "resource" ? (
       <ResourceLayout entry={entry} rendered={rendered} />

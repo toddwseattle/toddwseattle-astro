@@ -95,7 +95,74 @@ git clone https://github.com/toddwseattle/pretty-vitest-react-ts-template.git te
 
 If this succeeds, your Git setup is working.
 
-## Step 4: Configure VS Code for Development
+## Step 4: Install GitHub CLI
+
+GitHub CLI (`gh`) is a command-line tool for interacting with GitHub. It complements GitHub Desktop and VS Code.
+
+### Check if `gh` is Installed
+
+Open a terminal:
+
+- **macOS:** Terminal
+- **Windows:** PowerShell
+
+Run:
+
+```bash
+gh --version
+```
+
+If you see a version number (e.g., `gh version 2.x.x`), skip to **Sign in to GitHub**. Otherwise, follow the installation steps below.
+
+### Install GitHub CLI
+
+#### macOS (Homebrew)
+
+```bash
+brew install gh
+```
+
+#### Windows (winget)
+
+```powershell
+winget install --id GitHub.cli
+```
+
+After installation, close and reopen your terminal.
+
+### Sign in to GitHub
+
+Run:
+
+```bash
+gh auth login
+```
+
+Follow the prompts:
+
+- Select **GitHub.com**
+- Choose **HTTPS**
+- Authenticate via a browser
+
+Verify authentication:
+
+```bash
+gh auth status
+```
+
+You should see your GitHub username.
+
+### Quick Test (Optional)
+
+Run:
+
+```bash
+gh repo view --web
+```
+
+If inside a repository folder, this opens the repo in your browser.
+
+## Step 5: Configure VS Code for Development
 
 ### Install Essential Extensions
 
@@ -135,7 +202,7 @@ Your settings should include something like:
 }
 ```
 
-## Step 5: Enable GitHub Copilot Pro for Students
+## Step 6: Enable GitHub Copilot Pro for Students
 
 As a verified student, you have free access to **GitHub Copilot Pro**—a significant upgrade from the free tier. Copilot Pro gives you unlimited code suggestions and access to advanced AI models. We wll use agent mode as part of our projects; and in the labs there will be instructions for copilot to help you learn more effectively.
 
@@ -175,7 +242,7 @@ Press `Ctrl+I` (Windows) or `Cmd+I` (Mac) to open Copilot inline chat:
 - Ask for debugging help
 - Get refactoring suggestions
 
-## Step 6: Set Up Firebase CLI
+## Step 7: Set Up Firebase CLI
 
 Firebase provides backend services for projects.
 
@@ -199,7 +266,7 @@ firebase login
 
 **Note**: Use a personal Google account (not your school email - university accounts don't support Firebase).
 
-## Step 7: Verify Your Complete Setup
+## Step 8: Verify Your Complete Setup
 
 Run these commands to confirm everything is working:
 
