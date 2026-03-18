@@ -86,15 +86,8 @@ const getCoverSrc = (cover: any) => {
       {/* Materials Grid */}
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {materials.map((material) => {
-          const {
-            title,
-            description,
-            type,
-            difficulty,
-            date,
-            cover,
-            timelineKey,
-          } = material.data;
+          const { title, description, type, difficulty, date, cover } =
+            material.data;
           const coverSrc = getCoverSrc(cover);
 
           return (
@@ -154,11 +147,6 @@ const getCoverSrc = (cover: any) => {
                       >
                         {difficulty.charAt(0).toUpperCase() +
                           difficulty.slice(1)}
-                      </span>
-                    )}
-                    {timelineKey && (
-                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-paper-200 text-ink-800 dark:bg-graphite-600 dark:text-paper-100">
-                        Interactive
                       </span>
                     )}
                   </div>

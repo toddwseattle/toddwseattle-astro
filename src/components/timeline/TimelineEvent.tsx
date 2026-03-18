@@ -1,3 +1,5 @@
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useState } from "react";
 import type { TimelineEvent as TimelineEventType } from "../../data/se-timeline";
 import { timelineCategoryMeta } from "../../data/se-timeline";
 
@@ -6,63 +8,142 @@ interface TimelineEventProps {
 }
 
 export default function TimelineEvent({ event }: TimelineEventProps) {
+  const [isPinned, setIsPinned] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
+  const isExpanded = isPinned || isHovered;
+  const hasLinks = Boolean(event.links && event.links.length > 0);
+
   return (
-    <li className="relative pl-8" data-testid={`timeline-event-${event.id}`}>
+    <li
+      className="relative pl-8 md:pl-10 md:[&:not(:first-child)]:mt-1"
+      data-testid={`timeline-event-${event.id}`}
+    >
+      <time
+        className="mb-2 block text-sm font-medium text-graphite-400 md:absolute md:right-[calc(100%+1.25rem)] md:top-1.5 md:mb-0 md:w-28 md:text-right"
+        dateTime={event.sortYear.toString()}
+      >
+        {event.yearDisplay}
+      </time>
+
       <span className="absolute left-0 top-2.5 w-3 h-3 rounded-full border border-graphite-600/40 bg-paper-50 dark:border-graphite-500 dark:bg-graphite-700" />
 
       <article
-        className={`rounded-xl border p-5 bg-paper-50 dark:bg-surface-dark ${
+        className={`rounded-xl border bg-paper-50 p-5 transition-colors duration-200 dark:bg-surface-dark ${
           event.significance === "major"
             ? "border-graphite-600/40 dark:border-ink-600"
             : "border-graphite-600/20 dark:border-graphite-600"
-        }`}
+        } ${isExpanded ? "bg-paper-100 dark:bg-graphite-700/80" : ""}`}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
-        <time
-          className="text-sm font-medium text-graphite-400"
-          dateTime={event.sortYear.toString()}
+        <button
+          type="button"
+          className="flex w-full items-start justify-between gap-4 text-left"
+          onClick={() => setIsPinned((current) => !current)}
+          data-testid={`timeline-event-toggle-${event.id}`}
         >
-          {event.yearDisplay}
-        </time>
+          <div>
+            <h3 className="text-xl font-semibold text-ink-800 dark:text-paper-100">
+              {event.title}
+            </h3>
+          </div>
 
-        <h3 className="mt-2 text-xl font-semibold text-ink-800 dark:text-paper-100">
-          {event.title}
-        </h3>
+          <span
+            aria-hidden="true"
+            className={`mt-1 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-graphite-600/20 text-lg text-graphite-400 transition-transform duration-200 dark:border-graphite-600 ${
+              isExpanded ? "rotate-45" : "rotate-0"
+            }`}
+          >
+            +
+          </span>
 
-        <p className="mt-3 text-ink-600 dark:text-paper-200">
-          {event.description}
-        </p>
+          <span className="sr-only">
+            {isExpanded ? "Collapse event details" : "Expand event details"}
+          </span>
+        </button>
 
-        <ul
-          className="mt-4 flex flex-wrap gap-2"
-          data-testid={`timeline-event-categories-${event.id}`}
-        >
-          {event.categories.map((category) => (
-            <li key={`${event.id}-${category}`}>
-              <span
-                className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${timelineCategoryMeta[category].pillClassName}`}
+        <AnimatePresence initial={false}>
+          {isExpanded && (
+            <motion.div
+              initial={shouldReduceMotion ? false : { height: 0, opacity: 0 }}
+              animate={
+                shouldReduceMotion
+                  ? { opacity: 1 }
+                  : { height: "auto", opacity: 1 }
+              }
+              exit={
+                shouldReduceMotion ? { opacity: 0 } : { height: 0, opacity: 0 }
+              }
+              transition={
+                shouldReduceMotion
+                  ? { duration: 0 }
+                  : { duration: 0.28, ease: [0.22, 1, 0.36, 1] }
+              }
+              className="overflow-hidden"
+            >
+              <div
+                className={`mt-4 ${
+                  event.image
+                    ? "grid gap-5 md:grid-cols-[minmax(0,1fr)_12rem] md:items-start"
+                    : ""
+                }`}
               >
-                {timelineCategoryMeta[category].label}
-              </span>
-            </li>
-          ))}
-        </ul>
+                <div>
+                  <p className="text-ink-600 dark:text-paper-200">
+                    {event.description}
+                  </p>
 
-        {event.links && event.links.length > 0 && (
-          <ul className="mt-4 space-y-2">
-            {event.links.map((link) => (
-              <li key={`${event.id}-${link.url}`}>
-                <a
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-ink-800 underline decoration-graphite-400 hover:decoration-ink-800 dark:text-paper-100 dark:hover:decoration-paper-100"
-                >
-                  {link.label} →
-                </a>
-              </li>
-            ))}
-          </ul>
-        )}
+                  <ul
+                    className="mt-4 flex flex-wrap gap-2"
+                    data-testid={`timeline-event-categories-${event.id}`}
+                  >
+                    {event.categories.map((category) => (
+                      <li key={`${event.id}-${category}`}>
+                        <span
+                          className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${timelineCategoryMeta[category].pillClassName}`}
+                        >
+                          {timelineCategoryMeta[category].label}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {hasLinks && (
+                    <ul className="mt-4 space-y-2">
+                      {event.links?.map((link) => (
+                        <li key={`${event.id}-${link.url}`}>
+                          <a
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-ink-800 underline decoration-graphite-400 underline-offset-4 hover:decoration-ink-800 dark:text-paper-100 dark:hover:decoration-paper-100"
+                          >
+                            {link.label} →
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+
+                {event.image && (
+                  <div
+                    className="overflow-hidden rounded-lg border border-graphite-600/20 bg-paper-100 dark:border-graphite-600 dark:bg-graphite-700/40"
+                    data-testid={`timeline-event-image-${event.id}`}
+                  >
+                    <img
+                      src={event.image.src}
+                      alt={event.image.alt}
+                      className="h-40 w-full object-cover grayscale md:h-full"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </article>
     </li>
   );

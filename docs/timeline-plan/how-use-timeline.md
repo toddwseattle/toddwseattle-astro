@@ -35,8 +35,37 @@ Update `src/data/se-timeline.ts` to:
 - change categories
 - adjust wording for course framing
 - include external links
+- include optional event images
 
 All events are strongly typed and sorted by `sortYear`.
+
+## Adding Timeline Images
+
+Store timeline image assets in `public/se-timeline/`.
+
+Reference them from `src/data/se-timeline.ts` with the optional `image` field on each event:
+
+```ts
+{
+	id: "agile-manifesto",
+	yearDisplay: "2001",
+	sortYear: 2001,
+	title: "Agile Manifesto reorients delivery",
+	description: "...",
+	categories: ["teamwork-process"],
+	significance: "major",
+	image: {
+		src: "/se-timeline/agile-manifesto.jpg",
+		alt: "Agile Manifesto signatories at Snowbird",
+	},
+}
+```
+
+Notes:
+
+- Use paths rooted at `/se-timeline/` because assets in `public/` are served from the site root.
+- Prefer horizontal images when possible because the timeline card uses a cropped editorial image panel.
+- Keep `alt` text descriptive when the image adds context.
 
 ## Testing and Validation
 

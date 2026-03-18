@@ -9,6 +9,11 @@ export interface TimelineLink {
   url: string;
 }
 
+export interface TimelineEventImage {
+  src: string;
+  alt: string;
+}
+
 export interface TimelineEvent {
   id: string;
   yearDisplay: string;
@@ -19,6 +24,7 @@ export interface TimelineEvent {
   isToolingSpine?: boolean;
   significance: "major" | "notable";
   links?: TimelineLink[];
+  image?: TimelineEventImage;
 }
 
 export interface TimelineConfig {
@@ -116,7 +122,7 @@ const softwareEngineeringHistoryTimeline: TimelineConfig = {
       sortYear: 2001,
       title: "Agile Manifesto reorients delivery",
       description:
-        "The Agile Manifesto encouraged shorter feedback cycles and stronger collaboration with stakeholders. Planning became iterative instead of assuming fixed long-term requirements.",
+        "The Agile Manifesto encouraged shorter feedback cycles, retrospectives, and stronger collaboration with stakeholders. Planning became iterative instead of assuming fixed long-term requirements.",
       categories: ["teamwork-process"],
       significance: "major",
       links: [
@@ -125,6 +131,10 @@ const softwareEngineeringHistoryTimeline: TimelineConfig = {
           url: "https://agilemanifesto.org/",
         },
       ],
+      image: {
+        src: "https://agilemanifesto.org/background.jpg",
+        alt: "Agile Manifesto signatories at Snowbird",
+      },
     },
     {
       id: "git-github",

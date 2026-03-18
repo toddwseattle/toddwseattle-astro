@@ -37,6 +37,9 @@ describe("TimelineExplorer", () => {
     expect(
       screen.getByRole("heading", { name: "Test Timeline" }),
     ).toBeInTheDocument();
+    expect(
+      screen.getByText("Hover or tap an event to reveal context and sources."),
+    ).toBeInTheDocument();
     expect(screen.getByText("Agile")).toBeInTheDocument();
     expect(screen.getByText("Kubernetes")).toBeInTheDocument();
   });

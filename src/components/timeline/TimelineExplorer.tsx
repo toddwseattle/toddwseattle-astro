@@ -37,6 +37,10 @@ export default function TimelineExplorer({ timeline }: TimelineExplorerProps) {
         onSelect={setSelectedCategory}
       />
 
+      <p className="mt-3 text-sm text-graphite-400 dark:text-paper-200/75">
+        Hover or tap an event to reveal context and sources.
+      </p>
+
       <ol
         className="mt-8 space-y-6 border-l border-graphite-600/30 pl-4 dark:border-graphite-600"
         data-testid="timeline-events-list"
