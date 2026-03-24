@@ -3,6 +3,9 @@
   "type": "module",
   "version": "0.0.1",
   "description": "Personal website migrated from Gatsby to Astro with TypeScript, Tailwind CSS, and Framer Motion",
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
