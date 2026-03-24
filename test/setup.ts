@@ -1,4 +1,5 @@
 import "@testing-library/jest-dom/vitest";
+import { vi } from "vitest";
 
 // Polyfill/override TextEncoder/TextDecoder for astro/container & esbuild
 import { TextEncoder, TextDecoder } from "util";
@@ -7,3 +8,11 @@ import { TextEncoder, TextDecoder } from "util";
 (globalThis as any).TextEncoder = TextEncoder;
 // @ts-ignore
 (globalThis as any).TextDecoder = TextDecoder as any;
+
+// JSDOM does not implement window.scrollTo; stub it to avoid noisy warnings.
+if (typeof window !== "undefined") {
+  Object.defineProperty(window, "scrollTo", {
+    value: vi.fn(),
+    writable: true,
+  });
+}
