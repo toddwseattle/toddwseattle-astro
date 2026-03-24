@@ -387,6 +387,26 @@ npm run build     # Verify production build
 - [ ] No broken routes
 - [ ] Mobile responsive
 
+### Creating Commits
+
+Use the **git-commit** skill to create structured commits (`.agents/skills/git-commit-structured/SKILL.md`):
+
+1. Examines working tree changes with `git status` and `git diff`
+2. Groups changes into logical activities
+3. Proposes multiple commits if changes are significantly different
+4. Creates commits with structured messages: `(type): summary` + bullet points
+5. Optionally pushes to origin and sets upstream tracking for new branches
+
+**Invocation:**
+
+When completing work with multiple file changes, use the git-commit skill to:
+- Examine all modified/added files
+- Propose logical commit groupings
+- Stage and commit incrementally with structured messages
+- Push to origin with proper upstream tracking (if applicable)
+
+**Message format:** `(type): short summary` followed by 2–5 markdown bullets describing changes
+
 ### TypeScript
 
 ```typescript
