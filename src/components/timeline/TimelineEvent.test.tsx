@@ -1,15 +1,16 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import TimelineEvent from "./TimelineEvent";
+import type { TimelineEvent as TimelineEventType } from "../../data/se-timeline";
 
-const event = {
+const event: TimelineEventType = {
   id: "event-1",
   yearDisplay: "2001",
   sortYear: 2001,
   title: "Agile Manifesto",
   description: "A major shift in team process and iterative delivery.",
-  categories: ["teamwork-process", "practices-tools"] as const,
-  significance: "major" as const,
+  categories: ["teamwork-process", "practices-tools"],
+  significance: "major",
   links: [{ label: "Read more", url: "https://example.com" }],
   image: {
     src: "/ashesi-Ashesi_University_Logo.jpg",
