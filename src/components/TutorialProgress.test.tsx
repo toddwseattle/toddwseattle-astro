@@ -37,6 +37,8 @@ class IOStub {
 // Attach to global before tests
 beforeEach(() => {
   vi.clearAllMocks();
+  document.body.innerHTML = "";
+  window.location.hash = "";
   (globalThis as any).IntersectionObserver =
     IOStub as unknown as typeof IntersectionObserver;
 });
@@ -94,7 +96,7 @@ describe("TutorialProgress", () => {
     expect(link.getAttribute("aria-current")).toBe("step");
   });
 
-  it("clicking a step anchor does not throw and has correct href", async () => {
+  it("clicking a step anchor updates the active highlight", async () => {
     injectHeadings(steps.map((s) => s.id));
     render(<TutorialProgress steps={steps} />);
 
@@ -102,8 +104,20 @@ describe("TutorialProgress", () => {
     const item = screen.getByTestId("tutorial-step-step-3");
     const link = item.querySelector("a") as HTMLAnchorElement;
     expect(link.getAttribute("href")).toBe("#step-3");
+
     await user.click(link);
-    // No assertion on scroll; just ensure no crash
-    expect(true).toBe(true);
+
+    expect(link.getAttribute("aria-current")).toBe("step");
+  });
+
+  it("uses the current hash to set the active step", () => {
+    injectHeadings(steps.map((s) => s.id));
+    window.location.hash = "#step-2";
+
+    render(<TutorialProgress steps={steps} />);
+
+    const activeItem = screen.getByTestId("tutorial-step-step-2");
+    const link = activeItem.querySelector("a") as HTMLAnchorElement;
+    expect(link.getAttribute("aria-current")).toBe("step");
   });
 });

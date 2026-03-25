@@ -27,11 +27,11 @@
 /* Custom prose styling for markdown content */
 @layer components {
   .prose {
-    @apply text-ink-600;
+    @apply text-ink-800;
   }
 
   .dark .prose {
-    @apply text-paper-200;
+    @apply text-paper-100;
   }
 
   .prose h1,
@@ -74,15 +74,15 @@
   }
 
   .prose pre {
-    @apply bg-ink-950 overflow-x-auto;
+    @apply bg-ink-950 text-paper-100 overflow-x-auto;
   }
 
   .dark .prose pre {
-    @apply bg-ink-800;
+    @apply bg-ink-800 text-paper-100;
   }
 
   .prose pre code {
-    @apply bg-transparent p-0;
+    @apply bg-transparent p-0 text-inherit;
   }
 
   .prose img {

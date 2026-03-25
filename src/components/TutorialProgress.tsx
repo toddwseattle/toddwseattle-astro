@@ -9,6 +9,20 @@ interface Props {
   steps: Step[];
 }
 
+function getHashStepId() {
+  const hash = window.location.hash.slice(1);
+
+  if (!hash) {
+    return "";
+  }
+
+  try {
+    return decodeURIComponent(hash);
+  } catch {
+    return hash;
+  }
+}
+
 export default function TutorialProgress({ steps }: Props) {
   const [activeId, setActiveId] = useState<string>(steps[0]?.id || "");
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -18,6 +32,24 @@ export default function TutorialProgress({ steps }: Props) {
     () => ids.findIndex((id) => id === activeId),
     [ids, activeId],
   );
+
+  useEffect(() => {
+    const syncFromHash = () => {
+      const hashId = getHashStepId();
+
+      if (hashId && ids.includes(hashId)) {
+        setActiveId(hashId);
+        return;
+      }
+
+      setActiveId(steps[0]?.id || "");
+    };
+
+    syncFromHash();
+    window.addEventListener("hashchange", syncFromHash);
+
+    return () => window.removeEventListener("hashchange", syncFromHash);
+  }, [ids, steps]);
 
   useEffect(() => {
     const headings = ids
@@ -31,8 +63,13 @@ export default function TutorialProgress({ steps }: Props) {
     observerRef.current?.disconnect();
     observerRef.current = new IntersectionObserver(
       (entries) => {
-        // Pick the first intersecting entry (closest to viewport top)
-        const intersecting = entries.find((e) => e.isIntersecting);
+        const intersecting = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (left, right) =>
+              left.boundingClientRect.top - right.boundingClientRect.top,
+          )[0];
+
         if (intersecting?.target?.id) {
           setActiveId(intersecting.target.id);
         }
@@ -72,6 +109,7 @@ export default function TutorialProgress({ steps }: Props) {
                 href={`#${step.id}`}
                 className={`${base} ${stateCls}`}
                 aria-current={state === "active" ? "step" : undefined}
+                onClick={() => setActiveId(step.id)}
               >
                 <span
                   className={`mt-1 inline-block w-2 h-2 rounded-full ${
