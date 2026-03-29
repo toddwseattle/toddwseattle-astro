@@ -241,7 +241,7 @@ npm run type-check
 
 Runs the TypeScript compiler to check for type errors without building.
 
-### Code Quality
+### Code Quality and Formatting
 
 ```bash
 npm run lint
@@ -250,6 +250,16 @@ npm run lint
 Runs Prettier (formatting) and ESLint (linting) on all files. Use before committing.
 
 **Note on Husky Pre-commit Hooks**: The template includes Husky, which automatically runs `npm run lint` before each commit. This prevents code with formatting or linting errors from being committed to your repository. If `npm run lint` fails, the commit will be blocked. Fix the issues and try committing again.
+
+### What is linting and Formatting?
+
+Linting was invented in 1978. You can read about the history [here](<https://en.wikipedia.org/wiki/Lint_(software)>).
+
+- **Prettier**: Automatically formats your code to a consistent style (e.g., indentation, quotes, line breaks). It can be configured in `.prettierrc.cjs`. To customize rules see the [Prettier documentation](https://prettier.io/docs/en/configuration.html).
+
+- **ESLint**: Analyzes your code for potential errors and enforces coding standards. It can be configured in `.eslint.config.cjs`. To customize rules see the [ESLint documentation](https://eslint.org/docs/user-guide/configuring/).
+
+Both tools can diagnose (npm run lint) and fix (npm run lint:fix) issues.
 
 ## Step 8: Make Your First Commit and Push
 
