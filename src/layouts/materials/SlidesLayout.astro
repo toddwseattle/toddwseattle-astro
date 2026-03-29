@@ -65,3 +65,42 @@ const publishedYear = new Date(entry.data.date).getUTCFullYear();
     deck.initialize();
   }
 </script>
+
+<style is:global>
+  .slides-layout .reveal .slides ul,
+  .slides-layout .reveal .slides ol {
+    display: block;
+    font-size: 2em;
+    text-align: left;
+    margin-left: 0;
+  }
+
+  .slides-layout .reveal .slides li {
+    text-align: left;
+  }
+
+  /* Progressive sizing for nested lists */
+  .slides-layout .reveal .slides li ul,
+  .slides-layout .reveal .slides li ol {
+    font-size: 0.6em;
+  }
+
+  .slides-layout .reveal .slides li ul li ul,
+  .slides-layout .reveal .slides li ul li ol,
+  .slides-layout .reveal .slides li ol li ul,
+  .slides-layout .reveal .slides li ol li ol {
+    font-size: 0.6em;
+  }
+
+  .slides-layout .reveal .slides table {
+    border-collapse: collapse;
+    margin-inline: auto;
+  }
+
+  .slides-layout .reveal .slides th,
+  .slides-layout .reveal .slides td {
+    text-align: left;
+    border: 1px solid currentColor;
+    padding: 0.5rem 0.75rem;
+  }
+</style>
