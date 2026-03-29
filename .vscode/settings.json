@@ -1,11 +1,14 @@
 {
   "cSpell.words": [
     "agentic",
+    "autograding",
     "Boehm",
     "colorblock",
     "colorblocks",
     "CTECs",
+    "EACCES",
     "Fagan",
+    "findstr",
     "firebaserc",
     "fontawesome",
     "Forsgren",
@@ -13,6 +16,8 @@
     "frontmatter",
     "Gantt",
     "Garmisch",
+    "Gaughan",
+    "Gitstats",
     "gtag",
     "Henshaw",
     "ralphrc",
