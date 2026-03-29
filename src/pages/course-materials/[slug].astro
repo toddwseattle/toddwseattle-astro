@@ -10,6 +10,7 @@ import ResourceLayout from "../../layouts/materials/ResourceLayout.astro";
 import ExampleLayout from "../../layouts/materials/ExampleLayout.astro";
 import ExerciseLayout from "../../layouts/materials/ExerciseLayout.astro";
 import PostLayout from "../../layouts/materials/PostLayout.astro";
+import SlidesLayout from "../../layouts/materials/SlidesLayout.astro";
 import TimelineLayout from "../../layouts/materials/TimelineLayout.astro";
 
 export async function getStaticPaths() {
@@ -28,6 +29,7 @@ interface Props {
 const { entry } = Astro.props as Props;
 const { title, description, cover, type, timelineKey } = entry.data as any;
 const rendered = await entry.render();
+const isSlides = type === "slides";
 
 // Extract src from ImageMetadata object or use string directly
 const coverSrc =
@@ -42,10 +44,12 @@ const coverSrc =
   image={coverSrc}
   article={true}
 >
-  <Header client:load />
+  {!isSlides && <Header client:load />}
   {
     timelineKey ? (
       <TimelineLayout entry={entry} rendered={rendered} />
+    ) : type === "slides" ? (
+      <SlidesLayout entry={entry} />
     ) : type === "tutorial" ? (
       <TutorialLayout entry={entry} rendered={rendered} />
     ) : type === "resource" ? (
@@ -103,5 +107,5 @@ const coverSrc =
       </article>
     )
   }
-  <Footer client:load />
+  {!isSlides && <Footer client:load />}
 </BaseLayout>

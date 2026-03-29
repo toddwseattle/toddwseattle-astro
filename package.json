@@ -41,6 +41,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-slick": "^0.30.0",
+    "reveal.js": "^6.0.0",
     "tailwindcss": "^3.4.0"
   },
   "devDependencies": {
