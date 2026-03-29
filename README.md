@@ -12,17 +12,17 @@ This repository powers a writing-first personal site that showcases professional
 
 ### Tech stack
 
-| Technology | Role |
-|---|---|
-| [Astro](https://docs.astro.build/) | Static site generator |
-| [React](https://react.dev/) | Interactive UI components (Islands) |
-| [TypeScript](https://www.typescriptlang.org/) | Type safety throughout |
-| [Tailwind CSS](https://tailwindcss.com/) | Utility-first styling |
-| [Framer Motion](https://www.framer.com/motion/) | Animations |
-| [Font Awesome](https://fontawesome.com/) | Icons |
-| [Vitest](https://vitest.dev/) | Unit testing |
-| [Playwright](https://playwright.dev/) | End-to-end testing |
-| [Firebase Hosting](https://firebase.google.com/docs/hosting) | Deployment (staging + production) |
+| Technology                                                   | Role                                |
+| ------------------------------------------------------------ | ----------------------------------- |
+| [Astro](https://docs.astro.build/)                           | Static site generator               |
+| [React](https://react.dev/)                                  | Interactive UI components (Islands) |
+| [TypeScript](https://www.typescriptlang.org/)                | Type safety throughout              |
+| [Tailwind CSS](https://tailwindcss.com/)                     | Utility-first styling               |
+| [Framer Motion](https://www.framer.com/motion/)              | Animations                          |
+| [Font Awesome](https://fontawesome.com/)                     | Icons                               |
+| [Vitest](https://vitest.dev/)                                | Unit testing                        |
+| [Playwright](https://playwright.dev/)                        | End-to-end testing                  |
+| [Firebase Hosting](https://firebase.google.com/docs/hosting) | Deployment (staging + production)   |
 
 ---
 
@@ -76,14 +76,14 @@ This repository powers a writing-first personal site that showcases professional
 
 The site has six top-level navigation items (fixed):
 
-| Route | Purpose |
-|---|---|
-| `/` | Home / landing page |
-| `/teaching` | Corporate innovation and software engineering courses |
-| `/writing` | Primary content stream (replaces `/blog`) |
+| Route            | Purpose                                                 |
+| ---------------- | ------------------------------------------------------- |
+| `/`              | Home / landing page                                     |
+| `/teaching`      | Corporate innovation and software engineering courses   |
+| `/writing`       | Primary content stream (replaces `/blog`)               |
 | `/autosofttoday` | Links to [autosofttoday.com](https://autosofttoday.com) |
-| `/consulting` | Advisory services overview |
-| `/about` | Current bio, roles, and CV |
+| `/consulting`    | Advisory services overview                              |
+| `/about`         | Current bio, roles, and CV                              |
 
 Content is organized into collections under `src/content/` and discovered via tags rather than deep folder nesting. Tag taxonomy: `innovation & org design`, `software engineering`, `teaching reflections`, `cycling`, `guitar & music`.
 
@@ -94,23 +94,25 @@ Content is organized into collections under `src/content/` and discovered via ta
 Visual consistency is maintained by **[`docs/04-style-guide.md`](docs/04-style-guide.md)**. Key highlights:
 
 ### Typography
+
 - **Body / Headings:** Inter
 - **Code:** JetBrains Mono
 - **Prose width:** ~700 px; comfortable line height
 
 ### Color tokens
 
-| Token | Value | Use |
-|---|---|---|
-| Background | `#FAFAFA` | Page background |
-| Surface | `#FFFFFF` | Cards, panels |
-| Primary text | `#0F172A` | Body copy |
+| Token          | Value     | Use                |
+| -------------- | --------- | ------------------ |
+| Background     | `#FAFAFA` | Page background    |
+| Surface        | `#FFFFFF` | Cards, panels      |
+| Primary text   | `#0F172A` | Body copy          |
 | Secondary text | `#475569` | Captions, metadata |
-| Accent | `#4F46E5` | Links, CTAs |
+| Accent         | `#4F46E5` | Links, CTAs        |
 
 Use Tailwind CSS utility classes mapped to these tokens — avoid raw hex values in component code.
 
 ### Tone
+
 - Calm, modern, and readable; writing-forward over visual gimmicks.
 - Consulting copy is advisory and credibility-focused, not salesy.
 - Teaching pages feel evergreen; about page is present-tense.
