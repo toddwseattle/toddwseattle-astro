@@ -41,6 +41,8 @@ jobs:
         run: npm audit --audit-level=critical
 
       - name: Build site
+        env:
+          PUBLIC_GA_ID: ${{ secrets.PUBLIC_GA_ID_STAGING }}
         run: npm run build
 
       - name: Deploy to Firebase staging

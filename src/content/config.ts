@@ -188,6 +188,7 @@ const courseMaterialsCollection = defineCollection({
       "resource",
       "post",
       "tutorial",
+      "slides",
       "examples",
       "student work",
     ]),

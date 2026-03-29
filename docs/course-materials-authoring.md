@@ -12,7 +12,7 @@ This guide explains how to author entries in the `course-materials` content coll
 - `title`: string — display title
 - `description`: string — short summary
 - `courses`: string[] — course slugs this material belongs to (e.g., `software-engineering`)
-- `type`: one of `tutorial | resource | example | exercise | post | student work`
+- `type`: one of `tutorial | slides | resource | example | exercise | post | student work`
 - `date`: ISO date string (YYYY-MM-DD)
 - `cover` (optional): image path or ImageMetadata
 - `difficulty` (optional): `beginner | intermediate | advanced` (used for exercises)
@@ -24,6 +24,14 @@ This guide explains how to author entries in the `course-materials` content coll
 - Use clear H2 steps (##) so the Tutorial layout can derive a progress sidebar.
 - Keep steps small; each step should have a single outcome.
 - Example: `docs/course-material-examples/tutorial.md`
+
+### Slides
+
+- Use `type: "slides"` and author the deck in the normal Markdown body.
+- Separate horizontal slides with `---`.
+- Separate vertical slides with `--`.
+- Keep slide copy short and presentation-oriented; save detailed explanation for speaker notes or companion tutorial material.
+- The slides layout reads the raw Markdown body, so standard Markdown headings, lists, code fences, and links remain valid.
 
 ### Resource
 

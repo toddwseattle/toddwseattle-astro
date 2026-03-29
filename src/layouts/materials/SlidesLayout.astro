@@ -1,0 +1,106 @@
+---
+import "reveal.js/reveal.css";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  entry: CollectionEntry<"course-materials">;
+}
+
+const { entry } = Astro.props as Props;
+const { title, description } = entry.data;
+const deckMarkdown = entry.body.trim();
+const publishedYear = new Date(entry.data.date).getUTCFullYear();
+---
+
+<article class="slides-layout relative" data-testid="slides-layout">
+  <a
+    href="/teaching"
+    class="absolute left-4 top-4 z-20 inline-flex items-center gap-2 rounded-full border border-graphite-600/20 bg-paper-50 px-4 py-2 text-sm font-medium text-ink-800 underline decoration-graphite-400 underline-offset-4 hover:decoration-ink-800 dark:border-graphite-600 dark:bg-surface-dark dark:text-paper-100 dark:hover:decoration-paper-100"
+  >
+    <span aria-hidden="true">←</span>
+    <span>Back to Teaching</span>
+  </a>
+
+  <div class="sr-only">
+    <h1>{title}</h1>
+    {description && <p>{description}</p>}
+  </div>
+
+  <div class="reveal" data-slides-root>
+    <div class="slides">
+      <section
+        data-markdown
+        data-separator="^\n---\n$"
+        data-separator-vertical="^\n--\n$"
+      >
+        <textarea data-template>{deckMarkdown}</textarea>
+      </section>
+    </div>
+  </div>
+
+  <div
+    class="pointer-events-none absolute bottom-4 left-1/2 z-20 -translate-x-1/2 text-xs text-graphite-400 dark:text-paper-200"
+  >
+    © Todd Warren {publishedYear}
+  </div>
+</article>
+
+<script>
+  import Reveal from "reveal.js";
+  import Markdown from "reveal.js/plugin/markdown";
+
+  const deckRoot = document.querySelector("[data-slides-root]");
+
+  if (deckRoot instanceof HTMLElement) {
+    const deck = new Reveal(deckRoot, {
+      plugins: [Markdown],
+      embedded: false,
+      hash: true,
+      controls: true,
+      progress: true,
+      center: true,
+      transition: "none",
+    });
+
+    deck.initialize();
+  }
+</script>
+
+<style is:global>
+  .slides-layout .reveal .slides ul,
+  .slides-layout .reveal .slides ol {
+    display: block;
+    font-size: 2em;
+    text-align: left;
+    margin-left: 0;
+  }
+
+  .slides-layout .reveal .slides li {
+    text-align: left;
+  }
+
+  /* Progressive sizing for nested lists */
+  .slides-layout .reveal .slides li ul,
+  .slides-layout .reveal .slides li ol {
+    font-size: 0.6em;
+  }
+
+  .slides-layout .reveal .slides li ul li ul,
+  .slides-layout .reveal .slides li ul li ol,
+  .slides-layout .reveal .slides li ol li ul,
+  .slides-layout .reveal .slides li ol li ol {
+    font-size: 0.6em;
+  }
+
+  .slides-layout .reveal .slides table {
+    border-collapse: collapse;
+    margin-inline: auto;
+  }
+
+  .slides-layout .reveal .slides th,
+  .slides-layout .reveal .slides td {
+    text-align: left;
+    border: 1px solid currentColor;
+    padding: 0.5rem 0.75rem;
+  }
+</style>
