@@ -287,9 +287,13 @@ husky - commit hook failed (add --no-verify to bypass)
 
 **To fix this:**
 
-1. Run `npm run lint` to automatically fix formatting issues
+1. Run `npm run lint:fix` to automatically fix formatting issues
 2. Review any errors ESLint reports
 3. Stage and commit again: `git add . && git commit -m "Update App title"`
+
+#### What is a pre-commit hook?
+
+a [pre-commit hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) is a script that runs automatically before a commit is finalized. It can perform checks or tasks (like linting) to ensure code quality. If the hook fails, the commit is blocked until issues are resolved. The goal is to keep the codebase clean and consistent by preventing commits with errors or formatting problems.
 
 Husky ensures code quality by preventing commits with linting or formatting problems. This is a standard practice in professional development.
 
