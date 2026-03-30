@@ -15,6 +15,7 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,astro,json,md}\"",
     "deploy:staging": "firebase deploy --only hosting:staging",
     "deploy:prod": "firebase deploy --only hosting:prod",
+    "build:deploy-staging": "npm run build && npm run deploy:staging",
     "ship:staging": "npm run test:run && npm run format && npm run build && npm run deploy:staging",
     "firebase:login": "firebase login",
     "firebase:init": "firebase init",
