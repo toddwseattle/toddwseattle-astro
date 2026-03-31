@@ -28,7 +28,7 @@
     "ralph": "bash ./scripts/ralph.sh"
   },
   "dependencies": {
-    "@astrojs/react": "^3.6.2",
+    "@astrojs/react": "^4.4.2",
     "@astrojs/rss": "^4.0.13",
     "@astrojs/sitemap": "^3.6.0",
     "@astrojs/tailwind": "^5.1.1",
@@ -38,7 +38,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.5.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "astro": "^5.15.3",
-    "astro-seo": "^0.8.4",
+    "astro-seo": "^1.1.0",
     "framer-motion": "^11.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -63,6 +63,11 @@
     "prettier": "^3.1.0",
     "prettier-plugin-astro": "^0.12.0",
     "vitest": "^4.0.8"
+  },
+  "overrides": {
+    "yaml-language-server": {
+      "yaml": "^2.8.3"
+    }
   },
   "keywords": [
     "astro",
