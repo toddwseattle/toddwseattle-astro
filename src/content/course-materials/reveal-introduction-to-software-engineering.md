@@ -28,6 +28,12 @@ Monday/Wednesday 3:30-4:50pm
 
 Course Focus: Building software reliably and predictably in teams.
 
+<p style="text-align: center; font-style: italic; margin-top: 1rem;">
+  “Software design is an exercise in human relationships.”
+  <br />
+  <span style="font-size: 0.8em;"><a href="https://tidyfirst.substack.com/p/tidy-together-outline">— Kent Beck</a></span>
+</p>
+
 - Coursework: Programming, class discussions, and group projects
 - Interaction with guest speakers and outside clients
 - Main Deliverable: Your Team
