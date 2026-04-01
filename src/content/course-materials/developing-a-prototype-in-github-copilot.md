@@ -18,7 +18,20 @@ resources:
 
 ## Introduction
 
-First read [Chris Riesbeck's Using Copilot](https://toddwseattle.com/course-materials/template-react-typescript-project/) as well as the rest of the notes on using gen ai: [Gen AI Notes](https://courses.cs.northwestern.edu/394/guides/genai-notes.html).
+First read [Chris Riesbeck's Using Copilot](https://courses.cs.northwestern.edu/394/guides/genai-notes.html#copilot) as well as the rest of the notes on using gen ai: [Gen AI Notes](https://courses.cs.northwestern.edu/394/guides/genai-notes.html).
+
+## Setup the Project for the prototype
+
+1. Use the [react-typescript-vite template](https://toddwseattle.com/course-materials/template-react-typescript-project/) to create a new repository for your prototype.
+2. open the project in VS Code. Insure CoPilot is enabled. Click the chat icon (see below) to the right of the project title; or from the menu select View->Open Chat.
+   ![Open Chat Icon](/course-materials/slides/copilot-chat-icon.png)
+3. open the co-pilot-instructions.md file in the `.github` folder. You can customize this file with general instructions on how the AI will write code for you.
+
+4. Create a new markdown file in the `docs` folder for your vision and payoff picture. This is where you can share your vision and payoff picture with the AI as you are building your prototype. Chris Riesbeck has [a good prototype prompt example](https://courses.cs.northwestern.edu/394/guides/genai-notes.html#prototype-prompt-example).
+
+5. Prompt by referencing your vision file (you can add it to the chat or use `#` to reference it.
+
+6. Add a picture of what you want your prototype to look like. You can use your four-panel payoff picture if you have one. Or you can draw a new picture on paper and take a photo of it. The key is to have something visual to share with the AI to help it understand what you want to build and how the different elements relate to each other. You can share the picture in the chat; or put in docs and reference using `#` and the name of the file.
 
 ## Student Copilot in 2026
 
