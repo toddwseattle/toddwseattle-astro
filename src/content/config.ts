@@ -1,4 +1,5 @@
 import { defineCollection, z } from "astro:content";
+import { timelineKeys } from "../data/timelines";
 
 const blog = defineCollection({
   type: "content",
@@ -204,9 +205,7 @@ const courseMaterialsCollection = defineCollection({
         }),
       )
       .optional(),
-    timelineKey: z
-      .enum(["software-engineering-history", "smartphone-revolution"])
-      .optional(),
+    timelineKey: z.enum(timelineKeys).optional(),
     draft: z.boolean().default(false),
   }),
 });

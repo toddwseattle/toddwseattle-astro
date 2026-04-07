@@ -2,6 +2,8 @@
 
 This guide explains how to author entries in the `course-materials` content collection. Entries power the materials listed under each teaching course and render via type-specific layouts.
 
+For interactive timeline resources, also see `docs/course-materials/timeline-authoring.md`.
+
 ## Content Location
 
 - Path: `src/content/course-materials/`

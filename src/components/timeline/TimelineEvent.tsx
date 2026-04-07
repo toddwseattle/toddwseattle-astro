@@ -1,7 +1,7 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
-import type { TimelineEvent as TimelineEventType } from "../../data/se-timeline";
-import { timelineCategoryMeta } from "../../data/se-timeline";
+import type { TimelineEvent as TimelineEventType } from "../../data/timelines";
+import { timelineCategoryMeta } from "../../data/timelines";
 
 interface TimelineEventProps {
   event: TimelineEventType;

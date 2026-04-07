@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import TimelineExplorer from "./TimelineExplorer";
-import type { TimelineConfig } from "../../data/se-timeline";
+import type { TimelineConfig } from "../../data/timelines";
 
 const timeline: TimelineConfig = {
   key: "software-engineering-history",

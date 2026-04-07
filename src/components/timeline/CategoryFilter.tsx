@@ -1,5 +1,5 @@
-import type { TimelineCategory } from "../../data/se-timeline";
-import { timelineCategoryMeta } from "../../data/se-timeline";
+import type { TimelineCategory } from "../../data/timelines";
+import { timelineCategoryMeta } from "../../data/timelines";
 
 interface CategoryFilterProps {
   categories: TimelineCategory[];
