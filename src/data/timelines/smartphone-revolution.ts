@@ -10,6 +10,87 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
     categoryOrder: ["platforms", "devices", "strategy", "market", "startups"],
     events: [
       {
+        id: "arm7tdmi",
+        yearDisplay: "1994",
+        sortYear: 1994,
+        title:
+          "Feature Phone Era Begins: ARM7TDMI ships enabling the design of the Nokia 6110",
+        description:
+          "Mobile phones coalesce around ARM's first mass-market core. The ARM7 provided enough functionality at (performance and low-power consumption for battery life) at an affordable price that when coupled with GSM or CDMA modems (Qualcomm), high quality, all day mobile phones could be built",
+        categories: ["platforms"],
+        significance: "major",
+        links: [
+          {
+            label: "Arm Newsroom: 200 Billion Chips",
+            url: "https://newsroom.arm.com/blog/200bn-arm-chips",
+          },
+        ],
+      },
+      {
+        id: "nokia-6110",
+        yearDisplay: "1998",
+        sortYear: 1998,
+        title: "Nokia 6110 launches",
+        description:
+          "The Nokia 6110 was a blockbuster hit with 130 million units sold, showcasing the potential of ARM-powered feature phones.   a low enabled the design of the Nokia 6110. The Nokia 6110 was a blockbuster hit with 130 million units sold.  The feature phone era was defined by incremental improvements to this basic formula: keypad-driven devices with small screens, limited web access, and a focus on voice and SMS.",
+        categories: ["devices", "market"],
+        significance: "major",
+        links: [
+          {
+            label: "Wikipedia — Nokia 6110",
+            url: "https://en.wikipedia.org/wiki/Nokia_6110",
+          },
+        ],
+        image: {
+          src: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Nokia_6110_blue-92107.jpg/250px-Nokia_6110_blue-92107.jpg",
+          alt: "Nokia 6110, one of the best-selling feature phones of all time, courtesy of Wikipedia",
+        },
+      },
+      {
+        id: "arm926ej-s",
+        yearDisplay: "2001",
+        sortYear: 2001,
+        title: "ARM926EJ-S: first fully synthesizable core with MMU",
+        description:
+          "ARMv5TEJ architecture. 5-stage pipeline, integrated memory management unit (MMU), hardware Java acceleration, and DSP extensions. The MMU meant ARM could now run full operating systems with virtual memory — a prerequisite for general-purpose computing. Licensed by 100+ silicon vendors and shipped billions of units.",
+        categories: ["platforms"],
+        isToolingSpine: true,
+        significance: "major",
+        links: [
+          {
+            label: "Arm Blog: Brief History Part 2",
+            url: "https://developer.arm.com/community/arm-community-blogs/b/architectures-and-processors-blog/posts/a-brief-history-of-arm-part-2",
+          },
+        ],
+      },
+      {
+        id: "arm11",
+        yearDisplay: "2002",
+        sortYear: 2002,
+        title: "ARM11 (ARMv6): OS-capable ARM arrives",
+        description:
+          "Deeper 8-stage pipeline, SIMD media extensions (for audio/video), improved MMU with support for multiple page sizes, and hardware floating point (VFP). ARM11 made ARM genuinely OS-capable — able to run full Linux, Symbian, and later the original iPhone OS. Clock speeds reached 600+ MHz at well under a watt.",
+        categories: ["platforms"],
+        isToolingSpine: true,
+        significance: "major",
+      },
+      {
+        id: "arm-1b-cumulative",
+        yearDisplay: "2002",
+        sortYear: 2002.5,
+        title: "ARM passes 1 billion cumulative chips shipped",
+        description:
+          "Arm partners crossed the 1 billion cumulative chip milestone. At this point ARM was primarily in feature phones and embedded controllers — invisible to the PC industry. Intel's x86 shipped ~142M PCs that year.",
+        categories: ["market"],
+        significance: "notable",
+        links: [
+          {
+            label: "Arm Newsroom: 200 Billion Chips",
+            url: "https://newsroom.arm.com/blog/200bn-arm-chips",
+          },
+        ],
+      },
+      {
         id: "motorola-razr-v3",
         yearDisplay: "2004",
         sortYear: 2004,
@@ -59,6 +140,33 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           alt: "BlackBerry 8700 series, the dominant enterprise smartphone of the mid-2000s",
           src: "https://upload.wikimedia.org/wikipedia/commons/8/83/Bb-curve-8520%281%29.jpg",
         },
+      },
+      {
+        id: "cortex-a8",
+        yearDisplay: "2005",
+        sortYear: 2005,
+        title: "Cortex-A8 (ARMv7): ARM becomes PC-capable",
+        description:
+          "The inflection point. First superscalar ARM core — dual-issue, in-order pipeline targeting 600 MHz–1 GHz+ at under 1 watt. Included NEON SIMD for media/DSP, full VFPv3 floating point, and TrustZone security. Delivered PC-class compute at a fraction of x86 power. Many skeptics said mobile users would never want to browse the web on their phones. Powered iPhone 3GS, BeagleBoard, Kindle, TI OMAP3.",
+        categories: ["platforms"],
+        isToolingSpine: true,
+        significance: "major",
+        links: [
+          {
+            label: "Arm Newsroom: Cortex-A8 skeptics",
+            url: "https://newsroom.arm.com/blog/200bn-arm-chips",
+          },
+        ],
+      },
+      {
+        id: "arm-98pct-phones",
+        yearDisplay: "2005",
+        sortYear: 2005.5,
+        title: "ARM inside 98% of all mobile phones sold",
+        description:
+          "By 2005, ARM's dominance in mobile was near-total: 98% of all mobile phones sold worldwide contained at least one ARM processor. At ~820M phones shipped that year, ARM was already outselling the PC market ~4:1 in units — but the industry barely noticed because these were 'just phones.'",
+        categories: ["market"],
+        significance: "major",
       },
       {
         id: "nokia-40pct-market-share",
@@ -201,6 +309,37 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
         significance: "notable",
       },
       {
+        id: "iphone-2007",
+        yearDisplay: "2007",
+        sortYear: 2007,
+        title: "Apple iPhone launches (ARM11-based)",
+        description:
+          "The original iPhone used a Samsung ARM1176JZF-S (ARM11, ARMv6) at 412 MHz. Despite not yet using the newer Cortex-A architecture, it redefined what a phone could be — full multitouch web browser, visual voicemail, iPod integration. Sold 6.1M units in its first year. Proved ARM silicon could power a premium computing experience.",
+        categories: ["devices"],
+        isToolingSpine: true,
+        significance: "major",
+      },
+      {
+        id: "qualcomm-snapdragon",
+        yearDisplay: "2007",
+        sortYear: 2007.3,
+        title: "Qualcomm launches Snapdragon (ARM + integrated modem)",
+        description:
+          "Qualcomm's QSD8250 combined an ARM Cortex-based CPU with an integrated cellular modem, GPU (Adreno), and DSP on a single SoC. This system-on-chip approach — impossible with x86 — meant a complete smartphone brain on one chip. Snapdragon became the reference platform for Android flagships.",
+        categories: ["platforms"],
+        significance: "notable",
+      },
+      {
+        id: "cortex-a9",
+        yearDisplay: "2007",
+        sortYear: 2007.5,
+        title: "Cortex-A9: multicore ARM",
+        description:
+          "First ARM core with out-of-order execution and symmetric multiprocessing (up to 4 cores). Answered the demand for richer smartphone experiences — full-screen video, 3D gaming — without blowing the power budget. Shipped in TI OMAP4, Nvidia Tegra 2, Samsung Exynos, and Apple's A5.",
+        categories: ["platforms"],
+        significance: "notable",
+      },
+      {
         id: "garrett-camp-ubercab-concept",
         yearDisplay: "2008",
         sortYear: 2008,
@@ -290,6 +429,16 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
         significance: "notable",
       },
       {
+        id: "android-launch",
+        yearDisplay: "2008",
+        sortYear: 2008.3,
+        title: "Android 1.0 and HTC Dream ship",
+        description:
+          "Google's open-source mobile OS launched on ARM hardware (Qualcomm MSM7201A, ARM11). Android gave every handset OEM access to a smartphone platform without building their own OS. Combined with low-cost ARM silicon, this opened the floodgates for sub-$200 smartphones that would drive ARM volumes exponentially.",
+        categories: ["devices", "platforms"],
+        significance: "major",
+      },
+      {
         id: "uber-incorporated",
         yearDisplay: "2009",
         sortYear: 2009,
@@ -370,6 +519,36 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
         significance: "notable",
       },
       {
+        id: "apple-a4",
+        yearDisplay: "2010",
+        sortYear: 2010,
+        title: "Apple A4: first Apple-designed ARM SoC",
+        description:
+          "Apple's acquisition of P.A. Semi (2008) and Intrinsity bore fruit with the A4 — a custom Cortex-A8 derivative with Apple's own memory controller and GPU integration. Debuted in the iPad and iPhone 4. Began Apple's trajectory of designing custom ARM silicon that would eventually outperform Intel laptop chips (M1, 2020).",
+        categories: ["platforms", "devices"],
+        significance: "notable",
+      },
+      {
+        id: "ipad-2010",
+        yearDisplay: "2010",
+        sortYear: 2010.3,
+        title: "Apple iPad launches — ARM enters 'PC territory'",
+        description:
+          "Apple's A4 chip (Cortex-A8 based, designed by P.A. Semi/Apple) powered a device that directly competed with laptops for casual computing: web, email, video, documents. Sold 14.8M units in its first year. Proved ARM could deliver a full-day computing experience that x86 laptops couldn't match on battery life.",
+        categories: ["devices"],
+        significance: "major",
+      },
+      {
+        id: "arm-6b-2010",
+        yearDisplay: "2010",
+        sortYear: 2010.5,
+        title: "ARM ships 6.1 billion chips — 95% of smartphones",
+        description:
+          "ARM-architecture producers reported 6.1 billion chip shipments in 2010, representing 95% of smartphones, 35% of digital televisions and set-top boxes, and 10% of mobile computers. ARM was no longer just a phone chip — it was becoming the default processor for all consumer electronics.",
+        categories: ["market"],
+        significance: "notable",
+      },
+      {
         id: "elop-burning-platform-memo",
         yearDisplay: "2011",
         sortYear: 2011,
@@ -435,6 +614,47 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
         },
       },
       {
+        id: "smartphones-surpass-pcs",
+        yearDisplay: "2011",
+        sortYear: 2011,
+        title: "Smartphones surpass PCs in annual shipments",
+        description:
+          "Global smartphone shipments reached ~494M units, surpassing worldwide PC shipments of ~353M for the first time. The crossover happened just 4 years after the iPhone launch. PCs peaked at ~365M in 2011 and never recovered; smartphones were just getting started.",
+        categories: ["market"],
+        isToolingSpine: true,
+        significance: "major",
+      },
+      {
+        id: "big-little",
+        yearDisplay: "2011",
+        sortYear: 2011.3,
+        title: "big.LITTLE: heterogeneous multiprocessing",
+        description:
+          "ARM's answer to the power-performance dilemma: pair high-performance Cortex-A15 cores with energy-efficient Cortex-A7 cores on a single SoC. The OS could migrate tasks between clusters based on load. This architectural innovation had no x86 equivalent and became standard in Android flagships.",
+        categories: ["platforms"],
+        significance: "notable",
+      },
+      {
+        id: "chromebook-2011",
+        yearDisplay: "2011",
+        sortYear: 2011.5,
+        title: "First Chromebooks ship (initially x86, ARM in 2012)",
+        description:
+          "Google launched Chrome OS laptops — thin clients for the browser era. The Samsung Chromebook (Oct 2012) was the first ARM-based model, using Samsung's Exynos 5 Dual (Cortex-A15). At $249, it became Amazon's #1 best-selling laptop. ARM had entered the traditional laptop form factor.",
+        categories: ["devices"],
+        significance: "notable",
+      },
+      {
+        id: "armv8-64bit",
+        yearDisplay: "2011",
+        sortYear: 2011.7,
+        title: "ARMv8-A announced: ARM goes 64-bit",
+        description:
+          "Fundamental architecture change introducing AArch64 — a new 64-bit execution state with a clean 64-bit instruction set (A64). Maintained backward compatibility with 32-bit code via AArch32. Signaled ARM's ambition to move from mobile into servers and infrastructure. Cortex-A53 and A57 cores announced October 2012.",
+        categories: ["platforms"],
+        significance: "major",
+      },
+      {
         id: "android-75pct-market-share",
         yearDisplay: "2012",
         sortYear: 2012,
@@ -485,6 +705,33 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
         significance: "major",
       },
       {
+        id: "arm-10b-annual",
+        yearDisplay: "2013",
+        sortYear: 2013,
+        title: "ARM ships 10 billion chips in a single year",
+        description:
+          "ARM-based chip shipments hit 10 billion annually — roughly 28x the entire x86 PC+server market. ARM chips were found in nearly 60% of the world's mobile devices. The total ARM silicon ecosystem had grown far beyond phones to include tablets, set-top boxes, automotive, IoT sensors, and networking equipment.",
+        categories: ["market"],
+        significance: "major",
+      },
+      {
+        id: "smartphones-majority-phones",
+        yearDisplay: "2013",
+        sortYear: 2013.5,
+        title: "Smartphones become majority of all phone sales",
+        description:
+          "Per Gartner, smartphone sales accounted for 53.6% of all mobile phone sales in 2013, surpassing feature phones for the first time. IDC reported 1.004 billion smartphones shipped — crossing the billion-unit milestone. Total mobile phone market was ~1.81B, meaning feature phones still sold ~800M units but were in terminal decline. Low-cost sub-$150 Android devices drove the crossover.",
+        categories: ["market"],
+        isToolingSpine: true,
+        significance: "major",
+        links: [
+          {
+            label: "Gartner: Smartphones Surpass Feature Phones in 2013",
+            url: "https://www.gartner.com/en/newsroom/press-releases/2014-02-13-gartner-says-annual-smartphone-sales-surpassed-sales-of-feature-phones-for-the-first-time-in-2013",
+          },
+        ],
+      },
+      {
         id: "facebook-acquires-whatsapp",
         yearDisplay: "2014",
         sortYear: 2014,
@@ -505,6 +752,22 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
         significance: "major",
       },
       {
+        id: "smartphones-two-thirds",
+        yearDisplay: "2014",
+        sortYear: 2014,
+        title: "Smartphones reach two-thirds of all phone sales",
+        description:
+          "Smartphone sales hit 1.2 billion units — two-thirds of the ~1.9B total mobile phone market (Gartner). Feature phones contracted to ~690M. The substitution curve was accelerating as sub-$100 Android devices brought smartphones to developing markets. Meanwhile PCs continued declining to ~309M units.",
+        categories: ["market"],
+        significance: "notable",
+        links: [
+          {
+            label: "Gartner: 1 Billion Smartphones in 2014",
+            url: "https://www.gartner.com/en/newsroom/press-releases/2015-03-03-gartner-says-smartphone-sales-surpassed-one-billion-units-in-2014",
+          },
+        ],
+      },
+      {
         id: "microsoft-nokia-writedown",
         yearDisplay: "2015",
         sortYear: 2015,
@@ -523,6 +786,16 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "A physical keyboard married to the Android operating system. The Priv was too little, too late — BlackBerry would exit hardware entirely by 2016. The decision to finally adopt Android validated the platform's dominance but could not overcome BlackBerry's eroded brand and missing app ecosystem. An epilogue to the disruption story.",
         categories: ["devices", "strategy"],
         significance: "notable",
+      },
+      {
+        id: "smartphone-peak-2016",
+        yearDisplay: "2016",
+        sortYear: 2016,
+        title: "Smartphone shipments peak at 1.47 billion",
+        description:
+          "Global smartphone shipments reached their all-time peak of 1.47B units (IDC). Feature phones had shrunk to ~500M. The smartphone was now shipping 5.4x the volume of PCs (~270M). ARM's total chip shipments approached 18B annually. The disruption was complete: ARM-based smartphones had become the world's default computing platform.",
+        categories: ["market"],
+        significance: "major",
       },
     ],
   };
