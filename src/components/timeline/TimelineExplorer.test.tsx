@@ -8,6 +8,7 @@ const timeline: TimelineConfig = {
   title: "Test Timeline",
   subtitle: "Testing timeline filters",
   framing: "Use filters to narrow events.",
+  categoryOrder: ["teamwork-process", "platforms-languages"],
   events: [
     {
       id: "agile",

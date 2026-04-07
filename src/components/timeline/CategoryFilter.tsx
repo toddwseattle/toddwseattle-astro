@@ -2,24 +2,19 @@ import type { TimelineCategory } from "../../data/se-timeline";
 import { timelineCategoryMeta } from "../../data/se-timeline";
 
 interface CategoryFilterProps {
+  categories: TimelineCategory[];
   selected: TimelineCategory | "all";
   onSelect: (category: TimelineCategory | "all") => void;
 }
 
-const orderedCategories: TimelineCategory[] = [
-  "practices-tools",
-  "teamwork-process",
-  "platforms-languages",
-  "ai-automation",
-];
-
 export default function CategoryFilter({
+  categories,
   selected,
   onSelect,
 }: CategoryFilterProps) {
   const options: Array<{ value: TimelineCategory | "all"; label: string }> = [
     { value: "all", label: "All" },
-    ...orderedCategories.map((category) => ({
+    ...categories.map((category) => ({
       value: category,
       label: timelineCategoryMeta[category].label,
     })),

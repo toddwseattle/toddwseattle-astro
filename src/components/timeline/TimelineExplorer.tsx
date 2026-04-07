@@ -33,6 +33,7 @@ export default function TimelineExplorer({ timeline }: TimelineExplorerProps) {
       </div>
 
       <CategoryFilter
+        categories={timeline.categoryOrder}
         selected={selectedCategory}
         onSelect={setSelectedCategory}
       />

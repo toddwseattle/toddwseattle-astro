@@ -204,7 +204,9 @@ const courseMaterialsCollection = defineCollection({
         }),
       )
       .optional(),
-    timelineKey: z.enum(["software-engineering-history"]).optional(),
+    timelineKey: z
+      .enum(["software-engineering-history", "smartphone-revolution"])
+      .optional(),
     draft: z.boolean().default(false),
   }),
 });

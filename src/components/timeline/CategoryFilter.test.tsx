@@ -4,8 +4,21 @@ import { vi } from "vitest";
 import CategoryFilter from "./CategoryFilter";
 
 describe("CategoryFilter", () => {
+  const seCategories = [
+    "practices-tools",
+    "teamwork-process",
+    "platforms-languages",
+    "ai-automation",
+  ] as const;
+
   it("renders all expected filter options", () => {
-    render(<CategoryFilter selected="all" onSelect={vi.fn()} />);
+    render(
+      <CategoryFilter
+        categories={[...seCategories]}
+        selected="all"
+        onSelect={vi.fn()}
+      />,
+    );
 
     expect(screen.getByTestId("timeline-filter-all")).toBeInTheDocument();
     expect(
@@ -26,7 +39,13 @@ describe("CategoryFilter", () => {
     const user = userEvent.setup();
     const onSelect = vi.fn();
 
-    render(<CategoryFilter selected="all" onSelect={onSelect} />);
+    render(
+      <CategoryFilter
+        categories={[...seCategories]}
+        selected="all"
+        onSelect={onSelect}
+      />,
+    );
 
     await user.click(screen.getByTestId("timeline-filter-ai-automation"));
 
