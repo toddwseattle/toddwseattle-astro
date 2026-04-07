@@ -8,6 +8,8 @@ timelineKey: "smartphone-revolution"
 draft: false
 ---
 
+## The Smartphone Revolution Timeline
+
 This interactive timeline covers the decade in which the smartphone disrupted one of the largest consumer electronics industries in history — and gave rise to entirely new business models that could not have existed without it.
 
 Use the category filters to follow a single thread:
@@ -18,10 +20,11 @@ Use the category filters to follow a single thread:
 - **Market Shifts** — when market share moved and why
 - **Startups & New Entrants** — companies like Uber that were only possible because smartphones existed
 
-## Discussion questions
+<!-- ## Discussion questions
 
 1. Nokia had ~40% global handset share in 2006 and a massive engineering organization. What structural factors prevented them from responding effectively to the iPhone?
 2. Compare Google's $50M Android acquisition in 2005 with Microsoft's $500M Danger acquisition in 2008. What does the outcome of each tell us about M&A as a platform strategy?
 3. Stephen Elop's "burning platform" memo is one of the most candid internal documents in tech history. Did the memo help Nokia or hurt it? What are the risks of radical transparency in a turnaround?
 4. webOS had technically superior multitasking and notifications. Why wasn't great product design enough for Palm to survive?
 5. Uber's original pitch deck cited smartphone penetration as a market precondition. What other industries were "unlocked" by the smartphone platform shift, and how would you evaluate the next platform shift for similar opportunities?
+ -->
