@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import TimelineEvent from "./TimelineEvent";
-import type { TimelineEvent as TimelineEventType } from "../../data/se-timeline";
+import type { TimelineEvent as TimelineEventType } from "../../data/timelines";
 
 const event: TimelineEventType = {
   id: "event-1",

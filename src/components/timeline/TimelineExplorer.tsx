@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
-import type { TimelineConfig, TimelineCategory } from "../../data/se-timeline";
-import { filterEvents } from "../../data/se-timeline";
+import type { TimelineConfig, TimelineCategory } from "../../data/timelines";
+import { filterEvents } from "../../data/timelines";
 import CategoryFilter from "./CategoryFilter";
 import TimelineEvent from "./TimelineEvent";
 
@@ -33,6 +33,7 @@ export default function TimelineExplorer({ timeline }: TimelineExplorerProps) {
       </div>
 
       <CategoryFilter
+        categories={timeline.categoryOrder}
         selected={selectedCategory}
         onSelect={setSelectedCategory}
       />

@@ -1,13 +1,14 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import TimelineExplorer from "./TimelineExplorer";
-import type { TimelineConfig } from "../../data/se-timeline";
+import type { TimelineConfig } from "../../data/timelines";
 
 const timeline: TimelineConfig = {
   key: "software-engineering-history",
   title: "Test Timeline",
   subtitle: "Testing timeline filters",
   framing: "Use filters to narrow events.",
+  categoryOrder: ["teamwork-process", "platforms-languages"],
   events: [
     {
       id: "agile",
