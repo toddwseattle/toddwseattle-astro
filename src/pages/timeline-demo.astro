@@ -1,0 +1,89 @@
+---
+/**
+ * Prototype demo for the InteractiveTimeline component.
+ * Route: /timeline-demo
+ *
+ * Shows the software-engineering-history timeline with era bands
+ * and the new horizontal, click-to-reveal interaction model.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import Container from "../components/ui/Container";
+import InteractiveTimeline from "../components/timeline/InteractiveTimeline";
+import {
+  softwareEngineeringHistoryTimeline,
+  softwareEngineeringEras,
+} from "../data/timelines/software-engineering-history";
+---
+
+<BaseLayout
+  title="Interactive Timeline — Prototype"
+  description="Desktop prototype for an interactive horizontal course-materials timeline with era bands and click-to-reveal event detail."
+  noindex
+>
+  <Header client:load />
+
+  <main class="py-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+
+        <!-- Page heading -->
+        <div class="mb-10">
+          <p class="text-xs font-semibold uppercase tracking-widest text-graphite-400 mb-2">
+            Prototype · Desktop
+          </p>
+          <h1 class="text-4xl font-bold tracking-tight text-ink-800 dark:text-paper-100">
+            Interactive Timeline
+          </h1>
+          <p class="mt-3 text-lg text-ink-600 dark:text-paper-200 max-w-2xl">
+            A Histography-style horizontal timeline for course materials.
+            Events are positioned across a scrollable axis with era bands
+            marking major paradigm shifts. <strong>Hover</strong> to preview
+            an event; <strong>click</strong> to reveal the full detail below.
+          </p>
+        </div>
+
+        <!-- Interactive timeline -->
+        <InteractiveTimeline
+          client:load
+          timeline={softwareEngineeringHistoryTimeline}
+          eras={softwareEngineeringEras}
+        />
+
+        <!-- Design notes -->
+        <div class="mt-16 rounded-xl border border-graphite-600/20 bg-paper-100 dark:border-graphite-600 dark:bg-surface-dark p-6">
+          <h2 class="text-sm font-semibold uppercase tracking-widest text-graphite-400 mb-4">
+            Prototype Notes
+          </h2>
+          <ul class="space-y-2 text-sm text-ink-600 dark:text-paper-200 list-disc list-inside">
+            <li>
+              <strong>Era bands</strong> — labelled zones show the broad paradigm
+              (Foundations → Structured Methods → Agile Revolution → Cloud &amp;
+              DevOps → AI Era).
+            </li>
+            <li>
+              <strong>Big Shifts</strong> — <code>significance: "major"</code> events
+              float above the axis on a stem with a pulsing ring.
+            </li>
+            <li>
+              <strong>Category filter</strong> — narrows which dots are rendered;
+              clears the active selection.
+            </li>
+            <li>
+              <strong>Detail panel</strong> — slides in below the track on click;
+              includes description, category pills, image (if any), and source links.
+            </li>
+            <li>
+              Uses <code>prefers-reduced-motion</code> — all animations are
+              suppressed for users who opt out.
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </Container>
+  </main>
+
+  <Footer client:load />
+</BaseLayout>

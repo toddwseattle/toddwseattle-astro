@@ -1,3 +1,11 @@
+export interface TimelineEra {
+  id: string;
+  /** Short label displayed inside the era band */
+  label: string;
+  startYear: number;
+  endYear: number;
+}
+
 export type TimelineCategory =
   | "practices-tools"
   | "teamwork-process"

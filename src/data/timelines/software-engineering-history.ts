@@ -1,4 +1,41 @@
-import type { TimelineConfig } from "./shared";
+import type { TimelineConfig, TimelineEra } from "./shared";
+
+/**
+ * Era bands for the interactive horizontal timeline view.
+ * Each era represents a broad shift in how software was built and organised.
+ */
+export const softwareEngineeringEras: TimelineEra[] = [
+  {
+    id: "foundations",
+    label: "Foundations",
+    startYear: 1963,
+    endYear: 1980,
+  },
+  {
+    id: "structured-methods",
+    label: "Structured Methods",
+    startYear: 1980,
+    endYear: 1994,
+  },
+  {
+    id: "agile-revolution",
+    label: "Agile Revolution",
+    startYear: 1994,
+    endYear: 2010,
+  },
+  {
+    id: "cloud-devops",
+    label: "Cloud & DevOps",
+    startYear: 2010,
+    endYear: 2020,
+  },
+  {
+    id: "ai-era",
+    label: "AI Era",
+    startYear: 2020,
+    endYear: 2027,
+  },
+];
 
 export const softwareEngineeringHistoryTimeline: TimelineConfig<"software-engineering-history"> = {
   key: "software-engineering-history",

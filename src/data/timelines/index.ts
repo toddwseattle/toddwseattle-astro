@@ -20,6 +20,7 @@ export type {
   CategoryMeta,
   TimelineCategory,
   TimelineConfig,
+  TimelineEra,
   TimelineEvent,
   TimelineEventImage,
   TimelineLink,
