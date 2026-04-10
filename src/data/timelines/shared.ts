@@ -47,6 +47,7 @@ export interface TimelineConfig<TKey extends string = string> {
   framing: string;
   categoryOrder: TimelineCategory[];
   events: TimelineEvent[];
+  eras?: TimelineEra[];
 }
 
 export interface CategoryMeta {
@@ -105,12 +106,18 @@ export const timelineCategoryMeta: Record<TimelineCategory, CategoryMeta> = {
 export const filterEvents = (
   events: TimelineEvent[],
   category: TimelineCategory | "all",
+  era?: TimelineEra | null,
 ): TimelineEvent[] => {
-  if (category === "all") {
-    return [...events].sort((a, b) => a.sortYear - b.sortYear);
+  let filtered =
+    category === "all"
+      ? [...events]
+      : events.filter((event) => event.categories.includes(category));
+
+  if (era) {
+    filtered = filtered.filter(
+      (e) => e.sortYear >= era.startYear && e.sortYear <= era.endYear,
+    );
   }
 
-  return events
-    .filter((event) => event.categories.includes(category))
-    .sort((a, b) => a.sortYear - b.sortYear);
+  return filtered.sort((a, b) => a.sortYear - b.sortYear);
 };

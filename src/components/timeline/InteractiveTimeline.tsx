@@ -1,23 +1,25 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import type { TimelineConfig, TimelineCategory } from "../../data/timelines";
-import { timelineCategoryMeta } from "../../data/timelines";
+import type {
+  TimelineConfig,
+  TimelineCategory,
+  TimelineEra,
+} from "../../data/timelines";
+import { timelineCategoryMeta, filterEvents } from "../../data/timelines";
 
 // ──────────────────────────────────────────────────────────────────────────────
-// Types
+// Props
 // ──────────────────────────────────────────────────────────────────────────────
-
-export interface TimelineEra {
-  id: string;
-  /** Short label shown inside the era band */
-  label: string;
-  startYear: number;
-  endYear: number;
-}
 
 interface InteractiveTimelineProps {
   timeline: TimelineConfig;
   eras?: TimelineEra[];
+  /** Controlled: category filter. When omitted the component manages it internally. */
+  selectedCategory?: TimelineCategory | "all";
+  /** Controlled: era filter. When omitted no era filtering is applied. */
+  selectedEra?: TimelineEra | null;
+  onCategoryChange?: (cat: TimelineCategory | "all") => void;
+  onEraChange?: (era: TimelineEra | null) => void;
 }
 
 // ──────────────────────────────────────────────────────────────────────────────
@@ -30,16 +32,15 @@ const PAD_RIGHT = 48;
 
 // Y positions within the fixed-height track
 const TRACK_H = 180;
-const LINE_Y = 130;       // horizontal axis
-const MAJOR_DOT_Y = 68;   // dot centre for major events (above the line)
-const MAJOR_DOT_R = 7;    // radius (px)
-const NOTABLE_DOT_R = 4;  // radius (px)
+const LINE_Y = 130; // horizontal axis
+const MAJOR_DOT_Y = 68; // dot centre for major events (above the line)
+const MAJOR_DOT_R = 7; // radius (px)
+const NOTABLE_DOT_R = 4; // radius (px)
 
 // Alternating subtle fills for era bands (dark background)
-const ERA_FILLS = [
-  "rgba(255,255,255,0.025)",
-  "rgba(255,255,255,0.055)",
-];
+const ERA_FILLS = ["rgba(255,255,255,0.025)", "rgba(255,255,255,0.055)"];
+const ERA_FILL_ACTIVE = "rgba(255,255,255,0.10)";
+const ERA_FILL_DIM = "rgba(255,255,255,0.01)";
 
 // ──────────────────────────────────────────────────────────────────────────────
 // Dot colours — designed to read on the dark (#0D0D0F) track background
@@ -67,14 +68,26 @@ function dotColor(categories: TimelineCategory[]): string {
 
 export default function InteractiveTimeline({
   timeline,
-  eras = [],
+  eras: erasProp,
+  selectedCategory: selectedCategoryProp,
+  selectedEra,
+  onCategoryChange,
+  onEraChange,
 }: InteractiveTimelineProps) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState<
+  const shouldReduceMotion = useReducedMotion();
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  // Uncontrolled fallback for category when no controlled prop is provided
+  const [internalCategory, setInternalCategory] = useState<
     TimelineCategory | "all"
   >("all");
-  const shouldReduceMotion = useReducedMotion();
+  const resolvedCategory = selectedCategoryProp ?? internalCategory;
+  const handleCategory = onCategoryChange ?? setInternalCategory;
+
+  // Use eras from prop, or fall back to eras embedded in the timeline config
+  const eras = erasProp ?? timeline.eras ?? [];
 
   // Chronological master list
   const allEvents = useMemo(
@@ -84,11 +97,8 @@ export default function InteractiveTimeline({
 
   // Filtered subset shown as dots
   const visibleEvents = useMemo(
-    () =>
-      selectedCategory === "all"
-        ? allEvents
-        : allEvents.filter((e) => e.categories.includes(selectedCategory)),
-    [allEvents, selectedCategory],
+    () => filterEvents(allEvents, resolvedCategory, selectedEra ?? null),
+    [allEvents, resolvedCategory, selectedEra],
   );
 
   // Year bounds with a small buffer
@@ -110,6 +120,15 @@ export default function InteractiveTimeline({
     (year: number) => PAD_LEFT + (year - minYear) * PX_PER_YEAR,
     [minYear],
   );
+
+  // Scroll the track to the start of the selected era whenever it changes
+  useEffect(() => {
+    if (!selectedEra || !scrollContainerRef.current) return;
+    scrollContainerRef.current.scrollTo({
+      left: Math.max(0, yearToX(selectedEra.startYear) - 32),
+      behavior: shouldReduceMotion ? "auto" : "smooth",
+    });
+  }, [selectedEra, yearToX, shouldReduceMotion]);
 
   // Every 5 years
   const yearTicks = useMemo(() => {
@@ -133,6 +152,12 @@ export default function InteractiveTimeline({
     setSelectedId((prev) => (prev === id ? null : id));
   }
 
+  function handleEraClick(era: TimelineEra) {
+    if (!onEraChange) return;
+    onEraChange(selectedEra?.id === era.id ? null : era);
+    setSelectedId(null);
+  }
+
   // ────────────────────────────────────────────────────────────────────────────
   // Render
   // ────────────────────────────────────────────────────────────────────────────
@@ -147,40 +172,42 @@ export default function InteractiveTimeline({
         <p className="mt-1 text-sm text-graphite-400">{timeline.subtitle}</p>
       </div>
 
-      {/* Category filter */}
-      <div className="flex flex-wrap gap-2">
-        <button
-          type="button"
-          onClick={() => {
-            setSelectedCategory("all");
-            setSelectedId(null);
-          }}
-          className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors duration-150 ${
-            selectedCategory === "all"
-              ? "border-ink-800 bg-ink-800 text-paper-50 dark:border-paper-100 dark:bg-paper-100 dark:text-ink-800"
-              : "border-graphite-600/40 text-ink-600 hover:border-graphite-600 dark:border-graphite-600 dark:text-paper-200"
-          }`}
-        >
-          All
-        </button>
-        {timeline.categoryOrder.map((cat) => (
+      {/* Category filter — only shown when operating in uncontrolled mode */}
+      {!onCategoryChange && (
+        <div className="flex flex-wrap gap-2">
           <button
-            key={cat}
             type="button"
             onClick={() => {
-              setSelectedCategory(cat);
+              handleCategory("all");
               setSelectedId(null);
             }}
             className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors duration-150 ${
-              selectedCategory === cat
+              resolvedCategory === "all"
                 ? "border-ink-800 bg-ink-800 text-paper-50 dark:border-paper-100 dark:bg-paper-100 dark:text-ink-800"
                 : "border-graphite-600/40 text-ink-600 hover:border-graphite-600 dark:border-graphite-600 dark:text-paper-200"
             }`}
           >
-            {timelineCategoryMeta[cat].label}
+            All
           </button>
-        ))}
-      </div>
+          {timeline.categoryOrder.map((cat) => (
+            <button
+              key={cat}
+              type="button"
+              onClick={() => {
+                handleCategory(cat);
+                setSelectedId(null);
+              }}
+              className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors duration-150 ${
+                resolvedCategory === cat
+                  ? "border-ink-800 bg-ink-800 text-paper-50 dark:border-paper-100 dark:bg-paper-100 dark:text-ink-800"
+                  : "border-graphite-600/40 text-ink-600 hover:border-graphite-600 dark:border-graphite-600 dark:text-paper-200"
+              }`}
+            >
+              {timelineCategoryMeta[cat].label}
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* Status / hover info bar */}
       <div className="h-8 flex items-center">
@@ -215,7 +242,9 @@ export default function InteractiveTimeline({
             >
               {selectedId
                 ? "Click the dot again to close · hover any dot to preview"
-                : "Hover to preview · click a dot to reveal full detail"}
+                : eras.length > 0
+                  ? "Hover to preview · click a dot to reveal detail · click an era band to filter"
+                  : "Hover to preview · click a dot to reveal full detail"}
             </motion.p>
           )}
         </AnimatePresence>
@@ -223,6 +252,7 @@ export default function InteractiveTimeline({
 
       {/* ── Timeline track ──────────────────────────────────────────────────── */}
       <div
+        ref={scrollContainerRef}
         className="overflow-x-auto rounded-xl"
         style={{ background: "#0D0D0F" }}
         role="region"
@@ -239,36 +269,65 @@ export default function InteractiveTimeline({
           {eras.map((era, idx) => {
             const x = yearToX(era.startYear);
             const w = (era.endYear - era.startYear) * PX_PER_YEAR;
-            return (
-              <div
-                key={era.id}
+            const isEraActive = selectedEra?.id === era.id;
+            const hasEraSelection =
+              selectedEra !== null && selectedEra !== undefined;
+            const fill = hasEraSelection
+              ? isEraActive
+                ? ERA_FILL_ACTIVE
+                : ERA_FILL_DIM
+              : ERA_FILLS[idx % 2];
+
+            const eraLabelSpan = (
+              <span
                 style={{
                   position: "absolute",
-                  left: x,
-                  top: 0,
-                  width: w,
-                  height: "100%",
-                  background: ERA_FILLS[idx % 2],
-                  borderRight: "1px solid rgba(255,255,255,0.06)",
+                  top: 8,
+                  left: 8,
+                  fontSize: "9px",
+                  fontWeight: 700,
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  color: isEraActive
+                    ? "rgba(255,255,255,0.55)"
+                    : "rgba(255,255,255,0.28)",
+                  whiteSpace: "nowrap",
+                  userSelect: "none",
+                  pointerEvents: "none",
+                  transition: "color 0.2s",
                 }}
               >
-                <span
-                  style={{
-                    position: "absolute",
-                    top: 8,
-                    left: 8,
-                    fontSize: "9px",
-                    fontWeight: 700,
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    color: "rgba(255,255,255,0.28)",
-                    whiteSpace: "nowrap",
-                    userSelect: "none",
-                    pointerEvents: "none",
-                  }}
-                >
-                  {era.label}
-                </span>
+                {era.label}
+              </span>
+            );
+
+            const eraStyle = {
+              position: "absolute" as const,
+              left: x,
+              top: 0,
+              width: w,
+              height: "100%",
+              background: fill,
+              borderRight: "1px solid rgba(255,255,255,0.06)",
+              transition: "background 0.2s",
+              outline: isEraActive
+                ? "1px solid rgba(255,255,255,0.2)"
+                : undefined,
+            };
+
+            return onEraChange ? (
+              <button
+                key={era.id}
+                type="button"
+                aria-label={`${era.label} era${isEraActive ? " — active, click to clear filter" : " — click to filter"}`}
+                onClick={() => handleEraClick(era)}
+                style={{ ...eraStyle, cursor: "pointer" }}
+              >
+                {eraLabelSpan}
+              </button>
+            ) : (
+              <div key={era.id} style={{ ...eraStyle, cursor: "default" }}>
+                {eraLabelSpan}
               </div>
             );
           })}
@@ -444,9 +503,7 @@ export default function InteractiveTimeline({
           />
           Notable event
         </span>
-        <span className="ml-auto hidden sm:block">
-          ← scroll to explore →
-        </span>
+        <span className="ml-auto hidden sm:block">← scroll to explore →</span>
       </div>
 
       {/* ── Detail panel ────────────────────────────────────────────────────── */}
@@ -455,12 +512,10 @@ export default function InteractiveTimeline({
           <motion.div
             key={selectedEvent.id}
             initial={
-              shouldReduceMotion ? false : { opacity: 0, y: -10, height: 0 }
+              shouldReduceMotion ? {} : { opacity: 0, y: -10, height: 0 }
             }
             animate={{ opacity: 1, y: 0, height: "auto" }}
-            exit={
-              shouldReduceMotion ? false : { opacity: 0, y: -10, height: 0 }
-            }
+            exit={shouldReduceMotion ? {} : { opacity: 0, y: -10, height: 0 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
