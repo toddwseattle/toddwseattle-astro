@@ -13,13 +13,13 @@ describe("Button", () => {
   it("applies primary variant styles", () => {
     render(<Button primary>Primary Button</Button>);
     const button = screen.getByRole("button");
-    expect(button).toHaveClass("bg-ink-800", "text-paper-50");
+    expect(button).toHaveClass("bg-accent-teal", "text-paper-50", "min-h-11");
   });
 
   it("applies secondary variant styles by default", () => {
     render(<Button>Secondary Button</Button>);
     const button = screen.getByRole("button");
-    expect(button).toHaveClass("bg-paper-200", "text-ink-800");
+    expect(button).toHaveClass("border-accent-teal", "text-accent-teal");
   });
 
   it("applies custom className", () => {

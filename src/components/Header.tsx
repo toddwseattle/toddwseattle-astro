@@ -36,7 +36,7 @@ const Header: React.FC = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="bg-paper-50 dark:bg-graphite-700 border-b border-graphite-600/20 dark:border-graphite-600">
+    <header className="border-b border-graphite-600/20 bg-paper-50 font-sans dark:border-graphite-600 dark:bg-graphite-700">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
@@ -44,7 +44,7 @@ const Header: React.FC = () => {
             <div className="w-12 h-12 rounded-full bg-ink-800 dark:bg-paper-100 flex items-center justify-center text-paper-50 dark:text-ink-800 font-bold">
               TW
             </div>
-            <span className="text-xl font-bold text-ink-800 dark:text-paper-100">
+            <span className="text-xl font-semibold text-ink-800 dark:text-paper-100">
               Todd Warren
             </span>
           </a>
@@ -55,7 +55,7 @@ const Header: React.FC = () => {
               <a
                 key={`nav-item-${index}`}
                 href={item.slug}
-                className="text-ink-800 dark:text-paper-100 font-medium hover:underline decoration-graphite-400 hover:decoration-ink-800 dark:hover:decoration-paper-100 transition-colors"
+                className="font-medium text-ink-800 underline-offset-4 decoration-accent-teal transition-colors hover:underline hover:decoration-2 dark:text-paper-100 dark:hover:decoration-paper-100"
               >
                 {item.title}
               </a>
@@ -87,7 +87,7 @@ const Header: React.FC = () => {
               <a
                 key={`mobile-nav-item-${index}`}
                 href={item.slug}
-                className="text-ink-800 dark:text-paper-100 font-medium py-2 hover:underline"
+                className="py-2 font-medium text-ink-800 underline-offset-4 decoration-accent-teal hover:underline hover:decoration-2 dark:text-paper-100"
               >
                 {item.title}
               </a>

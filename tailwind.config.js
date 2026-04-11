@@ -6,6 +6,18 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
+      fontFamily: {
+        serif: ["Newsreader", "Georgia", "Cambria", "Times New Roman", "serif"],
+        sans: [
+          "Manrope",
+          "ui-sans-serif",
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "sans-serif",
+        ],
+      },
       colors: {
         // Chronicle Data System tokens
         // See docs/Visual-style/short-color-brief.md for reference

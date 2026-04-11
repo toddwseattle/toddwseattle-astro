@@ -20,16 +20,16 @@ export default function TimelineEvent({ event }: TimelineEventProps) {
       data-testid={`timeline-event-${event.id}`}
     >
       <time
-        className="mb-2 block text-sm font-medium text-graphite-400 md:absolute md:right-[calc(100%+1.25rem)] md:top-1.5 md:mb-0 md:w-28 md:text-right"
+        className="mb-2 block font-sans text-sm font-medium text-graphite-400 md:absolute md:right-[calc(100%+1.25rem)] md:top-1.5 md:mb-0 md:w-28 md:text-right"
         dateTime={event.sortYear.toString()}
       >
         {event.yearDisplay}
       </time>
 
-      <span className="absolute left-0 top-2.5 w-3 h-3 rounded-full border border-graphite-600/40 bg-paper-50 dark:border-graphite-500 dark:bg-graphite-700" />
+      <span className="absolute left-0 top-2.5 h-3 w-3 rounded-full border border-graphite-600/40 bg-paper-50 dark:border-graphite-600 dark:bg-graphite-700" />
 
       <article
-        className={`rounded-xl border bg-paper-50 p-5 transition-colors duration-200 dark:bg-surface-dark ${
+        className={`rounded-lg border bg-paper-50 p-5 transition-colors duration-200 dark:bg-surface-dark ${
           event.significance === "major"
             ? "border-graphite-600/40 dark:border-ink-600"
             : "border-graphite-600/20 dark:border-graphite-600"
@@ -101,7 +101,7 @@ export default function TimelineEvent({ event }: TimelineEventProps) {
                     {event.categories.map((category) => (
                       <li key={`${event.id}-${category}`}>
                         <span
-                          className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${timelineCategoryMeta[category].pillClassName}`}
+                          className={`inline-flex items-center rounded-full px-2.5 py-0.5 font-sans text-xs font-medium ${timelineCategoryMeta[category].pillClassName}`}
                         >
                           {timelineCategoryMeta[category].label}
                         </span>
@@ -117,7 +117,7 @@ export default function TimelineEvent({ event }: TimelineEventProps) {
                             href={link.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-ink-800 underline decoration-graphite-400 underline-offset-4 hover:decoration-ink-800 dark:text-paper-100 dark:hover:decoration-paper-100"
+                            className="text-ink-800 underline decoration-accent-teal underline-offset-4 hover:decoration-ink-800 dark:text-paper-100 dark:hover:decoration-paper-100"
                           >
                             {link.label} →
                           </a>

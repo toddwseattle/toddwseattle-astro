@@ -95,21 +95,23 @@ Visual consistency is maintained by **[`docs/04-style-guide.md`](docs/04-style-g
 
 ### Typography
 
-- **Body / Headings:** Inter
-- **Code:** JetBrains Mono
+- **Narrative body / headings:** Newsreader
+- **UI / data labels:** Manrope
+- **Code:** system monospace
 - **Prose width:** ~700 px; comfortable line height
 
 ### Color tokens
 
-| Token          | Value     | Use                |
-| -------------- | --------- | ------------------ |
-| Background     | `#FAFAFA` | Page background    |
-| Surface        | `#FFFFFF` | Cards, panels      |
-| Primary text   | `#0F172A` | Body copy          |
-| Secondary text | `#475569` | Captions, metadata |
-| Accent         | `#4F46E5` | Links, CTAs        |
+| Token          | Value     | Use                        |
+| -------------- | --------- | -------------------------- |
+| `paper-100`    | `#F4F3F2` | Page background            |
+| `paper-50`     | `#FFFFFF` | Primary surface            |
+| `ink-800`      | `#1A1A1C` | Body copy and headings     |
+| `graphite-600` | `#4A494C` | Borders and structure      |
+| `accent-teal`  | `#008080` | Links, CTAs, active states |
+| `accent-soft`  | `#E0F2F2` | Subtle active regions      |
 
-Use Tailwind CSS utility classes mapped to these tokens — avoid raw hex values in component code.
+Use Chronicle Data System Tailwind utility classes mapped to these tokens. Avoid raw hex values in component code.
 
 ### Tone
 

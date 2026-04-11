@@ -14,7 +14,7 @@ const resources = (entry.data as any).resources || [];
 <article class="py-16">
   <Container>
     <div class="max-w-4xl mx-auto">
-      <div class="prose prose-lg dark:prose-invert max-w-none">
+      <div class="prose prose-lg max-w-none">
         <rendered.Content />
       </div>
 
@@ -34,13 +34,13 @@ const resources = (entry.data as any).resources || [];
                   <tr>
                     <th
                       scope="col"
-                      class="px-6 py-3 text-left text-xs font-medium text-ink-600 dark:text-paper-200 uppercase tracking-wider"
+                      class="px-6 py-3 text-left font-sans text-xs font-medium text-ink-600 dark:text-paper-200 uppercase tracking-wider"
                     >
                       Resource
                     </th>
                     <th
                       scope="col"
-                      class="px-6 py-3 text-left text-xs font-medium text-ink-600 dark:text-paper-200 uppercase tracking-wider"
+                      class="px-6 py-3 text-left font-sans text-xs font-medium text-ink-600 dark:text-paper-200 uppercase tracking-wider"
                     >
                       Description
                     </th>
@@ -54,7 +54,7 @@ const resources = (entry.data as any).resources || [];
                           href={r.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          class="text-ink-800 underline decoration-graphite-400 dark:text-paper-100 hover:decoration-ink-800 dark:hover:decoration-paper-100 font-medium"
+                          class="text-ink-800 underline decoration-accent-teal dark:text-paper-100 hover:decoration-ink-800 dark:hover:decoration-paper-100 font-medium"
                         >
                           {r.title} →
                         </a>

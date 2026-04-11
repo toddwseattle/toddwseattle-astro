@@ -16,12 +16,12 @@ const difficulty = (entry.data as any).difficulty as string | undefined;
     <div class="max-w-4xl mx-auto">
       {
         difficulty && (
-          <div class="mb-6 inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200">
+          <div class="mb-6 inline-flex items-center rounded-full bg-accent-soft px-3 py-1 font-sans text-sm font-medium text-ink-800 underline decoration-accent-teal decoration-2 underline-offset-4 dark:bg-surface-dark dark:text-paper-100">
             {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
           </div>
         )
       }
-      <div class="prose prose-lg dark:prose-invert max-w-none">
+      <div class="prose prose-lg max-w-none">
         <rendered.Content />
       </div>
     </div>

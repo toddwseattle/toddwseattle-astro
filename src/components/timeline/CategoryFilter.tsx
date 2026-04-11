@@ -42,9 +42,9 @@ export default function CategoryFilter({
             onClick={() =>
               onSelect(!showAll && isSelected ? "all" : option.value)
             }
-            className={`rounded-sm border px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-graphite-400 ${
+            className={`rounded-sm border px-4 py-1 font-sans text-[0.65rem] font-semibold uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal ${
               isSelected
-                ? "border-[#155e5a] bg-[#155e5a] text-paper-50 dark:border-paper-100 dark:bg-paper-100 dark:text-ink-800"
+                ? "border-accent-teal bg-accent-teal text-paper-50 underline decoration-paper-50 decoration-2 underline-offset-4 dark:border-accent-teal dark:bg-accent-teal dark:text-paper-50"
                 : "border-paper-200 bg-paper-200/85 text-ink-600 hover:border-graphite-400 hover:bg-paper-100 dark:border-graphite-600 dark:bg-surface-dark dark:text-paper-200 dark:hover:bg-graphite-700"
             }`}
             data-testid={`timeline-filter-${option.value}`}

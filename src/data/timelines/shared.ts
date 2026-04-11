@@ -64,12 +64,12 @@ export const timelineCategoryMeta: Record<TimelineCategory, CategoryMeta> = {
   "teamwork-process": {
     label: "Teamwork & Process",
     pillClassName:
-      "bg-paper-100 text-ink-700 dark:bg-graphite-600 dark:text-paper-100",
+      "bg-paper-100 text-ink-800 dark:bg-graphite-600 dark:text-paper-100",
   },
   "platforms-languages": {
     label: "Platforms & Languages",
     pillClassName:
-      "bg-paper-200 text-ink-700 dark:bg-graphite-700 dark:text-paper-100",
+      "bg-paper-200 text-ink-800 dark:bg-graphite-700 dark:text-paper-100",
   },
   "ai-automation": {
     label: "AI & Automation",
@@ -79,27 +79,27 @@ export const timelineCategoryMeta: Record<TimelineCategory, CategoryMeta> = {
   platforms: {
     label: "Platforms & Ecosystems",
     pillClassName:
-      "bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200",
+      "bg-paper-200 text-ink-800 dark:bg-graphite-700 dark:text-paper-100",
   },
   devices: {
     label: "Devices",
     pillClassName:
-      "bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200",
+      "bg-paper-100 text-ink-800 dark:bg-graphite-600 dark:text-paper-100",
   },
   strategy: {
     label: "Corporate Strategy",
     pillClassName:
-      "bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200",
+      "bg-paper-200 text-ink-800 dark:bg-graphite-700 dark:text-paper-100",
   },
   market: {
     label: "Market Shifts",
     pillClassName:
-      "bg-rose-100 text-rose-800 dark:bg-rose-900 dark:text-rose-200",
+      "bg-paper-100 text-ink-800 dark:bg-graphite-600 dark:text-paper-100",
   },
   startups: {
     label: "Startups & New Entrants",
     pillClassName:
-      "bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200",
+      "bg-paper-200 text-ink-800 dark:bg-graphite-700 dark:text-paper-100",
   },
 };
 

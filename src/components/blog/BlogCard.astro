@@ -48,7 +48,7 @@ const getCategoryLabel = (cat: string) => {
 ---
 
 <article
-  class="group relative bg-paper-50 dark:bg-surface-dark rounded-lg border border-graphite-600/20 dark:border-graphite-600 hover:border-graphite-400 dark:hover:border-ink-600 transition-colors duration-300 overflow-hidden focus-within:ring-2 ring-graphite-400"
+  class="group relative bg-paper-50 dark:bg-surface-dark rounded-lg border border-graphite-600/20 dark:border-graphite-600 hover:border-graphite-400 dark:hover:border-ink-600 transition-colors duration-300 overflow-hidden focus-within:ring-2 ring-accent-teal"
 >
   <a href={`/writing/${slug}/`} class="block">
     {
@@ -69,7 +69,7 @@ const getCategoryLabel = (cat: string) => {
 
     <div class="p-6">
       <div
-        class="flex items-center gap-2 text-sm text-graphite-400 font-medium"
+        class="flex items-center gap-2 font-sans text-sm font-medium text-graphite-400"
       >
         <time datetime={date}>
           {formatDate(date)}
@@ -96,7 +96,7 @@ const getCategoryLabel = (cat: string) => {
         {category && (
           <a
             href={`/writing/tag/${slugify(category)}/`}
-            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-paper-200 text-ink-800 dark:bg-graphite-600 dark:text-paper-100 hover:bg-graphite-400/20 dark:hover:bg-ink-600 transition-colors"
+            class="inline-flex items-center px-2.5 py-0.5 rounded-full font-sans text-xs font-medium bg-paper-200 text-ink-800 dark:bg-graphite-600 dark:text-paper-100 hover:bg-graphite-400/20 dark:hover:bg-ink-600 transition-colors"
           >
             {getCategoryLabel(category)}
           </a>
@@ -105,7 +105,7 @@ const getCategoryLabel = (cat: string) => {
           tags.map((tag) => (
             <a
               href={`/writing/tag/${slugify(tag)}/`}
-              class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-paper-200 text-ink-800 dark:bg-graphite-700 dark:text-paper-200 hover:bg-graphite-400/20 dark:hover:bg-graphite-600 transition-colors"
+              class="inline-flex items-center px-2.5 py-0.5 rounded-full font-sans text-xs font-medium bg-paper-200 text-ink-800 dark:bg-graphite-700 dark:text-paper-200 hover:bg-graphite-400/20 dark:hover:bg-graphite-600 transition-colors"
             >
               {tag}
             </a>

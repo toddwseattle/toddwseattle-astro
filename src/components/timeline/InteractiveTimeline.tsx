@@ -42,25 +42,12 @@ const ERA_FILLS = ["rgba(255,255,255,0.025)", "rgba(255,255,255,0.055)"];
 const ERA_FILL_ACTIVE = "rgba(255,255,255,0.10)";
 const ERA_FILL_DIM = "rgba(255,255,255,0.01)";
 
-// ──────────────────────────────────────────────────────────────────────────────
-// Dot colours — designed to read on the dark (#0D0D0F) track background
-// ──────────────────────────────────────────────────────────────────────────────
-
-const CAT_COLORS: Record<TimelineCategory, string> = {
-  "practices-tools": "#9CA3AF",
-  "teamwork-process": "#D1D5DB",
-  "platforms-languages": "#6B7280",
-  "ai-automation": "#F9FAFB",
-  platforms: "#818CF8",
-  devices: "#34D399",
-  strategy: "#FBBF24",
-  market: "#F87171",
-  startups: "#4ADE80",
-};
-
-function dotColor(categories: TimelineCategory[]): string {
-  return CAT_COLORS[categories[0]] ?? "#9CA3AF";
-}
+const TRACK_BACKGROUND = "rgb(13 13 15)";
+const DOT_MAJOR = "rgb(209 213 219)";
+const DOT_NOTABLE = "rgb(107 114 128)";
+const DOT_SELECTED = "rgb(255 255 255)";
+const ACCENT_TEAL = "rgb(0 128 128)";
+const DOT_BORDER = "rgb(156 163 175)";
 
 // ──────────────────────────────────────────────────────────────────────────────
 // Component
@@ -181,9 +168,9 @@ export default function InteractiveTimeline({
               handleCategory("all");
               setSelectedId(null);
             }}
-            className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors duration-150 ${
+            className={`rounded-lg border px-3 py-1 font-sans text-xs font-medium transition-colors duration-150 ${
               resolvedCategory === "all"
-                ? "border-ink-800 bg-ink-800 text-paper-50 dark:border-paper-100 dark:bg-paper-100 dark:text-ink-800"
+                ? "border-accent-teal bg-accent-teal text-paper-50 underline decoration-paper-50 decoration-2 underline-offset-4"
                 : "border-graphite-600/40 text-ink-600 hover:border-graphite-600 dark:border-graphite-600 dark:text-paper-200"
             }`}
           >
@@ -197,9 +184,9 @@ export default function InteractiveTimeline({
                 handleCategory(cat);
                 setSelectedId(null);
               }}
-              className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors duration-150 ${
+              className={`rounded-lg border px-3 py-1 font-sans text-xs font-medium transition-colors duration-150 ${
                 resolvedCategory === cat
-                  ? "border-ink-800 bg-ink-800 text-paper-50 dark:border-paper-100 dark:bg-paper-100 dark:text-ink-800"
+                  ? "border-accent-teal bg-accent-teal text-paper-50 underline decoration-paper-50 decoration-2 underline-offset-4"
                   : "border-graphite-600/40 text-ink-600 hover:border-graphite-600 dark:border-graphite-600 dark:text-paper-200"
               }`}
             >
@@ -219,14 +206,14 @@ export default function InteractiveTimeline({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.12 }}
-              className="text-sm font-medium text-ink-800 dark:text-paper-100"
+              className="font-sans text-sm font-medium text-ink-800 dark:text-paper-100"
             >
               <span className="mr-1.5 text-graphite-400">
                 {hoveredEvent.yearDisplay} ·
               </span>
               {hoveredEvent.title}
               {hoveredEvent.significance === "major" && (
-                <span className="ml-2 inline-flex items-center rounded-full bg-ink-800 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-paper-50 dark:bg-paper-200 dark:text-ink-800">
+                <span className="ml-2 inline-flex items-center rounded-full bg-accent-soft px-2 py-0.5 font-sans text-[9px] font-semibold uppercase tracking-wider text-ink-800 underline decoration-accent-teal decoration-2 underline-offset-4 dark:bg-surface-dark dark:text-paper-100">
                   Big Shift
                 </span>
               )}
@@ -253,8 +240,8 @@ export default function InteractiveTimeline({
       {/* ── Timeline track ──────────────────────────────────────────────────── */}
       <div
         ref={scrollContainerRef}
-        className="overflow-x-auto rounded-xl"
-        style={{ background: "#0D0D0F" }}
+        className="overflow-x-auto rounded-lg"
+        style={{ background: TRACK_BACKGROUND }}
         role="region"
         aria-label="Interactive timeline — scroll horizontally to explore"
       >
@@ -383,7 +370,7 @@ export default function InteractiveTimeline({
             const isMajor = event.significance === "major";
             const isSelected = selectedId === event.id;
             const isHovered = hoveredId === event.id;
-            const color = dotColor(event.categories);
+            const color = isMajor ? DOT_MAJOR : DOT_NOTABLE;
             const dotR = isMajor ? MAJOR_DOT_R : NOTABLE_DOT_R;
             const dotY = isMajor ? MAJOR_DOT_Y : LINE_Y;
 
@@ -407,7 +394,9 @@ export default function InteractiveTimeline({
                       top: MAJOR_DOT_Y + dotR,
                       width: 1,
                       height: LINE_Y - (MAJOR_DOT_Y + dotR),
-                      background: `linear-gradient(to bottom, ${color}70, rgba(255,255,255,0.06))`,
+                      background: isSelected
+                        ? `linear-gradient(to bottom, ${ACCENT_TEAL}, rgba(255,255,255,0.06))`
+                        : `linear-gradient(to bottom, rgba(209,213,219,0.44), rgba(255,255,255,0.06))`,
                     }}
                   />
                 )}
@@ -422,7 +411,7 @@ export default function InteractiveTimeline({
                       width: dotR * 2,
                       height: dotR * 2,
                       borderRadius: "50%",
-                      border: `1px solid ${color}`,
+                      border: `1px solid ${DOT_BORDER}`,
                       pointerEvents: "none",
                     }}
                     animate={{ scale: [1, 2.6, 1], opacity: [0.45, 0, 0.45] }}
@@ -444,10 +433,10 @@ export default function InteractiveTimeline({
                     width: dotR * 2,
                     height: dotR * 2,
                     borderRadius: "50%",
-                    backgroundColor: isSelected ? "#fff" : color,
+                    backgroundColor: isSelected ? DOT_SELECTED : color,
                     border: isSelected
-                      ? `2px solid #fff`
-                      : `1px solid ${color}88`,
+                      ? `2px solid ${ACCENT_TEAL}`
+                      : `1px solid ${DOT_BORDER}`,
                     cursor: "pointer",
                     outline: "none",
                     zIndex: 1,
@@ -458,9 +447,9 @@ export default function InteractiveTimeline({
                       : {
                           scale: isSelected ? 1.9 : isHovered ? 1.5 : 1,
                           boxShadow: isSelected
-                            ? `0 0 0 3px ${color}50, 0 0 14px ${color}70`
+                            ? `0 0 0 3px rgba(0,128,128,0.45), 0 0 14px rgba(0,128,128,0.45)`
                             : isHovered
-                              ? `0 0 0 2px ${color}35`
+                              ? `0 0 0 2px rgba(0,128,128,0.35)`
                               : "none",
                         }
                   }
@@ -485,8 +474,8 @@ export default function InteractiveTimeline({
             style={{
               width: 14,
               height: 14,
-              background: "#D1D5DB",
-              border: "1px solid #6B7280",
+              background: DOT_MAJOR,
+              border: `1px solid ${DOT_BORDER}`,
             }}
           />
           Major event
@@ -497,8 +486,8 @@ export default function InteractiveTimeline({
             style={{
               width: 8,
               height: 8,
-              background: "#6B7280",
-              border: "1px solid #4B5563",
+              background: DOT_NOTABLE,
+              border: `1px solid ${DOT_BORDER}`,
             }}
           />
           Notable event
@@ -519,16 +508,16 @@ export default function InteractiveTimeline({
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
-            <div className="rounded-xl border border-graphite-600/40 bg-paper-50 p-6 dark:border-graphite-600 dark:bg-surface-dark">
+            <div className="rounded-lg border border-graphite-600/40 bg-paper-50 p-6 dark:border-graphite-600 dark:bg-surface-dark">
               {/* Detail header */}
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <div className="flex flex-wrap items-center gap-2">
-                    <time className="text-xs font-semibold uppercase tracking-widest text-graphite-400">
+                    <time className="font-sans text-xs font-semibold uppercase tracking-widest text-graphite-400">
                       {selectedEvent.yearDisplay}
                     </time>
                     {selectedEvent.significance === "major" && (
-                      <span className="inline-flex items-center rounded-full bg-ink-800 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-paper-50 dark:bg-paper-200 dark:text-ink-800">
+                      <span className="inline-flex items-center rounded-full bg-accent-soft px-2.5 py-0.5 font-sans text-[10px] font-semibold uppercase tracking-wider text-ink-800 underline decoration-accent-teal decoration-2 underline-offset-4 dark:bg-surface-dark dark:text-paper-100">
                         Big Shift
                       </span>
                     )}
@@ -573,7 +562,7 @@ export default function InteractiveTimeline({
                 {selectedEvent.categories.map((cat) => (
                   <li key={cat}>
                     <span
-                      className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${timelineCategoryMeta[cat].pillClassName}`}
+                      className={`inline-flex items-center rounded-full px-2.5 py-0.5 font-sans text-xs font-medium ${timelineCategoryMeta[cat].pillClassName}`}
                     >
                       {timelineCategoryMeta[cat].label}
                     </span>
@@ -590,7 +579,7 @@ export default function InteractiveTimeline({
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm text-ink-800 underline decoration-graphite-400 underline-offset-4 hover:decoration-ink-800 dark:text-paper-100 dark:hover:decoration-paper-100"
+                        className="text-sm text-ink-800 underline decoration-accent-teal underline-offset-4 hover:decoration-ink-800 dark:text-paper-100 dark:hover:decoration-paper-100"
                       >
                         {link.label} →
                       </a>

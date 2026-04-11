@@ -16,11 +16,11 @@ interface TimelineViewerProps {
 }
 
 const TOGGLE_BASE =
-  "px-3 py-1.5 rounded-full border text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-graphite-400";
+  "rounded-lg border px-3 py-1.5 font-sans text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal";
 const TOGGLE_ACTIVE =
-  "bg-ink-800 text-paper-50 border-ink-800 dark:bg-paper-100 dark:text-ink-800 dark:border-paper-100";
+  "border-accent-teal bg-accent-teal text-paper-50 underline decoration-paper-50 decoration-2 underline-offset-4";
 const TOGGLE_INACTIVE =
-  "bg-paper-50 text-ink-700 border-graphite-600/30 hover:bg-paper-200 dark:bg-surface-dark dark:text-paper-200 dark:border-graphite-600 dark:hover:bg-graphite-700";
+  "border-graphite-600/30 bg-paper-50 text-ink-600 hover:bg-paper-200 dark:border-graphite-600 dark:bg-surface-dark dark:text-paper-200 dark:hover:bg-graphite-700";
 
 export default function TimelineViewer({ timeline }: TimelineViewerProps) {
   const [selectedCategory, setSelectedCategory] = useState<
@@ -66,9 +66,9 @@ export default function TimelineViewer({ timeline }: TimelineViewerProps) {
           </button>
         </div>
 
-        <div className="flex flex-col gap-3 border border-graphite-600/15 bg-paper-100/80 px-4 py-3 shadow-sm backdrop-blur-sm dark:border-paper-100/15 dark:bg-surface-dark/80 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col gap-3 rounded-lg border border-graphite-600/15 bg-paper-100/80 px-4 py-3 backdrop-blur-sm dark:border-paper-100/15 dark:bg-surface-dark/80 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-col gap-2 md:flex-row md:items-center">
-            <span className="shrink-0 text-[0.65rem] font-semibold uppercase tracking-widest text-graphite-400 dark:text-paper-200/70">
+            <span className="shrink-0 font-sans text-[0.65rem] font-semibold uppercase tracking-widest text-graphite-400 dark:text-paper-200/70">
               Filter By:
             </span>
             <CategoryFilter
@@ -81,7 +81,7 @@ export default function TimelineViewer({ timeline }: TimelineViewerProps) {
 
           {eras.length > 0 && (
             <div className="flex flex-col gap-2 md:flex-row md:items-center">
-              <span className="shrink-0 text-[0.65rem] font-semibold uppercase tracking-widest text-graphite-400 dark:text-paper-200/70">
+              <span className="shrink-0 font-sans text-[0.65rem] font-semibold uppercase tracking-widest text-graphite-400 dark:text-paper-200/70">
                 Eras:
               </span>
               <EraFilter

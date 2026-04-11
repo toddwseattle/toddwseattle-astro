@@ -39,13 +39,13 @@ const TitleSection: React.FC<TitleSectionProps> = ({
         </p>
       )}
       {sections && sections.length > 0 && (
-        <nav className="mt-6 flex flex-wrap justify-center gap-4">
+        <nav className="mt-6 flex flex-wrap justify-center gap-4 font-sans">
           {sections.map((section) => (
             <a
               key={section.id}
               href={`#${section.id}`}
               onClick={(e) => handleClick(e, section.id)}
-              className="px-4 py-2 rounded-lg bg-ink-800 hover:bg-ink-700 text-white font-medium transition-colors duration-200 dark:bg-ink-600 dark:hover:bg-ink-500"
+              className="min-h-11 rounded-lg bg-accent-teal px-4 py-2 font-medium text-paper-50 transition-colors duration-200 hover:bg-ink-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-teal"
             >
               {section.label}
             </a>

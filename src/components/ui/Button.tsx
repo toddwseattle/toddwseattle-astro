@@ -13,10 +13,11 @@ const Button: React.FC<ButtonProps> = ({
   className = "",
   onClick,
 }) => {
-  const baseClasses = "px-6 py-3 rounded-lg font-medium transition-colors";
+  const baseClasses =
+    "min-h-11 rounded-lg px-6 py-3 font-sans font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-teal";
   const variantClasses = primary
-    ? "bg-ink-800 text-paper-50 hover:bg-ink-950 dark:bg-paper-100 dark:text-ink-800 dark:hover:bg-paper-200"
-    : "bg-paper-200 text-ink-800 hover:bg-graphite-400/20 dark:bg-graphite-600 dark:text-paper-100 dark:hover:bg-graphite-700";
+    ? "bg-accent-teal text-paper-50 hover:bg-ink-800"
+    : "border border-accent-teal bg-transparent text-accent-teal hover:bg-paper-200 dark:hover:bg-graphite-600";
 
   return (
     <button
