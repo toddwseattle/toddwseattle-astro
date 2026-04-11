@@ -52,6 +52,8 @@ src/
 
 Full component, styling, and Astro-specific patterns are in [.github/copilot-instructions.md](.github/copilot-instructions.md). Full testing patterns are in [.github/copilot-test-instructions.md](.github/copilot-test-instructions.md). Style and IA guidelines are in [docs/04-style-guide.md](docs/04-style-guide.md).
 
+For whole-site QA coverage audits, regression work, and deciding when to add Vitest unit tests versus Playwright e2e tests, use the shared skill at [.github/skills/qa-site-coverage/SKILL.md](.github/skills/qa-site-coverage/SKILL.md).
+
 **Summary of non-obvious rules:**
 
 - **Astro-first decision tree:** HTML/CSS only → `.astro`; simple interactivity → `.astro` with `<script>`; complex state → React + `client:*`

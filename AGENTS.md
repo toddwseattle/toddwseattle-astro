@@ -6,6 +6,7 @@
 
 - **Component patterns & Astro guidelines:** `.github/copilot-instructions.md`
 - **Testing patterns & examples:** `.github/copilot-test-instructions.md`
+- **QA site coverage skill:** `.github/skills/qa-site-coverage/SKILL.md`
 
 **This document (AGENTS.md):**
 

@@ -183,6 +183,8 @@ export async function getStaticPaths() {
 
 **For detailed testing instructions, see `.github/copilot-test-instructions.md`**
 
+**For whole-site QA coverage audits and regression work, use `.github/skills/qa-site-coverage/SKILL.md`.**
+
 ### Key Testing Rules (Quick Reference)
 
 - Always use **Vitest**, never Jest

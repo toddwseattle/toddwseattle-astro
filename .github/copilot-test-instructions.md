@@ -4,6 +4,8 @@
 
 Always use Vitest and never Jest.
 
+For QA coverage work across site routes, content collections, shared components, and end-to-end scenarios, also use the project skill at `.github/skills/qa-site-coverage/SKILL.md`.
+
 Mock sub components using `vi.mock` and not `jest.mock`.
 
 Create mock sub components rather than using the real ones unless specified otherwise.
