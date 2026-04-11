@@ -135,6 +135,22 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
         },
       },
       {
+        id: "kyocera-vp210-camera-phone",
+        yearDisplay: "1999",
+        sortYear: 1999,
+        title: "Kyocera Visual Phone VP-210: first commercial camera phone",
+        description:
+          "The Kyocera Visual Phone VP-210, released in Japan in May 1999, became the first commercial phone with a built-in color camera. While inventor Philippe Kahn had soldered together a prototype in the late 1990s, Kyocera's VP-210 marked the first mass-market camera phone. The device required physical connection to a PC to upload photos — the convenience of smartphone-era photo sharing was still years away. Camera phones would become a killer feature during the feature-phone era, especially in Japan and Asia, before reaching Western markets.",
+        categories: ["devices"],
+        significance: "notable",
+        links: [
+          {
+            label: "Wikipedia — Camera phone",
+            url: "https://en.wikipedia.org/wiki/Camera_phone#:~:text=A%20camera%20phone%20is%20a,in%20Japan%20in%20May%201999.",
+          },
+        ],
+      },
+      {
         id: "arm926ej-s",
         yearDisplay: "2001",
         sortYear: 2001,
