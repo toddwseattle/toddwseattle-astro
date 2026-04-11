@@ -27,7 +27,7 @@ export default function TimelineViewer({ timeline }: TimelineViewerProps) {
     TimelineCategory | "all"
   >("all");
   const [selectedEra, setSelectedEra] = useState<TimelineEra | null>(null);
-  const [activeView, setActiveView] = useState<ViewMode>("list");
+  const [activeView, setActiveView] = useState<ViewMode>("interactive");
 
   const eras = timeline.eras ?? [];
 
@@ -66,19 +66,33 @@ export default function TimelineViewer({ timeline }: TimelineViewerProps) {
           </button>
         </div>
 
-        <CategoryFilter
-          categories={timeline.categoryOrder}
-          selected={selectedCategory}
-          onSelect={handleCategoryChange}
-        />
+        <div className="flex flex-col gap-3 border border-graphite-600/15 bg-paper-100/80 px-4 py-3 shadow-sm backdrop-blur-sm dark:border-paper-100/15 dark:bg-surface-dark/80 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-col gap-2 md:flex-row md:items-center">
+            <span className="shrink-0 text-[0.65rem] font-semibold uppercase tracking-widest text-graphite-400 dark:text-paper-200/70">
+              Filter By:
+            </span>
+            <CategoryFilter
+              categories={timeline.categoryOrder}
+              selected={selectedCategory}
+              onSelect={handleCategoryChange}
+              showAll={false}
+            />
+          </div>
 
-        {eras.length > 0 && (
-          <EraFilter
-            eras={eras}
-            selected={selectedEra}
-            onSelect={handleEraChange}
-          />
-        )}
+          {eras.length > 0 && (
+            <div className="flex flex-col gap-2 md:flex-row md:items-center">
+              <span className="shrink-0 text-[0.65rem] font-semibold uppercase tracking-widest text-graphite-400 dark:text-paper-200/70">
+                Eras:
+              </span>
+              <EraFilter
+                eras={eras}
+                selected={selectedEra}
+                onSelect={handleEraChange}
+                showAll={false}
+              />
+            </div>
+          )}
+        </div>
       </div>
 
       {/* List view — always visible on mobile; hidden on desktop when interactive is active */}
