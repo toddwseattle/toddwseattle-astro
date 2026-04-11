@@ -1,5 +1,5 @@
 ---
-title: Visual Reference — Monochrome Color System
+title: Visual Reference — Chronicle Data System
 purpose: Quick visual and behavioral reference for designers and agents
 audience:
   - Designers
@@ -7,7 +7,7 @@ audience:
   - AI agents
 ---
 
-# Visual Reference: Monochrome Color System
+# Visual Reference: Chronicle Data System
 
 ## Core Palette
 
@@ -35,6 +35,13 @@ Used for reading surfaces and background.
 - Paper 100: `#F4F3F2`
 - Paper 200: `#ECEBEC`
 
+### Accent
+
+Used for interactive states, filtering, and data visualization. The accent is functional, not decorative.
+
+- Accent Teal: `#008080`
+- Accent Soft: `#E0F2F2`
+
 ---
 
 ## Dark Theme Snapshot
@@ -43,6 +50,7 @@ Used for reading surfaces and background.
 - Surfaces: `#2E2D30`
 - Text: `#F2F2F2`
 - Emphasis: `#0D0D0F`
+- Accent: `#008080`
 
 Mood: graphite, quiet, editorial.
 
@@ -54,6 +62,7 @@ Mood: graphite, quiet, editorial.
 - Surfaces: `#FFFFFF`
 - Text: `#1A1A1C`
 - Emphasis: `#403F41`
+- Accent: `#008080`
 
 Mood: ink on paper.
 
@@ -64,17 +73,18 @@ Mood: ink on paper.
 - Use tone-on-tone contrast
 - Prefer spacing over borders
 - Let typography carry hierarchy
-- Use underline for interaction
+- Use underline and teal for links
+- Pair active-state color with structure, such as underline, weight, or icon changes
 - Keep UI visually quiet
 
 ---
 
 ## DON’T
 
-- ❌ Introduce blue, green, or purple
+- ❌ Introduce additional blue, green, purple, or brand-color roles
 - ❌ Use gradients or glow effects
 - ❌ Use heavy shadows
-- ❌ Use color-coded states
+- ❌ Use color as the only state indicator
 - ❌ Add decorative backgrounds
 
 If it looks expressive, remove it.
@@ -88,5 +98,6 @@ A page is correct if:
 - Screenshots feel calm
 - No single element draws attention by color alone
 - Removing color would not break meaning
+- Interactive states remain visible in grayscale
 
 ---

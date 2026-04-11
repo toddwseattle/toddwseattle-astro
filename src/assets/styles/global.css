@@ -1,20 +1,29 @@
+@import "@fontsource/newsreader/400.css";
+@import "@fontsource/newsreader/600.css";
+@import "@fontsource/newsreader/700.css";
+@import "@fontsource/manrope/400.css";
+@import "@fontsource/manrope/500.css";
+@import "@fontsource/manrope/600.css";
+@import "@fontsource/manrope/700.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Monochrome Color System - Design Tokens
+/* Chronicle Data System - Design Tokens
  * See docs/Visual-style/short-color-brief.md for reference
  * See tailwind.config.js for token definitions
  *
  * Ink = text, meaning, content
  * Graphite = structure, headers, dividers
  * Paper = background, reading surface
+ * Teal = interaction, active state, data emphasis
  */
 
 /* Custom base styles */
 @layer base {
   body {
-    @apply m-0 text-ink-800 bg-paper-100;
+    @apply m-0 bg-paper-100 font-serif text-ink-800;
   }
 
   /* Dark mode base - using design tokens */
@@ -22,12 +31,19 @@
   body:where(.dark) {
     @apply bg-graphite-700 text-paper-100;
   }
+
+  button,
+  input,
+  select,
+  textarea {
+    @apply font-sans;
+  }
 }
 
 /* Custom prose styling for markdown content */
 @layer components {
   .prose {
-    @apply text-ink-800;
+    @apply font-serif text-ink-800;
   }
 
   .dark .prose {
@@ -38,7 +54,7 @@
   .prose h2,
   .prose h3,
   .prose h4 {
-    @apply font-bold text-ink-800;
+    @apply font-serif font-bold text-ink-800;
   }
 
   .dark .prose h1,
@@ -48,13 +64,13 @@
     @apply text-paper-100;
   }
 
-  /* Monochrome links: same color as text, always underlined */
+  /* Editorial links: same text color, teal underline for affordance */
   .prose a {
-    @apply text-ink-800 underline decoration-graphite-400 hover:decoration-ink-800;
+    @apply text-ink-800 underline decoration-accent-teal decoration-2 underline-offset-4 hover:decoration-ink-800;
   }
 
   .dark .prose a {
-    @apply text-paper-100 decoration-graphite-400 hover:decoration-paper-100;
+    @apply text-paper-100 decoration-accent-teal hover:decoration-paper-100;
   }
 
   .prose strong {
@@ -66,7 +82,7 @@
   }
 
   .prose code {
-    @apply bg-paper-200 text-ink-800 px-1 py-0.5 rounded text-sm;
+    @apply rounded bg-paper-200 px-1 py-0.5 font-mono text-sm text-ink-800;
   }
 
   .dark .prose code {
@@ -89,7 +105,7 @@
     @apply rounded-lg;
   }
 
-  /* Monochrome blockquote: neutral border */
+  /* Editorial blockquote: neutral structure, no decorative color fill */
   .prose blockquote {
     @apply border-l-4 border-graphite-400 pl-4 italic;
   }
@@ -197,7 +213,7 @@
   }
 
   .slides-layout .reveal .slides a {
-    @apply text-ink-800 underline decoration-graphite-600 decoration-2 underline-offset-4 dark:text-paper-100 dark:decoration-paper-200 dark:hover:decoration-paper-100 hover:decoration-ink-800;
+    @apply text-ink-800 underline decoration-accent-teal decoration-2 underline-offset-4 dark:text-paper-100 dark:decoration-accent-teal dark:hover:decoration-paper-100 hover:decoration-ink-800;
   }
 
   .slides-layout .reveal .slides code {
@@ -205,7 +221,7 @@
   }
 
   .slides-layout .reveal .slides pre {
-    @apply mx-auto max-w-5xl rounded-xl border border-graphite-600/20 bg-paper-50 p-4 text-left text-ink-800 dark:border-graphite-600 dark:bg-surface-dark dark:text-paper-100;
+    @apply mx-auto max-w-5xl rounded-lg border border-graphite-600/20 bg-paper-50 p-4 text-left text-ink-800 dark:border-graphite-600 dark:bg-surface-dark dark:text-paper-100;
     box-shadow: none;
   }
 
@@ -247,6 +263,6 @@
   }
 
   .slides-layout .reveal .progress span {
-    @apply bg-ink-800 dark:bg-paper-100;
+    @apply bg-accent-teal;
   }
 }

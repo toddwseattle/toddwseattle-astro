@@ -76,7 +76,7 @@ const tagLinks = Array.from(
   <article class="py-16">
     {
       cover && (
-        <div class="w-full md:w-1/2 mx-auto mb-10 overflow-hidden rounded-xl bg-paper-200 dark:bg-graphite-700 aspect-video">
+        <div class="w-full md:w-1/2 mx-auto mb-10 overflow-hidden rounded-lg bg-paper-200 dark:bg-graphite-700 aspect-video">
           <Image
             src={cover}
             alt={title}
@@ -94,13 +94,13 @@ const tagLinks = Array.from(
       <div class="max-w-3xl mx-auto">
         <a
           href="/writing"
-          class="inline-flex items-center text-ink-800 dark:text-paper-100 underline decoration-graphite-400 hover:decoration-ink-800 dark:hover:decoration-paper-100 mb-8 font-medium"
+          class="inline-flex items-center text-ink-800 dark:text-paper-100 underline decoration-accent-teal hover:decoration-ink-800 dark:hover:decoration-paper-100 mb-8 font-medium"
           >&larr; Back to Writing</a
         >
 
         <header class="mb-8">
           <div
-            class="flex items-center gap-2 text-sm text-graphite-400 font-medium"
+            class="flex items-center gap-2 font-sans text-sm font-medium text-graphite-400"
           >
             <time datetime={date}>
               {formatDate(date)}
@@ -125,7 +125,7 @@ const tagLinks = Array.from(
                 {tagLinks.map((tag) => (
                   <a
                     href={`/writing/tag/${slugify(tag)}/`}
-                    class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-paper-200 text-ink-800 dark:bg-graphite-600 dark:text-paper-100 hover:bg-graphite-400/20 dark:hover:bg-ink-600 transition-colors"
+                    class="inline-flex items-center px-3 py-1 rounded-full font-sans text-sm font-medium bg-paper-200 text-ink-800 dark:bg-graphite-600 dark:text-paper-100 hover:bg-graphite-400/20 dark:hover:bg-ink-600 transition-colors"
                   >
                     {displayLabel(tag)}
                   </a>
@@ -144,7 +144,7 @@ const tagLinks = Array.from(
         >
           <a
             href="/writing"
-            class="inline-flex items-center text-ink-800 dark:text-paper-100 underline decoration-graphite-400 hover:decoration-ink-800 dark:hover:decoration-paper-100 font-medium"
+            class="inline-flex items-center text-ink-800 dark:text-paper-100 underline decoration-accent-teal hover:decoration-ink-800 dark:hover:decoration-paper-100 font-medium"
             >&larr; Back to all posts</a
           >
         </div>

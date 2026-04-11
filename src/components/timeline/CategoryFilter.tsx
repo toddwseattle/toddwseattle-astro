@@ -5,15 +5,17 @@ interface CategoryFilterProps {
   categories: TimelineCategory[];
   selected: TimelineCategory | "all";
   onSelect: (category: TimelineCategory | "all") => void;
+  showAll?: boolean;
 }
 
 export default function CategoryFilter({
   categories,
   selected,
   onSelect,
+  showAll = true,
 }: CategoryFilterProps) {
   const options: Array<{ value: TimelineCategory | "all"; label: string }> = [
-    { value: "all", label: "All" },
+    ...(showAll ? [{ value: "all" as const, label: "All" }] : []),
     ...categories.map((category) => ({
       value: category,
       label: timelineCategoryMeta[category].label,
@@ -37,11 +39,13 @@ export default function CategoryFilter({
             role="radio"
             aria-checked={isSelected}
             aria-pressed={isSelected}
-            onClick={() => onSelect(option.value)}
-            className={`px-3 py-1.5 rounded-full border text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-graphite-400 ${
+            onClick={() =>
+              onSelect(!showAll && isSelected ? "all" : option.value)
+            }
+            className={`rounded-sm border px-4 py-1 font-sans text-[0.65rem] font-semibold uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal ${
               isSelected
-                ? "bg-ink-800 text-paper-50 border-ink-800 dark:bg-paper-100 dark:text-ink-800 dark:border-paper-100"
-                : "bg-paper-50 text-ink-700 border-graphite-600/30 hover:bg-paper-200 dark:bg-surface-dark dark:text-paper-200 dark:border-graphite-600 dark:hover:bg-graphite-700"
+                ? "border-accent-teal bg-accent-teal text-paper-50 underline decoration-paper-50 decoration-2 underline-offset-4 dark:border-accent-teal dark:bg-accent-teal dark:text-paper-50"
+                : "border-paper-200 bg-paper-200/85 text-ink-600 hover:border-graphite-400 hover:bg-paper-100 dark:border-graphite-600 dark:bg-surface-dark dark:text-paper-200 dark:hover:bg-graphite-700"
             }`}
             data-testid={`timeline-filter-${option.value}`}
           >

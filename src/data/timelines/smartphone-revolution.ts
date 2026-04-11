@@ -8,7 +8,95 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
     framing:
       "How did incumbents with dominant market share, deep engineering talent, and massive distribution lose to new entrants — and what does the pattern teach us about recognizing and responding to platform shifts?",
     categoryOrder: ["platforms", "devices", "strategy", "market", "startups"],
+    eras: [
+      {
+        id: "analog-era",
+        label: "Analog Era",
+        startYear: 1973,
+        endYear: 1991,
+      },
+      {
+        id: "feature-phone-era",
+        label: "Feature Phone Era",
+        startYear: 1992,
+        endYear: 2006,
+      },
+      {
+        id: "smartphone-disruption",
+        label: "Smartphone Disruption",
+        startYear: 2007,
+        endYear: 2012,
+      },
+      {
+        id: "post-disruption",
+        label: "Post-Disruption",
+        startYear: 2013,
+        endYear: 2016,
+      },
+    ],
     events: [
+      {
+        id: "martin-cooper-mobile-call",
+        yearDisplay: "1973",
+        sortYear: 1973,
+        title: "Martin Cooper makes first handheld cellular call",
+        description:
+          "Motorola engineer Martin Cooper, with designer Rudy Krolopp, completes the DynaTAC prototype and calls a Bell Labs rival from 6th Avenue in New York — the first handheld cellular phone call. The prototype weighs ~1 kg and stands 33 cm tall. Crucially, it required 10 more years of R&D and regulatory work before any commercial product existed. The gap between invention and viable market illustrates how long platform shifts take to materialize.",
+        categories: ["devices"],
+        significance: "major",
+        links: [
+          {
+            label: "Motorola Solutions: Cell Phone Development History",
+            url: "https://www.motorolasolutions.com/en_us/about/history/explore-motorola-heritage/cell-phone-development.html",
+          },
+        ],
+      },
+      {
+        id: "dynatac-8000x-fcc",
+        yearDisplay: "1983",
+        sortYear: 1983,
+        title: "Motorola DynaTAC 8000X: first commercial cellular phone",
+        description:
+          "After a 10-year development cycle and $100M investment, the DynaTAC 8000X earns FCC approval (September 21, 1983) and goes on sale at $3,995 (~$12,400 in 2025 dollars). It weighs 790 g, delivers 30 minutes of talk time per 10-hour charge, and stores 30 numbers. The FCC spectrum allocation delay (1968–1983) — not the technology — was the real bottleneck. Motorola's vertically integrated semiconductor and RF expertise gave it first-mover advantage; the brick-phone form factor and keypad interaction model would define the industry for two decades.",
+        categories: ["market"],
+        significance: "major",
+        links: [
+          {
+            label: "PMI: DynaTAC 8000X Project Case Study",
+            url: "https://www.pmi.org/learning/library/top-50-projects-dynatac-8000x-11725",
+          },
+        ],
+        image: {
+          src: "https://upload.wikimedia.org/wikipedia/commons/7/74/DynaTAC8000X.jpg",
+          alt: "Motorola DynaTAC 8000X — the first commercial handheld cellular phone, 1983",
+        },
+      },
+      {
+        id: "motorola-microtac",
+        yearDisplay: "1989",
+        sortYear: 1989,
+        title: "Motorola MicroTAC: clamshell flip form factor emerges",
+        description:
+          "Motorola's MicroTAC was dramatically smaller and lighter than the DynaTAC, introducing the clamshell flip design that would influence phone design for two decades. It signals that miniaturization — not raw capability — would be the primary competitive lever in the feature phone era. Motorola's continued refinement of analog architecture masked a deeper vulnerability: design excellence optimized for keypad + flip could not easily absorb fundamentally different input paradigms.",
+        categories: ["devices"],
+        significance: "notable",
+      },
+      {
+        id: "gsm-sms-launch",
+        yearDisplay: "1992",
+        sortYear: 1992,
+        title: "GSM networks launch in Europe; SMS deployed as afterthought",
+        description:
+          "GSM (Global System for Mobile) networks go live across Europe, standardizing cellular technology across borders. SMS is included as a niche side protocol — carriers initially dismiss it as redundant with voice. By the late 1990s it becomes the killer app, especially among youth. GSM standardization reduced handset vendor switching costs and intensified price competition. SMS illustrates a recurring pattern: the highest-value application of a platform often isn't the one its builders intended.",
+        categories: ["platforms", "market"],
+        significance: "major",
+        links: [
+          {
+            label: "GSMA: History of Mobile Technology",
+            url: "https://www.gsma.com/",
+          },
+        ],
+      },
       {
         id: "arm7tdmi",
         yearDisplay: "1994",
@@ -47,6 +135,22 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
         },
       },
       {
+        id: "kyocera-vp210-camera-phone",
+        yearDisplay: "1999",
+        sortYear: 1999,
+        title: "Kyocera Visual Phone VP-210: first commercial camera phone",
+        description:
+          "The Kyocera Visual Phone VP-210, released in Japan in May 1999, became the first commercial phone with a built-in color camera. While inventor Philippe Kahn had soldered together a prototype in the late 1990s, Kyocera's VP-210 marked the first mass-market camera phone. The device required physical connection to a PC to upload photos — the convenience of smartphone-era photo sharing was still years away. Camera phones would become a killer feature during the feature-phone era, especially in Japan and Asia, before reaching Western markets.",
+        categories: ["devices"],
+        significance: "notable",
+        links: [
+          {
+            label: "Wikipedia — Camera phone",
+            url: "https://en.wikipedia.org/wiki/Camera_phone#:~:text=A%20camera%20phone%20is%20a,in%20Japan%20in%20May%201999.",
+          },
+        ],
+      },
+      {
         id: "arm926ej-s",
         yearDisplay: "2001",
         sortYear: 2001,
@@ -73,6 +177,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
         categories: ["platforms"],
         isToolingSpine: true,
         significance: "major",
+        links: [
+          {
+            label: "Wikipedia — ARM11",
+            url: "https://en.wikipedia.org/wiki/ARM11",
+          },
+        ],
       },
       {
         id: "arm-1b-cumulative",
@@ -136,6 +246,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "RIM's push-email and physical keyboard made BlackBerry the default business smartphone. The term 'CrackBerry' entered the lexicon, and the device was ubiquitous in boardrooms, trading floors, and government offices. BlackBerry's grip on enterprise users would prove both its greatest strength and the reason it was slow to pivot toward consumer-oriented touchscreen devices.",
         categories: ["devices", "market"],
         significance: "notable",
+        links: [
+          {
+            label: "Wikipedia — BlackBerry",
+            url: "https://en.wikipedia.org/wiki/BlackBerry",
+          },
+        ],
         image: {
           alt: "BlackBerry 8700 series, the dominant enterprise smartphone of the mid-2000s",
           src: "https://upload.wikimedia.org/wikipedia/commons/8/83/Bb-curve-8520%281%29.jpg",
@@ -167,6 +283,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "By 2005, ARM's dominance in mobile was near-total: 98% of all mobile phones sold worldwide contained at least one ARM processor. At ~820M phones shipped that year, ARM was already outselling the PC market ~4:1 in units — but the industry barely noticed because these were 'just phones.'",
         categories: ["market"],
         significance: "major",
+        links: [
+          {
+            label: "Arm Newsroom: 200 Billion Chips",
+            url: "https://newsroom.arm.com/blog/200bn-arm-chips",
+          },
+        ],
       },
       {
         id: "nokia-40pct-market-share",
@@ -197,6 +319,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "Qualcomm's CDMA and WCDMA modem leadership positioned it as the behind-the-scenes enabler of mobile broadband. While the consumer-facing drama would play out between Apple, Google, and Nokia, Qualcomm was the 'picks and shovels' company that supplied infrastructure to nearly everyone — a strategic archetype worth studying in any platform shift.",
         categories: ["market"],
         significance: "notable",
+        links: [
+          {
+            label: "Qualcomm 10-K (FY 2009) — SEC EDGAR",
+            url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=804328&type=10-K&dateb=&owner=include&count=10",
+          },
+        ],
       },
       {
         id: "iphone-unveiled-macworld",
@@ -246,8 +374,8 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
             url: "https://www.reddit.com/r/StockMarket/comments/pkwk4d/steve_ballmer_ex_ceo_of_microsoft_laughs_at_iphone/",
           },
           {
-            label: "Samsung BlackJack II - Wikipedia",
-            url: "https://en.wikipedia.org/wiki/Samsung_BlackJack_II",
+            label: "Samsung BlackJack — Wikipedia",
+            url: "https://en.wikipedia.org/wiki/Samsung_BlackJack",
           },
           {
             label: "Palm Treo 700w - Wikipedia",
@@ -294,9 +422,19 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
         sortYear: 2007,
         title: "Windows Mobile 6 released — two platforms, one problem",
         description:
-          "Windows Mobile shipped as two distinct product lines: 'Smartphone' (keypad-driven devices like the Samsung BlackJack) and 'Pocket PC Phone Edition' (stylus-driven touchscreen devices). Both were selling — WM handsets briefly outsold BlackBerry. But the iPhone revealed that the future was neither keypad nor stylus: it was capacitive finger touch on a converged device. Responding meant simultaneously merging two platform codebases and making the resistive-to-capacitive hardware transition — a combination that made the pivot extraordinarily expensive and ultimately led to scrapping everything for Windows Phone 7.",
+          "Windows Mobile shipped as two distinct product lines: 'Smartphone' (keypad-driven devices like the Samsung BlackJack II) and 'Pocket PC Phone Edition' (stylus-driven touchscreen devices). Both were selling — WM handsets briefly outsold BlackBerry. But the iPhone revealed that the future was neither keypad nor stylus: it was capacitive finger touch on a converged device. Responding meant simultaneously merging two platform codebases and making the resistive-to-capacitive hardware transition — a combination that made the pivot extraordinarily expensive and ultimately led to scrapping everything for Windows Phone 7.",
         categories: ["platforms", "devices", "strategy"],
         significance: "major",
+        links: [
+          {
+            label: "Wikipedia — Windows Mobile",
+            url: "https://en.wikipedia.org/wiki/Windows_Mobile",
+          },
+          {
+            label: "Microsoft Press Release — Windows Mobile 6 (Feb 12, 2007)",
+            url: "https://news.microsoft.com/source/2007/02/11/microsoft-reveals-new-windows-mobile-6-smartphone-software-improves-worlds-fastest-growing-mobile-operating-system/",
+          },
+        ],
       },
       {
         id: "nokia-dismisses-iphone",
@@ -307,6 +445,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "Nokia publicly called the iPhone a niche product. Internally, the response focused on adding touch to Symbian rather than a clean-sheet redesign. This is the innovator's dilemma playing out in real time: Nokia had the engineers, the manufacturing scale, and the brand — but the organizational incentives all pointed toward protecting the existing platform rather than cannibalizing it.",
         categories: ["strategy"],
         significance: "notable",
+        links: [
+          {
+            label: "Nokia 20-F (FY 2007) — SEC EDGAR",
+            url: "https://www.sec.gov/Archives/edgar/data/924613/000110465908019905/a08-4391_120f.htm",
+          },
+        ],
       },
       {
         id: "iphone-2007",
@@ -318,6 +462,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
         categories: ["devices"],
         isToolingSpine: true,
         significance: "major",
+        links: [
+          {
+            label: "Wikipedia — iPhone (1st generation)",
+            url: "https://en.wikipedia.org/wiki/IPhone_(1st_generation)",
+          },
+        ],
       },
       {
         id: "qualcomm-snapdragon",
@@ -328,6 +478,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "Qualcomm's QSD8250 combined an ARM Cortex-based CPU with an integrated cellular modem, GPU (Adreno), and DSP on a single SoC. This system-on-chip approach — impossible with x86 — meant a complete smartphone brain on one chip. Snapdragon became the reference platform for Android flagships.",
         categories: ["platforms"],
         significance: "notable",
+        links: [
+          {
+            label: "Wikipedia — Qualcomm Snapdragon",
+            url: "https://en.wikipedia.org/wiki/Qualcomm_Snapdragon",
+          },
+        ],
       },
       {
         id: "cortex-a9",
@@ -338,6 +494,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "First ARM core with out-of-order execution and symmetric multiprocessing (up to 4 cores). Answered the demand for richer smartphone experiences — full-screen video, 3D gaming — without blowing the power budget. Shipped in TI OMAP4, Nvidia Tegra 2, Samsung Exynos, and Apple's A5.",
         categories: ["platforms"],
         significance: "notable",
+        links: [
+          {
+            label: "Wikipedia — ARM Cortex-A9",
+            url: "https://en.wikipedia.org/wiki/ARM_Cortex-A9",
+          },
+        ],
       },
       {
         id: "garrett-camp-ubercab-concept",
@@ -404,7 +566,7 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
         sortYear: 2008,
         title: "First Android phone: HTC Dream (T-Mobile G1)",
         description:
-          "The G1 shipped in September with a hardware keyboard, trackball, and Android 1.0. It was rough but functional, with Google Maps, Gmail, and YouTube built in. The device mattered less than the proof of concept: a viable open-source alternative to iOS existed, and OEMs could build on it without paying Microsoft-style licensing fees.",
+          "The G1 was announced on September 23 and shipped on October 22 with a hardware keyboard, trackball, and Android 1.0. It was rough but functional, with Google Maps, Gmail, and YouTube built in. The device mattered less than the proof of concept: a viable open-source alternative to iOS existed, and OEMs could build on it without paying Microsoft-style licensing fees.",
         categories: ["devices", "platforms"],
         significance: "major",
         links: [
@@ -427,6 +589,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "RIM's answer to the iPhone used a 'SurePress' clickable touchscreen that was widely panned by reviewers and users. Returns exceeded sales at some carriers. The Storm illustrates the difficulty of grafting new interaction paradigms onto an organization optimized for a different one.",
         categories: ["devices", "strategy"],
         significance: "notable",
+        links: [
+          {
+            label: "Wikipedia — BlackBerry Storm",
+            url: "https://en.wikipedia.org/wiki/BlackBerry_Storm",
+          },
+        ],
       },
       {
         id: "android-launch",
@@ -437,6 +605,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "Google's open-source mobile OS launched on ARM hardware (Qualcomm MSM7201A, ARM11). Android gave every handset OEM access to a smartphone platform without building their own OS. Combined with low-cost ARM silicon, this opened the floodgates for sub-$200 smartphones that would drive ARM volumes exponentially.",
         categories: ["devices", "platforms"],
         significance: "major",
+        links: [
+          {
+            label: "Wikipedia — Android version history",
+            url: "https://en.wikipedia.org/wiki/Android_version_history",
+          },
+        ],
       },
       {
         id: "uber-incorporated",
@@ -463,6 +637,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "webOS introduced card-based multitasking, gesture navigation, and unified notifications — UX innovations that iOS and Android would both eventually adopt. But Palm lacked the ecosystem, developer community, and financial resources to compete at platform scale. Acquired by HP in 2010 for $1.2 billion. webOS remains a cautionary tale about the gap between great product design and platform economics.",
         categories: ["platforms", "devices"],
         significance: "notable",
+        links: [
+          {
+            label: "Wikipedia — Palm Pre",
+            url: "https://en.wikipedia.org/wiki/Palm_Pre",
+          },
+        ],
       },
       {
         id: "motorola-droid-verizon",
@@ -473,6 +653,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "The 'iDon't' ad campaign attacked the iPhone directly. The Droid was the first major Android hit and saved Motorola's mobile division from irrelevance. Critically, Verizon's aggressive backing of Android — born from not having the iPhone — accelerated the platform's growth. Carrier incentives shaped platform adoption as much as product quality did.",
         categories: ["devices", "strategy"],
         significance: "major",
+        links: [
+          {
+            label: "Wikipedia — Motorola Droid",
+            url: "https://en.wikipedia.org/wiki/Motorola_Droid",
+          },
+        ],
         image: {
           src: "https://upload.wikimedia.org/wikipedia/commons/9/93/Motorola-Droid.jpg",
           alt: "Motorola Droid with slide-out keyboard, the first major commercial Android hit on Verizon",
@@ -487,6 +673,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "Apple sold 300,000 iPads on day one. The iPad extended the iOS app ecosystem into a new form factor and lent credibility to Jobs's 'post-PC' thesis. It also demonstrated that once you own a platform and a developer community, new hardware categories become much cheaper to enter.",
         categories: ["devices", "platforms"],
         significance: "notable",
+        links: [
+          {
+            label: "Wikipedia — iPad (1st generation)",
+            url: "https://en.wikipedia.org/wiki/IPad_(1st_generation)",
+          },
+        ],
       },
       {
         id: "ubercab-sf-launch",
@@ -497,6 +689,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "Black town cars hailed via a smartphone app. $25 minimum fare. Early users were tech workers and VCs willing to pay a premium for reliability. The service depended entirely on smartphone penetration among both riders and drivers — it literally could not have existed before the iPhone.",
         categories: ["startups"],
         significance: "major",
+        links: [
+          {
+            label: "Garrett Camp — 'The Beginning of Uber' (Medium)",
+            url: "https://medium.com/@gc/the-beginning-of-uber-7fb17e544851",
+          },
+        ],
       },
       {
         id: "windows-phone-7-launch",
@@ -507,6 +705,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "A clean break from Windows Mobile. The Metro UI was praised for design innovation, but the phone arrived late to market with a sparse app ecosystem and limited hardware partner enthusiasm. The 'reset' was driven by a hard architectural reality: Windows Mobile had forked into two incompatible product lines, and converging them while also transitioning to capacitive touch proved too expensive and slow to do incrementally. Microsoft chose to start from scratch — but starting over meant abandoning the OEM relationships and installed base that had been briefly outselling BlackBerry.",
         categories: ["platforms", "devices", "strategy"],
         significance: "major",
+        links: [
+          {
+            label: "Wikipedia — Windows Phone 7",
+            url: "https://en.wikipedia.org/wiki/Windows_Phone_7",
+          },
+        ],
       },
       {
         id: "nokia-smartphone-decline-begins",
@@ -517,6 +721,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "Symbian touch phones like the N97 and X6 could not match the iOS or Android user experience. Nokia's internal MeeGo project showed promise but progressed too slowly to matter. The window for Nokia to establish a competitive third platform was closing fast.",
         categories: ["market", "strategy"],
         significance: "notable",
+        links: [
+          {
+            label: "Wikipedia — Symbian",
+            url: "https://en.wikipedia.org/wiki/Symbian",
+          },
+        ],
       },
       {
         id: "apple-a4",
@@ -527,6 +737,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "Apple's acquisition of P.A. Semi (2008) and Intrinsity bore fruit with the A4 — a custom Cortex-A8 derivative with Apple's own memory controller and GPU integration. Debuted in the iPad and iPhone 4. Began Apple's trajectory of designing custom ARM silicon that would eventually outperform Intel laptop chips (M1, 2020).",
         categories: ["platforms", "devices"],
         significance: "notable",
+        links: [
+          {
+            label: "Wikipedia — Apple A4",
+            url: "https://en.wikipedia.org/wiki/Apple_A4",
+          },
+        ],
       },
       {
         id: "ipad-2010",
@@ -537,6 +753,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "Apple's A4 chip (Cortex-A8 based, designed by P.A. Semi/Apple) powered a device that directly competed with laptops for casual computing: web, email, video, documents. Sold 14.8M units in its first year. Proved ARM could deliver a full-day computing experience that x86 laptops couldn't match on battery life.",
         categories: ["devices"],
         significance: "major",
+        links: [
+          {
+            label: "Wikipedia — iPad (1st generation)",
+            url: "https://en.wikipedia.org/wiki/IPad_(1st_generation)",
+          },
+        ],
       },
       {
         id: "arm-6b-2010",
@@ -547,6 +769,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "ARM-architecture producers reported 6.1 billion chip shipments in 2010, representing 95% of smartphones, 35% of digital televisions and set-top boxes, and 10% of mobile computers. ARM was no longer just a phone chip — it was becoming the default processor for all consumer electronics.",
         categories: ["market"],
         significance: "notable",
+        links: [
+          {
+            label: "Arm Newsroom: 200 Billion Chips",
+            url: "https://newsroom.arm.com/blog/200bn-arm-chips",
+          },
+        ],
       },
       {
         id: "elop-burning-platform-memo",
@@ -578,6 +806,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "AT&T lost its most powerful differentiator overnight. The carrier had to pivot toward a broader Android portfolio and massive network investment. For students analyzing AT&T's filings, this is the single most important inflection point in their story — the moment a structural advantage evaporated.",
         categories: ["strategy", "market"],
         significance: "major",
+        links: [
+          {
+            label: "Wikipedia — Verizon iPhone",
+            url: "https://en.wikipedia.org/wiki/IPhone_4#Verizon_model",
+          },
+        ],
       },
       {
         id: "google-acquires-motorola-mobility",
@@ -588,6 +822,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "Primarily a patent portfolio play (17,000 patents), the acquisition sent shockwaves through Android OEM partners worried about Google competing with them directly. Google ultimately sold the hardware business to Lenovo for $2.9 billion in 2014, keeping most of the patents — an effective admission that owning an OEM was a distraction from the platform strategy.",
         categories: ["strategy"],
         significance: "major",
+        links: [
+          {
+            label: "Wikipedia — Motorola Mobility acquisition",
+            url: "https://en.wikipedia.org/wiki/Acquisition_of_Motorola_Mobility_by_Google",
+          },
+        ],
       },
       {
         id: "hp-kills-webos-touchpad",
@@ -598,6 +838,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "HP discontinued the TouchPad tablet just 49 days after its launch. A fire sale at $99 created a brief consumer frenzy. Combined with Palm Pre's failure, this is the definitive data point on why great product design alone cannot overcome an ecosystem deficit.",
         categories: ["platforms", "strategy"],
         significance: "notable",
+        links: [
+          {
+            label: "Wikipedia — HP TouchPad",
+            url: "https://en.wikipedia.org/wiki/HP_TouchPad",
+          },
+        ],
       },
       {
         id: "steve-jobs-dies",
@@ -608,6 +854,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "Tim Cook took over as CEO on October 5. Jobs's final product launch — the iPhone 4S with Siri — carried his imprint. The transition from a visionary founder to an operational leader is itself a case study in corporate continuity, and Apple's sustained success under Cook became evidence that the platform and ecosystem mattered more than any individual.",
         categories: ["strategy"],
         significance: "major",
+        links: [
+          {
+            label: "Wikipedia — Steve Jobs",
+            url: "https://en.wikipedia.org/wiki/Steve_Jobs",
+          },
+        ],
         image: {
           src: "https://upload.wikimedia.org/wikipedia/commons/b/b9/Steve_Jobs_Headshot_2010-CROP.jpg",
           alt: "Steve Jobs portrait, 2010, the year before his death",
@@ -623,6 +875,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
         categories: ["market"],
         isToolingSpine: true,
         significance: "major",
+        links: [
+          {
+            label: "Wikipedia — Smartphone § Market share",
+            url: "https://en.wikipedia.org/wiki/Smartphone#Market_share",
+          },
+        ],
       },
       {
         id: "big-little",
@@ -633,6 +891,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "ARM's answer to the power-performance dilemma: pair high-performance Cortex-A15 cores with energy-efficient Cortex-A7 cores on a single SoC. The OS could migrate tasks between clusters based on load. This architectural innovation had no x86 equivalent and became standard in Android flagships.",
         categories: ["platforms"],
         significance: "notable",
+        links: [
+          {
+            label: "Wikipedia — ARM big.LITTLE",
+            url: "https://en.wikipedia.org/wiki/ARM_big.LITTLE",
+          },
+        ],
       },
       {
         id: "chromebook-2011",
@@ -643,6 +907,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "Google launched Chrome OS laptops — thin clients for the browser era. The Samsung Chromebook (Oct 2012) was the first ARM-based model, using Samsung's Exynos 5 Dual (Cortex-A15). At $249, it became Amazon's #1 best-selling laptop. ARM had entered the traditional laptop form factor.",
         categories: ["devices"],
         significance: "notable",
+        links: [
+          {
+            label: "Wikipedia — Chromebook",
+            url: "https://en.wikipedia.org/wiki/Chromebook",
+          },
+        ],
       },
       {
         id: "armv8-64bit",
@@ -653,6 +923,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "Fundamental architecture change introducing AArch64 — a new 64-bit execution state with a clean 64-bit instruction set (A64). Maintained backward compatibility with 32-bit code via AArch32. Signaled ARM's ambition to move from mobile into servers and infrastructure. Cortex-A53 and A57 cores announced October 2012.",
         categories: ["platforms"],
         significance: "major",
+        links: [
+          {
+            label: "Wikipedia — AArch64",
+            url: "https://en.wikipedia.org/wiki/AArch64",
+          },
+        ],
       },
       {
         id: "android-75pct-market-share",
@@ -663,6 +939,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "Led by Samsung's Galaxy S III, Android won the volume game decisively. But iOS retained a disproportionate share of industry profits and app developer revenue — an asymmetry that persists to this day. This split between unit share and profit share is one of the most instructive dynamics in platform economics.",
         categories: ["market", "platforms"],
         significance: "major",
+        links: [
+          {
+            label: "Wikipedia — Android (operating system) § Market share",
+            url: "https://en.wikipedia.org/wiki/Android_(operating_system)#Market_share",
+          },
+        ],
       },
       {
         id: "blackberry-delays-bb10",
@@ -673,6 +955,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "Originally promised for early 2012, BB10 slipped multiple times. The company hemorrhaged market share while waiting for its Hail Mary. Each delay compounded the developer exodus. By the time BB10 shipped, the two-platform lock-in of iOS and Android was essentially irreversible.",
         categories: ["platforms", "strategy"],
         significance: "notable",
+        links: [
+          {
+            label: "Wikipedia — BlackBerry 10",
+            url: "https://en.wikipedia.org/wiki/BlackBerry_10",
+          },
+        ],
       },
       {
         id: "blackberry-z10-launches",
@@ -683,6 +971,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "The modern touchscreen BlackBerry arrived years too late. Sales disappointed massively, leading to a $1 billion inventory writedown. The company dropped 'Research In Motion' from its name in a rebranding attempt.",
         categories: ["devices", "strategy"],
         significance: "notable",
+        links: [
+          {
+            label: "Wikipedia — BlackBerry Z10",
+            url: "https://en.wikipedia.org/wiki/BlackBerry_Z10",
+          },
+        ],
       },
       {
         id: "microsoft-acquires-nokia-phones",
@@ -693,6 +987,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "Nokia exited the phone market it had once dominated, retaining its network equipment and mapping divisions. For Microsoft, the deal represented a bet that owning hardware manufacturing could revive Windows Phone. It couldn't. The acquisition is one of the most studied cautionary tales in technology M&A.",
         categories: ["strategy"],
         significance: "major",
+        links: [
+          {
+            label: "Wikipedia — Microsoft Mobile",
+            url: "https://en.wikipedia.org/wiki/Microsoft_Mobile",
+          },
+        ],
       },
       {
         id: "uber-launches-uberx",
@@ -703,6 +1003,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "The pivot from luxury black cars to mass-market disruption of the taxi industry. UberX allowed anyone with a qualifying car to become a driver, dramatically expanding supply and lowering prices. This is when Uber became Uber — and when 'Uber for X' became the dominant startup pitch template.",
         categories: ["startups", "market"],
         significance: "major",
+        links: [
+          {
+            label: "Wikipedia — Uber § History",
+            url: "https://en.wikipedia.org/wiki/Uber#History",
+          },
+        ],
       },
       {
         id: "arm-10b-annual",
@@ -713,6 +1019,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "ARM-based chip shipments hit 10 billion annually — roughly 28x the entire x86 PC+server market. ARM chips were found in nearly 60% of the world's mobile devices. The total ARM silicon ecosystem had grown far beyond phones to include tablets, set-top boxes, automotive, IoT sensors, and networking equipment.",
         categories: ["market"],
         significance: "major",
+        links: [
+          {
+            label: "Arm Newsroom: 200 Billion Chips",
+            url: "https://newsroom.arm.com/blog/200bn-arm-chips",
+          },
+        ],
       },
       {
         id: "smartphones-majority-phones",
@@ -740,6 +1052,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "Mobile messaging became the most valuable app category. The deal validated that smartphones had become the primary computing platform worldwide and that the most important software companies of the smartphone era might not be the platform owners themselves, but the applications that dominated user time and attention.",
         categories: ["market"],
         significance: "major",
+        links: [
+          {
+            label: "Wikipedia — WhatsApp § Acquisition by Facebook",
+            url: "https://en.wikipedia.org/wiki/WhatsApp#Acquisition_by_Facebook",
+          },
+        ],
       },
       {
         id: "iphone-6-large-screens",
@@ -750,6 +1068,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "Apple finally went big-screen. The launch set records — 10 million units sold on the opening weekend. By adopting larger displays, Apple conceded that Samsung and the Android ecosystem had been right about screen size for years. Sometimes the fast follower wins the format war; sometimes the market leader can afford to wait and still capture the upside.",
         categories: ["devices", "market"],
         significance: "major",
+        links: [
+          {
+            label: "Wikipedia — iPhone 6",
+            url: "https://en.wikipedia.org/wiki/IPhone_6",
+          },
+        ],
       },
       {
         id: "smartphones-two-thirds",
@@ -776,6 +1100,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "The write-down covered effectively the entire purchase price. Windows Phone market share had fallen below 3%. CEO Satya Nadella pivoted Microsoft toward cloud and services. Bill Gates later called losing to Android his 'greatest mistake ever.' The write-down is the definitive punctuation mark on the Windows Phone story — and a powerful 'after' data point for understanding how disruption ends for the losers.",
         categories: ["strategy", "market"],
         significance: "major",
+        links: [
+          {
+            label: "Wikipedia — Microsoft Mobile",
+            url: "https://en.wikipedia.org/wiki/Microsoft_Mobile",
+          },
+        ],
       },
       {
         id: "blackberry-priv-android",
@@ -786,6 +1116,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "A physical keyboard married to the Android operating system. The Priv was too little, too late — BlackBerry would exit hardware entirely by 2016. The decision to finally adopt Android validated the platform's dominance but could not overcome BlackBerry's eroded brand and missing app ecosystem. An epilogue to the disruption story.",
         categories: ["devices", "strategy"],
         significance: "notable",
+        links: [
+          {
+            label: "Wikipedia — BlackBerry Priv",
+            url: "https://en.wikipedia.org/wiki/BlackBerry_Priv",
+          },
+        ],
       },
       {
         id: "smartphone-peak-2016",
@@ -796,6 +1132,12 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           "Global smartphone shipments reached their all-time peak of 1.47B units (IDC). Feature phones had shrunk to ~500M. The smartphone was now shipping 5.4x the volume of PCs (~270M). ARM's total chip shipments approached 18B annually. The disruption was complete: ARM-based smartphones had become the world's default computing platform.",
         categories: ["market"],
         significance: "major",
+        links: [
+          {
+            label: "Wikipedia — Smartphone § Market share",
+            url: "https://en.wikipedia.org/wiki/Smartphone#Market_share",
+          },
+        ],
       },
     ],
   };

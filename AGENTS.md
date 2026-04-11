@@ -6,6 +6,7 @@
 
 - **Component patterns & Astro guidelines:** `.github/copilot-instructions.md`
 - **Testing patterns & examples:** `.github/copilot-test-instructions.md`
+- **QA site coverage skill:** `.github/skills/qa-site-coverage/SKILL.md`
 
 **This document (AGENTS.md):**
 
@@ -100,17 +101,19 @@ This is a personal portfolio website built with Astro, migrated from Gatsby. The
 
 **Typography:**
 
-- Body/Headings: Inter
-- Code: JetBrains Mono
+- Narrative body/headings: Newsreader
+- UI/data labels: Manrope
+- Code: system monospace
 - Prose width: ~700px for comfortable reading
 
 **Colors:**
 
-- Background: `#FAFAFA`
-- Surface: `#FFFFFF`
-- Primary text: `#0F172A`
-- Secondary text: `#475569`
-- Accent: `#4F46E5`
+- Page background: `paper-100` / `#F4F3F2`
+- Surface: `paper-50` / `#FFFFFF`
+- Primary text: `ink-800` / `#1A1A1C`
+- Structure: `graphite-600` / `#4A494C`
+- Functional accent: `accent-teal` / `#008080`
+- Subtle active region: `accent-soft` / `#E0F2F2`
 
 **Design Principles:**
 

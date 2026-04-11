@@ -20,8 +20,8 @@ Use this guide to keep future work aligned with the IA refresh and writing-first
 
 - Maintain shared layouts (Base/Page/Post) with consistent navigation and footer.
 - Favor card-based indexes for Writing with optional imagery; avoid heavy shadows.
-- Typography: Inter for body/headings, JetBrains Mono for code; comfortable prose width (~700px) and line height.
-- Color tokens: background `#FAFAFA`, surface `#FFFFFF`, primary text `#0F172A`, secondary text `#475569`, accent `#4F46E5`.
+- Typography: Newsreader for narrative body/headings, Manrope for UI/data labels, system monospace for code; comfortable prose width (~700px) and line height.
+- Color tokens: `paper-100` background, `paper-50` surface, `ink-800` primary text, `graphite-600` structure, `accent-teal` for links/CTAs/active states, and `accent-soft` for subtle active regions.
 - Keep styles declarative; avoid inline hex when Tailwind tokens can be used.
 
 ## Content Modeling Checklist

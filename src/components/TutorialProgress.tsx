@@ -98,7 +98,7 @@ export default function TutorialProgress({ steps }: Props) {
           const base = "flex items-start gap-2";
           const stateCls =
             state === "active"
-              ? "font-semibold text-ink-800 dark:text-paper-100"
+              ? "font-semibold text-ink-800 underline decoration-accent-teal decoration-2 underline-offset-4 dark:text-paper-100"
               : state === "completed"
                 ? "text-graphite-400"
                 : "text-ink-600 dark:text-paper-200";
@@ -114,7 +114,7 @@ export default function TutorialProgress({ steps }: Props) {
                 <span
                   className={`mt-1 inline-block w-2 h-2 rounded-full ${
                     state === "active"
-                      ? "bg-ink-800 dark:bg-paper-100"
+                      ? "bg-accent-teal"
                       : state === "completed"
                         ? "bg-graphite-400"
                         : "bg-paper-200 dark:bg-graphite-600"

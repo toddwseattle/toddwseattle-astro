@@ -21,7 +21,7 @@ const steps = (rendered.headings || [])
         <div class="grid grid-cols-12 gap-8">
           <aside class="hidden lg:block col-span-3">
             <div class="sticky top-16 max-w-[240px] break-words">
-              <div class="mb-4 text-sm text-slate-600">
+              <div class="mb-4 text-sm text-ink-600">
                 {" "}
                 {steps.findIndex((s) => s.id === steps[0]?.id) + 1} of{" "}
                 {steps.length}
@@ -31,7 +31,7 @@ const steps = (rendered.headings || [])
             ∏
           </aside>
           <main class="col-span-12 lg:col-span-9">
-            <div class="prose prose-lg dark:prose-invert max-w-none">
+            <div class="prose prose-lg max-w-none">
               <rendered.Content />
             </div>
           </main>
@@ -41,7 +41,7 @@ const steps = (rendered.headings || [])
   ) : (
     <article class="py-16">
       <Container>
-        <div class="prose prose-lg dark:prose-invert max-w-none">
+        <div class="prose prose-lg max-w-none">
           <rendered.Content />
         </div>
       </Container>

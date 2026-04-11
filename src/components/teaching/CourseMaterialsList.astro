@@ -65,12 +65,12 @@ const getCoverSrc = (cover: any) => {
           <label for="type-filter" class="sr-only">
             Filter materials by type
           </label>
-          <span class="text-sm font-medium text-ink-600 dark:text-paper-200">
+          <span class="font-sans text-sm font-medium text-ink-600 dark:text-paper-200">
             Filter by type:
           </span>
           <select
             id="type-filter"
-            class="px-4 py-2 border border-graphite-600/30 rounded-lg focus:ring-2 focus:ring-graphite-400 focus:border-graphite-400 dark:bg-surface-dark dark:border-graphite-600 dark:text-paper-100 transition-colors"
+            class="px-4 py-2 border border-graphite-600/30 rounded-lg focus:ring-2 focus:ring-accent-teal focus:border-graphite-400 dark:bg-surface-dark dark:border-graphite-600 dark:text-paper-100 transition-colors"
             aria-label="Filter materials by type"
           >
             <option value="all">All Materials</option>
@@ -99,7 +99,7 @@ const getCoverSrc = (cover: any) => {
 
           return (
             <article
-              class="material-card group relative bg-paper-50 dark:bg-surface-dark rounded-lg border border-graphite-600/20 dark:border-graphite-600 hover:border-graphite-400 dark:hover:border-ink-600 transition-all duration-300 overflow-hidden focus-within:ring-2 ring-graphite-400"
+              class="material-card group relative bg-paper-50 dark:bg-surface-dark rounded-lg border border-graphite-600/20 dark:border-graphite-600 hover:border-graphite-400 dark:hover:border-ink-600 transition-all duration-300 overflow-hidden focus-within:ring-2 ring-accent-teal"
               data-type={type}
             >
               <a
@@ -123,7 +123,7 @@ const getCoverSrc = (cover: any) => {
                   {/* Date */}
                   <time
                     datetime={date}
-                    class="text-sm text-graphite-400 font-medium"
+                    class="font-sans text-sm font-medium text-graphite-400"
                   >
                     {formatDate(date)}
                   </time>
@@ -142,7 +142,7 @@ const getCoverSrc = (cover: any) => {
                   <div class="mt-4 flex flex-wrap gap-2">
                     {/* Type Badge */}
                     <span
-                      class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getTypeBadgeClasses(type)}`}
+                      class={`inline-flex items-center px-2.5 py-0.5 rounded-full font-sans text-xs font-medium ${getTypeBadgeClasses(type)}`}
                     >
                       {type.charAt(0).toUpperCase() + type.slice(1)}
                     </span>
@@ -150,14 +150,14 @@ const getCoverSrc = (cover: any) => {
                     {/* Difficulty Badge */}
                     {difficulty && (
                       <span
-                        class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getDifficultyBadgeClasses(difficulty)}`}
+                        class={`inline-flex items-center px-2.5 py-0.5 rounded-full font-sans text-xs font-medium ${getDifficultyBadgeClasses(difficulty)}`}
                       >
                         {difficulty.charAt(0).toUpperCase() +
                           difficulty.slice(1)}
                       </span>
                     )}
                     {timelineKey && (
-                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-paper-200 text-ink-800 dark:bg-graphite-600 dark:text-paper-100">
+                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-sans text-xs font-medium bg-paper-200 text-ink-800 dark:bg-graphite-600 dark:text-paper-100">
                         Interactive
                       </span>
                     )}

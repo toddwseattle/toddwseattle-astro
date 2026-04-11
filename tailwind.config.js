@@ -6,8 +6,20 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
+      fontFamily: {
+        serif: ["Newsreader", "Georgia", "Cambria", "Times New Roman", "serif"],
+        sans: [
+          "Manrope",
+          "ui-sans-serif",
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "sans-serif",
+        ],
+      },
       colors: {
-        // Monochrome Design Tokens
+        // Chronicle Data System tokens
         // See docs/Visual-style/short-color-brief.md for reference
 
         // Ink - text, meaning, content
@@ -32,6 +44,11 @@ export default {
         surface: {
           light: "#FFFFFF",
           dark: "#2E2D30",
+        },
+        // Accent - interaction, active state, and data emphasis
+        accent: {
+          teal: "#008080",
+          soft: "#E0F2F2",
         },
         // Text colors
         "text-primary": {

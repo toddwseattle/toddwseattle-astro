@@ -1,21 +1,41 @@
 import { useMemo, useState } from "react";
-import type { TimelineConfig, TimelineCategory } from "../../data/timelines";
+import type {
+  TimelineConfig,
+  TimelineCategory,
+  TimelineEra,
+} from "../../data/timelines";
 import { filterEvents } from "../../data/timelines";
 import CategoryFilter from "./CategoryFilter";
 import TimelineEvent from "./TimelineEvent";
 
 interface TimelineExplorerProps {
   timeline: TimelineConfig;
+  /** Controlled: category filter. When omitted the component manages it internally. */
+  selectedCategory?: TimelineCategory | "all";
+  /** Controlled: era filter. When omitted no era filtering is applied. */
+  selectedEra?: TimelineEra | null;
+  onCategoryChange?: (cat: TimelineCategory | "all") => void;
+  /** When true, the CategoryFilter UI is suppressed (parent renders it). */
+  hideFilters?: boolean;
 }
 
-export default function TimelineExplorer({ timeline }: TimelineExplorerProps) {
-  const [selectedCategory, setSelectedCategory] = useState<
+export default function TimelineExplorer({
+  timeline,
+  selectedCategory: selectedCategoryProp,
+  selectedEra,
+  onCategoryChange,
+  hideFilters = false,
+}: TimelineExplorerProps) {
+  // Uncontrolled fallback for category when no controlled prop is provided
+  const [internalCategory, setInternalCategory] = useState<
     TimelineCategory | "all"
   >("all");
+  const resolvedCategory = selectedCategoryProp ?? internalCategory;
+  const handleCategory = onCategoryChange ?? setInternalCategory;
 
   const visibleEvents = useMemo(
-    () => filterEvents(timeline.events, selectedCategory),
-    [timeline.events, selectedCategory],
+    () => filterEvents(timeline.events, resolvedCategory, selectedEra ?? null),
+    [timeline.events, resolvedCategory, selectedEra],
   );
 
   return (
@@ -32,11 +52,13 @@ export default function TimelineExplorer({ timeline }: TimelineExplorerProps) {
         </p>
       </div>
 
-      <CategoryFilter
-        categories={timeline.categoryOrder}
-        selected={selectedCategory}
-        onSelect={setSelectedCategory}
-      />
+      {!hideFilters && (
+        <CategoryFilter
+          categories={timeline.categoryOrder}
+          selected={resolvedCategory}
+          onSelect={handleCategory}
+        />
+      )}
 
       <p className="mt-3 text-sm text-graphite-400 dark:text-paper-200/75">
         Hover or tap an event to reveal context and sources.
