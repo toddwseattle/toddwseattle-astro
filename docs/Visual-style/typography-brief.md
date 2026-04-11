@@ -41,12 +41,14 @@ The site should feel closer to a **book or journal** than a product UI.
 
 ### Body Text
 
-- Serif or humanist sans
+- Preferred: Newsreader
+- Serif or humanist sans fallback
 - Warm tone preferred
 - Designed for paragraphs, not UI labels
 
 Examples (non-prescriptive):
 
+- Newsreader
 - Source Serif
 - Literata
 - Charter
@@ -55,9 +57,17 @@ Examples (non-prescriptive):
 
 ### Headings
 
+- Preferred: Newsreader
 - Same family as body, or closely related
 - Slightly darker color
 - Slightly tighter tracking
+
+### UI and Data Labels
+
+- Preferred: Manrope or Public Sans
+- Used for buttons, filters, metadata, timeline labels, and compact controls
+- Provides clear distinction from narrative content
+- Must remain quiet and functional, not branded or expressive
 
 ### Monospace
 

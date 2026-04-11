@@ -2,13 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Monochrome Color System - Design Tokens
+/* Chronicle Data System - Design Tokens
  * See docs/Visual-style/short-color-brief.md for reference
  * See tailwind.config.js for token definitions
  *
  * Ink = text, meaning, content
  * Graphite = structure, headers, dividers
  * Paper = background, reading surface
+ * Teal = interaction, active state, data emphasis
  */
 
 /* Custom base styles */
@@ -48,13 +49,13 @@
     @apply text-paper-100;
   }
 
-  /* Monochrome links: same color as text, always underlined */
+  /* Editorial links: same text color, teal underline for affordance */
   .prose a {
-    @apply text-ink-800 underline decoration-graphite-400 hover:decoration-ink-800;
+    @apply text-ink-800 underline decoration-accent-teal decoration-2 underline-offset-4 hover:decoration-ink-800;
   }
 
   .dark .prose a {
-    @apply text-paper-100 decoration-graphite-400 hover:decoration-paper-100;
+    @apply text-paper-100 decoration-accent-teal hover:decoration-paper-100;
   }
 
   .prose strong {
@@ -197,7 +198,7 @@
   }
 
   .slides-layout .reveal .slides a {
-    @apply text-ink-800 underline decoration-graphite-600 decoration-2 underline-offset-4 dark:text-paper-100 dark:decoration-paper-200 dark:hover:decoration-paper-100 hover:decoration-ink-800;
+    @apply text-ink-800 underline decoration-accent-teal decoration-2 underline-offset-4 dark:text-paper-100 dark:decoration-accent-teal dark:hover:decoration-paper-100 hover:decoration-ink-800;
   }
 
   .slides-layout .reveal .slides code {

@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Monochrome Design Tokens
+        // Chronicle Data System tokens
         // See docs/Visual-style/short-color-brief.md for reference
 
         // Ink - text, meaning, content
@@ -32,6 +32,11 @@ export default {
         surface: {
           light: "#FFFFFF",
           dark: "#2E2D30",
+        },
+        // Accent - interaction, active state, and data emphasis
+        accent: {
+          teal: "#008080",
+          soft: "#E0F2F2",
         },
         // Text colors
         "text-primary": {
