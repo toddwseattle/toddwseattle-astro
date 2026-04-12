@@ -2,17 +2,50 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 import type { TimelineEvent as TimelineEventType } from "../../data/timelines";
 import { timelineCategoryMeta } from "../../data/timelines";
+import {
+  trackEventOpened,
+  trackEventLinkClicked,
+  type TimelineSession,
+} from "../../lib/timelineAnalytics";
 
 interface TimelineEventProps {
   event: TimelineEventType;
+  session: TimelineSession | null;
 }
 
-export default function TimelineEvent({ event }: TimelineEventProps) {
+export default function TimelineEvent({ event, session }: TimelineEventProps) {
   const [isPinned, setIsPinned] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const shouldReduceMotion = useReducedMotion();
   const isExpanded = isPinned || isHovered;
   const hasLinks = Boolean(event.links && event.links.length > 0);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    if (session && !isPinned) {
+      trackEventOpened(session, event, "hover");
+    }
+  };
+
+  const handleToggle = () => {
+    const newState = !isPinned;
+    setIsPinned(newState);
+    if (newState && session) {
+      trackEventOpened(session, event, "pin");
+    }
+  };
+
+  const handleLinkClick = (
+    e: React.MouseEvent,
+    linkText: string,
+    linkUrl: string,
+    linkPosition: number
+  ) => {
+    if (session) {
+      trackEventLinkClicked(session, event, linkText, linkUrl, linkPosition);
+    }
+    // Allow normal link behavior
+  };
 
   return (
     <li
@@ -34,13 +67,13 @@ export default function TimelineEvent({ event }: TimelineEventProps) {
             ? "border-graphite-600/40 dark:border-ink-600"
             : "border-graphite-600/20 dark:border-graphite-600"
         } ${isExpanded ? "bg-paper-100 dark:bg-graphite-700/80" : ""}`}
-        onMouseEnter={() => setIsHovered(true)}
+        onMouseEnter={handleMouseEnter}
         onMouseLeave={() => setIsHovered(false)}
       >
         <button
           type="button"
           className="flex w-full items-start justify-between gap-4 text-left"
-          onClick={() => setIsPinned((current) => !current)}
+          onClick={handleToggle}
           data-testid={`timeline-event-toggle-${event.id}`}
         >
           <div>
@@ -111,13 +144,21 @@ export default function TimelineEvent({ event }: TimelineEventProps) {
 
                   {hasLinks && (
                     <ul className="mt-4 space-y-2">
-                      {event.links?.map((link) => (
+                      {event.links?.map((link, index) => (
                         <li key={`${event.id}-${link.url}`}>
                           <a
                             href={link.url}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-ink-800 underline decoration-accent-teal underline-offset-4 hover:decoration-ink-800 dark:text-paper-100 dark:hover:decoration-paper-100"
+                            onClick={(e) =>
+                              handleLinkClick(
+                                e,
+                                link.label,
+                                link.url,
+                                index + 1
+                              )
+                            }
                           >
                             {link.label} →
                           </a>
