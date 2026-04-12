@@ -5,6 +5,8 @@ export const siteConfig = {
   author: {
     name: "Todd Warren",
     twitter: "@toddwseattle",
+    github: "toddwseattle",
+    linkedin: "toddwseattle",
   },
   siteUrl: "https://toddwseattle.com",
   // Default Open Graph image - using existing pitch-eval logo as fallback

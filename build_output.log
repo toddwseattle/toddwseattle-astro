@@ -1,0 +1,158 @@
+
+> pw-toddwseattle-astro@0.0.1 build
+> astro build
+
+09:29:09 [content] Syncing content
+09:29:09 [content] Synced content
+09:29:09 [types] Generated 174ms
+09:29:09 [build] output: "static"
+09:29:09 [build] mode: "static"
+09:29:09 [build] directory: /Users/toddwseattle/dev/toddwseattle-astro/dist/
+09:29:09 [build] Collecting build info...
+09:29:09 [build] ✓ Completed in 205ms.
+09:29:09 [build] Building static entrypoints...
+09:29:10 [vite] ✓ built in 776ms
+09:29:10 [build] ✓ Completed in 790ms.
+
+ building client (vite) 
+09:29:10 [vite] transforming...
+09:29:10 [vite] ✓ 406 modules transformed.
+09:29:10 [vite] rendering chunks...
+09:29:10 [vite] computing gzip size...
+09:29:10 [vite] dist/_astro/Container.F7R3B93v.js                                            0.27 kB │ gzip:  0.23 kB
+09:29:10 [vite] dist/_astro/Footer.BiMLZDgn.js                                               1.00 kB │ gzip:  0.40 kB
+09:29:10 [vite] dist/_astro/TitleSection.dgu4qoCC.js                                         1.00 kB │ gzip:  0.59 kB
+09:29:10 [vite] dist/_astro/jsx-runtime.ClP7wGfN.js                                          1.00 kB │ gzip:  0.62 kB
+09:29:10 [vite] dist/_astro/TutorialProgress.C7NwUWMn.js                                     1.92 kB │ gzip:  1.01 kB
+09:29:10 [vite] dist/_astro/Header.CxqUEMwP.js                                               2.09 kB │ gzip:  0.79 kB
+09:29:10 [vite] dist/_astro/index.DK-fsZOb.js                                                6.81 kB │ gzip:  2.73 kB
+09:29:10 [vite] dist/_astro/TimelineViewer.Darqzp5q.js                                     134.67 kB │ gzip: 43.17 kB
+09:29:10 [vite] dist/_astro/client.nc8uITnr.js                                             136.51 kB │ gzip: 44.01 kB
+09:29:10 [vite] dist/_astro/SlidesLayout.astro_astro_type_script_index_0_lang.DqBHZ7zd.js  166.49 kB │ gzip: 46.79 kB
+09:29:10 [vite] ✓ built in 398ms
+
+ generating static routes 
+09:29:10 ▶ src/pages/about/index.astro
+09:29:10   └─ /about/index.html (+7ms) 
+09:29:10 ▶ src/pages/autosoft-today/index.astro
+09:29:10   └─ /autosoft-today/index.html (+1ms) 
+09:29:10 ▶ src/pages/consulting/index.astro
+09:29:10   └─ /consulting/index.html (+1ms) 
+09:29:11 ▶ src/pages/course-materials/[slug].astro
+09:29:11   ├─ /course-materials/developing-a-prototype-in-github-copilot/index.html (+5ms) 
+09:29:11   ├─ /course-materials/reveal-introduction-to-software-engineering/index.html (+1ms) 
+09:29:11   ├─ /course-materials/smartphone-revolution-timeline/index.html (+9ms) 
+09:29:11   ├─ /course-materials/smartphone-revolution-acronym-glossary/index.html (+1ms) 
+09:29:11   ├─ /course-materials/software-engineering-history-timeline/index.html (+3ms) 
+09:29:11   ├─ /course-materials/template-react-typescript-project/index.html (+1ms) 
+09:29:11   └─ /course-materials/vscode-setup-tutorial/index.html (+1ms) 
+09:29:11 ▶ src/pages/resume/index.astro
+09:29:11   └─ /resume/index.html (+2ms) 
+09:29:11 λ src/pages/robots.txt.ts
+09:29:11   └─ /robots.txt (+0ms) 
+09:29:11 λ src/pages/rss.xml.ts
+09:29:11   └─ /rss.xml (+3ms) 
+09:29:11 ▶ src/pages/teaching/[slug].astro
+09:29:11   ├─ /teaching/nuvention-web/index.html (+2ms) 
+09:29:11   ├─ /teaching/software-engineering/index.html (+2ms) 
+09:29:11   └─ /teaching/corporate-innovation/index.html (+1ms) 
+09:29:11 ▶ src/pages/teaching/index.astro
+09:29:11   └─ /teaching/index.html (+1ms) 
+09:29:11 ▶ src/pages/writing/tag/[tag].astro
+09:29:11   ├─ /writing/tag/innovation/index.html (+3ms) 
+09:29:11   ├─ /writing/tag/entrepreneurship/index.html (+2ms) 
+09:29:11   ├─ /writing/tag/nuvention/index.html (+2ms) 
+09:29:11   ├─ /writing/tag/teaching/index.html (+2ms) 
+09:29:11   ├─ /writing/tag/software-development/index.html (+2ms) 
+09:29:11   ├─ /writing/tag/react/index.html (+1ms) 
+09:29:11   ├─ /writing/tag/firebase/index.html (+1ms) 
+09:29:11   ├─ /writing/tag/ideation/index.html (+1ms) 
+09:29:11   ├─ /writing/tag/book-review/index.html (+1ms) 
+09:29:11   ├─ /writing/tag/bmc/index.html (+1ms) 
+09:29:11   ├─ /writing/tag/mvp/index.html (+1ms) 
+09:29:11   ├─ /writing/tag/pitcheval/index.html (+1ms) 
+09:29:11   ├─ /writing/tag/covid/index.html (+4ms) 
+09:29:11   ├─ /writing/tag/software-engineering/index.html (+2ms) 
+09:29:11   ├─ /writing/tag/ai/index.html (+1ms) 
+09:29:11   ├─ /writing/tag/microsoft-office/index.html (+1ms) 
+09:29:11   ├─ /writing/tag/tutorial/index.html (+1ms) 
+09:29:11   ├─ /writing/tag/automotive-software/index.html (+2ms) 
+09:29:11   ├─ /writing/tag/software/index.html (+1ms) 
+09:29:11   ├─ /writing/tag/automotive/index.html (+1ms) 
+09:29:11   ├─ /writing/tag/recalls/index.html (+1ms) 
+09:29:11   ├─ /writing/tag/2023/index.html (+1ms) 
+09:29:11   ├─ /writing/tag/northwestern/index.html (+2ms) 
+09:29:11   ├─ /writing/tag/cs394/index.html (+1ms) 
+09:29:11   └─ /writing/tag/vitest/index.html (+1ms) 
+09:29:11 ▶ src/pages/writing/[slug].astro
+09:29:11   ├─ /writing/2019-02-05-coding-bootcamp/index.html (+2ms) 
+09:29:11   ├─ /writing/2019-01-08-nuvention-web-2019/index.html (+1ms) 
+09:29:11   ├─ /writing/2019-01-15-your-idea-is-terrible/index.html (+1ms) 
+09:29:11   ├─ /writing/2020-01-06-book-review-testing-business-ideas/index.html (+1ms) 
+09:29:11   ├─ /writing/2020-04-07-nuvention-webmedia-2020-q1/index.html (+1ms) 
+09:29:11   ├─ /writing/2020-04-10-nuventon-web-spring-2020/index.html (+1ms) 
+09:29:11   ├─ /writing/2023-04-05-chatgpt-outlook-addin-tutorial-intro/index.html (+1ms) 
+09:29:11   ├─ /writing/2024-01-17-automotive-software-recalls-2023/index.html (+1ms) 
+09:29:11   ├─ /writing/2024-01-08-software-related-recalls/index.html (+1ms) 
+09:29:11   ├─ /writing/2024-02-05-cs394-spring-software-engineering-course/index.html (+1ms) 
+09:29:11   ├─ /writing/2025-03-15-vscode-setup-recomendations/index.html (+1ms) 
+09:29:11   ├─ /writing/2025-02-05-cs394-2025-spring-software-engineering-course/index.html (+1ms) 
+09:29:11   ├─ /writing/2026-02-15-cs394-software-engineering-course-spring-2026/index.html (+1ms) 
+09:29:11   └─ /writing/2025-27-05-vitetest-with-copilot/index.html (+1ms) 
+09:29:11 ▶ src/pages/writing/index.astro
+09:29:11   └─ /writing/index.html (+3ms) 
+09:29:11 ▶ src/pages/index.astro
+09:29:11   └─ /index.html (+2ms) 
+09:29:11 ✓ Completed in 178ms.
+
+ generating optimized images 
+09:29:11   ▶ /_astro/2020-04-10-NUventon-Web-Spring-2020-NUvention-2020-spring-sprints._DyxV5yk_Z1vYPq6.webp (reused cache entry) (+1ms) (1/45)
+09:29:11   ▶ /_astro/2019-01-15-Your-Idea-Is-Terrible-tran-web-day-1-2019-small.Bc4MX1aB_Z1kqGey.webp (reused cache entry) (+1ms) (2/45)
+09:29:11   ▶ /_astro/2020-01-06-Book-Review-Testing-Business-Ideas-Bland-Osterwalder-Testing-Business-Ideas.Cc6Y92gk_ZWjNhQ.webp (reused cache entry) (+1ms) (3/45)
+09:29:11   ▶ /_astro/2020-04-07-NUvention-Web_Media-2020-Q1-NUvention-2020-winter-sprints.BgLjF4FC_1iv8v.webp (reused cache entry) (+1ms) (4/45)
+09:29:11   ▶ /_astro/2019-01-08-NUvention-Web-2019-NUvention-2019-Sprint-Overview-Thumb.CcRhJOCv_ZkMNRT.webp (reused cache entry) (+1ms) (5/45)
+09:29:11   ▶ /_astro/2019-02-05-Coding-Bootcamp-React-Github-Firebase-small.eR56eIxa_Z1eq9J6.webp (reused cache entry) (+1ms) (6/45)
+09:29:11   ▶ /_astro/394_2026_Willy_Swarm.JrTJbvu1_2rgo3h.webp (reused cache entry) (+1ms) (7/45)
+09:29:11   ▶ /_astro/2025-03-15-VSCode-Setup-Recomendations-vscode-cat.jWq11V_F_FNyAi.webp (reused cache entry) (+1ms) (8/45)
+09:29:11   ▶ /_astro/2025-02-05-CS394-2025-Spring-Software-Engineering-Course-394-2025-Logo.BCwZMwy7_1cfYA7.webp (reused cache entry) (+2ms) (9/45)
+09:29:11   ▶ /_astro/2020-04-10-NUventon-Web-Spring-2020-NUvention-2020-spring-sprints._DyxV5yk_pOn1a.webp (reused cache entry) (+1ms) (10/45)
+09:29:11   ▶ /_astro/2025-27-05-Vitetest-with-CoPilot-react-vite-copilot-image-cover.C0cKkjHd_Z2lkgUd.webp (reused cache entry) (+2ms) (11/45)
+09:29:11   ▶ /_astro/2020-01-06-Book-Review-Testing-Business-Ideas-Bland-Osterwalder-Testing-Business-Ideas.Cc6Y92gk_nq57H.webp (reused cache entry) (+1ms) (12/45)
+09:29:11   ▶ /_astro/2020-04-07-NUvention-Web_Media-2020-Q1-NUvention-2020-winter-sprints.BgLjF4FC_Zqhe53.webp (reused cache entry) (+1ms) (13/45)
+09:29:11   ▶ /_astro/2019-02-05-Coding-Bootcamp-React-Github-Firebase-small.eR56eIxa_Z8UOuW.webp (reused cache entry) (+1ms) (14/45)
+09:29:11   ▶ /_astro/2019-01-08-NUvention-Web-2019-NUvention-2019-Sprint-Overview-Thumb.CcRhJOCv_Z22pb5d.webp (reused cache entry) (+1ms) (15/45)
+09:29:11   ▶ /_astro/394_2026_Willy_Swarm.JrTJbvu1_1qNOQy.webp (reused cache entry) (+1ms) (16/45)
+09:29:11   ▶ /_astro/2019-01-15-Your-Idea-Is-Terrible-tran-web-day-1-2019-small.Bc4MX1aB_12inN9.webp (reused cache entry) (+2ms) (17/45)
+09:29:11   ▶ /_astro/2025-03-15-VSCode-Setup-Recomendations-vscode-cat.jWq11V_F_Z2nzfYa.webp (reused cache entry) (+2ms) (18/45)
+09:29:11   ▶ /_astro/2020-04-10-NUventon-Web-Spring-2020-NUvention-2020-spring-sprints._DyxV5yk_Z1Nsmb5.webp (reused cache entry) (+2ms) (19/45)
+09:29:11   ▶ /_astro/2025-02-05-CS394-2025-Spring-Software-Engineering-Course-394-2025-Logo.BCwZMwy7_1eKYCP.webp (reused cache entry) (+2ms) (20/45)
+09:29:11   ▶ /_astro/2025-27-05-Vitetest-with-CoPilot-react-vite-copilot-image-cover.C0cKkjHd_Q6ONM.webp (reused cache entry) (+2ms) (21/45)
+09:29:11   ▶ /_astro/2024-02-05-CS394-Spring-Software-Engineering-Course-DallE-SoftwareEngineering-Class.DeKS8EC9_Z74uWB.webp (reused cache entry) (+2ms) (22/45)
+09:29:11   ▶ /_astro/2024-01-17-Automotive-Software-Recalls-2023-Vehicles-Affected-By-Software-Recalls-2023.Cme-w-7I_1ukFDd.webp (reused cache entry) (+2ms) (23/45)
+09:29:11   ▶ /_astro/2020-04-07-NUvention-Web_Media-2020-Q1-NUvention-2020-winter-sprints.BgLjF4FC_Z2ec4nJ.webp (reused cache entry) (+2ms) (24/45)
+09:29:11   ▶ /_astro/2023-04-05-ChatGPT-Outlook-AddIn-Tutorial-Intro-ReplyRight-800px-Logo-2.D2qHRZzR_2ke3Dp.webp (reused cache entry) (+2ms) (25/45)
+09:29:11   ▶ /_astro/2024-01-08-Software-Related-Recalls-NHTSASoftwareRelatedRecallsByYear1994-2023.Co2KXQ5d_1X8WLf.webp (reused cache entry) (+2ms) (26/45)
+09:29:11   ▶ /_astro/2019-02-05-Coding-Bootcamp-React-Github-Firebase.C7-BjUlP_ZYGky3.webp (reused cache entry) (+2ms) (27/45)
+09:29:11   ▶ /_astro/2019-01-08-NUvention-Web-2019-Slide1.C8Ktwsdl_ZHmNDT.webp (reused cache entry) (+2ms) (28/45)
+09:29:11   ▶ /_astro/2019-01-08-NUvention-Web-2019-Slide2.CpuLOmGT_Z1DkqFp.webp (reused cache entry) (+2ms) (29/45)
+09:29:11   ▶ /_astro/2019-01-15-Your-Idea-Is-Terrible-Watering-Hole.DJKk4Cjc_Z1OobsY.webp (reused cache entry) (+2ms) (30/45)
+09:29:11   ▶ /_astro/2019-01-15-Your-Idea-Is-Terrible-tran-web-day-1-2019.BhgOKd8J_ZUf3eD.webp (reused cache entry) (+3ms) (31/45)
+09:29:11   ▶ /_astro/2024-02-05-CS394-Spring-Software-Engineering-Course-DallE-SoftwareEngineering-Class.DeKS8EC9_Z1Hpy0E.webp (reused cache entry) (+2ms) (32/45)
+09:29:11   ▶ /_astro/2020-01-06-Book-Review-Testing-Business-Ideas-TestingBusinessIdeas_hero-non-preview.C47xLrIn_ZslHoS.webp (reused cache entry) (+2ms) (33/45)
+09:29:11   ▶ /_astro/2023-04-05-ChatGPT-Outlook-AddIn-Tutorial-Intro-ReplyRight-800px-Logo-2.D2qHRZzR_ZHKmRq.webp (reused cache entry) (+2ms) (34/45)
+09:29:11   ▶ /_astro/2024-01-17-Automotive-Software-Recalls-2023-Vehicles-Affected-By-Software-Recalls-2023.Cme-w-7I_TEzK1.webp (reused cache entry) (+2ms) (35/45)
+09:29:11   ▶ /_astro/2020-01-06-Book-Review-Testing-Business-Ideas-Single-Feature-MVP-Pairings.BkbsMCpn_XP9ID.webp (reused cache entry) (+1ms) (36/45)
+09:29:11   ▶ /_astro/2020-04-07-NUvention-Web_Media-2020-Q1-Value-Prop-Canvas-to-BMC.DOZGpg9X_Z2fxvwQ.webp (reused cache entry) (+1ms) (37/45)
+09:29:11   ▶ /_astro/2024-01-08-Software-Related-Recalls-NHTSASoftwareRelatedRecallsByYear1994-2023.Co2KXQ5d_1mIutq.webp (reused cache entry) (+2ms) (38/45)
+09:29:11   ▶ /_astro/2020-01-06-Book-Review-Testing-Business-Ideas-Osterwalder-Testing-Ideas-Overview.ijmLge7B_Z1eHPHO.webp (reused cache entry) (+2ms) (39/45)
+09:29:11   ▶ /_astro/2023-04-05-ChatGPT-Outlook-AddIn-Tutorial-Intro-ReplyRight-AI-Block-Architecture._fQyREw1_bQGe7.webp (reused cache entry) (+2ms) (40/45)
+09:29:11   ▶ /_astro/profile.Ce1oi73L_Z1MeOS7.webp (reused cache entry) (+1ms) (41/45)
+09:29:11   ▶ /_astro/2025-27-05-Vitetest-with-CoPilot-vscode-with-copilot.Cv7weTuT_1N8Fso.webp (reused cache entry) (+2ms) (42/45)
+09:29:11   ▶ /_astro/2024-01-17-Automotive-Software-Recalls-2023-Vehicles-Affected-By-Software-Recalls-2023.Cme-w-7I_Z1wHoGx.webp (reused cache entry) (+2ms) (43/45)
+09:29:11   ▶ /_astro/2024-01-08-Software-Related-Recalls-NHTSASoftwareRelatedRecallsByYear1994-2023.Co2KXQ5d_1lLLj2.webp (reused cache entry) (+1ms) (44/45)
+09:29:11   ▶ /_astro/2025-willy-coding.CMEDslh9_ZwPLBL.webp (reused cache entry) (+3ms) (45/45)
+09:29:11 ✓ Completed in 10ms.
+
+09:29:11 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
+09:29:11 [build] 56 page(s) built in 1.61s
+09:29:11 [build] Complete!

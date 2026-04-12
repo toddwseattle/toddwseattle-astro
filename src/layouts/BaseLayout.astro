@@ -4,6 +4,7 @@ import { siteConfig } from "../config/site";
 import "../assets/styles/global.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import GoogleAnalytics from "../components/GoogleAnalytics.astro";
+import StructuredData from "../components/StructuredData.astro";
 
 interface Props {
   title?: string;
@@ -103,6 +104,21 @@ const fullImageURL = new URL(image, Astro.site ?? siteConfig.siteUrl).href;
         ],
       }}
     />
+    {
+      article && (
+        <StructuredData
+          type="Article"
+          data={{
+            headline: title,
+            image: fullImageURL,
+            description: description,
+            datePublished: publishedTime,
+            dateModified: modifiedTime,
+            keywords: tags.length > 0 ? tags.join(", ") : undefined,
+          }}
+        />
+      )
+    }
     <GoogleAnalytics />
   </head>
   <body

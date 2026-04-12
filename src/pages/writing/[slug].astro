@@ -40,7 +40,7 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const { title, description, date, tags, cover, category } = post.data;
+const { title, description, date, updatedDate, tags, cover, category } = post.data;
 const { Content } = await post.render();
 
 // Calculate reading time from post body
@@ -70,6 +70,7 @@ const tagLinks = Array.from(
   image={coverSrc}
   article={true}
   publishedTime={date}
+  modifiedTime={updatedDate ? new Date(updatedDate).toISOString() : undefined}
   tags={tagLinks}
 >
   <Header client:load />
