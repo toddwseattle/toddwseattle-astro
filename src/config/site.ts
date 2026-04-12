@@ -9,7 +9,7 @@ export const siteConfig = {
   siteUrl: "https://toddwseattle.com",
   // Default Open Graph image - using existing pitch-eval logo as fallback
   // TODO: Create a proper 1200x630 OG image for the site
-  defaultImage: "/pitch-eval-logo_white_background.jpg",
+  defaultImage: "/todd_warren_social.png",
   lang: "en",
   locale: "en_US",
 };
