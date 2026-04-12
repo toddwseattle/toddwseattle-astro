@@ -17,6 +17,67 @@ export interface TimelineSession {
   categoriesFiltered: Set<string>;
   eventsOpened: Map<string, number>; // event_id => open_count
   linksClicked: number;
+  deviceType: 'touch' | 'pointer' | 'unknown';
+  referrerSource: string; // 'direct', 'internal', 'external', 'search'
+}
+
+/**
+ * Detect if user is using touch or pointer (mouse) device
+ */
+function detectDeviceType(): 'touch' | 'pointer' | 'unknown' {
+  if (typeof window === 'undefined') {
+    return 'unknown';
+  }
+
+  // Check for touch capability
+  const hasTouch =
+    () =>
+      !!window.matchMedia?.('(pointer:coarse)').matches ||
+      !!window.ontouchstart !== undefined ||
+      !!(navigator.maxTouchPoints || navigator.msMaxTouchPoints);
+
+  return hasTouch() ? 'touch' : 'pointer';
+}
+
+/**
+ * Detect referrer source (direct, internal, external, search)
+ */
+function detectReferrerSource(): string {
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    return 'unknown';
+  }
+
+  const referrer = document.referrer;
+
+  // Direct navigation
+  if (!referrer) {
+    return 'direct';
+  }
+
+  try {
+    const currentDomain = window.location.hostname;
+    const referrerDomain = new URL(referrer).hostname;
+
+    // Internal link
+    if (referrerDomain === currentDomain) {
+      return 'internal';
+    }
+
+    // Search engine
+    if (
+      referrer.includes('google.') ||
+      referrer.includes('bing.') ||
+      referrer.includes('duckduckgo.') ||
+      referrer.includes('yahoo.')
+    ) {
+      return 'search';
+    }
+  } catch {
+    // If URL parsing fails, treat as external
+  }
+
+  // External/social/other
+  return 'external';
 }
 
 /**
@@ -26,6 +87,9 @@ export function initTimelineSession(
   timelineKey: string,
   timelineTitle: string
 ): TimelineSession {
+  const deviceType = detectDeviceType();
+  const referrerSource = detectReferrerSource();
+
   return {
     sessionId: crypto.randomUUID?.() || `session-${Date.now()}`,
     timelineKey,
@@ -34,6 +98,8 @@ export function initTimelineSession(
     categoriesFiltered: new Set(),
     eventsOpened: new Map(),
     linksClicked: 0,
+    deviceType,
+    referrerSource,
   };
 }
 
@@ -90,6 +156,7 @@ export function trackEventOpened(
     has_links: Boolean(event.links?.length),
     link_count: event.links?.length ?? 0,
     interaction_type: interactionType,
+    device_type: session.deviceType,
     session_id: session.sessionId,
   });
 
@@ -172,5 +239,7 @@ export function trackSessionEnd(session: TimelineSession): void {
     most_engaged_category: mostEngagedCategory,
     most_engaged_event_id: mostEngagedEventId,
     engagement_intensity: engagementIntensity,
+    device_type: session.deviceType,
+    referrer_source: session.referrerSource,
   });
 }
