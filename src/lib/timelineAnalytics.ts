@@ -9,6 +9,18 @@
 
 import type { TimelineCategory, TimelineEvent } from '../data/timelines/shared';
 
+type GtagFn = (
+  command: 'event',
+  action: string,
+  params?: Record<string, string | number | boolean>
+) => void;
+
+declare global {
+  interface Window {
+    gtag?: GtagFn;
+  }
+}
+
 export interface TimelineSession {
   sessionId: string;
   timelineKey: string;
@@ -29,12 +41,14 @@ function detectDeviceType(): 'touch' | 'pointer' | 'unknown' {
     return 'unknown';
   }
 
+  const nav = navigator as Navigator & { msMaxTouchPoints?: number };
+
   // Check for touch capability
   const hasTouch =
     () =>
       !!window.matchMedia?.('(pointer:coarse)').matches ||
-      !!window.ontouchstart !== undefined ||
-      !!(navigator.maxTouchPoints || navigator.msMaxTouchPoints);
+      'ontouchstart' in window ||
+      (nav.maxTouchPoints || nav.msMaxTouchPoints || 0) > 0;
 
   return hasTouch() ? 'touch' : 'pointer';
 }

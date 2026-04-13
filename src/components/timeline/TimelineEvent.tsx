@@ -36,7 +36,6 @@ export default function TimelineEvent({ event, session }: TimelineEventProps) {
   };
 
   const handleLinkClick = (
-    e: React.MouseEvent,
     linkText: string,
     linkUrl: string,
     linkPosition: number
@@ -151,9 +150,8 @@ export default function TimelineEvent({ event, session }: TimelineEventProps) {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-ink-800 underline decoration-accent-teal underline-offset-4 hover:decoration-ink-800 dark:text-paper-100 dark:hover:decoration-paper-100"
-                            onClick={(e) =>
+                            onClick={() =>
                               handleLinkClick(
-                                e,
                                 link.label,
                                 link.url,
                                 index + 1
