@@ -1,7 +1,7 @@
 ---
 title: "Smartphone Revolution Acronym Glossary"
 description: "Definitions for the technical, business, and filing acronyms used in the smartphone revolution timeline."
-courses: ["software-engineering"]
+courses: ["corporate-innovation"]
 type: "post"
 date: "2026-04-11"
 ---

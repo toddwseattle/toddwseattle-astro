@@ -20,6 +20,7 @@ export type TimelineCategory =
 export interface TimelineLink {
   label: string;
   url: string;
+  description?: string;
 }
 
 export interface TimelineEventImage {

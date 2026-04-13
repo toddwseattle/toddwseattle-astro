@@ -109,7 +109,11 @@ const tagDescription = tag
   : "Posts tagged in Writing";
 ---
 
-<BaseLayout title={`${tagLabel} | Writing`} description={tagDescription}>
+<BaseLayout
+  title={`${tagLabel} | Writing`}
+  description={tagDescription}
+  noindex={true}
+>
   <Header client:load />
   <main class="py-16">
     <TitleSection

@@ -31,5 +31,8 @@
     "Vitetest",
     "Vlissides",
     "workitems"
-  ]
+  ],
+  "chat.tools.terminal.autoApprove": {
+    "timeout": true
+  }
 }

@@ -1,10 +1,16 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import type {
   TimelineConfig,
   TimelineCategory,
   TimelineEra,
 } from "../../data/timelines";
 import { filterEvents } from "../../data/timelines";
+import {
+  initTimelineSession,
+  trackCategoryFilter,
+  trackSessionEnd,
+  type TimelineSession,
+} from "../../lib/timelineAnalytics";
 import CategoryFilter from "./CategoryFilter";
 import TimelineEvent from "./TimelineEvent";
 
@@ -31,12 +37,36 @@ export default function TimelineExplorer({
     TimelineCategory | "all"
   >("all");
   const resolvedCategory = selectedCategoryProp ?? internalCategory;
-  const handleCategory = onCategoryChange ?? setInternalCategory;
+  const sessionRef = useRef<TimelineSession | null>(null);
+
+  // Initialize session on mount, track session end on unmount
+  useEffect(() => {
+    sessionRef.current = initTimelineSession(timeline.key, timeline.title);
+
+    return () => {
+      if (sessionRef.current) {
+        trackSessionEnd(sessionRef.current);
+      }
+    };
+  }, [timeline.key, timeline.title]);
 
   const visibleEvents = useMemo(
     () => filterEvents(timeline.events, resolvedCategory, selectedEra ?? null),
     [timeline.events, resolvedCategory, selectedEra],
   );
+
+  const handleCategory = (cat: TimelineCategory | "all") => {
+    const previousCategory = resolvedCategory;
+    (onCategoryChange ?? setInternalCategory)(cat);
+    if (sessionRef.current) {
+      trackCategoryFilter(
+        sessionRef.current,
+        cat,
+        previousCategory,
+        visibleEvents.length
+      );
+    }
+  };
 
   return (
     <section className="mt-8" data-testid="timeline-explorer">
@@ -69,7 +99,11 @@ export default function TimelineExplorer({
         data-testid="timeline-events-list"
       >
         {visibleEvents.map((event) => (
-          <TimelineEvent key={event.id} event={event} />
+          <TimelineEvent
+            key={event.id}
+            event={event}
+            session={sessionRef.current}
+          />
         ))}
       </ol>
     </section>

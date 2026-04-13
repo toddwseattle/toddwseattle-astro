@@ -114,6 +114,82 @@ export const smartphoneRevolutionTimeline: TimelineConfig<"smartphone-revolution
           },
         ],
       },
+      // Event 1: Palm Pilot Launch (March 1996)
+      {
+        id: "palm-pilot-1996",
+        yearDisplay: "1996",
+        sortYear: 1996,
+        title: "Palm Pilot Launches: Stylus-Based Simplicity Wins Market",
+        description:
+          "Jeff Hawkins, Donna Dubinsky, and Ed Colligan release the Palm Pilot (1000 and 5000 models) in March 1996, priced at $299–$399. Featuring the proprietary Graffiti handwriting recognition system, 16 MHz processor, monochrome touchscreen, and pocket-sized form factor (5.2 x 3.1 x 0.6 inches), the Pilot outsells Apple's Newton within its first 18 months: over 1 million units sold vs. 60,000 MessagePads that year. The success stems from ruthless simplification—Jeff Hawkins famously carried a wooden prototype in his pocket for a week—and focus on practical PIM tasks (calendar, contacts, notes) over multimedia. This becomes the category-defining success in PDAs and sets the strategic template: small, focused, synchronized with the desktop. Palm OS establishes a parallel ecosystem to Windows-based handhelds, proving the market will support multiple simultaneous form factors.",
+        categories: ["startups", "devices"],
+        significance: "major",
+        image: {
+          src: "https://upload.wikimedia.org/wikipedia/commons/8/8f/Palm_Pilot_Professional_01.JPG",
+          alt: "Palm Pilot Professional (1997) - Museum8bits, CC-BY-SA 3.0",
+        },
+        links: [
+          {
+            label: "Palm Pilot Wikipedia",
+            url: "https://en.wikipedia.org/wiki/Palm_(PDA)",
+            description:
+              "Full history of Palm computing devices and market impact",
+          },
+          {
+            label: "Jeff Hawkins Oral History",
+            url: "https://lemelson.mit.edu/resources/jeff-hawkins",
+            description:
+              "MIT Lemelson Center interview: design philosophy and market insights",
+          },
+          {
+            label: "PCWorld: Brief History of Palm (1992–1998)",
+            url: "https://www.pcworld.com/article/195199/article.html",
+            description:
+              "Timeline of founders, acquisitions, and product launches",
+          },
+        ],
+      },
+
+      // Event 2: Pocket PC / Windows CE Handhelds Era (1997–2000)
+      {
+        id: "pocket-pc-windows-ce-1997",
+        yearDisplay: "1997–2000",
+        sortYear: 1997,
+        title:
+          "Windows CE Pocket PCs: Dual Architecture Emerges (Hitachi SH-3, Intel StrongARM)",
+        description:
+          "Hewlett-Packard and Compaq release the first Windows CE–powered Handheld PCs and Pocket PCs, beginning with the HP Jornada 620LX (1997, 75 MHz Hitachi SH-3) and later the HP Jornada 548 (2000, 133 MHz Hitachi SH-3). These stylus-driven, color-screen devices compete directly with Palm OS while maintaining full compatibility with Microsoft Office via ActiveSync. However, they establish a critical architectural fork in the Windows Mobile roadmap: the stylus-based 'Pocket PC' line diverges from the keyboard-driven 'Smartphone' line (e.g., Samsung BlackJack). Both lines sell well—briefly outselling BlackBerry—yet their architectural independence, combined with resistive touchscreen technology, locks Microsoft into a costly dual-platform strategy. When the iPhone arrives in 2007 with capacitive touch and unified interface, converging these two lines AND transitioning the entire stack to capacitive becomes prohibitively expensive, contributing to Microsoft's strategic loss.",
+        categories: ["platforms", "devices"],
+        significance: "major",
+        image: {
+          src: "https://upload.wikimedia.org/wikipedia/commons/7/70/HP_Jornada_720.JPG",
+          alt: "HP Jornada 720 Handheld PC - CC-BY-SA, Wikimedia Commons",
+        },
+        links: [
+          {
+            label: "HP Jornada Wikipedia",
+            url: "https://en.wikipedia.org/wiki/HP_Jornada",
+            description:
+              "Complete line history: processor specs (SH-3, StrongARM), launch dates, and market positioning",
+          },
+          {
+            label: "Hitachi SuperH Architecture Overview",
+            url: "https://en.wikipedia.org/wiki/SuperH",
+            description:
+              "Technical details on SH-3 RISC processor family and use in Pocket PCs and PDAs",
+          },
+          {
+            label: "Windows CE Processor Support",
+            url: "https://devblogs.microsoft.com/oldnewthing/20190805-00/?p=102749",
+            description:
+              "Microsoft's Old New Thing: how Windows CE supported SH-3 and SH-4 architectures",
+          },
+          {
+            label: "HP Jornada 548 Review (First Pocket PC)",
+            url: "https://the-gadgeteer.com/2000/08/06/hp_jornada_548_color_pocket_pc_review/",
+          },
+        ],
+      },
       {
         id: "nokia-6110",
         yearDisplay: "1998",
