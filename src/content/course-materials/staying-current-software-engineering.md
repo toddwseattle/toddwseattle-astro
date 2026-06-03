@@ -79,4 +79,4 @@ Treat **Hacker News** as more than a link feed — it's a place to develop taste
 
 ---
 
-_Suggestions and additions welcome — bring them to a discussion starter._
+_Suggestions and additions welcome — contact me to amend and update._

@@ -75,7 +75,7 @@ Teams often have a problem focusing on value. Apps that require huge amounts of 
 
 #### The Holtzblatt User Environment
 
-#### Design Systems
+#### Design Systems: Use tools like stitch and Claude Design.
 
 ### For Architecture Coherence
 
