@@ -91,15 +91,15 @@ They were less good when the task required taste. The question "what should this
 
 That distinction is why the project got more reliable as the docs improved. The better the harness, the better the agent.
 
-## The Ralph Wiggum Experiment
+## The Ralph Wiggums Experiment
 
-There is still evidence in the repo of a failed or at least over-ambitious experiment: the Ralph Wiggum tooling.
+There is still evidence in the repo of a failed or at least over-ambitious experiment: the Ralph Wiggums tooling.
 
 The repository has an `npm run ralph` script, `scripts/ralph.sh`, `ralph-config.sh`, `opencode.json`, and a `ralph-config-files/` directory. The idea was interesting: set up a loop with planning, implementation, checking, fixing, testing, and committing. The script even split roles into an architect, worker, fixer, tester, and committer. In theory it was a small autonomous software factory.
 
 In practice, the commit history shows the problem. There are long runs of commits named "Ralph iteration 1: Fixing errors" through "Ralph iteration 15: Fixing errors," repeated several times. There are also commits updating test execution logs with timing data over and over. That is a smell. A loop that keeps generating fixes can look productive while mainly producing churn.
 
-This was a good reminder that backpressure has to be real. Running a type check or test suite is useful only if the loop can make a sensible decision when it fails. Otherwise, the agent optimizes for "make another change" rather than "understand the system." Ralph was a useful experiment, but it was not the workflow I would use unsupervised on a repo I care about.
+This was a good reminder that back pressure has to be real. Running a type check or test suite is useful only if the loop can make a sensible decision when it fails. Otherwise, the agent optimizes for "make another change" rather than "understand the system." Ralph was a useful experiment, but it was not the workflow I would use unsupervised on a repo I care about.
 
 The better pattern was smaller: write a story, keep the diff focused, run the deterministic tools, review the output, and commit intentionally. The agent helps. It does not get to own the judgment.
 

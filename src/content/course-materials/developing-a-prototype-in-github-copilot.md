@@ -27,7 +27,7 @@ First read [Chris Riesbeck's Using Copilot](https://courses.cs.northwestern.edu/
    ![Open Chat Icon](/course-materials/slides/copilot-chat-icon.png)
 3. open the co-pilot-instructions.md file in the `.github` folder. You can customize this file with general instructions on how the AI will write code for you.
 
-4. Create a new markdown file in the `docs` folder for your vision and payoff picture. This is where you can share your vision and payoff picture with the AI as you are building your prototype. Chris Riesbeck has [a good prototype prompt example](https://courses.cs.northwestern.edu/394/guides/genai-notes.html#prototype-prompt-example).
+4. Create a new markdown file in the `docs` folder for your vision and payoff picture. This is where you can share your vision and payoff picture with the AI as you are building your prototype. Chris Riesbeck has [a good prototype prompt example](https://courses.cs.northwestern.edu/394/guides/genai-notes.html#app-vision).
 
 5. Prompt by referencing your vision file (you can add it to the chat or use `#` to reference it.
 
