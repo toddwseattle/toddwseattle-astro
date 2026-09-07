@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 import CategoryFilter from "./CategoryFilter";
-import { chronicleCategoryMeta } from "../../data/timelines/chronicleCategoryMeta";
+import { testCategoryMeta } from "./testFixtures";
 
 describe("CategoryFilter", () => {
   const seCategories = [
@@ -16,7 +16,7 @@ describe("CategoryFilter", () => {
     render(
       <CategoryFilter
         categories={[...seCategories]}
-        categoryMeta={chronicleCategoryMeta}
+        categoryMeta={testCategoryMeta}
         selected="all"
         onSelect={vi.fn()}
       />,
@@ -44,7 +44,7 @@ describe("CategoryFilter", () => {
     render(
       <CategoryFilter
         categories={[...seCategories]}
-        categoryMeta={chronicleCategoryMeta}
+        categoryMeta={testCategoryMeta}
         selected="all"
         onSelect={onSelect}
       />,

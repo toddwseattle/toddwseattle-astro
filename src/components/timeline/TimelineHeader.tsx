@@ -11,13 +11,13 @@ interface TimelineHeaderProps {
 export default function TimelineHeader({ timeline }: TimelineHeaderProps) {
   return (
     <div data-testid="timeline-header">
-      <h2 className="text-3xl font-bold tracking-tight text-ink-800 dark:text-paper-100">
+      <h2 className="text-3xl font-bold tracking-tight text-[color:var(--tl-text)]">
         {timeline.title}
       </h2>
-      <p className="mt-3 text-lg text-ink-600 dark:text-paper-200">
+      <p className="mt-3 text-lg text-[color:var(--tl-text-muted)]">
         {timeline.subtitle}
       </p>
-      <p className="mt-3 text-ink-600 dark:text-paper-200">
+      <p className="mt-3 text-[color:var(--tl-text-muted)]">
         {timeline.framing}
       </p>
     </div>

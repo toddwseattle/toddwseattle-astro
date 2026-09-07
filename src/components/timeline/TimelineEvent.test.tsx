@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import TimelineEvent from "./TimelineEvent";
 import type { TimelineEventData as TimelineEventType } from "./index";
-import { chronicleCategoryMeta } from "../../data/timelines/chronicleCategoryMeta";
+import { testCategoryMeta } from "./testFixtures";
 
 const event: TimelineEventType = {
   id: "event-1",
@@ -24,7 +24,7 @@ describe("TimelineEvent", () => {
     render(
       <TimelineEvent
         event={event}
-        categoryMeta={chronicleCategoryMeta}
+        categoryMeta={testCategoryMeta}
         session={null}
       />,
     );
@@ -46,7 +46,7 @@ describe("TimelineEvent", () => {
     render(
       <TimelineEvent
         event={event}
-        categoryMeta={chronicleCategoryMeta}
+        categoryMeta={testCategoryMeta}
         session={null}
       />,
     );
@@ -72,7 +72,7 @@ describe("TimelineEvent", () => {
     render(
       <TimelineEvent
         event={event}
-        categoryMeta={chronicleCategoryMeta}
+        categoryMeta={testCategoryMeta}
         session={null}
       />,
     );

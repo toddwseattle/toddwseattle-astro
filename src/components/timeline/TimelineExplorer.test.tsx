@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import TimelineExplorer from "./TimelineExplorer";
 import type { TimelineConfig } from "./types";
-import { chronicleCategoryMeta } from "../../data/timelines/chronicleCategoryMeta";
+import { testCategoryMeta } from "./testFixtures";
 
 const timeline: TimelineConfig = {
   key: "software-engineering-history",
@@ -10,7 +10,7 @@ const timeline: TimelineConfig = {
   subtitle: "Testing timeline filters",
   framing: "Use filters to narrow events.",
   categoryOrder: ["teamwork-process", "platforms-languages"],
-  categoryMeta: chronicleCategoryMeta,
+  categoryMeta: testCategoryMeta,
   events: [
     {
       id: "agile",

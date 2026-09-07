@@ -8,6 +8,8 @@
  * analytics transport through `TimelineViewer`'s `onEvent` prop.
  */
 
+import "./timeline.css";
+
 export { default as TimelineViewer } from "./TimelineViewer";
 export { default as TimelineExplorer } from "./TimelineExplorer";
 export { default as InteractiveTimeline } from "./InteractiveTimeline";

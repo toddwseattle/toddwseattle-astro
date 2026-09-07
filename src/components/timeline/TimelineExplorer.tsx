@@ -3,6 +3,7 @@ import type { TimelineConfig, TimelineCategory, TimelineEra } from "./types";
 import { filterEvents } from "./helpers";
 import { trackCategoryFilter, type TimelineSession } from "./analytics";
 import CategoryFilter from "./CategoryFilter";
+import "./timeline.css";
 import TimelineEvent from "./TimelineEvent";
 
 interface TimelineExplorerProps {
@@ -46,7 +47,11 @@ export default function TimelineExplorer({
   };
 
   return (
-    <section className="mt-8" data-testid="timeline-explorer">
+    <section
+      className="mt-8"
+      data-timeline-root
+      data-testid="timeline-explorer"
+    >
       {!hideFilters && (
         <CategoryFilter
           categories={timeline.categoryOrder}
@@ -56,12 +61,12 @@ export default function TimelineExplorer({
         />
       )}
 
-      <p className="mt-3 text-sm text-graphite-400 dark:text-paper-200/75">
+      <p className="mt-3 text-sm text-[color:var(--tl-text-faint-on-surface)]">
         Hover or tap an event to reveal context and sources.
       </p>
 
       <ol
-        className="mt-8 space-y-6 border-l border-graphite-600/30 pl-4 dark:border-graphite-600"
+        className="mt-8 space-y-6 border-l border-[color:var(--tl-border)] pl-4"
         data-testid="timeline-events-list"
       >
         {visibleEvents.map((event) => (

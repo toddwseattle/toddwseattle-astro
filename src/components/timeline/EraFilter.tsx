@@ -29,10 +29,10 @@ export default function EraFilter({
           aria-checked={selected === null}
           aria-pressed={selected === null}
           onClick={() => onSelect(null)}
-          className={`rounded-sm border px-4 py-1 font-sans text-[0.65rem] font-semibold uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal ${
+          className={`rounded-sm border px-4 py-1 font-sans text-[0.65rem] font-semibold uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--tl-accent)] ${
             selected === null
-              ? "border-accent-teal bg-accent-teal text-paper-50 underline decoration-paper-50 decoration-2 underline-offset-4 dark:border-accent-teal dark:bg-accent-teal dark:text-paper-50"
-              : "border-paper-200 bg-paper-200/85 text-ink-600 hover:border-graphite-400 hover:bg-paper-100 dark:border-graphite-600 dark:bg-surface-dark dark:text-paper-200 dark:hover:bg-graphite-700"
+              ? "border-[color:var(--tl-accent)] bg-[var(--tl-accent)] text-[color:var(--tl-on-accent)] underline decoration-[color:var(--tl-on-accent)] decoration-2 underline-offset-4"
+              : "border-[color:var(--tl-border-idle)] bg-[var(--tl-surface-pill-idle)] text-[color:var(--tl-text-muted)] hover:border-[color:var(--tl-border-hover)] hover:bg-[var(--tl-surface-pill-hover)]"
           }`}
           data-testid="timeline-era-filter-all"
         >
@@ -49,10 +49,10 @@ export default function EraFilter({
             aria-checked={isSelected}
             aria-pressed={isSelected}
             onClick={() => onSelect(isSelected ? null : era)}
-            className={`rounded-sm border px-4 py-1 font-sans text-[0.65rem] font-semibold uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal ${
+            className={`rounded-sm border px-4 py-1 font-sans text-[0.65rem] font-semibold uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--tl-accent)] ${
               isSelected
-                ? "border-accent-teal bg-accent-teal text-paper-50 underline decoration-paper-50 decoration-2 underline-offset-4 dark:border-accent-teal dark:bg-accent-teal dark:text-paper-50"
-                : "border-paper-200 bg-paper-200/85 text-ink-600 hover:border-graphite-400 hover:bg-paper-100 dark:border-graphite-600 dark:bg-surface-dark dark:text-paper-200 dark:hover:bg-graphite-700"
+                ? "border-[color:var(--tl-accent)] bg-[var(--tl-accent)] text-[color:var(--tl-on-accent)] underline decoration-[color:var(--tl-on-accent)] decoration-2 underline-offset-4"
+                : "border-[color:var(--tl-border-idle)] bg-[var(--tl-surface-pill-idle)] text-[color:var(--tl-text-muted)] hover:border-[color:var(--tl-border-hover)] hover:bg-[var(--tl-surface-pill-hover)]"
             }`}
             data-testid={`timeline-era-filter-${era.id}`}
           >

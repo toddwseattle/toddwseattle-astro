@@ -1,0 +1,97 @@
+/**
+ * Timeline palette.
+ *
+ * Every colour the timeline components use resolves through one of these custom
+ * properties, so a host project restyles the whole component tree by
+ * redeclaring them — no component source changes, no Tailwind design tokens
+ * required. Defaults below reproduce this site's Chronicle Data System palette.
+ *
+ * Category pills are the deliberate exception: their classes come from the
+ * host via `TimelineConfig.categoryMeta`, so they can use whatever styling
+ * system the host already has.
+ *
+ * Scoped to `[data-timeline-root]` rather than `:root` so several differently
+ * themed timelines can coexist on one page. Custom properties inherit, so only
+ * the outermost element of each view carries the attribute.
+ */
+
+[data-timeline-root] {
+  /* Surfaces */
+  --tl-surface: #ffffff;
+  --tl-surface-bar: rgb(244 243 242 / 0.8);
+  --tl-surface-expanded: #f4f3f2;
+  --tl-surface-image: #f4f3f2;
+  --tl-surface-dot: #ffffff;
+  --tl-surface-pill-idle: rgb(236 235 236 / 0.85);
+  --tl-surface-pill-hover: #f4f3f2;
+  --tl-surface-toggle-hover: #ecebec;
+
+  /* Text */
+  --tl-text: #1a1a1c;
+  --tl-text-muted: #5c5b5e;
+  --tl-text-faint: #8a898d;
+  --tl-text-faint-on-surface: #8a898d;
+  --tl-on-accent: #ffffff;
+
+  /* Borders */
+  --tl-border-faint: rgb(74 73 76 / 0.15);
+  --tl-border-subtle: rgb(74 73 76 / 0.2);
+  --tl-border: rgb(74 73 76 / 0.3);
+  --tl-border-strong: rgb(74 73 76 / 0.4);
+  --tl-border-major: rgb(74 73 76 / 0.4);
+  --tl-border-idle: #ecebec;
+  --tl-border-hover: #8a898d;
+  --tl-border-hover-strong: #4a494c;
+
+  /* Accent */
+  --tl-accent: #008080;
+  --tl-accent-glow: rgb(0 128 128 / 0.45);
+  --tl-accent-glow-soft: rgb(0 128 128 / 0.35);
+  --tl-badge-bg: #e0f2f2;
+
+  /* Interactive track. Dark in both themes by design — it reads as a piece of
+     instrumentation rather than page furniture. Override for a light track. */
+  --tl-track-bg: rgb(13 13 15);
+  --tl-track-line: rgb(255 255 255 / 0.14);
+  --tl-track-tick: rgb(255 255 255 / 0.18);
+  --tl-track-tick-label: rgb(255 255 255 / 0.22);
+  --tl-dot-major: rgb(209 213 219);
+  --tl-dot-notable: rgb(107 114 128);
+  --tl-dot-selected: rgb(255 255 255);
+  --tl-dot-border: rgb(156 163 175);
+  --tl-dot-stem: rgb(209 213 219 / 0.44);
+  --tl-dot-stem-fade: rgb(255 255 255 / 0.06);
+  --tl-era-a: rgb(255 255 255 / 0.025);
+  --tl-era-b: rgb(255 255 255 / 0.055);
+  --tl-era-active: rgb(255 255 255 / 0.1);
+  --tl-era-dim: rgb(255 255 255 / 0.01);
+  --tl-era-divider: rgb(255 255 255 / 0.06);
+  --tl-era-outline: rgb(255 255 255 / 0.2);
+  --tl-era-label: rgb(255 255 255 / 0.28);
+  --tl-era-label-active: rgb(255 255 255 / 0.55);
+}
+
+.dark [data-timeline-root] {
+  --tl-surface: #2e2d30;
+  --tl-surface-bar: rgb(46 45 48 / 0.8);
+  --tl-surface-expanded: rgb(64 63 65 / 0.8);
+  --tl-surface-image: rgb(64 63 65 / 0.4);
+  --tl-surface-dot: #403f41;
+  --tl-surface-pill-idle: #2e2d30;
+  --tl-surface-pill-hover: #403f41;
+  --tl-surface-toggle-hover: #403f41;
+
+  --tl-text: #f4f3f2;
+  --tl-text-muted: #ecebec;
+  --tl-text-faint-on-surface: rgb(236 235 236 / 0.75);
+
+  --tl-border-faint: rgb(244 243 242 / 0.15);
+  --tl-border-subtle: #4a494c;
+  --tl-border: #4a494c;
+  --tl-border-strong: #4a494c;
+  --tl-border-major: #5c5b5e;
+  --tl-border-idle: #4a494c;
+  --tl-border-hover: #4a494c;
+
+  --tl-badge-bg: #2e2d30;
+}

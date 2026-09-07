@@ -1,10 +1,10 @@
 # Step 1 — Harden the Timeline in Place
 
-**Status:** Not started
+**Status:** Complete
 **Effort:** ~half a day
 **Prerequisite:** none
 **Next step:** Stage 2 in [`overview.md`](./overview.md#stage-2--copy-into-the-second-project-and-validate)
-**Last updated:** 2026-09-07
+**Last updated:** 2026-09-07 (implemented)
 
 Decouple the timeline components from this site's design tokens, category vocabulary, and
 analytics stack — **without changing what either timeline page looks like**. This is the
@@ -15,14 +15,14 @@ first and independently of the decision about how to ship.
 
 ## Definition of done
 
-- [ ] `npm run test:run` passes
-- [ ] `npm run build` passes (`astro check` included via `npm run ci`)
-- [ ] `/course-materials/software-engineering-history-timeline` and
+- [x] `npm run test:run` passes (70 tests, 21 of them timeline)
+- [x] `npm run build` passes (`astro check` included via `npm run ci`)
+- [x] `/course-materials/software-engineering-history-timeline` and
       `/course-materials/smartphone-revolution-timeline` render identically to `main` in
       light and dark, desktop and mobile
-- [ ] `grep -rE '(paper|ink|graphite)-[0-9]|accent-teal|accent-soft|surface-dark' src/components/timeline/` returns nothing
-- [ ] No file under `src/components/timeline/` imports from `src/lib/` or `src/data/`
-- [ ] A timeline can be rendered with a category slug that does not appear anywhere in this repo
+- [x] `grep -rE '(paper|ink|graphite)-[0-9]|accent-teal|accent-soft|surface-dark' src/components/timeline/` returns nothing
+- [x] No file under `src/components/timeline/` imports from `src/lib/` or `src/data/`
+- [x] A timeline can be rendered with a category slug that does not appear anywhere in this repo
 
 ## Non-goals
 
@@ -103,35 +103,35 @@ this site's Chronicle values as defaults, then reference `var(--tl-*)` from the 
 ```css
 /* timeline.css — defaults match the Chronicle Data System tokens */
 [data-timeline-root] {
-  --tl-surface:        #ffffff;  /* paper-50    */
-  --tl-surface-raised: #f4f3f2;  /* paper-100   */
-  --tl-surface-sunken: #ecebec;  /* paper-200   */
-  --tl-text:           #1a1a1c;  /* ink-800     */
-  --tl-text-muted:     #5c5b5e;  /* ink-600     */
-  --tl-text-faint:     #8a898d;  /* graphite-400 */
-  --tl-border:         rgb(74 73 76 / 0.3);   /* graphite-600/30 */
-  --tl-accent:         #008080;  /* accent-teal */
-  --tl-accent-soft:    #e0f2f2;  /* accent-soft */
+  --tl-surface: #ffffff; /* paper-50    */
+  --tl-surface-raised: #f4f3f2; /* paper-100   */
+  --tl-surface-sunken: #ecebec; /* paper-200   */
+  --tl-text: #1a1a1c; /* ink-800     */
+  --tl-text-muted: #5c5b5e; /* ink-600     */
+  --tl-text-faint: #8a898d; /* graphite-400 */
+  --tl-border: rgb(74 73 76 / 0.3); /* graphite-600/30 */
+  --tl-accent: #008080; /* accent-teal */
+  --tl-accent-soft: #e0f2f2; /* accent-soft */
 
   /* interactive track */
-  --tl-track-bg:       rgb(13 13 15);
-  --tl-track-line:     rgb(255 255 255 / 0.14);
-  --tl-dot-major:      rgb(209 213 219);
-  --tl-dot-notable:    rgb(107 114 128);
-  --tl-dot-selected:   rgb(255 255 255);
-  --tl-dot-border:     rgb(156 163 175);
-  --tl-era-a:          rgb(255 255 255 / 0.025);
-  --tl-era-b:          rgb(255 255 255 / 0.055);
-  --tl-era-active:     rgb(255 255 255 / 0.10);
-  --tl-era-dim:        rgb(255 255 255 / 0.01);
+  --tl-track-bg: rgb(13 13 15);
+  --tl-track-line: rgb(255 255 255 / 0.14);
+  --tl-dot-major: rgb(209 213 219);
+  --tl-dot-notable: rgb(107 114 128);
+  --tl-dot-selected: rgb(255 255 255);
+  --tl-dot-border: rgb(156 163 175);
+  --tl-era-a: rgb(255 255 255 / 0.025);
+  --tl-era-b: rgb(255 255 255 / 0.055);
+  --tl-era-active: rgb(255 255 255 / 0.1);
+  --tl-era-dim: rgb(255 255 255 / 0.01);
 }
 
 .dark [data-timeline-root] {
-  --tl-surface:        #2e2d30;  /* surface-dark  */
-  --tl-surface-raised: #403f41;  /* graphite-700  */
-  --tl-text:           #f4f3f2;  /* paper-100     */
-  --tl-text-muted:     #ecebec;  /* paper-200     */
-  --tl-border:         #4a494c;  /* graphite-600  */
+  --tl-surface: #2e2d30; /* surface-dark  */
+  --tl-surface-raised: #403f41; /* graphite-700  */
+  --tl-text: #f4f3f2; /* paper-100     */
+  --tl-text-muted: #ecebec; /* paper-200     */
+  --tl-border: #4a494c; /* graphite-600  */
 }
 ```
 
@@ -179,7 +179,10 @@ a thin adapter in this repo:
 
 ```ts
 // src/lib/timelineGtagAdapter.ts
-export const gtagAdapter = (name: TimelineEventName, params: Record<string, unknown>) => {
+export const gtagAdapter = (
+  name: TimelineEventName,
+  params: Record<string, unknown>,
+) => {
   window.gtag?.("event", `timeline_${name}`, params as never);
 };
 ```
@@ -266,47 +269,93 @@ historical and link to this directory.
 
 ## Risks
 
-| Risk | Mitigation |
-| --- | --- |
-| Tailwind purges arbitrary `var()` classes | Keep class strings literal in source; verify against the built CSS in `dist/`, not just dev |
-| Silent visual regression from the token swap | Screenshot both pages, both themes, two widths, before and after; commit 1.2's light-mode track separately from the parity change |
+| Risk                                                           | Mitigation                                                                                                                                    |
+| -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tailwind purges arbitrary `var()` classes                      | Keep class strings literal in source; verify against the built CSS in `dist/`, not just dev                                                   |
+| Silent visual regression from the token swap                   | Screenshot both pages, both themes, two widths, before and after; commit 1.2's light-mode track separately from the parity change             |
 | `TimelineCategory = string` loses autocomplete on the datasets | Each dataset keeps a local `as const` union and passes it as `TimelineConfig`'s type argument — narrowing stays local, the library stays open |
-| Import re-export shim in 1.6 lingers forever | Track its removal as part of task 3.7 |
+| Import re-export shim in 1.6 lingers forever                   | Track its removal as part of task 3.7                                                                                                         |
 
 ## Todo list
 
 Update in place as work lands. Mirrors the Stage-1 block in
 [`overview.md`](./overview.md#stage-1--harden-in-place).
 
-- [ ] **1.1** Open the category type
-  - [ ] `TimelineCategory` → `string`; add `categoryMeta` to `TimelineConfig`
-  - [ ] Extract today's map to `chronicleCategoryMeta.ts`; wire into both datasets
-  - [ ] Update lookups in `CategoryFilter`, `InteractiveTimeline`, `TimelineEvent`
-  - [ ] Add the unknown-slug fallback
-- [ ] **1.2** Colours to CSS custom properties
-  - [ ] Write `timeline.css` with Chronicle defaults + `.dark` overrides
-  - [ ] Add `data-timeline-root` to `TimelineViewer`
-  - [ ] Replace the 208 token classes with `var(--tl-*)` arbitrary values
-  - [ ] Replace the `InteractiveTimeline.tsx:38-51` literals
-  - [ ] Confirm parity, then add the light-mode track (separate commit)
-- [ ] **1.3** Analytics injection
-  - [ ] Add `onEvent` to `TimelineViewer` and thread it down
-  - [ ] Strip `window.gtag` from the shared analytics module
-  - [ ] Add `src/lib/timelineGtagAdapter.ts`; wire in `TimelineLayout.astro`
-- [ ] **1.4** Lift the header
-  - [ ] Remove both internal header blocks
-  - [ ] Add `header` prop + default `TimelineHeader` export
-- [ ] **1.5** Fix hidden-mount duplication
-  - [ ] Hoist session init to `TimelineViewer`; pass session down
-- [ ] **1.6** Barrel + import hygiene
-  - [ ] `index.ts` barrel
-  - [ ] `shared.ts` → `types.ts` with a re-export shim
-  - [ ] Confirm zero cross-tree relative imports
-- [ ] **1.7** Tests
-  - [ ] Invented-vocabulary fixture
-  - [ ] `onEvent` spy
-  - [ ] Single-`<h2>` assertion
-- [ ] **1.8** Docs
-  - [ ] Refresh `docs/course-materials/timeline-authoring.md`
-  - [ ] Refresh or retire `docs/timeline-plan/how-use-timeline.md`
-- [ ] **Done** — run the [definition of done](#definition-of-done) checklist
+- [x] **1.1** Open the category type
+  - [x] `TimelineCategory` → `string`; add `categoryMeta` to `TimelineConfig`
+  - [x] Extract today's map to `chronicleCategoryMeta.ts`; wire into both datasets
+  - [x] Update lookups in `CategoryFilter`, `InteractiveTimeline`, `TimelineEvent`
+  - [x] Add the unknown-slug fallback
+- [x] **1.2** Colours to CSS custom properties
+  - [x] Write `timeline.css` with Chronicle defaults + `.dark` overrides
+  - [x] Add `data-timeline-root` to `TimelineViewer`
+  - [x] Replace the 208 token classes with `var(--tl-*)` arbitrary values
+  - [x] Replace the `InteractiveTimeline.tsx:38-51` literals
+  - [ ] Confirm parity, then add the light-mode track (deferred — see note below)
+- [x] **1.3** Analytics injection
+  - [x] Add `onEvent` to `TimelineViewer` and thread it down
+  - [x] Strip `window.gtag` from the shared analytics module
+  - [x] Add `src/lib/timelineGtagAdapter.ts`; wire in `TimelineLayout.astro`
+- [x] **1.4** Lift the header
+  - [x] Remove both internal header blocks
+  - [x] Add `header` prop + default `TimelineHeader` export
+- [x] **1.5** Fix hidden-mount duplication
+  - [x] Hoist session init to `TimelineViewer`; pass session down
+- [x] **1.6** Barrel + import hygiene
+  - [x] `index.ts` barrel
+  - [x] `shared.ts` → `types.ts` with a re-export shim
+  - [x] Confirm zero cross-tree relative imports
+- [x] **1.7** Tests
+  - [x] Invented-vocabulary fixture
+  - [x] Local `testFixtures.ts` so the tests do not import site data either
+  - [x] `onEvent` spy
+  - [x] Single-`<h2>` assertion
+- [x] **1.8** Docs
+  - [x] Refresh `docs/course-materials/timeline-authoring.md`
+  - [x] Refresh or retire `docs/timeline-plan/how-use-timeline.md`
+- [x] **Done** — run the [definition of done](#definition-of-done) checklist
+
+### Verification record
+
+Production build compared against production build (dev-server output is not
+comparable — asset hashing and CSS ordering differ), both timeline pages, light
+and dark, at 1440px and 375px:
+
+| Shot                                                 | Differing pixels |
+| ---------------------------------------------------- | ---------------- |
+| se-desktop-light                                     | 0                |
+| se-mobile-light                                      | 0                |
+| phone-mobile-light                                   | 0                |
+| phone-desktop-light                                  | 449 (0.024%)     |
+| se-desktop-dark / se-mobile-dark / phone-mobile-dark | 220-222 (~0.01%) |
+| phone-desktop-dark                                   | 314 (0.017%)     |
+
+The light-mode `phone-desktop` difference is framer-motion pulse-ring phase on
+the interactive track, not styling — the animation is JS-driven, so it lands at a
+different point between runs. The dark-mode differences are all the same two
+"FILTER BY:"/"ERAS:" labels, from the one deliberate merge noted below.
+
+### Deviations from the plan
+
+1. **Two near-duplicate variables merged.** The plan implied a 1:1 mapping.
+   `dark:text-paper-200/70` and `dark:text-paper-200/75` were collapsed into a
+   single `--tl-text-faint-on-surface` (75%). A 5% alpha difference on two
+   uppercase labels, dark-mode only.
+2. **Light-mode interactive track deferred.** The track is still dark in both
+   themes, now via `--tl-track-bg` rather than a literal. It is a one-line
+   override whenever wanted, but it is a real visual change and did not belong
+   in a parity commit.
+3. **`box-shadow` glow uses its own variables** (`--tl-accent-glow`,
+   `--tl-accent-glow-soft`) rather than relative colour syntax
+   (`rgb(from var(--tl-accent) ...)`), which is newer than this component needs
+   to require.
+4. **Two defects fixed that the plan did not anticipate** — see the Findings
+   section in the Stage 1 entry of [`overview.md`](./overview.md).
+
+### Note for whoever picks up dark mode
+
+`darkMode: "class"` is configured in `tailwind.config.js`, but nothing in this
+repo ever adds the `dark` class to an element. Every `dark:` variant on the site
+is currently inert. Dark-mode values in `timeline.css` were preserved faithfully
+anyway, so a future theme toggle will light them up — but they are untested in
+production because they have never rendered.

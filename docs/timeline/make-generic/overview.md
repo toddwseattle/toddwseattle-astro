@@ -1,6 +1,6 @@
 # Making the Course Timeline Reusable — Full Plan
 
-**Status:** Not started
+**Status:** Stage 1 complete; Stage 2 not started
 **Owner:** Todd Warren
 **Last updated:** 2026-09-07
 
@@ -27,17 +27,17 @@ Two unrelated components share the name. `src/components/ui/Timeline.astro` (38 
 a simple vertical résumé band and is **out of scope**. The course timeline is a React
 island stack:
 
-| File | LOC | Role |
-| --- | ---: | --- |
-| `src/components/timeline/TimelineViewer.tsx` | 123 | Orchestrator — owns category/era state and the list↔interactive view toggle |
-| `src/components/timeline/InteractiveTimeline.tsx` | 596 | Horizontal scrolling track: era bands, year ticks, dots, detail panel |
-| `src/components/timeline/TimelineExplorer.tsx` | 111 | Vertical list view (also the mobile fallback) |
-| `src/components/timeline/TimelineEvent.tsx` | 189 | Expandable list card |
-| `src/components/timeline/CategoryFilter.tsx` | 58 | Category pill radiogroup |
-| `src/components/timeline/EraFilter.tsx` | 65 | Era pill radiogroup |
-| `src/data/timelines/shared.ts` | ~130 | Types, `timelineCategoryMeta`, `filterEvents` |
-| `src/lib/timelineAnalytics.ts` | 259 | gtag session/event tracking |
-| `src/components/timeline/*.test.tsx` | 216 | Vitest suites (3 files) |
+| File                                              |  LOC | Role                                                                         |
+| ------------------------------------------------- | ---: | ---------------------------------------------------------------------------- |
+| `src/components/timeline/TimelineViewer.tsx`      |  123 | Orchestrator — owns category/era state and the list↔interactive view toggle |
+| `src/components/timeline/InteractiveTimeline.tsx` |  596 | Horizontal scrolling track: era bands, year ticks, dots, detail panel        |
+| `src/components/timeline/TimelineExplorer.tsx`    |  111 | Vertical list view (also the mobile fallback)                                |
+| `src/components/timeline/TimelineEvent.tsx`       |  189 | Expandable list card                                                         |
+| `src/components/timeline/CategoryFilter.tsx`      |   58 | Category pill radiogroup                                                     |
+| `src/components/timeline/EraFilter.tsx`           |   65 | Era pill radiogroup                                                          |
+| `src/data/timelines/shared.ts`                    | ~130 | Types, `timelineCategoryMeta`, `filterEvents`                                |
+| `src/lib/timelineAnalytics.ts`                    |  259 | gtag session/event tracking                                                  |
+| `src/components/timeline/*.test.tsx`              |  216 | Vitest suites (3 files)                                                      |
 
 Datasets live in `src/data/timelines/` (~87 KB of TypeScript across
 `software-engineering-history.ts` and `smartphone-revolution.ts`).
@@ -59,7 +59,7 @@ Five coupling points, in rough order of pain:
    editing the library's own type — which is exactly what makes a shared copy
    un-shareable.
 2. **Baked-in Tailwind tokens.** 208 references to `paper-*`, `ink-*`, `graphite-*`,
-   `surface-dark`, `accent-teal`, `accent-soft` across the components *and* inside
+   `surface-dark`, `accent-teal`, `accent-soft` across the components _and_ inside
    `pillClassName` in the data layer. Also assumes `darkMode: "class"` and `font-sans` →
    Manrope. A consumer must copy the Chronicle colour block from `tailwind.config.js` or
    nothing renders correctly.
@@ -85,13 +85,13 @@ Runtime prerequisites for any consumer: React 18, `framer-motion ^11`, Tailwind 
 
 ## Alternatives considered
 
-| # | Option | Verdict |
-| --- | --- | --- |
-| A | Copy-paste fork | Rejected as the endpoint. Hours of work, but the fork must edit the category union, so bugfixes can never merge back. |
-| B | Git submodule / subtree | Rejected. Solves neither tokens nor the closed union, and submodules are miserable for a Tailwind-dependent component. |
-| C | Private npm package (`@toddwseattle/timeline`, GitHub Packages) | **Chosen destination.** Real versioning; one bugfix lands everywhere. Costs a lib build, a release chore, and the Tailwind purge glob. |
-| D | npm-workspaces monorepo | Rejected for now. Best DX for co-development, but restructuring two repos with separate deploy targets for one component is a large bet. Revisit if 3+ components end up shared. |
-| E | Harden in place, copy deliberately (shadcn-style) | **Chosen as the path.** No infrastructure; the refactor is the real value regardless of distribution mechanism. |
+| #   | Option                                                          | Verdict                                                                                                                                                                          |
+| --- | --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| A   | Copy-paste fork                                                 | Rejected as the endpoint. Hours of work, but the fork must edit the category union, so bugfixes can never merge back.                                                            |
+| B   | Git submodule / subtree                                         | Rejected. Solves neither tokens nor the closed union, and submodules are miserable for a Tailwind-dependent component.                                                           |
+| C   | Private npm package (`@toddwseattle/timeline`, GitHub Packages) | **Chosen destination.** Real versioning; one bugfix lands everywhere. Costs a lib build, a release chore, and the Tailwind purge glob.                                           |
+| D   | npm-workspaces monorepo                                         | Rejected for now. Best DX for co-development, but restructuring two repos with separate deploy targets for one component is a large bet. Revisit if 3+ components end up shared. |
+| E   | Harden in place, copy deliberately (shadcn-style)               | **Chosen as the path.** No infrastructure; the refactor is the real value regardless of distribution mechanism.                                                                  |
 
 Key observation: **C, D and E all need the same refactor first.** Distribution is the
 cheap part; decoupling is the work. Picking a mechanism before doing the refactor is
@@ -148,14 +148,31 @@ Update the checkboxes in place as work lands. Stage-1 detail lives in
 
 ### Stage 1 — Harden in place
 
-- [ ] **1.1** Open the category type; move `timelineCategoryMeta` into `TimelineConfig`
-- [ ] **1.2** Extract colours to CSS custom properties in `timeline.css`; give the interactive track a light mode
-- [ ] **1.3** Replace direct analytics imports with an `onEvent` callback prop
-- [ ] **1.4** Lift the header block out of `TimelineExplorer` and `InteractiveTimeline`
-- [ ] **1.5** Fix the hidden-mount duplicate `<h2>` / duplicate analytics session
-- [ ] **1.6** Add a barrel `index.ts`; remove cross-tree relative imports
-- [ ] **1.7** Update tests to cover a custom category vocabulary
-- [ ] **1.8** Update `docs/course-materials/timeline-authoring.md` for the new config shape
+- [x] **1.1** Open the category type; move `timelineCategoryMeta` into `TimelineConfig`
+- [x] **1.2** Extract colours to CSS custom properties in `timeline.css`; give the interactive track a light mode
+- [x] **1.3** Replace direct analytics imports with an `onEvent` callback prop
+- [x] **1.4** Lift the header block out of `TimelineExplorer` and `InteractiveTimeline`
+- [x] **1.5** Fix the hidden-mount duplicate `<h2>` / duplicate analytics session
+- [x] **1.6** Add a barrel `index.ts`; remove cross-tree relative imports
+- [x] **1.7** Update tests to cover a custom category vocabulary
+- [x] **1.8** Update `docs/course-materials/timeline-authoring.md` for the new config shape
+
+### Stage 1 findings
+
+Two defects surfaced during the refactor and were fixed:
+
+- **`timeline_category_filter` never fired on the live site.** `TimelineExplorer`
+  owned the tracking call, but inside `TimelineViewer` its filter UI is hidden
+  (`hideFilters`), so the handler was unreachable. Tracking now lives in the
+  Viewer alongside the filter bar that actually drives it. Expect this event to
+  start appearing in GA where it previously never did.
+- **Astro islands cannot take function props.** The `onEvent` handler could not
+  be passed from `TimelineLayout.astro` frontmatter, so
+  `src/components/CourseTimeline.tsx` binds it inside React instead. Worth
+  remembering in Stage 2: each host site needs its own equivalent wrapper.
+
+Also noted: `darkMode: "class"` is configured but nothing ever sets the class, so
+every `dark:` variant on this site is currently inert.
 
 ### Stage 2 — Copy and validate
 
@@ -184,12 +201,12 @@ Update the checkboxes in place as work lands. Stage-1 detail lives in
 
 ## Decision log
 
-| Date | Decision | Rationale |
-| --- | --- | --- |
+| Date       | Decision                                                                                 | Rationale                                                                                                                                                                                       |
+| ---------- | ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 2026-09-07 | Destination is a private npm package (option C), reached via harden-then-copy (option E) | Two timelines already exist here and a third consumer is arriving; that is the count at which fork drift costs more than a package does. The refactor is required either way, so it goes first. |
-| 2026-09-07 | Monorepo (option D) deferred, not rejected | Revisit if `ui/`, the reveal.js slide machinery, or other components also end up wanted in the second project. |
-| 2026-09-07 | Raw `<img>` retained instead of `astro:assets` `<Image />` | Portability beats the house rule here — the component must run outside Astro's asset pipeline. Documented as a deliberate exception. |
-| 2026-09-07 | The `.astro` wrapper stays out of the package | Ten lines, and the most site-specific part of the whole thing. |
+| 2026-09-07 | Monorepo (option D) deferred, not rejected                                               | Revisit if `ui/`, the reveal.js slide machinery, or other components also end up wanted in the second project.                                                                                  |
+| 2026-09-07 | Raw `<img>` retained instead of `astro:assets` `<Image />`                               | Portability beats the house rule here — the component must run outside Astro's asset pipeline. Documented as a deliberate exception.                                                            |
+| 2026-09-07 | The `.astro` wrapper stays out of the package                                            | Ten lines, and the most site-specific part of the whole thing.                                                                                                                                  |
 
 ---
 
