@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import Container from "../../components/ui/Container";
-import TimelineViewer from "../../components/timeline/TimelineViewer";
+import CourseTimeline from "../../components/CourseTimeline";
 import { getTimelineByKey } from "../../data/timelines";
 
 interface Props {
@@ -25,7 +25,7 @@ const timeline = getTimelineByKey(entry.data.timelineKey);
         <rendered.Content />
       </div>
 
-      <TimelineViewer timeline={timeline} client:load />
+      <CourseTimeline timeline={timeline} client:load />
     </div>
   </Container>
 </article>

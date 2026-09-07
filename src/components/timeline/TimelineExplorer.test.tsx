@@ -1,7 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import TimelineExplorer from "./TimelineExplorer";
-import type { TimelineConfig } from "../../data/timelines";
+import type { TimelineConfig } from "./types";
+import { chronicleCategoryMeta } from "../../data/timelines/chronicleCategoryMeta";
 
 const timeline: TimelineConfig = {
   key: "software-engineering-history",
@@ -9,6 +10,7 @@ const timeline: TimelineConfig = {
   subtitle: "Testing timeline filters",
   framing: "Use filters to narrow events.",
   categoryOrder: ["teamwork-process", "platforms-languages"],
+  categoryMeta: chronicleCategoryMeta,
   events: [
     {
       id: "agile",
@@ -32,17 +34,22 @@ const timeline: TimelineConfig = {
 };
 
 describe("TimelineExplorer", () => {
-  it("renders timeline title and all events by default", () => {
+  it("renders all events by default", () => {
     render(<TimelineExplorer timeline={timeline} />);
 
-    expect(
-      screen.getByRole("heading", { name: "Test Timeline" }),
-    ).toBeInTheDocument();
     expect(
       screen.getByText("Hover or tap an event to reveal context and sources."),
     ).toBeInTheDocument();
     expect(screen.getByText("Agile")).toBeInTheDocument();
     expect(screen.getByText("Kubernetes")).toBeInTheDocument();
+  });
+
+  it("leaves the heading to the host rather than rendering its own", () => {
+    render(<TimelineExplorer timeline={timeline} />);
+
+    expect(
+      screen.queryByRole("heading", { name: "Test Timeline" }),
+    ).not.toBeInTheDocument();
   });
 
   it("filters events by category and resets with All", async () => {
@@ -58,5 +65,14 @@ describe("TimelineExplorer", () => {
 
     expect(screen.getByText("Agile")).toBeInTheDocument();
     expect(screen.getByText("Kubernetes")).toBeInTheDocument();
+  });
+
+  it("renders untracked when no session is supplied", async () => {
+    const user = userEvent.setup();
+    render(<TimelineExplorer timeline={timeline} />);
+
+    await expect(
+      user.click(screen.getByTestId("timeline-filter-teamwork-process")),
+    ).resolves.not.toThrow();
   });
 });

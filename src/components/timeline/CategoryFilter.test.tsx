@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 import CategoryFilter from "./CategoryFilter";
+import { chronicleCategoryMeta } from "../../data/timelines/chronicleCategoryMeta";
 
 describe("CategoryFilter", () => {
   const seCategories = [
@@ -15,6 +16,7 @@ describe("CategoryFilter", () => {
     render(
       <CategoryFilter
         categories={[...seCategories]}
+        categoryMeta={chronicleCategoryMeta}
         selected="all"
         onSelect={vi.fn()}
       />,
@@ -42,6 +44,7 @@ describe("CategoryFilter", () => {
     render(
       <CategoryFilter
         categories={[...seCategories]}
+        categoryMeta={chronicleCategoryMeta}
         selected="all"
         onSelect={onSelect}
       />,
@@ -50,5 +53,41 @@ describe("CategoryFilter", () => {
     await user.click(screen.getByTestId("timeline-filter-ai-automation"));
 
     expect(onSelect).toHaveBeenCalledWith("ai-automation");
+  });
+
+  it("renders a category vocabulary the component library has never seen", () => {
+    render(
+      <CategoryFilter
+        categories={["regulation", "supply-chain"]}
+        categoryMeta={{
+          regulation: { label: "Regulation", pillClassName: "pill-a" },
+          "supply-chain": { label: "Supply Chain", pillClassName: "pill-b" },
+        }}
+        selected="all"
+        onSelect={vi.fn()}
+      />,
+    );
+
+    expect(
+      screen.getByRole("radio", { name: "Regulation" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("radio", { name: "Supply Chain" }),
+    ).toBeInTheDocument();
+  });
+
+  it("falls back to the raw slug when metadata is missing", () => {
+    render(
+      <CategoryFilter
+        categories={["undocumented-slug"]}
+        categoryMeta={{}}
+        selected="all"
+        onSelect={vi.fn()}
+      />,
+    );
+
+    expect(
+      screen.getByRole("radio", { name: "undocumented-slug" }),
+    ).toBeInTheDocument();
   });
 });

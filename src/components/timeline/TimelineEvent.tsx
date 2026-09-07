@@ -1,19 +1,29 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
-import type { TimelineEvent as TimelineEventType } from "../../data/timelines";
-import { timelineCategoryMeta } from "../../data/timelines";
+import type {
+  CategoryMeta,
+  TimelineCategory,
+  TimelineEvent as TimelineEventType,
+} from "./types";
+import { resolveCategoryMeta } from "./helpers";
 import {
   trackEventOpened,
   trackEventLinkClicked,
   type TimelineSession,
-} from "../../lib/timelineAnalytics";
+} from "./analytics";
 
 interface TimelineEventProps {
   event: TimelineEventType;
+  /** Display metadata for the slugs in `event.categories`. */
+  categoryMeta: Record<TimelineCategory, CategoryMeta>;
   session: TimelineSession | null;
 }
 
-export default function TimelineEvent({ event, session }: TimelineEventProps) {
+export default function TimelineEvent({
+  event,
+  categoryMeta,
+  session,
+}: TimelineEventProps) {
   const [isPinned, setIsPinned] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const shouldReduceMotion = useReducedMotion();
@@ -38,7 +48,7 @@ export default function TimelineEvent({ event, session }: TimelineEventProps) {
   const handleLinkClick = (
     linkText: string,
     linkUrl: string,
-    linkPosition: number
+    linkPosition: number,
   ) => {
     if (session) {
       trackEventLinkClicked(session, event, linkText, linkUrl, linkPosition);
@@ -130,15 +140,18 @@ export default function TimelineEvent({ event, session }: TimelineEventProps) {
                     className="mt-4 flex flex-wrap gap-2"
                     data-testid={`timeline-event-categories-${event.id}`}
                   >
-                    {event.categories.map((category) => (
-                      <li key={`${event.id}-${category}`}>
-                        <span
-                          className={`inline-flex items-center rounded-full px-2.5 py-0.5 font-sans text-xs font-medium ${timelineCategoryMeta[category].pillClassName}`}
-                        >
-                          {timelineCategoryMeta[category].label}
-                        </span>
-                      </li>
-                    ))}
+                    {event.categories.map((category) => {
+                      const meta = resolveCategoryMeta(categoryMeta, category);
+                      return (
+                        <li key={`${event.id}-${category}`}>
+                          <span
+                            className={`inline-flex items-center rounded-full px-2.5 py-0.5 font-sans text-xs font-medium ${meta.pillClassName}`}
+                          >
+                            {meta.label}
+                          </span>
+                        </li>
+                      );
+                    })}
                   </ul>
 
                   {hasLinks && (
@@ -151,11 +164,7 @@ export default function TimelineEvent({ event, session }: TimelineEventProps) {
                             rel="noopener noreferrer"
                             className="text-ink-800 underline decoration-accent-teal underline-offset-4 hover:decoration-ink-800 dark:text-paper-100 dark:hover:decoration-paper-100"
                             onClick={() =>
-                              handleLinkClick(
-                                link.label,
-                                link.url,
-                                index + 1
-                              )
+                              handleLinkClick(link.label, link.url, index + 1)
                             }
                           >
                             {link.label} →

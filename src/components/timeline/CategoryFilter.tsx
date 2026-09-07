@@ -1,8 +1,10 @@
-import type { TimelineCategory } from "../../data/timelines";
-import { timelineCategoryMeta } from "../../data/timelines";
+import type { CategoryMeta, TimelineCategory } from "./types";
+import { resolveCategoryMeta } from "./helpers";
 
 interface CategoryFilterProps {
   categories: TimelineCategory[];
+  /** Display metadata for the slugs in `categories`. */
+  categoryMeta: Record<TimelineCategory, CategoryMeta>;
   selected: TimelineCategory | "all";
   onSelect: (category: TimelineCategory | "all") => void;
   showAll?: boolean;
@@ -10,6 +12,7 @@ interface CategoryFilterProps {
 
 export default function CategoryFilter({
   categories,
+  categoryMeta,
   selected,
   onSelect,
   showAll = true,
@@ -18,7 +21,7 @@ export default function CategoryFilter({
     ...(showAll ? [{ value: "all" as const, label: "All" }] : []),
     ...categories.map((category) => ({
       value: category,
-      label: timelineCategoryMeta[category].label,
+      label: resolveCategoryMeta(categoryMeta, category).label,
     })),
   ];
 

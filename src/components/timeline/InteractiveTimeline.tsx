@@ -1,11 +1,7 @@
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import type {
-  TimelineConfig,
-  TimelineCategory,
-  TimelineEra,
-} from "../../data/timelines";
-import { timelineCategoryMeta, filterEvents } from "../../data/timelines";
+import type { TimelineConfig, TimelineCategory, TimelineEra } from "./types";
+import { filterEvents, resolveCategoryMeta } from "./helpers";
 
 // ──────────────────────────────────────────────────────────────────────────────
 // Props
@@ -151,14 +147,6 @@ export default function InteractiveTimeline({
 
   return (
     <div className="flex flex-col gap-4">
-      {/* Header */}
-      <div>
-        <h2 className="text-2xl font-bold tracking-tight text-ink-800 dark:text-paper-100">
-          {timeline.title}
-        </h2>
-        <p className="mt-1 text-sm text-graphite-400">{timeline.subtitle}</p>
-      </div>
-
       {/* Category filter — only shown when operating in uncontrolled mode */}
       {!onCategoryChange && (
         <div className="flex flex-wrap gap-2">
@@ -190,7 +178,7 @@ export default function InteractiveTimeline({
                   : "border-graphite-600/40 text-ink-600 hover:border-graphite-600 dark:border-graphite-600 dark:text-paper-200"
               }`}
             >
-              {timelineCategoryMeta[cat].label}
+              {resolveCategoryMeta(timeline.categoryMeta, cat).label}
             </button>
           ))}
         </div>
@@ -559,15 +547,18 @@ export default function InteractiveTimeline({
 
               {/* Category pills */}
               <ul className="mt-4 flex flex-wrap gap-2">
-                {selectedEvent.categories.map((cat) => (
-                  <li key={cat}>
-                    <span
-                      className={`inline-flex items-center rounded-full px-2.5 py-0.5 font-sans text-xs font-medium ${timelineCategoryMeta[cat].pillClassName}`}
-                    >
-                      {timelineCategoryMeta[cat].label}
-                    </span>
-                  </li>
-                ))}
+                {selectedEvent.categories.map((cat) => {
+                  const meta = resolveCategoryMeta(timeline.categoryMeta, cat);
+                  return (
+                    <li key={cat}>
+                      <span
+                        className={`inline-flex items-center rounded-full px-2.5 py-0.5 font-sans text-xs font-medium ${meta.pillClassName}`}
+                      >
+                        {meta.label}
+                      </span>
+                    </li>
+                  );
+                })}
               </ul>
 
               {/* Links */}

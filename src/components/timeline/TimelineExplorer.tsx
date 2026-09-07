@@ -1,16 +1,7 @@
-import { useMemo, useState, useEffect, useRef } from "react";
-import type {
-  TimelineConfig,
-  TimelineCategory,
-  TimelineEra,
-} from "../../data/timelines";
-import { filterEvents } from "../../data/timelines";
-import {
-  initTimelineSession,
-  trackCategoryFilter,
-  trackSessionEnd,
-  type TimelineSession,
-} from "../../lib/timelineAnalytics";
+import { useMemo, useState } from "react";
+import type { TimelineConfig, TimelineCategory, TimelineEra } from "./types";
+import { filterEvents } from "./helpers";
+import { trackCategoryFilter, type TimelineSession } from "./analytics";
 import CategoryFilter from "./CategoryFilter";
 import TimelineEvent from "./TimelineEvent";
 
@@ -23,6 +14,8 @@ interface TimelineExplorerProps {
   onCategoryChange?: (cat: TimelineCategory | "all") => void;
   /** When true, the CategoryFilter UI is suppressed (parent renders it). */
   hideFilters?: boolean;
+  /** Analytics session owned by the parent. Omit to render untracked. */
+  session?: TimelineSession | null;
 }
 
 export default function TimelineExplorer({
@@ -31,24 +24,13 @@ export default function TimelineExplorer({
   selectedEra,
   onCategoryChange,
   hideFilters = false,
+  session = null,
 }: TimelineExplorerProps) {
   // Uncontrolled fallback for category when no controlled prop is provided
   const [internalCategory, setInternalCategory] = useState<
     TimelineCategory | "all"
   >("all");
   const resolvedCategory = selectedCategoryProp ?? internalCategory;
-  const sessionRef = useRef<TimelineSession | null>(null);
-
-  // Initialize session on mount, track session end on unmount
-  useEffect(() => {
-    sessionRef.current = initTimelineSession(timeline.key, timeline.title);
-
-    return () => {
-      if (sessionRef.current) {
-        trackSessionEnd(sessionRef.current);
-      }
-    };
-  }, [timeline.key, timeline.title]);
 
   const visibleEvents = useMemo(
     () => filterEvents(timeline.events, resolvedCategory, selectedEra ?? null),
@@ -58,33 +40,17 @@ export default function TimelineExplorer({
   const handleCategory = (cat: TimelineCategory | "all") => {
     const previousCategory = resolvedCategory;
     (onCategoryChange ?? setInternalCategory)(cat);
-    if (sessionRef.current) {
-      trackCategoryFilter(
-        sessionRef.current,
-        cat,
-        previousCategory,
-        visibleEvents.length
-      );
+    if (session) {
+      trackCategoryFilter(session, cat, previousCategory, visibleEvents.length);
     }
   };
 
   return (
     <section className="mt-8" data-testid="timeline-explorer">
-      <div className="mb-6">
-        <h2 className="text-3xl font-bold tracking-tight text-ink-800 dark:text-paper-100">
-          {timeline.title}
-        </h2>
-        <p className="mt-3 text-lg text-ink-600 dark:text-paper-200">
-          {timeline.subtitle}
-        </p>
-        <p className="mt-3 text-ink-600 dark:text-paper-200">
-          {timeline.framing}
-        </p>
-      </div>
-
       {!hideFilters && (
         <CategoryFilter
           categories={timeline.categoryOrder}
+          categoryMeta={timeline.categoryMeta}
           selected={resolvedCategory}
           onSelect={handleCategory}
         />
@@ -102,7 +68,8 @@ export default function TimelineExplorer({
           <TimelineEvent
             key={event.id}
             event={event}
-            session={sessionRef.current}
+            categoryMeta={timeline.categoryMeta}
+            session={session}
           />
         ))}
       </ol>

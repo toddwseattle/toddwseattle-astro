@@ -1,4 +1,4 @@
-import type { TimelineEra } from "../../data/timelines";
+import type { TimelineEra } from "./types";
 
 interface EraFilterProps {
   eras: TimelineEra[];

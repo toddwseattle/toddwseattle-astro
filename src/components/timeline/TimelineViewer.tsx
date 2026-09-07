@@ -1,18 +1,29 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import type {
   TimelineConfig,
   TimelineCategory,
   TimelineEra,
-} from "../../data/timelines";
+  TimelineEventHandler,
+} from "./types";
+import { trackCategoryFilter, useTimelineSession } from "./analytics";
+import { filterEvents } from "./helpers";
 import CategoryFilter from "./CategoryFilter";
 import EraFilter from "./EraFilter";
 import TimelineExplorer from "./TimelineExplorer";
 import InteractiveTimeline from "./InteractiveTimeline";
+import TimelineHeader from "./TimelineHeader";
 
 type ViewMode = "list" | "interactive";
 
 interface TimelineViewerProps {
   timeline: TimelineConfig;
+  /**
+   * Heading block rendered above the filters. Defaults to `TimelineHeader`;
+   * pass `null` to own the page outline entirely.
+   */
+  header?: ReactNode;
+  /** Receives interaction analytics. Omit to render untracked. */
+  onEvent?: TimelineEventHandler;
 }
 
 const TOGGLE_BASE =
@@ -22,17 +33,34 @@ const TOGGLE_ACTIVE =
 const TOGGLE_INACTIVE =
   "border-graphite-600/30 bg-paper-50 text-ink-600 hover:bg-paper-200 dark:border-graphite-600 dark:bg-surface-dark dark:text-paper-200 dark:hover:bg-graphite-700";
 
-export default function TimelineViewer({ timeline }: TimelineViewerProps) {
+export default function TimelineViewer({
+  timeline,
+  header,
+  onEvent,
+}: TimelineViewerProps) {
   const [selectedCategory, setSelectedCategory] = useState<
     TimelineCategory | "all"
   >("all");
   const [selectedEra, setSelectedEra] = useState<TimelineEra | null>(null);
   const [activeView, setActiveView] = useState<ViewMode>("interactive");
 
+  // One session per mounted timeline, regardless of how many views are rendered.
+  const sessionRef = useTimelineSession(timeline.key, timeline.title, onEvent);
+
   const eras = timeline.eras ?? [];
 
   function handleCategoryChange(cat: TimelineCategory | "all") {
+    const previousCategory = selectedCategory;
     setSelectedCategory(cat);
+
+    if (sessionRef.current) {
+      trackCategoryFilter(
+        sessionRef.current,
+        cat,
+        previousCategory,
+        filterEvents(timeline.events, cat, selectedEra).length,
+      );
+    }
   }
 
   function handleEraChange(era: TimelineEra | null) {
@@ -41,6 +69,8 @@ export default function TimelineViewer({ timeline }: TimelineViewerProps) {
 
   return (
     <div className="flex flex-col gap-4">
+      {header === undefined ? <TimelineHeader timeline={timeline} /> : header}
+
       {/* Shared filter bar */}
       <div className="flex flex-col gap-3">
         {/* View toggle — desktop only */}
@@ -73,6 +103,7 @@ export default function TimelineViewer({ timeline }: TimelineViewerProps) {
             </span>
             <CategoryFilter
               categories={timeline.categoryOrder}
+              categoryMeta={timeline.categoryMeta}
               selected={selectedCategory}
               onSelect={handleCategoryChange}
               showAll={false}
@@ -103,6 +134,7 @@ export default function TimelineViewer({ timeline }: TimelineViewerProps) {
           selectedEra={selectedEra}
           onCategoryChange={handleCategoryChange}
           hideFilters
+          session={sessionRef.current}
         />
       </div>
 
