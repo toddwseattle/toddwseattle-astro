@@ -1,6 +1,6 @@
 # Making the Course Timeline Reusable — Full Plan
 
-**Status:** Stage 1 complete; Stage 2 not started
+**Status:** Stage 1 complete; Stage 2 done in autosoft-workspace, findings ported back
 **Owner:** Todd Warren
 **Last updated:** 2026-09-07
 
@@ -176,14 +176,44 @@ every `dark:` variant on this site is currently inert.
 
 ### Stage 2 — Copy and validate
 
-- [ ] **2.1** Identify the target project and its Tailwind/React/framer-motion versions
-- [ ] **2.2** Copy hardened components + types + `timeline.css` into the target
-- [ ] **2.3** Author a dataset there with a category vocabulary unique to that project
-- [ ] **2.4** Write the target's `.astro` wrapper and page wiring
-- [ ] **2.5** Wire the target's analytics through `onEvent`
-- [ ] **2.6** Override the CSS custom properties to the target's palette; verify light + dark
-- [ ] **2.7** Log every source edit that was required — each one is a Stage-1 defect
-- [ ] **2.8** Fold those defects back into this repo before Stage 3
+- [x] **2.1** Identify the target project and its Tailwind/React/framer-motion versions
+- [x] **2.2** Copy hardened components + types + `timeline.css` into the target
+- [x] **2.3** Author a dataset there with a category vocabulary unique to that project
+- [x] **2.4** Write the target's `.astro` wrapper and page wiring
+- [x] **2.5** Wire the target's analytics through `onEvent`
+- [x] **2.6** Override the CSS custom properties to the target's palette; verify light + dark
+- [x] **2.7** Log every source edit that was required — each one is a Stage-1 defect
+- [x] **2.8** Fold those defects back into this repo before Stage 3
+
+### Stage 2 findings — ported back
+
+Stage 2 ran in `toddwseattle/autosoft-workspace` as `libs/timeline`, consumed by
+a new automotive software timeline at `/timeline`. Its full record is in that
+repo's `docs/timeline-lib/step-1-create-library.md`. Two defects in the component
+contract came back here:
+
+- **Host palette overrides were silently lost.** `timeline.css` is imported from
+  a component module, so bundlers inject it as an inline `<style>` that lands
+  _after_ the host's linked stylesheet. At equal specificity the later rule won,
+  and every one of the second site's `--tl-*` overrides was ignored — it rendered
+  in Chronicle teal. The defaults now sit inside `:where(…)` at zero specificity,
+  so any host declaration wins regardless of source order. **The palette seam did
+  not actually work for its intended purpose until this was fixed.**
+- **The test suites were not self-contained after all.** They need a
+  `window.scrollTo` stub — framer-motion measures layout during height
+  animations and jsdom does not implement it. That stub lived in this repo's root
+  `test/setup.ts`, so the suites only appeared portable. It now lives in
+  `src/components/timeline/testSetup.ts` and travels with them.
+
+Confirmed working without changes: the open category vocabulary, the `onEvent`
+analytics seam (the second site uses a `dataLayer` helper, not gtag), framer-motion
+on React 19, Vitest 4-authored suites under Vitest 3, and the Tailwind v3→v4
+crossing.
+
+Still open, tracked there: `InteractiveTimeline` positions dots purely by
+`sortYear`, so same-year events overlap and can block each other's clicks. The
+automotive dataset has three events in 2015 and surfaced it; this repo's datasets
+happen not to collide much.
 
 ### Stage 3 — Package
 

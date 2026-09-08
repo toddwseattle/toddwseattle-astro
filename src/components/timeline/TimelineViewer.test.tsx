@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 import TimelineViewer from "./TimelineViewer";
 import type { TimelineConfig } from "./types";
+import "./testSetup";
 
 /**
  * Deliberately uses a category vocabulary that exists nowhere in this repo —

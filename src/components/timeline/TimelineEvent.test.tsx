@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import TimelineEvent from "./TimelineEvent";
 import type { TimelineEventData as TimelineEventType } from "./index";
 import { testCategoryMeta } from "./testFixtures";
+import "./testSetup";
 
 const event: TimelineEventType = {
   id: "event-1",

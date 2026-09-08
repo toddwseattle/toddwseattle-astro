@@ -5,6 +5,7 @@ import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 import EraFilter from "./EraFilter";
 import type { TimelineEra } from "./types";
+import "./testSetup";
 
 const eras: TimelineEra[] = [
   {

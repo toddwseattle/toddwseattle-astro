@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 import CategoryFilter from "./CategoryFilter";
 import { testCategoryMeta } from "./testFixtures";
+import "./testSetup";
 
 describe("CategoryFilter", () => {
   const seCategories = [

@@ -13,9 +13,16 @@
  * Scoped to `[data-timeline-root]` rather than `:root` so several differently
  * themed timelines can coexist on one page. Custom properties inherit, so only
  * the outermost element of each view carries the attribute.
+ *
+ * The `:where()` wrapper drops these defaults to zero specificity. That matters:
+ * this file is imported from a component module, so bundlers inject it as an
+ * inline <style> that lands AFTER the host's linked stylesheet. At equal
+ * specificity the later rule wins, and a host's overrides would silently lose.
+ * At zero specificity any host declaration on `[data-timeline-root]` beats these
+ * regardless of source order.
  */
 
-[data-timeline-root] {
+:where([data-timeline-root]) {
   /* Surfaces */
   --tl-surface: #ffffff;
   --tl-surface-bar: rgb(244 243 242 / 0.8);
@@ -71,7 +78,7 @@
   --tl-era-label-active: rgb(255 255 255 / 0.55);
 }
 
-.dark [data-timeline-root] {
+:where(.dark [data-timeline-root]) {
   --tl-surface: #2e2d30;
   --tl-surface-bar: rgb(46 45 48 / 0.8);
   --tl-surface-expanded: rgb(64 63 65 / 0.8);

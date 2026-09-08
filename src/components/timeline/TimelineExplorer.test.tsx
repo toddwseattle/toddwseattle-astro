@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import TimelineExplorer from "./TimelineExplorer";
 import type { TimelineConfig } from "./types";
 import { testCategoryMeta } from "./testFixtures";
+import "./testSetup";
 
 const timeline: TimelineConfig = {
   key: "software-engineering-history",
