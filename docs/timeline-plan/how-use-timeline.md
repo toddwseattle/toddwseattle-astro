@@ -1,3 +1,10 @@
+> **Historical.** This document describes the original single-timeline design
+> and refers to `src/data/se-timeline.ts`, which no longer exists. For current
+> authoring instructions see
+> [../course-materials/timeline-authoring.md](../course-materials/timeline-authoring.md);
+> for the reuse/extraction plan see
+> [../timeline/make-generic/overview.md](../timeline/make-generic/overview.md).
+
 # How to Use the Timeline
 
 ## Overview

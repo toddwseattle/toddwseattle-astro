@@ -1,8 +1,10 @@
-import type { TimelineCategory } from "../../data/timelines";
-import { timelineCategoryMeta } from "../../data/timelines";
+import type { CategoryMeta, TimelineCategory } from "./types";
+import { resolveCategoryMeta } from "./helpers";
 
 interface CategoryFilterProps {
   categories: TimelineCategory[];
+  /** Display metadata for the slugs in `categories`. */
+  categoryMeta: Record<TimelineCategory, CategoryMeta>;
   selected: TimelineCategory | "all";
   onSelect: (category: TimelineCategory | "all") => void;
   showAll?: boolean;
@@ -10,6 +12,7 @@ interface CategoryFilterProps {
 
 export default function CategoryFilter({
   categories,
+  categoryMeta,
   selected,
   onSelect,
   showAll = true,
@@ -18,7 +21,7 @@ export default function CategoryFilter({
     ...(showAll ? [{ value: "all" as const, label: "All" }] : []),
     ...categories.map((category) => ({
       value: category,
-      label: timelineCategoryMeta[category].label,
+      label: resolveCategoryMeta(categoryMeta, category).label,
     })),
   ];
 
@@ -42,10 +45,10 @@ export default function CategoryFilter({
             onClick={() =>
               onSelect(!showAll && isSelected ? "all" : option.value)
             }
-            className={`rounded-sm border px-4 py-1 font-sans text-[0.65rem] font-semibold uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal ${
+            className={`rounded-sm border px-4 py-1 font-sans text-[0.65rem] font-semibold uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--tl-accent)] ${
               isSelected
-                ? "border-accent-teal bg-accent-teal text-paper-50 underline decoration-paper-50 decoration-2 underline-offset-4 dark:border-accent-teal dark:bg-accent-teal dark:text-paper-50"
-                : "border-paper-200 bg-paper-200/85 text-ink-600 hover:border-graphite-400 hover:bg-paper-100 dark:border-graphite-600 dark:bg-surface-dark dark:text-paper-200 dark:hover:bg-graphite-700"
+                ? "border-[color:var(--tl-accent)] bg-[var(--tl-accent)] text-[color:var(--tl-on-accent)] underline decoration-[color:var(--tl-on-accent)] decoration-2 underline-offset-4"
+                : "border-[color:var(--tl-border-idle)] bg-[var(--tl-surface-pill-idle)] text-[color:var(--tl-text-muted)] hover:border-[color:var(--tl-border-hover)] hover:bg-[var(--tl-surface-pill-hover)]"
             }`}
             data-testid={`timeline-filter-${option.value}`}
           >

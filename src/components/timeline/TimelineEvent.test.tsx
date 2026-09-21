@@ -1,7 +1,9 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import TimelineEvent from "./TimelineEvent";
-import type { TimelineEvent as TimelineEventType } from "../../data/timelines";
+import type { TimelineEventData as TimelineEventType } from "./index";
+import { testCategoryMeta } from "./testFixtures";
+import "./testSetup";
 
 const event: TimelineEventType = {
   id: "event-1",
@@ -20,7 +22,13 @@ const event: TimelineEventType = {
 
 describe("TimelineEvent", () => {
   it("renders only the headline content by default", () => {
-    render(<TimelineEvent event={event} session={null} />);
+    render(
+      <TimelineEvent
+        event={event}
+        categoryMeta={testCategoryMeta}
+        session={null}
+      />,
+    );
 
     expect(screen.getByText("2001")).toBeInTheDocument();
     expect(
@@ -36,7 +44,13 @@ describe("TimelineEvent", () => {
 
   it("reveals description, categories, links, and image on hover", async () => {
     const user = userEvent.setup();
-    render(<TimelineEvent event={event} session={null} />);
+    render(
+      <TimelineEvent
+        event={event}
+        categoryMeta={testCategoryMeta}
+        session={null}
+      />,
+    );
 
     await user.hover(screen.getByTestId("timeline-event-toggle-event-1"));
 
@@ -56,7 +70,13 @@ describe("TimelineEvent", () => {
   });
 
   it("toggles the expanded content on click for tap interactions", async () => {
-    render(<TimelineEvent event={event} session={null} />);
+    render(
+      <TimelineEvent
+        event={event}
+        categoryMeta={testCategoryMeta}
+        session={null}
+      />,
+    );
 
     const toggle = screen.getByTestId("timeline-event-toggle-event-1");
 

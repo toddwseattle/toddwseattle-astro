@@ -1,11 +1,8 @@
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import type {
-  TimelineConfig,
-  TimelineCategory,
-  TimelineEra,
-} from "../../data/timelines";
-import { timelineCategoryMeta, filterEvents } from "../../data/timelines";
+import type { TimelineConfig, TimelineCategory, TimelineEra } from "./types";
+import { filterEvents, resolveCategoryMeta } from "./helpers";
+import "./timeline.css";
 
 // ──────────────────────────────────────────────────────────────────────────────
 // Props
@@ -37,17 +34,18 @@ const MAJOR_DOT_Y = 68; // dot centre for major events (above the line)
 const MAJOR_DOT_R = 7; // radius (px)
 const NOTABLE_DOT_R = 4; // radius (px)
 
-// Alternating subtle fills for era bands (dark background)
-const ERA_FILLS = ["rgba(255,255,255,0.025)", "rgba(255,255,255,0.055)"];
-const ERA_FILL_ACTIVE = "rgba(255,255,255,0.10)";
-const ERA_FILL_DIM = "rgba(255,255,255,0.01)";
+// Every colour resolves through timeline.css so hosts can restyle the track
+// without touching component source.
+const ERA_FILLS = ["var(--tl-era-a)", "var(--tl-era-b)"];
+const ERA_FILL_ACTIVE = "var(--tl-era-active)";
+const ERA_FILL_DIM = "var(--tl-era-dim)";
 
-const TRACK_BACKGROUND = "rgb(13 13 15)";
-const DOT_MAJOR = "rgb(209 213 219)";
-const DOT_NOTABLE = "rgb(107 114 128)";
-const DOT_SELECTED = "rgb(255 255 255)";
-const ACCENT_TEAL = "rgb(0 128 128)";
-const DOT_BORDER = "rgb(156 163 175)";
+const TRACK_BACKGROUND = "var(--tl-track-bg)";
+const DOT_MAJOR = "var(--tl-dot-major)";
+const DOT_NOTABLE = "var(--tl-dot-notable)";
+const DOT_SELECTED = "var(--tl-dot-selected)";
+const ACCENT = "var(--tl-accent)";
+const DOT_BORDER = "var(--tl-dot-border)";
 
 // ──────────────────────────────────────────────────────────────────────────────
 // Component
@@ -150,15 +148,7 @@ export default function InteractiveTimeline({
   // ────────────────────────────────────────────────────────────────────────────
 
   return (
-    <div className="flex flex-col gap-4">
-      {/* Header */}
-      <div>
-        <h2 className="text-2xl font-bold tracking-tight text-ink-800 dark:text-paper-100">
-          {timeline.title}
-        </h2>
-        <p className="mt-1 text-sm text-graphite-400">{timeline.subtitle}</p>
-      </div>
-
+    <div className="flex flex-col gap-4" data-timeline-root>
       {/* Category filter — only shown when operating in uncontrolled mode */}
       {!onCategoryChange && (
         <div className="flex flex-wrap gap-2">
@@ -170,8 +160,8 @@ export default function InteractiveTimeline({
             }}
             className={`rounded-lg border px-3 py-1 font-sans text-xs font-medium transition-colors duration-150 ${
               resolvedCategory === "all"
-                ? "border-accent-teal bg-accent-teal text-paper-50 underline decoration-paper-50 decoration-2 underline-offset-4"
-                : "border-graphite-600/40 text-ink-600 hover:border-graphite-600 dark:border-graphite-600 dark:text-paper-200"
+                ? "border-[color:var(--tl-accent)] bg-[var(--tl-accent)] text-[color:var(--tl-on-accent)] underline decoration-[color:var(--tl-on-accent)] decoration-2 underline-offset-4"
+                : "border-[color:var(--tl-border-strong)] text-[color:var(--tl-text-muted)] hover:border-[color:var(--tl-border-hover-strong)]"
             }`}
           >
             All
@@ -186,11 +176,11 @@ export default function InteractiveTimeline({
               }}
               className={`rounded-lg border px-3 py-1 font-sans text-xs font-medium transition-colors duration-150 ${
                 resolvedCategory === cat
-                  ? "border-accent-teal bg-accent-teal text-paper-50 underline decoration-paper-50 decoration-2 underline-offset-4"
-                  : "border-graphite-600/40 text-ink-600 hover:border-graphite-600 dark:border-graphite-600 dark:text-paper-200"
+                  ? "border-[color:var(--tl-accent)] bg-[var(--tl-accent)] text-[color:var(--tl-on-accent)] underline decoration-[color:var(--tl-on-accent)] decoration-2 underline-offset-4"
+                  : "border-[color:var(--tl-border-strong)] text-[color:var(--tl-text-muted)] hover:border-[color:var(--tl-border-hover-strong)]"
               }`}
             >
-              {timelineCategoryMeta[cat].label}
+              {resolveCategoryMeta(timeline.categoryMeta, cat).label}
             </button>
           ))}
         </div>
@@ -206,14 +196,14 @@ export default function InteractiveTimeline({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.12 }}
-              className="font-sans text-sm font-medium text-ink-800 dark:text-paper-100"
+              className="font-sans text-sm font-medium text-[color:var(--tl-text)]"
             >
-              <span className="mr-1.5 text-graphite-400">
+              <span className="mr-1.5 text-[color:var(--tl-text-faint)]">
                 {hoveredEvent.yearDisplay} ·
               </span>
               {hoveredEvent.title}
               {hoveredEvent.significance === "major" && (
-                <span className="ml-2 inline-flex items-center rounded-full bg-accent-soft px-2 py-0.5 font-sans text-[9px] font-semibold uppercase tracking-wider text-ink-800 underline decoration-accent-teal decoration-2 underline-offset-4 dark:bg-surface-dark dark:text-paper-100">
+                <span className="ml-2 inline-flex items-center rounded-full bg-[var(--tl-badge-bg)] px-2 py-0.5 font-sans text-[9px] font-semibold uppercase tracking-wider text-[color:var(--tl-text)] underline decoration-[color:var(--tl-accent)] decoration-2 underline-offset-4">
                   Big Shift
                 </span>
               )}
@@ -225,7 +215,7 @@ export default function InteractiveTimeline({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.12 }}
-              className="text-xs text-graphite-400"
+              className="text-xs text-[color:var(--tl-text-faint)]"
             >
               {selectedId
                 ? "Click the dot again to close · hover any dot to preview"
@@ -276,8 +266,8 @@ export default function InteractiveTimeline({
                   letterSpacing: "0.1em",
                   textTransform: "uppercase",
                   color: isEraActive
-                    ? "rgba(255,255,255,0.55)"
-                    : "rgba(255,255,255,0.28)",
+                    ? "var(--tl-era-label-active)"
+                    : "var(--tl-era-label)",
                   whiteSpace: "nowrap",
                   userSelect: "none",
                   pointerEvents: "none",
@@ -295,10 +285,10 @@ export default function InteractiveTimeline({
               width: w,
               height: "100%",
               background: fill,
-              borderRight: "1px solid rgba(255,255,255,0.06)",
+              borderRight: "1px solid var(--tl-era-divider)",
               transition: "background 0.2s",
               outline: isEraActive
-                ? "1px solid rgba(255,255,255,0.2)"
+                ? "1px solid var(--tl-era-outline)"
                 : undefined,
             };
 
@@ -327,7 +317,7 @@ export default function InteractiveTimeline({
               top: LINE_Y,
               width: (maxYear - minYear) * PX_PER_YEAR,
               height: 1,
-              background: "rgba(255,255,255,0.14)",
+              background: "var(--tl-track-line)",
             }}
           />
 
@@ -343,7 +333,7 @@ export default function InteractiveTimeline({
                   style={{
                     width: 1,
                     height: 6,
-                    background: "rgba(255,255,255,0.18)",
+                    background: "var(--tl-track-tick)",
                   }}
                 />
                 <span
@@ -351,7 +341,7 @@ export default function InteractiveTimeline({
                     display: "block",
                     marginTop: 4,
                     fontSize: "9px",
-                    color: "rgba(255,255,255,0.22)",
+                    color: "var(--tl-track-tick-label)",
                     transform: "translateX(-50%)",
                     whiteSpace: "nowrap",
                     userSelect: "none",
@@ -395,8 +385,8 @@ export default function InteractiveTimeline({
                       width: 1,
                       height: LINE_Y - (MAJOR_DOT_Y + dotR),
                       background: isSelected
-                        ? `linear-gradient(to bottom, ${ACCENT_TEAL}, rgba(255,255,255,0.06))`
-                        : `linear-gradient(to bottom, rgba(209,213,219,0.44), rgba(255,255,255,0.06))`,
+                        ? `linear-gradient(to bottom, ${ACCENT}, var(--tl-dot-stem-fade))`
+                        : `linear-gradient(to bottom, var(--tl-dot-stem), var(--tl-dot-stem-fade))`,
                     }}
                   />
                 )}
@@ -435,7 +425,7 @@ export default function InteractiveTimeline({
                     borderRadius: "50%",
                     backgroundColor: isSelected ? DOT_SELECTED : color,
                     border: isSelected
-                      ? `2px solid ${ACCENT_TEAL}`
+                      ? `2px solid ${ACCENT}`
                       : `1px solid ${DOT_BORDER}`,
                     cursor: "pointer",
                     outline: "none",
@@ -447,9 +437,9 @@ export default function InteractiveTimeline({
                       : {
                           scale: isSelected ? 1.9 : isHovered ? 1.5 : 1,
                           boxShadow: isSelected
-                            ? `0 0 0 3px rgba(0,128,128,0.45), 0 0 14px rgba(0,128,128,0.45)`
+                            ? "0 0 0 3px var(--tl-accent-glow), 0 0 14px var(--tl-accent-glow)"
                             : isHovered
-                              ? `0 0 0 2px rgba(0,128,128,0.35)`
+                              ? "0 0 0 2px var(--tl-accent-glow-soft)"
                               : "none",
                         }
                   }
@@ -467,7 +457,7 @@ export default function InteractiveTimeline({
       </div>
 
       {/* Legend */}
-      <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs text-graphite-400">
+      <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs text-[color:var(--tl-text-faint)]">
         <span className="flex items-center gap-1.5">
           <span
             className="inline-block rounded-full"
@@ -508,28 +498,28 @@ export default function InteractiveTimeline({
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
-            <div className="rounded-lg border border-graphite-600/40 bg-paper-50 p-6 dark:border-graphite-600 dark:bg-surface-dark">
+            <div className="rounded-lg border border-[color:var(--tl-border-strong)] bg-[var(--tl-surface)] p-6">
               {/* Detail header */}
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <div className="flex flex-wrap items-center gap-2">
-                    <time className="font-sans text-xs font-semibold uppercase tracking-widest text-graphite-400">
+                    <time className="font-sans text-xs font-semibold uppercase tracking-widest text-[color:var(--tl-text-faint)]">
                       {selectedEvent.yearDisplay}
                     </time>
                     {selectedEvent.significance === "major" && (
-                      <span className="inline-flex items-center rounded-full bg-accent-soft px-2.5 py-0.5 font-sans text-[10px] font-semibold uppercase tracking-wider text-ink-800 underline decoration-accent-teal decoration-2 underline-offset-4 dark:bg-surface-dark dark:text-paper-100">
+                      <span className="inline-flex items-center rounded-full bg-[var(--tl-badge-bg)] px-2.5 py-0.5 font-sans text-[10px] font-semibold uppercase tracking-wider text-[color:var(--tl-text)] underline decoration-[color:var(--tl-accent)] decoration-2 underline-offset-4">
                         Big Shift
                       </span>
                     )}
                   </div>
-                  <h3 className="mt-1.5 text-xl font-bold text-ink-800 dark:text-paper-100">
+                  <h3 className="mt-1.5 text-xl font-bold text-[color:var(--tl-text)]">
                     {selectedEvent.title}
                   </h3>
                 </div>
                 <button
                   type="button"
                   onClick={() => setSelectedId(null)}
-                  className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-graphite-600/30 text-lg leading-none text-graphite-400 transition-colors hover:border-graphite-600 hover:text-ink-800 dark:hover:text-paper-100"
+                  className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[color:var(--tl-border)] text-lg leading-none text-[color:var(--tl-text-faint)] transition-colors hover:border-[color:var(--tl-border-hover-strong)] hover:text-[color:var(--tl-text)]"
                   aria-label="Close detail panel"
                 >
                   ×
@@ -544,14 +534,14 @@ export default function InteractiveTimeline({
                     : ""
                 }`}
               >
-                <p className="leading-relaxed text-ink-600 dark:text-paper-200">
+                <p className="leading-relaxed text-[color:var(--tl-text-muted)]">
                   {selectedEvent.description}
                 </p>
                 {selectedEvent.image && (
                   <img
                     src={selectedEvent.image.src}
                     alt={selectedEvent.image.alt}
-                    className="h-40 w-full rounded-lg border border-graphite-600/20 object-cover grayscale md:h-full"
+                    className="h-40 w-full rounded-lg border border-[color:var(--tl-border-subtle)] object-cover grayscale md:h-full"
                     loading="lazy"
                   />
                 )}
@@ -559,15 +549,18 @@ export default function InteractiveTimeline({
 
               {/* Category pills */}
               <ul className="mt-4 flex flex-wrap gap-2">
-                {selectedEvent.categories.map((cat) => (
-                  <li key={cat}>
-                    <span
-                      className={`inline-flex items-center rounded-full px-2.5 py-0.5 font-sans text-xs font-medium ${timelineCategoryMeta[cat].pillClassName}`}
-                    >
-                      {timelineCategoryMeta[cat].label}
-                    </span>
-                  </li>
-                ))}
+                {selectedEvent.categories.map((cat) => {
+                  const meta = resolveCategoryMeta(timeline.categoryMeta, cat);
+                  return (
+                    <li key={cat}>
+                      <span
+                        className={`inline-flex items-center rounded-full px-2.5 py-0.5 font-sans text-xs font-medium ${meta.pillClassName}`}
+                      >
+                        {meta.label}
+                      </span>
+                    </li>
+                  );
+                })}
               </ul>
 
               {/* Links */}
@@ -579,7 +572,7 @@ export default function InteractiveTimeline({
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm text-ink-800 underline decoration-accent-teal underline-offset-4 hover:decoration-ink-800 dark:text-paper-100 dark:hover:decoration-paper-100"
+                        className="text-sm text-[color:var(--tl-text)] underline decoration-[color:var(--tl-accent)] underline-offset-4 hover:decoration-[color:var(--tl-text)]"
                       >
                         {link.label} →
                       </a>
