@@ -1,8 +1,24 @@
-import { defineCollection, z } from "astro:content";
-import { timelineKeys } from "../data/timelines";
+import { defineCollection } from "astro:content";
+import { glob } from "astro/loaders";
+import { z } from "astro/zod";
+import { timelineKeys } from "./data/timelines/keys";
+
+/**
+ * Content Layer collections.
+ *
+ * Every collection is a flat directory of Markdown under `src/content/`, so
+ * they share one loader shape. The `[^_]*.md` pattern matters: `blog/`,
+ * `projects/` and `testimonials/` keep their images alongside the posts, and
+ * only the `.md` files are entries.
+ *
+ * Entry ids are the slugified filename, which is what the legacy `slug`
+ * property resolved to as well — that is what keeps existing URLs stable.
+ */
+const contentLoader = (dir: string) =>
+  glob({ pattern: "**/[^_]*.md", base: `./src/content/${dir}` });
 
 const blog = defineCollection({
-  type: "content",
+  loader: contentLoader("blog"),
   schema: ({ image }) =>
     z.object({
       category: z
@@ -27,7 +43,7 @@ const blog = defineCollection({
 });
 
 const experiences = defineCollection({
-  type: "content",
+  loader: contentLoader("experiences"),
   schema: z.object({
     category: z.string(),
     company: z.string(),
@@ -39,7 +55,7 @@ const experiences = defineCollection({
 });
 
 const projects = defineCollection({
-  type: "content",
+  loader: contentLoader("projects"),
   schema: z.object({
     category: z.string(),
     cover: z.string().optional(),
@@ -49,7 +65,7 @@ const projects = defineCollection({
 });
 
 const skills = defineCollection({
-  type: "content",
+  loader: contentLoader("skills"),
   schema: z.object({
     category: z.string(),
     title: z.string(),
@@ -59,7 +75,7 @@ const skills = defineCollection({
 });
 
 const activities = defineCollection({
-  type: "content",
+  loader: contentLoader("activities"),
   schema: z.object({
     category: z.string(),
     title: z.string().optional(),
@@ -70,7 +86,7 @@ const activities = defineCollection({
 });
 
 const contacts = defineCollection({
-  type: "content",
+  loader: contentLoader("contacts"),
   schema: z.object({
     category: z.string(),
     title: z.string().optional(),
@@ -81,7 +97,7 @@ const contacts = defineCollection({
 });
 
 const education = defineCollection({
-  type: "content",
+  loader: contentLoader("education"),
   schema: z.object({
     category: z.string(),
     university: z.string().optional(),
@@ -93,7 +109,7 @@ const education = defineCollection({
 });
 
 const services = defineCollection({
-  type: "content",
+  loader: contentLoader("services"),
   schema: z.object({
     category: z.string(),
     title: z.string().optional(),
@@ -104,7 +120,7 @@ const services = defineCollection({
 });
 
 const testimonials = defineCollection({
-  type: "content",
+  loader: contentLoader("testimonials"),
   schema: z.object({
     category: z.string(),
     title: z.string().optional(),
@@ -114,7 +130,7 @@ const testimonials = defineCollection({
 });
 
 const nonprofit = defineCollection({
-  type: "content",
+  loader: contentLoader("nonprofit"),
   schema: z.object({
     category: z.string(),
     company: z.string().optional(),
@@ -126,7 +142,7 @@ const nonprofit = defineCollection({
 });
 
 const investments = defineCollection({
-  type: "content",
+  loader: contentLoader("investments"),
   schema: z.object({
     category: z.string(),
     company: z.string().optional(),
@@ -135,7 +151,7 @@ const investments = defineCollection({
 });
 
 const hero = defineCollection({
-  type: "content",
+  loader: contentLoader("hero"),
   schema: z.object({
     category: z.string(),
     title: z.string(),
@@ -148,7 +164,7 @@ const hero = defineCollection({
 });
 
 const newsletter = defineCollection({
-  type: "content",
+  loader: contentLoader("newsletter"),
   schema: z.object({
     category: z.string(),
     title: z.string().optional(),
@@ -158,7 +174,7 @@ const newsletter = defineCollection({
 });
 
 const teaching = defineCollection({
-  type: "content",
+  loader: contentLoader("teaching"),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -180,7 +196,7 @@ const teaching = defineCollection({
 });
 
 const courseMaterialsCollection = defineCollection({
-  type: "content",
+  loader: contentLoader("course-materials"),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -201,7 +217,8 @@ const courseMaterialsCollection = defineCollection({
       .array(
         z.object({
           title: z.string(),
-          url: z.string().url(),
+          // Zod 4 moved the string formats to the top-level z namespace
+          url: z.url(),
           description: z.string().optional(),
         }),
       )

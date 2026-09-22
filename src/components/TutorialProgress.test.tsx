@@ -38,7 +38,11 @@ class IOStub {
 beforeEach(() => {
   vi.clearAllMocks();
   document.body.innerHTML = "";
-  window.location.hash = "";
+  // Reset the URL without navigating. Assigning `location.hash = ""` rewrites
+  // the URL to ".../#", and jsdom dispatches a hashchange for it — which the
+  // component answers by resetting the active step, clobbering whatever the
+  // test just asserted. replaceState clears the hash and fires nothing.
+  window.history.replaceState(null, "", window.location.pathname);
   (globalThis as any).IntersectionObserver =
     IOStub as unknown as typeof IntersectionObserver;
 });

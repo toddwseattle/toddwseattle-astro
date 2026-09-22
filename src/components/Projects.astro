@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import Container from "./ui/Container";
 import TitleSection from "./ui/TitleSection";
 
@@ -18,7 +18,7 @@ const projects = await getCollection("projects");
     <div class="grid md:grid-cols-2 gap-8 mt-8">
       {
         projects.map(async (project) => {
-          const { Content } = await project.render();
+          const { Content } = await render(project);
           // Convert relative path to absolute path for public directory
           const imagePath = project.data.cover?.replace("./", "/");
           return (

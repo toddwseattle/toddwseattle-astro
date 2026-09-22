@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import Container from "./ui/Container";
 import TitleSection from "./ui/TitleSection";
 import Timeline from "./ui/Timeline.astro";
@@ -22,7 +22,7 @@ const sortedExperiences = experiences.sort((a, b) => {
     <div class="mt-8">
       {
         sortedExperiences.map(async (experience) => {
-          const { Content } = await experience.render();
+          const { Content } = await render(experience);
           return (
             <Timeline
               title={experience.data.company}

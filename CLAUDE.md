@@ -42,7 +42,7 @@ src/
 └── lib/          # Utilities
 ```
 
-**Content Collections** use Zod schemas defined in `src/content/config.ts`. Fetch with `getCollection` / `getEntry` from `astro:content`.
+**Content Collections** use the Content Layer API. Collections are defined in `src/content.config.ts` — each needs a `glob()` loader from `astro/loaders`; `type: "content"` no longer exists. Schemas use `z` from `astro/zod` (not `astro:content`). Fetch with `getCollection` / `getEntry` from `astro:content`, and render with `render(entry)` — `entry.render()` is gone. An entry's `id` is its slug; `entry.slug` is gone.
 
 **Routing constraint:** Preserve all existing slugs. `/blog/**` redirects to `/writing/**` via `firebase.json`. Never introduce year-based routes.
 

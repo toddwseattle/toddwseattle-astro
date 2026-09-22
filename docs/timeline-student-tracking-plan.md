@@ -5,6 +5,7 @@
 Track student behavior within interactive timelines (e.g., smartphone-revolution-timeline) to understand learning journeys: which categories interest them, which events they explore, and whether they engage with referenced materials.
 
 **Goal:** Build a learning analytics dataset that reveals:
+
 - Which content threads students follow
 - Time spent exploring specific topics
 - Engagement intensity (categories filtered, events expanded, links clicked)
@@ -15,12 +16,14 @@ Track student behavior within interactive timelines (e.g., smartphone-revolution
 ## Current Timeline Structure
 
 **Timeline Components:**
+
 - `TimelineExplorer.tsx` — manages category filtering and event list
 - `TimelineEvent.tsx` — individual event with expand/collapse, links
 - `TimelineViewer.tsx` — wrapper that loads timeline data
 - `TimelineLayout.astro` — course material layout for timelines
 
 **Key Interactions:**
+
 1. **Category Filter** — student clicks category (e.g., "Platforms & Ecosystems")
 2. **Event Expand/Pin** — student clicks event to reveal details and links
 3. **Event Link Click** — student clicks reference link within expanded event
@@ -31,6 +34,7 @@ Track student behavior within interactive timelines (e.g., smartphone-revolution
 ## GA4 Custom Events Design
 
 ### Event 1: `timeline_category_filter`
+
 **When:** Student selects or changes category filter
 
 ```json
@@ -52,6 +56,7 @@ Track student behavior within interactive timelines (e.g., smartphone-revolution
 ---
 
 ### Event 2: `timeline_event_opened`
+
 **When:** Student expands/pins an event
 
 ```json
@@ -78,6 +83,7 @@ Track student behavior within interactive timelines (e.g., smartphone-revolution
 ---
 
 ### Event 3: `timeline_event_link_clicked`
+
 **When:** Student clicks a reference link within an expanded event
 
 ```json
@@ -102,6 +108,7 @@ Track student behavior within interactive timelines (e.g., smartphone-revolution
 ---
 
 ### Event 4: `timeline_session_summary`
+
 **When:** Student leaves timeline (at unmount or on page change)
 
 ```json
@@ -113,7 +120,11 @@ Track student behavior within interactive timelines (e.g., smartphone-revolution
     "session_id": "[auto-generated UUID]",
     "session_duration_seconds": 420,
     "categories_filtered": 3,
-    "unique_categories_visited": ["Devices", "Corporate Strategy", "Platforms & Ecosystems"],
+    "unique_categories_visited": [
+      "Devices",
+      "Corporate Strategy",
+      "Platforms & Ecosystems"
+    ],
     "events_opened": 8,
     "links_clicked": 5,
     "most_engaged_category": "Devices",
@@ -145,7 +156,7 @@ interface TimelineSession {
 
 export function initTimelineSession(
   timelineKey: string,
-  timelineTitle: string
+  timelineTitle: string,
 ): TimelineSession {
   return {
     sessionId: crypto.randomUUID(),
@@ -162,10 +173,10 @@ export function trackCategoryFilter(
   session: TimelineSession,
   selectedCategory: string,
   previousCategory: string,
-  visibleEventCount: number
+  visibleEventCount: number,
 ) {
   if (window.gtag) {
-    window.gtag('event', 'timeline_category_filter', {
+    window.gtag("event", "timeline_category_filter", {
       timeline_key: session.timelineKey,
       timeline_title: session.timelineTitle,
       selected_category: selectedCategory,
@@ -180,10 +191,10 @@ export function trackCategoryFilter(
 export function trackEventOpened(
   session: TimelineSession,
   event: TimelineEvent,
-  interactionType: 'pin' | 'hover'
+  interactionType: "pin" | "hover",
 ) {
   if (window.gtag) {
-    window.gtag('event', 'timeline_event_opened', {
+    window.gtag("event", "timeline_event_opened", {
       timeline_key: session.timelineKey,
       timeline_title: session.timelineTitle,
       event_id: event.id,
@@ -206,10 +217,10 @@ export function trackEventLinkClicked(
   event: TimelineEvent,
   linkText: string,
   linkUrl: string,
-  linkPosition: number
+  linkPosition: number,
 ) {
   if (window.gtag) {
-    window.gtag('event', 'timeline_event_link_clicked', {
+    window.gtag("event", "timeline_event_link_clicked", {
       timeline_key: session.timelineKey,
       timeline_title: session.timelineTitle,
       event_id: event.id,
@@ -224,52 +235,41 @@ export function trackEventLinkClicked(
   session.linksClicked += 1;
 }
 
-export function trackSessionEnd(
-  session: TimelineSession
-) {
-  const durationSeconds = Math.round(
-    (Date.now() - session.startTime) / 1000
-  );
+export function trackSessionEnd(session: TimelineSession) {
+  const durationSeconds = Math.round((Date.now() - session.startTime) / 1000);
   const eventIds = Array.from(session.eventsOpened.keys());
   const mostEngagedEventId = eventIds.reduce(
     (max, id) =>
-      (session.eventsOpened.get(id) ?? 0) >
-      (session.eventsOpened.get(max) ?? 0)
+      (session.eventsOpened.get(id) ?? 0) > (session.eventsOpened.get(max) ?? 0)
         ? id
         : max,
-    eventIds[0]
+    eventIds[0],
   );
 
   const categories = Array.from(session.categoriesFiltered);
   const mostEngagedCategory =
-    categories.length > 0 ? categories[categories.length - 1] : 'all';
+    categories.length > 0 ? categories[categories.length - 1] : "all";
 
   // Determine engagement intensity
-  let engagementIntensity = 'low';
-  if (
-    session.eventsOpened.size >= 5 &&
-    session.linksClicked >= 3
-  ) {
-    engagementIntensity = 'high';
-  } else if (
-    session.eventsOpened.size >= 3 ||
-    session.linksClicked >= 1
-  ) {
-    engagementIntensity = 'medium';
+  let engagementIntensity = "low";
+  if (session.eventsOpened.size >= 5 && session.linksClicked >= 3) {
+    engagementIntensity = "high";
+  } else if (session.eventsOpened.size >= 3 || session.linksClicked >= 1) {
+    engagementIntensity = "medium";
   }
 
   if (window.gtag) {
-    window.gtag('event', 'timeline_session_summary', {
+    window.gtag("event", "timeline_session_summary", {
       timeline_key: session.timelineKey,
       timeline_title: session.timelineTitle,
       session_id: session.sessionId,
       session_duration_seconds: durationSeconds,
       categories_filtered: categories.length,
-      unique_categories_visited: categories.join(','),
+      unique_categories_visited: categories.join(","),
       events_opened: session.eventsOpened.size,
       links_clicked: session.linksClicked,
       most_engaged_category: mostEngagedCategory,
-      most_engaged_event_id: mostEngagedEventId ?? '',
+      most_engaged_event_id: mostEngagedEventId ?? "",
       engagement_intensity: engagementIntensity,
     });
   }
@@ -381,6 +381,7 @@ export default function TimelineViewer({ timeline }) {
 ## GA4 Data Analysis & Reporting
 
 ### Query 1: Engagement by Category
+
 **Question:** Which content threads are students most interested in?
 
 ```sql
@@ -397,6 +398,7 @@ ORDER BY student_count DESC;
 ```
 
 ### Query 2: Event Engagement Ranking
+
 **Question:** Which specific events get the most attention?
 
 ```sql
@@ -414,6 +416,7 @@ LIMIT 20;
 ```
 
 ### Query 3: Student Journey Depth
+
 **Question:** How deep do students drill into referenced materials?
 
 ```sql
@@ -430,6 +433,7 @@ GROUP BY engagement_intensity;
 ```
 
 ### Query 4: Resource Popularity (Link Tracking)
+
 **Question:** Which source materials are most valuable to students?
 
 ```sql
@@ -450,18 +454,21 @@ ORDER BY click_count DESC;
 ## Dashboard Recommendations
 
 **Real-Time Dashboard:**
+
 - Active users viewing timeline right now
 - Top 5 most-engaged categories (last 24h)
 - Top 5 most-opened events (last 24h)
 - Event link click heatmap
 
 **Weekly Report:**
+
 - Engagement distribution (% high/medium/low by session)
 - Most popular content thread per cohort
 - Average session duration vs. event exploration
 - Link click-through rate by event
 
 **Cohort Analysis:**
+
 - Compare engagement across course sections or student groups
 - Identify "stalled" students (low engagement_intensity)
 - Correlate timeline engagement with activity in other course materials
@@ -471,22 +478,26 @@ ORDER BY click_count DESC;
 ## Phase Implementation
 
 ### Phase 1: Core Tracking (2-3 hours)
+
 ✅ Build `timelineAnalytics.ts` utility  
 ✅ Instrument TimelineExplorer (category filtering)  
 ✅ Instrument TimelineEvent (event opens and link clicks)  
 ✅ Deploy and monitor basic events in GA4
 
 ### Phase 2: Enhanced Context (1-2 hours)
+
 ✅ Add student cohort/section context to session_summary  
 ✅ Implement referrer source tracking (how students arrived at timeline)  
 ✅ Add device/interaction type classification (touch vs. pointer)
 
 ### Phase 3: Dashboard & Analysis (ongoing)
+
 ✅ Create GA4 dashboard showing top engaging categories/events  
 ✅ Build weekly summary report with engagement distribution  
 ✅ Correlate timeline engagement with course completion via data export
 
 ### Phase 4: Iteration (ongoing)
+
 ✅ A/B test category ordering to see if order affects exploration  
 ✅ Add "time to first interaction" metric  
 ✅ Build student-level journey export for case study analysis
@@ -496,11 +507,13 @@ ORDER BY click_count DESC;
 ## Privacy & Consent Considerations
 
 **Current State:**
+
 - GA4 is already deployed and consented
 - Custom events do not capture PII (no names, IDs in event details)
 - Timeline interaction is educational use, aligned with learning analytics
 
 **Recommendations:**
+
 - Include timeline engagement metrics in course analytics consent
 - Allow students to opt out of detailed timeline tracking if needed
 - Document retention: timeline event data should follow same retention as GA4 (typically 14 months)
@@ -509,13 +522,13 @@ ORDER BY click_count DESC;
 
 ## Success Metrics
 
-| Metric | Target | Purpose |
-|--------|--------|---------|
-| Timeline session adoption | >70% of students view at least one timeline | Baseline engagement |
-| Avg events explored per session | >3 | Content discovery depth |
-| Avg links clicked per session | >1.5 | External resource engagement |
-| High engagement session %age | >40% | Deep learning signal |
-| Category filter adoption | >60% | Feature usage awareness |
+| Metric                          | Target                                      | Purpose                      |
+| ------------------------------- | ------------------------------------------- | ---------------------------- |
+| Timeline session adoption       | >70% of students view at least one timeline | Baseline engagement          |
+| Avg events explored per session | >3                                          | Content discovery depth      |
+| Avg links clicked per session   | >1.5                                        | External resource engagement |
+| High engagement session %age    | >40%                                        | Deep learning signal         |
+| Category filter adoption        | >60%                                        | Feature usage awareness      |
 
 ---
 
@@ -534,4 +547,3 @@ ORDER BY click_count DESC;
 - `/docs/analytics-seo-plan.md` — GA4 core configuration (completed)
 - `src/lib/timelineAnalytics.ts` — tracking utility (to implement)
 - GA4 Property: `toddwseattle-astro` (523733032)
-

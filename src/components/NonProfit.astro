@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import Container from "./ui/Container";
 import TitleSection from "./ui/TitleSection";
 import Timeline from "./ui/Timeline.astro";
@@ -20,7 +20,7 @@ const sortedNonprofits = nonprofits.sort((a, b) =>
     <div class="mt-8">
       {
         sortedNonprofits.map(async (nonprofit) => {
-          const { Content } = await nonprofit.render();
+          const { Content } = await render(nonprofit);
           return (
             <Timeline
               title={nonprofit.data.company || "Organization"}

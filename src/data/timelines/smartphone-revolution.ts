@@ -4,11 +4,7 @@ import { chronicleCategoryMeta } from "./chronicleCategoryMeta";
 /** Category vocabulary for this timeline. Narrowing it here keeps autocomplete
  *  on every event while leaving the component library's type open. */
 export type SmartphoneCategory =
-  | "platforms"
-  | "devices"
-  | "strategy"
-  | "market"
-  | "startups";
+  "platforms" | "devices" | "strategy" | "market" | "startups";
 
 export const smartphoneRevolutionTimeline: TimelineConfig<
   "smartphone-revolution",

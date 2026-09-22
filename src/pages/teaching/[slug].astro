@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header";
@@ -12,7 +12,7 @@ export async function getStaticPaths() {
   const courses = await getCollection("teaching");
   const published = courses.filter((course) => course.data.draft !== true);
   return published.map((course) => ({
-    params: { slug: course.slug },
+    params: { slug: course.id },
     props: { course },
   }));
 }
@@ -31,7 +31,7 @@ const {
   publicArtifacts,
   cover,
 } = course.data;
-const { Content } = await course.render();
+const { Content } = await render(course);
 
 // Extract src from ImageMetadata object or use string directly
 const coverSrc =
@@ -143,7 +143,7 @@ const coverSrc =
         <h2 class="text-3xl font-bold text-ink-800 dark:text-paper-100 mb-8">
           Course Materials & Resources
         </h2>
-        <CourseMaterialsList courseSlug={course.slug} />
+        <CourseMaterialsList courseSlug={course.id} />
       </section>
 
       <div
