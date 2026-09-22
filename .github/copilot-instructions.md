@@ -107,11 +107,15 @@ import hero from ‘../assets/hero.jpg’
 **Use typed collections:**
 
 ```typescript
-// src/content/config.ts
-import { z, defineCollection } from ‘astro:content’
+// src/content.config.ts  — NOT src/content/config.ts, which Astro 6+ rejects
+import { defineCollection } from ‘astro:content’
+import { glob } from ‘astro/loaders’
+import { z } from ‘astro/zod’
 
 const blog = defineCollection({
-  type: ‘content’,
+  // Every collection needs a loader; `type: ‘content’` no longer exists.
+  // `[^_]*.md` keeps co-located images from becoming entries.
+  loader: glob({ pattern: ‘**/[^_]*.md’, base: ‘./src/content/blog’ }),
   schema: z.object({
     title: z.string(),
     date: z.date(),
@@ -122,16 +126,22 @@ const blog = defineCollection({
 export const collections = { blog }
 ```
 
-**Fetch content:**
+**Fetch and render content:**
 
 ```astro
 —
-import { getCollection, getEntry } from ‘astro:content’
+import { getCollection, getEntry, render } from ‘astro:content’
 
 const posts = await getCollection(‘blog’)
 const post = await getEntry(‘blog’, ‘post-slug’)
+
+// `render(entry)`, not `entry.render()`
+const { Content, headings } = await render(post)
 —
 ```
+
+**Entry ids are slugs.** `entry.slug` is gone — use `entry.id` when building URLs.
+`entry.filePath` gives the source path. `entry.body` is optional, so guard it.
 
 ### Critical Constraints
 

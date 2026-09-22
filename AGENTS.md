@@ -380,7 +380,8 @@ Create a React component for [interactive feature]:
 
 ```
 Set up a new content collection for [type]:
-- Define Zod schema in src/content/config.ts
+- Define the collection in src/content.config.ts with a glob() loader
+  from astro/loaders and a Zod schema using z from astro/zod
 - Use proper TypeScript types
 - Add example markdown files
 - Show how to query with getCollection
