@@ -1,12 +1,12 @@
 ---
-import type { CollectionEntry } from "astro:content";
+import type { CollectionEntry, RenderResult } from "astro:content";
 import Container from "../../components/ui/Container";
 import CourseTimeline from "../../components/CourseTimeline";
 import { getTimelineByKey } from "../../data/timelines";
 
 interface Props {
   entry: CollectionEntry<"course-materials">;
-  rendered: Awaited<ReturnType<CollectionEntry<"course-materials">["render"]>>;
+  rendered: RenderResult;
 }
 
 const { entry, rendered } = Astro.props as Props;

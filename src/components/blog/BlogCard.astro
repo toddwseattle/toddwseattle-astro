@@ -9,7 +9,7 @@ interface Props {
 
 const { post } = Astro.props;
 const { title, description, date, tags, cover, category } = post.data;
-const slug = post.slug;
+const slug = post.id;
 
 // Calculate reading time from post body
 const readingTime = formatReadingTime(calculateReadingTime(post.body ?? ""));

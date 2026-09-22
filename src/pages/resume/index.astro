@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -60,7 +60,7 @@ const sortedNonprofits = nonprofits
         <div class="space-y-6">
           {
             sortedExperiences.map(async (experience) => {
-              const { Content } = await experience.render();
+              const { Content } = await render(experience);
               return (
                 <Timeline
                   title={experience.data.company}
@@ -85,7 +85,7 @@ const sortedNonprofits = nonprofits
         <div class="space-y-6">
           {
             sortedEducation.map(async (entry) => {
-              const { Content } = await entry.render();
+              const { Content } = await render(entry);
               const startDate = entry.data.startDate ?? "";
               const endDate = entry.data.endDate ?? "";
               const dateRange =
@@ -126,7 +126,7 @@ const sortedNonprofits = nonprofits
         <div class="space-y-6">
           {
             sortedNonprofits.map(async (nonprofit) => {
-              const { Content } = await nonprofit.render();
+              const { Content } = await render(nonprofit);
               return (
                 <Timeline
                   title={nonprofit.data.company || "Organization"}

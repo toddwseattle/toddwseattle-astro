@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
@@ -30,7 +30,7 @@ export async function getStaticPaths() {
   const posts = await getCollection("blog");
   const published = posts.filter((post) => post.data.draft !== true);
   return published.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: { post },
   }));
 }
@@ -42,7 +42,7 @@ interface Props {
 const { post } = Astro.props;
 const { title, description, date, updatedDate, tags, cover, category } =
   post.data;
-const { Content } = await post.render();
+const { Content } = await render(post);
 
 // Calculate reading time from post body
 const readingTime = formatReadingTime(calculateReadingTime(post.body ?? ""));
