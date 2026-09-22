@@ -69,229 +69,243 @@
   }
 }
 
-/* Custom prose styling for markdown content */
-@layer components {
-  .prose {
-    @apply font-serif text-ink-800;
-  }
+/* Custom prose styling for markdown content.
+ *
+ * Deliberately NOT in @layer components, for the same reason as the slides
+ * block below: these override @tailwindcss/typography, whose output lands in
+ * a later layer. Layered-vs-layered, the plugin wins and the editorial link
+ * styling (teal underline) and list spacing revert to plugin defaults.
+ * Unlayered, specificity decides — which is what Tailwind v3 did.
+ */
+.prose {
+  @apply font-serif text-ink-800;
+}
 
-  .dark .prose {
-    @apply text-paper-100;
-  }
+.dark .prose {
+  @apply text-paper-100;
+}
 
-  .prose h1,
-  .prose h2,
-  .prose h3,
-  .prose h4 {
-    @apply font-serif font-bold text-ink-800;
-  }
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  @apply font-serif font-bold text-ink-800;
+}
 
-  .dark .prose h1,
-  .dark .prose h2,
-  .dark .prose h3,
-  .dark .prose h4 {
-    @apply text-paper-100;
-  }
+.dark .prose h1,
+.dark .prose h2,
+.dark .prose h3,
+.dark .prose h4 {
+  @apply text-paper-100;
+}
 
-  /* Editorial links: same text color, teal underline for affordance */
-  .prose a {
-    @apply text-ink-800 underline decoration-accent-teal decoration-2 underline-offset-4 hover:decoration-ink-800;
-  }
+/* Editorial links: same text color, teal underline for affordance */
+.prose a {
+  @apply text-ink-800 underline decoration-accent-teal decoration-2 underline-offset-4 hover:decoration-ink-800;
+}
 
-  .dark .prose a {
-    @apply text-paper-100 decoration-accent-teal hover:decoration-paper-100;
-  }
+.dark .prose a {
+  @apply text-paper-100 decoration-accent-teal hover:decoration-paper-100;
+}
 
-  .prose strong {
-    @apply font-semibold text-ink-800;
-  }
+.prose strong {
+  @apply font-semibold text-ink-800;
+}
 
-  .dark .prose strong {
-    @apply text-paper-100;
-  }
+.dark .prose strong {
+  @apply text-paper-100;
+}
 
-  .prose code {
-    @apply rounded-sm bg-paper-200 px-1 py-0.5 font-mono text-sm text-ink-800;
-  }
+.prose code {
+  @apply rounded-sm bg-paper-200 px-1 py-0.5 font-mono text-sm text-ink-800;
+}
 
-  .dark .prose code {
-    @apply bg-surface-dark text-paper-100;
-  }
+.dark .prose code {
+  @apply bg-surface-dark text-paper-100;
+}
 
-  .prose pre {
-    @apply bg-ink-950 text-paper-100 overflow-x-auto;
-  }
+.prose pre {
+  @apply bg-ink-950 text-paper-100 overflow-x-auto;
+}
 
-  .dark .prose pre {
-    @apply bg-ink-800 text-paper-100;
-  }
+.dark .prose pre {
+  @apply bg-ink-800 text-paper-100;
+}
 
-  .prose pre code {
-    @apply bg-transparent p-0 text-inherit;
-  }
+.prose pre code {
+  @apply bg-transparent p-0 text-inherit;
+}
 
-  .prose img {
-    @apply rounded-lg;
-  }
+.prose img {
+  @apply rounded-lg;
+}
 
-  /* Editorial blockquote: neutral structure, no decorative color fill */
-  .prose blockquote {
-    @apply border-l-4 border-graphite-400 pl-4 italic;
-  }
+/* Editorial blockquote: neutral structure, no decorative color fill */
+.prose blockquote {
+  @apply border-l-4 border-graphite-400 pl-4 italic;
+}
 
-  .dark .prose blockquote {
-    @apply border-ink-600;
-  }
+.dark .prose blockquote {
+  @apply border-ink-600;
+}
 
-  .prose hr {
-    @apply border-graphite-600/30;
-  }
+.prose hr {
+  @apply border-graphite-600/30;
+}
 
-  .dark .prose hr {
-    @apply border-graphite-600;
-  }
+.dark .prose hr {
+  @apply border-graphite-600;
+}
 
-  .prose ul,
-  .prose ol {
-    @apply my-4;
-  }
+.prose ul,
+.prose ol {
+  @apply my-4;
+}
 
-  .prose li {
-    @apply my-2;
-  }
+.prose li {
+  @apply my-2;
+}
 
-  .slides-layout {
-    @apply min-h-screen bg-paper-100 text-ink-800 dark:bg-graphite-700 dark:text-paper-100;
-  }
+/* Slides overrides — deliberately NOT in @layer components.
+ *
+ * Tailwind v3's @layer was a build-time grouping that emitted plain,
+ * unlayered CSS, so these rules beat reveal.js on specificity. Tailwind v4
+ * emits real CSS cascade layers, and unlayered styles beat layered ones no
+ * matter how specific the layered one is — so inside @layer components these
+ * lost to reveal.css's own unlayered `.reveal { height: 100% }`, collapsing
+ * every deck to zero height. Keeping them unlayered restores the v3 cascade.
+ */
+.slides-layout {
+  @apply min-h-screen bg-paper-100 text-ink-800 dark:bg-graphite-700 dark:text-paper-100;
+}
 
-  .slides-layout .reveal {
-    @apply h-screen w-full bg-paper-100 text-ink-800 dark:bg-graphite-700 dark:text-paper-100;
-    font-size: 1rem;
-  }
+.slides-layout .reveal {
+  @apply h-screen w-full bg-paper-100 text-ink-800 dark:bg-graphite-700 dark:text-paper-100;
+  font-size: 1rem;
+}
 
-  .slides-layout .reveal .slides {
-    @apply text-center;
-  }
+.slides-layout .reveal .slides {
+  @apply text-center;
+}
 
-  .slides-layout .reveal .slides section {
-    @apply px-8 md:px-12;
-  }
+.slides-layout .reveal .slides section {
+  @apply px-8 md:px-12;
+}
 
-  .slides-layout .reveal .slides section > h1:first-child,
-  .slides-layout .reveal .slides section > h2:first-child {
-    @apply mx-auto max-w-4xl text-center;
-  }
+.slides-layout .reveal .slides section > h1:first-child,
+.slides-layout .reveal .slides section > h2:first-child {
+  @apply mx-auto max-w-4xl text-center;
+}
 
-  .slides-layout .reveal .slides h1,
-  .slides-layout .reveal .slides h2,
-  .slides-layout .reveal .slides h3,
-  .slides-layout .reveal .slides h4 {
-    @apply text-ink-800 dark:text-paper-100;
-  }
+.slides-layout .reveal .slides h1,
+.slides-layout .reveal .slides h2,
+.slides-layout .reveal .slides h3,
+.slides-layout .reveal .slides h4 {
+  @apply text-ink-800 dark:text-paper-100;
+}
 
-  .slides-layout .reveal .slides h1 {
-    @apply text-5xl md:text-6xl lg:text-7xl leading-tight;
-  }
+.slides-layout .reveal .slides h1 {
+  @apply text-5xl md:text-6xl lg:text-7xl leading-tight;
+}
 
-  .slides-layout .reveal .slides h2 {
-    @apply text-4xl md:text-5xl lg:text-6xl leading-tight;
-  }
+.slides-layout .reveal .slides h2 {
+  @apply text-4xl md:text-5xl lg:text-6xl leading-tight;
+}
 
-  .slides-layout .reveal .slides h3 {
-    @apply text-3xl md:text-4xl leading-snug;
-  }
+.slides-layout .reveal .slides h3 {
+  @apply text-3xl md:text-4xl leading-snug;
+}
 
-  .slides-layout .reveal .slides h4 {
-    @apply text-2xl md:text-3xl leading-snug;
-  }
+.slides-layout .reveal .slides h4 {
+  @apply text-2xl md:text-3xl leading-snug;
+}
 
-  .slides-layout .reveal .slides ul,
-  .slides-layout .reveal .slides ol {
-    @apply mx-auto my-8 max-w-4xl;
-  }
+.slides-layout .reveal .slides ul,
+.slides-layout .reveal .slides ol {
+  @apply mx-auto my-8 max-w-4xl;
+}
 
-  .slides-layout .reveal .slides ul {
-    @apply list-disc pl-8;
-  }
+.slides-layout .reveal .slides ul {
+  @apply list-disc pl-8;
+}
 
-  .slides-layout .reveal .slides ol {
-    @apply list-decimal pl-8;
-  }
+.slides-layout .reveal .slides ol {
+  @apply list-decimal pl-8;
+}
 
-  .slides-layout .reveal .slides p,
-  .slides-layout .reveal .slides li,
-  .slides-layout .reveal .slides small {
-    @apply text-ink-600 dark:text-paper-200;
-  }
+.slides-layout .reveal .slides p,
+.slides-layout .reveal .slides li,
+.slides-layout .reveal .slides small {
+  @apply text-ink-600 dark:text-paper-200;
+}
 
-  .slides-layout .reveal .slides p {
-    @apply mx-auto max-w-4xl text-xl leading-relaxed md:text-2xl;
-  }
+.slides-layout .reveal .slides p {
+  @apply mx-auto max-w-4xl text-xl leading-relaxed md:text-2xl;
+}
 
-  .slides-layout .reveal .slides li {
-    @apply my-3 pl-1 text-ink-800 dark:text-paper-100;
-  }
+.slides-layout .reveal .slides li {
+  @apply my-3 pl-1 text-ink-800 dark:text-paper-100;
+}
 
-  .slides-layout .reveal .slides li::marker {
-    @apply text-graphite-600 dark:text-paper-200;
-  }
+.slides-layout .reveal .slides li::marker {
+  @apply text-graphite-600 dark:text-paper-200;
+}
 
-  .slides-layout .reveal .slides strong,
-  .slides-layout .reveal .slides b {
-    @apply text-ink-800 dark:text-paper-100;
-  }
+.slides-layout .reveal .slides strong,
+.slides-layout .reveal .slides b {
+  @apply text-ink-800 dark:text-paper-100;
+}
 
-  .slides-layout .reveal .slides a {
-    @apply text-ink-800 underline decoration-accent-teal decoration-2 underline-offset-4 dark:text-paper-100 dark:decoration-accent-teal dark:hover:decoration-paper-100 hover:decoration-ink-800;
-  }
+.slides-layout .reveal .slides a {
+  @apply text-ink-800 underline decoration-accent-teal decoration-2 underline-offset-4 dark:text-paper-100 dark:decoration-accent-teal dark:hover:decoration-paper-100 hover:decoration-ink-800;
+}
 
-  .slides-layout .reveal .slides code {
-    @apply rounded-sm bg-paper-200 px-1 py-0.5 text-ink-800 dark:bg-surface-dark dark:text-paper-100;
-  }
+.slides-layout .reveal .slides code {
+  @apply rounded-sm bg-paper-200 px-1 py-0.5 text-ink-800 dark:bg-surface-dark dark:text-paper-100;
+}
 
-  .slides-layout .reveal .slides pre {
-    @apply mx-auto max-w-5xl rounded-lg border border-graphite-600/20 bg-paper-50 p-4 text-left text-ink-800 dark:border-graphite-600 dark:bg-surface-dark dark:text-paper-100;
-    box-shadow: none;
-  }
+.slides-layout .reveal .slides pre {
+  @apply mx-auto max-w-5xl rounded-lg border border-graphite-600/20 bg-paper-50 p-4 text-left text-ink-800 dark:border-graphite-600 dark:bg-surface-dark dark:text-paper-100;
+  box-shadow: none;
+}
 
-  .slides-layout .reveal .slides pre code {
-    @apply bg-transparent p-0 text-inherit;
-    max-height: none;
-  }
+.slides-layout .reveal .slides pre code {
+  @apply bg-transparent p-0 text-inherit;
+  max-height: none;
+}
 
-  .slides-layout .reveal .slides blockquote {
-    @apply mx-auto max-w-4xl border-l-4 border-graphite-400 bg-paper-50 px-4 py-3 text-left text-ink-600 dark:border-graphite-600 dark:bg-surface-dark dark:text-paper-200;
-    box-shadow: none;
-  }
+.slides-layout .reveal .slides blockquote {
+  @apply mx-auto max-w-4xl border-l-4 border-graphite-400 bg-paper-50 px-4 py-3 text-left text-ink-600 dark:border-graphite-600 dark:bg-surface-dark dark:text-paper-200;
+  box-shadow: none;
+}
 
-  .slides-layout .reveal .slides table {
-    @apply mx-auto;
-  }
+.slides-layout .reveal .slides table {
+  @apply mx-auto;
+}
 
-  .slides-layout .reveal .slides table th,
-  .slides-layout .reveal .slides table td {
-    @apply border-graphite-600/30 dark:border-graphite-600;
-  }
+.slides-layout .reveal .slides table th,
+.slides-layout .reveal .slides table td {
+  @apply border-graphite-600/30 dark:border-graphite-600;
+}
 
-  .slides-layout .reveal .controls,
-  .slides-layout .reveal .progress {
-    color: inherit;
-  }
+.slides-layout .reveal .controls,
+.slides-layout .reveal .progress {
+  color: inherit;
+}
 
-  .slides-layout .reveal .controls button {
-    @apply text-ink-800 opacity-80 dark:text-paper-100;
-  }
+.slides-layout .reveal .controls button {
+  @apply text-ink-800 opacity-80 dark:text-paper-100;
+}
 
-  .slides-layout .reveal .controls button:hover,
-  .slides-layout .reveal .controls button:focus {
-    @apply opacity-100;
-  }
+.slides-layout .reveal .controls button:hover,
+.slides-layout .reveal .controls button:focus {
+  @apply opacity-100;
+}
 
-  .slides-layout .reveal .progress {
-    @apply bg-graphite-600/20 dark:bg-graphite-600;
-  }
+.slides-layout .reveal .progress {
+  @apply bg-graphite-600/20 dark:bg-graphite-600;
+}
 
-  .slides-layout .reveal .progress span {
-    @apply bg-accent-teal;
-  }
+.slides-layout .reveal .progress span {
+  @apply bg-accent-teal;
 }

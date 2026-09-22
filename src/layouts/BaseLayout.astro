@@ -132,12 +132,18 @@ const fullImageURL = new URL(image, Astro.site ?? siteConfig.siteUrl).href;
        * has no access to the theme unless it references it. */
       @reference "../assets/styles/global.css";
 
-      a {
-        @apply text-ink-800 dark:text-paper-100;
-      }
+      /* These are element-level defaults, so they belong in @layer base.
+       * Unlayered, they would beat every utility class in Tailwind v4 —
+       * `a` would override `text-paper-50` on the teal buttons, since
+       * unlayered CSS wins over layered CSS regardless of specificity. */
+      @layer base {
+        a {
+          @apply text-ink-800 dark:text-paper-100;
+        }
 
-      p + p {
-        @apply mt-3;
+        p + p {
+          @apply mt-3;
+        }
       }
     </style>
   </body>
