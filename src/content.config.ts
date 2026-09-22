@@ -1,7 +1,7 @@
 import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
-import { timelineKeys } from "./data/timelines";
+import { timelineKeys } from "./data/timelines/keys";
 
 /**
  * Content Layer collections.
