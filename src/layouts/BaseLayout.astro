@@ -128,6 +128,10 @@ const fullImageURL = new URL(image, Astro.site ?? siteConfig.siteUrl).href;
       <slot />
     </div>
     <style is:global>
+      /* This block is bundled separately from global.css, so in Tailwind v4 it
+       * has no access to the theme unless it references it. */
+      @reference "../assets/styles/global.css";
+
       a {
         @apply text-ink-800 dark:text-paper-100;
       }

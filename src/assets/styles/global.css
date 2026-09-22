@@ -6,9 +6,38 @@
 @import "@fontsource/manrope/600.css";
 @import "@fontsource/manrope/700.css";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* Tailwind v4 no longer auto-discovers tailwind.config.js. The Chronicle Data
+ * System tokens, `darkMode: "class"` and the typography plugin all still live
+ * there, so load it explicitly. */
+@config "../../../tailwind.config.js";
+
+/* Tailwind v4 changed three Preflight defaults. These blocks pin them back to
+ * their v3 values so the dependency upgrade carries no visual change of its
+ * own; drop them deliberately, as their own change, not by accident. */
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    /* v4 defaults this to currentColor */
+    border-color: var(--color-gray-200, currentColor);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    /* v4 defaults this to the current text colour at 50% opacity */
+    color: var(--color-gray-400);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    /* v4 defaults buttons to cursor: default */
+    cursor: pointer;
+  }
+}
 
 /* Chronicle Data System - Design Tokens
  * See docs/Visual-style/short-color-brief.md for reference
@@ -82,7 +111,7 @@
   }
 
   .prose code {
-    @apply rounded bg-paper-200 px-1 py-0.5 font-mono text-sm text-ink-800;
+    @apply rounded-sm bg-paper-200 px-1 py-0.5 font-mono text-sm text-ink-800;
   }
 
   .dark .prose code {
@@ -217,7 +246,7 @@
   }
 
   .slides-layout .reveal .slides code {
-    @apply rounded bg-paper-200 px-1 py-0.5 text-ink-800 dark:bg-surface-dark dark:text-paper-100;
+    @apply rounded-sm bg-paper-200 px-1 py-0.5 text-ink-800 dark:bg-surface-dark dark:text-paper-100;
   }
 
   .slides-layout .reveal .slides pre {

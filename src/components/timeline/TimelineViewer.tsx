@@ -28,7 +28,7 @@ interface TimelineViewerProps {
 }
 
 const TOGGLE_BASE =
-  "rounded-lg border px-3 py-1.5 font-sans text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--tl-accent)]";
+  "rounded-lg border px-3 py-1.5 font-sans text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[color:var(--tl-accent)]";
 const TOGGLE_ACTIVE =
   "border-[color:var(--tl-accent)] bg-[var(--tl-accent)] text-[color:var(--tl-on-accent)] underline decoration-[color:var(--tl-on-accent)] decoration-2 underline-offset-4";
 const TOGGLE_INACTIVE =
@@ -97,7 +97,7 @@ export default function TimelineViewer({
           </button>
         </div>
 
-        <div className="flex flex-col gap-3 rounded-lg border border-[color:var(--tl-border-faint)] bg-[var(--tl-surface-bar)] px-4 py-3 backdrop-blur-sm md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col gap-3 rounded-lg border border-[color:var(--tl-border-faint)] bg-[var(--tl-surface-bar)] px-4 py-3 backdrop-blur-xs md:flex-row md:items-center md:justify-between">
           <div className="flex flex-col gap-2 md:flex-row md:items-center">
             <span className="shrink-0 font-sans text-[0.65rem] font-semibold uppercase tracking-widest text-[color:var(--tl-text-faint-on-surface)]">
               Filter By:

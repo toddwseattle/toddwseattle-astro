@@ -1,17 +1,14 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
-import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://toddwseattle.com", // REQUIRED for sitemap
   integrations: [
     react(),
-    tailwind({
-      applyBaseStyles: false,
-    }),
     sitemap({
       filter: (page) => !page.includes("/admin/"), // Exclude admin pages if any
       changefreq: "weekly",
@@ -19,6 +16,9 @@ export default defineConfig({
       lastmod: new Date(),
     }),
   ],
+  vite: {
+    plugins: [tailwindcss()],
+  },
   markdown: {
     shikiConfig: {
       theme: "github-dark",

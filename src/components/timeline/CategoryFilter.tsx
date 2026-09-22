@@ -45,7 +45,7 @@ export default function CategoryFilter({
             onClick={() =>
               onSelect(!showAll && isSelected ? "all" : option.value)
             }
-            className={`rounded-sm border px-4 py-1 font-sans text-[0.65rem] font-semibold uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--tl-accent)] ${
+            className={`rounded-xs border px-4 py-1 font-sans text-[0.65rem] font-semibold uppercase tracking-widest transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[color:var(--tl-accent)] ${
               isSelected
                 ? "border-[color:var(--tl-accent)] bg-[var(--tl-accent)] text-[color:var(--tl-on-accent)] underline decoration-[color:var(--tl-on-accent)] decoration-2 underline-offset-4"
                 : "border-[color:var(--tl-border-idle)] bg-[var(--tl-surface-pill-idle)] text-[color:var(--tl-text-muted)] hover:border-[color:var(--tl-border-hover)] hover:bg-[var(--tl-surface-pill-hover)]"
