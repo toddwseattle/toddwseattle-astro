@@ -217,7 +217,8 @@ const courseMaterialsCollection = defineCollection({
       .array(
         z.object({
           title: z.string(),
-          url: z.string().url(),
+          // Zod 4 moved the string formats to the top-level z namespace
+          url: z.url(),
           description: z.string().optional(),
         }),
       )
