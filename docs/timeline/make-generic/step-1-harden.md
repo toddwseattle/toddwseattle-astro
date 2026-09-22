@@ -162,10 +162,7 @@ scanner to emit them; do not build class names by interpolation.
 
 ```ts
 export type TimelineEventName =
-  | "category_filter"
-  | "event_opened"
-  | "event_link_clicked"
-  | "session_summary";
+  "category_filter" | "event_opened" | "event_link_clicked" | "session_summary";
 
 export interface TimelineAnalytics {
   onEvent?: (name: TimelineEventName, params: Record<string, unknown>) => void;

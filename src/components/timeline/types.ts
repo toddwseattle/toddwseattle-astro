@@ -78,10 +78,7 @@ export interface TimelineConfig<
  * to do with them — see `TimelineViewer`'s `onEvent` prop.
  */
 export type TimelineEventName =
-  | "category_filter"
-  | "event_opened"
-  | "event_link_clicked"
-  | "session_summary";
+  "category_filter" | "event_opened" | "event_link_clicked" | "session_summary";
 
 export type TimelineEventHandler = (
   name: TimelineEventName,

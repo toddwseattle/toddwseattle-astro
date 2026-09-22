@@ -50,13 +50,14 @@ Course Focus: Building software reliably and predictably in teams.
 ## Grading
 
 Breakdown
-| Area | Description | Value |
+
+| Area                      | Description                                                                                                                                                                          | Value |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----- |
-| Class Participation | - Attendance and punctuality (see syllabus section)<br/>- Discussion Starter engagement on lectures; guest; reading<br/>- Engagement with Teams in Shared Critique and Presentations | 15% |
-| Startup Project | - Peer Feedback on Team Participation<br/>- Gitstats contribution<br/>- Quality of overall team deliverable | 37% |
-| Multi-Team Client Project | - Client Feedback<br/>- Peer Feedback on Team Participation<br/>- Gitstats contribution<br/>- Quality of overall team deliverable | 38% |
-| Exercises/Labs | - Online Exercises with github classroom for skill building | 10% |
-| Total | | 100% |
+| Class Participation       | - Attendance and punctuality (see syllabus section)<br/>- Discussion Starter engagement on lectures; guest; reading<br/>- Engagement with Teams in Shared Critique and Presentations | 15%   |
+| Startup Project           | - Peer Feedback on Team Participation<br/>- Gitstats contribution<br/>- Quality of overall team deliverable                                                                          | 37%   |
+| Multi-Team Client Project | - Client Feedback<br/>- Peer Feedback on Team Participation<br/>- Gitstats contribution<br/>- Quality of overall team deliverable                                                    | 38%   |
+| Exercises/Labs            | - Online Exercises with github classroom for skill building                                                                                                                          | 10%   |
+| Total                     |                                                                                                                                                                                      | 100%  |
 
 ---
 

@@ -27,17 +27,17 @@ Two unrelated components share the name. `src/components/ui/Timeline.astro` (38 
 a simple vertical résumé band and is **out of scope**. The course timeline is a React
 island stack:
 
-| File                                              |  LOC | Role                                                                         |
-| ------------------------------------------------- | ---: | ---------------------------------------------------------------------------- |
+| File                                              |  LOC | Role                                                                        |
+| ------------------------------------------------- | ---: | --------------------------------------------------------------------------- |
 | `src/components/timeline/TimelineViewer.tsx`      |  123 | Orchestrator — owns category/era state and the list↔interactive view toggle |
-| `src/components/timeline/InteractiveTimeline.tsx` |  596 | Horizontal scrolling track: era bands, year ticks, dots, detail panel        |
-| `src/components/timeline/TimelineExplorer.tsx`    |  111 | Vertical list view (also the mobile fallback)                                |
-| `src/components/timeline/TimelineEvent.tsx`       |  189 | Expandable list card                                                         |
-| `src/components/timeline/CategoryFilter.tsx`      |   58 | Category pill radiogroup                                                     |
-| `src/components/timeline/EraFilter.tsx`           |   65 | Era pill radiogroup                                                          |
-| `src/data/timelines/shared.ts`                    | ~130 | Types, `timelineCategoryMeta`, `filterEvents`                                |
-| `src/lib/timelineAnalytics.ts`                    |  259 | gtag session/event tracking                                                  |
-| `src/components/timeline/*.test.tsx`              |  216 | Vitest suites (3 files)                                                      |
+| `src/components/timeline/InteractiveTimeline.tsx` |  596 | Horizontal scrolling track: era bands, year ticks, dots, detail panel       |
+| `src/components/timeline/TimelineExplorer.tsx`    |  111 | Vertical list view (also the mobile fallback)                               |
+| `src/components/timeline/TimelineEvent.tsx`       |  189 | Expandable list card                                                        |
+| `src/components/timeline/CategoryFilter.tsx`      |   58 | Category pill radiogroup                                                    |
+| `src/components/timeline/EraFilter.tsx`           |   65 | Era pill radiogroup                                                         |
+| `src/data/timelines/shared.ts`                    | ~130 | Types, `timelineCategoryMeta`, `filterEvents`                               |
+| `src/lib/timelineAnalytics.ts`                    |  259 | gtag session/event tracking                                                 |
+| `src/components/timeline/*.test.tsx`              |  216 | Vitest suites (3 files)                                                     |
 
 Datasets live in `src/data/timelines/` (~87 KB of TypeScript across
 `software-engineering-history.ts` and `smartphone-revolution.ts`).
